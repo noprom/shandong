@@ -109,13 +109,96 @@
     <type>group</type>
     <child-task idref="t1"/>
     <child-task idref="t7"/>
+    <child-task idref="t9"/>
+    <child-task idref="t11"/>
+    <child-task idref="t12"/>
   </task>
   <task id="t1">
     <title>搭建开发环境</title>
     <effort>28800</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>1.</lit>
+          </run>
+          <run>
+            <lit>熟悉</lit>
+          </run>
+          <run>
+            <lit>Git</lit>
+          </run>
+          <run>
+            <lit>的基本操作</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>2.</lit>
+          </run>
+          <run>
+            <lit>开发人员完成项目框架的搭建</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r1"/>
+    <assignment idref="r2"/>
+    <assignment idref="r3"/>
+    <assignment idref="r4"/>
+    <assignment idref="r5"/>
+    <assignment idref="r6"/>
+    <assignment idref="r7"/>
+    <assignment idref="r8"/>
+    <assignment idref="r9"/>
+    <assignment idref="r10"/>
+    <assignment idref="r12"/>
   </task>
   <task id="t7">
-    <title>任务 2</title>
+    <title>制订需求规格说明书v1.0</title>
+    <effort>28800</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>根据《山东省人力资源市场数据采集系统需求分析说明书》分析系统，制定需求规格说明书</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r6"/>
+    <assignment idref="r12"/>
+  </task>
+  <task id="t9">
+    <title>完成界面原型</title>
+    <effort>28800</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>制作项目的界面原型</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r7"/>
+  </task>
+  <task id="t11">
+    <title>制作页面设计图</title>
+    <effort>57600</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>根据页面原型，制作出对应的设计图</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r7"/>
+  </task>
+  <task id="t12">
+    <title>任务 1</title>
     <effort>28800</effort>
   </task>
   <critical-path root="-1" enabled="false" resources="false">

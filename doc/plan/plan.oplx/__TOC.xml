@@ -6,15 +6,16 @@
     <change-tracking/>
     <status-display>basic</status-display>
     <task-view>
-      <split-view-divider-position>306</split-view-divider-position>
-      <outline x="0" y="0" w="306" h="689">
+      <split-view-divider-position>269</split-view-divider-position>
+      <outline x="0" y="0" w="269" h="689">
         <column name="Violations" width="20"/>
         <column name="Notes" width="20"/>
-        <column name="Title" width="191"/>
-        <column name="Effort" width="70"/>
-        <selected-items-at-filter-time idrefs="t7"/>
+        <column name="Title" width="189"/>
+        <column name="Effort" width="35"/>
+        <expanded-item-notes idrefs="t1 t7 t11 t9"/>
+        <selected-items-at-filter-time idrefs="t8 t12 t7 t10 t11 t9"/>
       </outline>
-      <gantt-view x="-29" y="0" w="972" h="689">
+      <gantt-view x="-64" y="0" w="1009" h="689">
         <view-mode>actual</view-mode>
         <dependency-lines/>
         <constraints/>
@@ -46,7 +47,7 @@
         <task-bar-label task-type="task" position="right">
           <key>Assigned</key>
         </task-bar-label>
-        <scale scale-name="Automatic" full-day-width="300">
+        <scale scale-name="Automatic" full-day-width="262.589">
           <selected/>
         </scale>
         <scale scale-name="Day" full-day-width="1215"/>
@@ -68,7 +69,7 @@
         <column name="#" width="75"/>
         <selected-items-at-filter-time idrefs="r3 r12 r6 r9 r11 r4 r7 r2 r10 r5 r8"/>
       </outline>
-      <timeline x="-69" y="0" w="944" h="689">
+      <timeline x="-92.5" y="0" w="944" h="689">
         <offtime-display>none</offtime-display>
         <show-project-end/>
         <task-bar-label task-type="group" position="left">
@@ -98,7 +99,7 @@
         <task-bar-label task-type="task" position="right">
           <key/>
         </task-bar-label>
-        <scale scale-name="Automatic" full-day-width="300">
+        <scale scale-name="Automatic" full-day-width="251.801">
           <selected/>
         </scale>
         <scale scale-name="Day" full-day-width="1215"/>
@@ -112,7 +113,7 @@
     </resource-view>
     <calendar>
       <split-view-divider-position>290</split-view-divider-position>
-      <outline x="0" y="0" w="290" h="546">
+      <outline x="0" y="0" w="290" h="665">
         <column name="Notes" width="20"/>
         <column name="Type" width="49"/>
         <column name="Resource" width="139"/>
@@ -135,7 +136,7 @@ End:</group-table-style>
     </network-view>
   </window>
   <project>
-    <next-task-id>8</next-task-id>
+    <next-task-id>13</next-task-id>
     <next-resource-id>13</next-resource-id>
     <scenario id="emFUud0KsEx" name="Actual" filename="Actual.xml"/>
     <date-display dates="true" times="true" seconds="false"/>
