@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<changelog xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2">
+  <version>2.1</version>
+  <task-change-set user="noprom" date="2016-03-05T13:46:22.190Z" timestamp="2016-03-05T13:46:22.190Z">
+    <change idref="t7" to="t-1" to-position="1" resolved="yes">
+      <change idref="t7" attribute="title" type="string" to="任务 2"/>
+    </change>
+    <change idref="t1" attribute="title" type="string" from="任务 1" to="搭建开发环境" resolved="yes"/>
+    <change idref="t1" attribute="effort" type="real" from="28800" to="57600" resolved="yes"/>
+  </task-change-set>
+  <task-change-set user="noprom" date="2016-03-05T13:46:26.506Z" timestamp="2016-03-05T13:46:26.506Z">
+    <change idref="t1" attribute="effort" type="real" from="57600" to="28800" resolved="yes"/>
+  </task-change-set>
+  <resource-change-set user="noprom" date="2016-03-05T13:44:14.260Z" timestamp="2016-03-05T13:44:14.260Z">
+    <change idref="r2" to="r-1" to-position="1" resolved="yes">
+      <change idref="r2" attribute="name" type="string" to="石永璨"/>
+    </change>
+    <change idref="r3" to="r-1" to-position="2" resolved="yes">
+      <change idref="r3" attribute="name" type="string" to="张庭瑞"/>
+    </change>
+    <change idref="r4" to="r-1" to-position="3" resolved="yes">
+      <change idref="r4" attribute="name" type="string" to="陈永鹏"/>
+    </change>
+    <change idref="r5" to="r-1" to-position="4" resolved="yes">
+      <change idref="r5" attribute="name" type="string" to="安剑锋"/>
+    </change>
+    <change idref="r6" to="r-1" to-position="5" resolved="yes">
+      <change idref="r6" attribute="name" type="string" to="陈歌吟"/>
+    </change>
+    <change idref="r7" to="r-1" to-position="6" resolved="yes">
+      <change idref="r7" attribute="name" type="string" to="张栋"/>
+    </change>
+    <change idref="r8" to="r-1" to-position="7" resolved="yes">
+      <change idref="r8" attribute="name" type="string" to="于伟平"/>
+    </change>
+    <change idref="r9" to="r-1" to-position="8" resolved="yes">
+      <change idref="r9" attribute="name" type="string" to="杨锴"/>
+    </change>
+    <change idref="r10" to="r-1" to-position="9" resolved="yes">
+      <change idref="r10" attribute="name" type="string" to="迪力尼亚·迪力夏提"/>
+    </change>
+    <change idref="r12" to="r-1" to-position="10" resolved="yes">
+      <change idref="r12" attribute="name" type="string" to="胡思泽"/>
+    </change>
+    <change idref="r1" attribute="name" type="string" from="资源 1" to="何林" resolved="yes"/>
+  </resource-change-set>
+  <metadata-change-set user="noprom" date="2016-03-05T13:38:20.511Z" timestamp="2016-03-05T13:38:20.511Z">
+    <change idref="m1" attribute="fixedDate" type="date" from="2007-01-01T20:00:00.000Z" to="2016-03-04T16:00:00.000Z" resolved="yes"/>
+  </metadata-change-set>
+</changelog>
