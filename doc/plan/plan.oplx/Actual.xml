@@ -115,6 +115,8 @@
     <child-task idref="t16"/>
     <child-task idref="t15"/>
     <child-task idref="t14"/>
+    <child-task idref="t17"/>
+    <child-task idref="t18"/>
   </task>
   <task id="t1">
     <title>搭建开发环境</title>
@@ -249,8 +251,25 @@
     <assignment idref="r10"/>
   </task>
   <task id="t14">
-    <title>任务 1</title>
-    <effort>28800</effort>
+    <title>学习SpringMVC</title>
+    <effort>86400</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>根据实际项目完成</lit>
+          </run>
+          <run>
+            <lit>SpringMVC</lit>
+          </run>
+          <run>
+            <lit>的学习</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r3"/>
+    <assignment idref="r4"/>
   </task>
   <task id="t15">
     <title>完成详细设计</title>
@@ -287,6 +306,8 @@
         </p>
       </text>
     </note>
+    <assignment idref="r8"/>
+    <assignment idref="r7"/>
   </task>
   <task id="t16">
     <title>完成概要设计</title>
@@ -319,6 +340,49 @@
     </note>
     <assignment idref="r7"/>
     <assignment idref="r8"/>
+  </task>
+  <task id="t17">
+    <title>组会</title>
+    <effort>3600</effort>
+    <start-constraint-date>2016-03-10T00:15:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>小组开会，总结这</lit>
+          </run>
+          <run>
+            <lit>3</lit>
+          </run>
+          <run>
+            <lit>天的进展，为下一步开发准备</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <start-no-earlier-than>2016-03-10T00:15:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t18">
+    <title>建立数据库</title>
+    <effort>86400</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>与</lit>
+          </run>
+          <run>
+            <lit>DBA</lit>
+          </run>
+          <run>
+            <lit>讨论并且简历项目的数据库</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r1"/>
+    <assignment idref="r2"/>
+    <assignment idref="r10"/>
   </task>
   <critical-path root="-1" enabled="false" resources="false">
     <color r="1" g="0.5" b="0.5"/>

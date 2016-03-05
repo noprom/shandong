@@ -7,15 +7,15 @@
     <status-display>basic</status-display>
     <task-view>
       <split-view-divider-position>269</split-view-divider-position>
-      <outline x="0" y="0" w="269" h="689">
+      <outline x="0" y="136" w="269" h="689">
         <column name="Violations" width="20"/>
         <column name="Notes" width="20"/>
         <column name="Title" width="189"/>
         <column name="Effort" width="35"/>
-        <expanded-item-notes idrefs="t9 t7 t16 t12 t15 t11 t1"/>
-        <selected-items-at-filter-time idrefs="t9 t10 t7 t16 t13 t12 t8 t15 t11 t14"/>
+        <expanded-item-notes idrefs="t17 t1 t9 t7 t16 t12 t15 t18 t11 t14"/>
+        <selected-items-at-filter-time idrefs="t8 t18 t13 t9 t16 t11 t14 t17 t12 t7 t15 t10"/>
       </outline>
-      <gantt-view x="-64" y="0" w="1009" h="689">
+      <gantt-view x="-64" y="136" w="1009" h="689">
         <view-mode>actual</view-mode>
         <dependency-lines/>
         <constraints/>
@@ -136,7 +136,7 @@ End:</group-table-style>
     </network-view>
   </window>
   <project>
-    <next-task-id>17</next-task-id>
+    <next-task-id>19</next-task-id>
     <next-resource-id>13</next-resource-id>
     <scenario id="emFUud0KsEx" name="Actual" filename="Actual.xml"/>
     <date-display dates="true" times="true" seconds="false"/>
