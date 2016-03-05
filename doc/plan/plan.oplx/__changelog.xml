@@ -237,6 +237,9 @@
   <task-change-set user="noprom" date="2016-03-05T14:35:18.228Z" timestamp="2016-03-05T14:35:18.228Z">
     <change idref="t15" attribute="internalAssignments" type="string" from="" to="8; 7" resolved="yes"/>
   </task-change-set>
+  <task-change-set user="noprom" date="2016-03-05T14:45:50.754Z" timestamp="2016-03-05T14:45:50.754Z">
+    <change idref="t17" attribute="internalAssignments" type="string" from="" to="3; 2; 1; 4; 5; 6; 7; 8; 9; 10; 12" resolved="yes"/>
+  </task-change-set>
   <resource-change-set user="noprom" date="2016-03-05T13:44:14.260Z" timestamp="2016-03-05T13:44:14.260Z">
     <change idref="r2" to="r-1" to-position="1" resolved="yes">
       <change idref="r2" attribute="name" type="string" to="石永璨"/>
