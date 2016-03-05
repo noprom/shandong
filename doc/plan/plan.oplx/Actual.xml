@@ -112,6 +112,9 @@
     <child-task idref="t9"/>
     <child-task idref="t11"/>
     <child-task idref="t12"/>
+    <child-task idref="t16"/>
+    <child-task idref="t15"/>
+    <child-task idref="t14"/>
   </task>
   <task id="t1">
     <title>搭建开发环境</title>
@@ -161,7 +164,24 @@
       <text>
         <p>
           <run>
+            <lit>1.</lit>
+          </run>
+          <run>
             <lit>根据《山东省人力资源市场数据采集系统需求分析说明书》分析系统，制定需求规格说明书</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>2.</lit>
+          </run>
+          <run>
+            <lit>完成《需求规则说明书</lit>
+          </run>
+          <run>
+            <lit>.docx</lit>
+          </run>
+          <run>
+            <lit>》</lit>
           </run>
         </p>
       </text>
@@ -198,8 +218,107 @@
     <assignment idref="r7"/>
   </task>
   <task id="t12">
+    <title>完成数据库设计</title>
+    <effort>86400</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>1.</lit>
+          </run>
+          <run>
+            <lit>根据《山东省人力资源市场数据采集系统需求分析说明书》分析系统，进行数据库的设计</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>2.</lit>
+          </run>
+          <run>
+            <lit>完成《数据库设计</lit>
+          </run>
+          <run>
+            <lit>.docx</lit>
+          </run>
+          <run>
+            <lit>》</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r10"/>
+  </task>
+  <task id="t14">
     <title>任务 1</title>
     <effort>28800</effort>
+  </task>
+  <task id="t15">
+    <title>完成详细设计</title>
+    <effort>28800</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>1.</lit>
+          </run>
+          <run>
+            <lit>根据《概要设计说明书</lit>
+          </run>
+          <run>
+            <lit>.docx</lit>
+          </run>
+          <run>
+            <lit>》进一步对系统进行完善</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>2.</lit>
+          </run>
+          <run>
+            <lit>完成《详细设计说明书</lit>
+          </run>
+          <run>
+            <lit>.docx</lit>
+          </run>
+          <run>
+            <lit>》</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+  </task>
+  <task id="t16">
+    <title>完成概要设计</title>
+    <effort>86400</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>1.</lit>
+          </run>
+          <run>
+            <lit>根据《山东省人力资源市场数据采集系统需求分析说明书》分析系统，对系统进行该要设计</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>2.</lit>
+          </run>
+          <run>
+            <lit>完成《概要设计说明书</lit>
+          </run>
+          <run>
+            <lit>.docx</lit>
+          </run>
+          <run>
+            <lit>》</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r7"/>
+    <assignment idref="r8"/>
   </task>
   <critical-path root="-1" enabled="false" resources="false">
     <color r="1" g="0.5" b="0.5"/>
