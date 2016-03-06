@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * 首页控制器
  *
  * @author tyee.noprom@qq.com
- * Created by noprom on 2/4/16.
+ * Created by noprom on 3/6/16.
  */
 @Controller
 public class IndexController {
