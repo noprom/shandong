@@ -10,7 +10,7 @@
     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
     <!-- 自动扫描controller层Bean -->
-    <context:component-scan base-package="com.data.job" use-default-filters="false">
+    <context:component-scan base-package="com.shandong.human.resource" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
@@ -31,18 +31,19 @@
     <mvc:default-servlet-handler />
 
     <!-- 静态资源映射-->
-    <mvc:resources mapping="/job/**" location="/static/datajob/"/>
+    <mvc:resources mapping="/static/**" location="/static/"/>
 
     <!-- 拦截器配置-->
     <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <bean class="com.data.job.util.interceptor.PrivilegeInterceptor"></bean>
-        </mvc:interceptor>
+        <!--&lt;!&ndash;权限控制拦截器&ndash;&gt;-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<bean class="com.shandong.human.resource.util.interceptor.PrivilegeInterceptor"></bean>-->
+        <!--</mvc:interceptor>-->
         <!-- SQL注入拦截-->
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="com.data.job.util.interceptor.SqlInjectInterceptor"></bean>
+            <bean class="com.shandong.human.resource.util.interceptor.SqlInjectInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
 

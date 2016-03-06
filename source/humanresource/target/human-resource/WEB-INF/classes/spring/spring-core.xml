@@ -15,7 +15,7 @@
 	http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
         <!-- 启动组件扫描，排除@Controller组件，该组件由SpringMVC配置文件扫描 -->
-        <context:component-scan base-package="com.data.job">
+        <context:component-scan base-package="com.shandong.human.resource">
             <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
         </context:component-scan>
 
@@ -56,13 +56,13 @@
               <!-- mapper.xml文件存放的位置 -->
               <property name="mapperLocations" value="classpath:mybatis/*Mapper.xml"/>
               <!-- mapper.xml配置文件的别名去哪个包查找 -->
-              <property name="typeAliasesPackage" value="com.data.job.domain"/>
+              <property name="typeAliasesPackage" value="com.shandong.human.resource.domain"/>
        </bean>
 
        <!-- 自动扫描指定包内接口为org.mybatis.spring.mapper.MapperFactoryBean -->
        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
               <!-- mapper接口包 -->
-              <property name="basePackage" value="com.data.job.mapper" />
+              <property name="basePackage" value="com.shandong.human.resource.mapper" />
               <!-- mapper接口需要用到sqlSessionFactory 如果上下文环境只有一个数据源 则不需要配置 -->
               <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
        </bean>
