@@ -1,0 +1,2 @@
+下面是bugzilla的文档
+http://bugzilla.readthedocs.org/en/latest/using/index.html
