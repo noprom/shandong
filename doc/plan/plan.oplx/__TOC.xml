@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <omniplan xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2" xmlns:opnx="http://www.omnigroup.com/namespace/OmniPlan/v2">
-  <window x="-1" y="4" w="1280" h="773">
+  <window x="0" y="4" w="1280" h="773">
     <editing-scenario>emFUud0KsEx</editing-scenario>
     <view>task</view>
     <change-tracking/>
     <status-display>basic</status-display>
     <task-view>
       <split-view-divider-position>269</split-view-divider-position>
-      <outline x="0" y="136" w="269" h="689">
+      <outline x="0" y="309" w="269" h="689">
         <column name="Violations" width="20"/>
         <column name="Notes" width="20"/>
         <column name="Title" width="189"/>
         <column name="Effort" width="35"/>
-        <expanded-item-notes idrefs="t17 t1 t9 t7 t16 t12 t15 t18 t11 t14"/>
-        <selected-items-at-filter-time idrefs="t8 t18 t13 t9 t16 t11 t14 t17 t12 t7 t15 t10"/>
+        <expanded-item-notes idrefs="t18 t16 t11 t9 t19 t14 t1 t17 t12 t7 t15 t21"/>
+        <selected-items-at-filter-time idrefs="t18 t22 t11 t16 t9 t19 t20 t14 t17 t12 t7 t15 t21"/>
       </outline>
-      <gantt-view x="-64" y="136" w="1009" h="689">
+      <gantt-view x="-29" y="309" w="1009" h="689">
         <view-mode>actual</view-mode>
         <dependency-lines/>
         <constraints/>
@@ -136,7 +136,7 @@ End:</group-table-style>
     </network-view>
   </window>
   <project>
-    <next-task-id>19</next-task-id>
+    <next-task-id>23</next-task-id>
     <next-resource-id>13</next-resource-id>
     <scenario id="emFUud0KsEx" name="Actual" filename="Actual.xml"/>
     <date-display dates="true" times="true" seconds="false"/>
