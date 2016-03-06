@@ -115,8 +115,10 @@
     <child-task idref="t16"/>
     <child-task idref="t15"/>
     <child-task idref="t14"/>
-    <child-task idref="t17"/>
     <child-task idref="t18"/>
+    <child-task idref="t19"/>
+    <child-task idref="t21"/>
+    <child-task idref="t17"/>
   </task>
   <task id="t1">
     <title>搭建开发环境</title>
@@ -394,6 +396,97 @@
     <assignment idref="r1"/>
     <assignment idref="r2"/>
     <assignment idref="r10"/>
+  </task>
+  <task id="t19">
+    <title>建立配置管理计划</title>
+    <effort>86400</effort>
+    <start-constraint-date>2016-03-05T16:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>1.</lit>
+          </run>
+          <run>
+            <lit>建立项目的配置管理计划</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>2.</lit>
+          </run>
+          <run>
+            <lit>逐步完善《配置管理计划</lit>
+          </run>
+          <run>
+            <lit>.docx</lit>
+          </run>
+          <run>
+            <lit>》</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r5"/>
+    <start-no-earlier-than>2016-03-05T16:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t21">
+    <title>熟悉bugzilla系统的使用</title>
+    <effort>86400</effort>
+    <start-constraint-date>2016-03-05T16:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>1.</lit>
+          </run>
+          <run>
+            <lit>学会如何在</lit>
+          </run>
+          <run>
+            <lit>bugzilla</lit>
+          </run>
+          <run>
+            <lit>上面提交</lit>
+          </run>
+          <run>
+            <lit>bug</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>2.</lit>
+          </run>
+          <run>
+            <lit>学会如何解决</lit>
+          </run>
+          <run>
+            <lit>bug</lit>
+          </run>
+          <run>
+            <lit>并在</lit>
+          </run>
+          <run>
+            <lit>bugzilla</lit>
+          </run>
+          <run>
+            <lit>上面反馈</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r1"/>
+    <assignment idref="r2"/>
+    <assignment idref="r3"/>
+    <assignment idref="r4"/>
+    <assignment idref="r5"/>
+    <assignment idref="r6"/>
+    <assignment idref="r7"/>
+    <assignment idref="r8"/>
+    <assignment idref="r9"/>
+    <assignment idref="r10"/>
+    <assignment idref="r12"/>
+    <start-no-earlier-than>2016-03-05T16:00:00.000Z</start-no-earlier-than>
   </task>
   <critical-path root="-1" enabled="false" resources="false">
     <color r="1" g="0.5" b="0.5"/>
