@@ -119,6 +119,16 @@
     <child-task idref="t19"/>
     <child-task idref="t21"/>
     <child-task idref="t17"/>
+    <child-task idref="t26"/>
+    <child-task idref="t27"/>
+    <child-task idref="t28"/>
+    <child-task idref="t29"/>
+    <child-task idref="t30"/>
+    <child-task idref="t31"/>
+    <child-task idref="t32"/>
+    <child-task idref="t33"/>
+    <child-task idref="t34"/>
+    <child-task idref="t35"/>
   </task>
   <task id="t1">
     <title>搭建开发环境</title>
@@ -487,6 +497,339 @@
     <assignment idref="r10"/>
     <assignment idref="r12"/>
     <start-no-earlier-than>2016-03-05T16:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t26">
+    <title>企业信息录入与修改</title>
+    <effort>86400</effort>
+    <start-constraint-date>2016-03-09T00:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>企业信息录入</lit>
+          </run>
+          <run>
+            <lit>:/home/company/add</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>企业信息修改</lit>
+          </run>
+          <run>
+            <lit>:/home/company/edit</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r4"/>
+    <start-no-earlier-than>2016-03-09T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t27">
+    <title>数据填报和查询</title>
+    <effort>57600</effort>
+    <start-constraint-date>2016-03-14T00:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>数据填报</lit>
+          </run>
+          <run>
+            <lit>:/home/data/add</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>数据查询</lit>
+          </run>
+          <run>
+            <lit>:/home/data</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r4"/>
+    <start-no-earlier-than>2016-03-14T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t28">
+    <title>企业备案</title>
+    <effort>58500</effort>
+    <start-constraint-date>2016-03-09T00:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>列表</lit>
+          </run>
+          <run>
+            <lit>/</lit>
+          </run>
+          <run>
+            <lit>查询</lit>
+          </run>
+          <run>
+            <lit>:/sys/record</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>查看详情</lit>
+          </run>
+          <run>
+            <lit>:/sys/record/5,5</lit>
+          </run>
+          <run>
+            <lit>为传过来的参数</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r3"/>
+    <start-no-earlier-than>2016-03-09T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t29">
+    <title>报表管理</title>
+    <effort>57600</effort>
+    <start-constraint-date>2016-03-11T00:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>查看</lit>
+          </run>
+          <run>
+            <lit>:/sys/report</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>退回修改</lit>
+          </run>
+          <run>
+            <lit>:/sys/report/edit/5,5</lit>
+          </run>
+          <run>
+            <lit>为传过来的参数</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r3"/>
+    <start-no-earlier-than>2016-03-11T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t30">
+    <title>系统监控</title>
+    <effort>28800</effort>
+    <start-constraint-date>2016-03-15T00:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>系统监控</lit>
+          </run>
+          <run>
+            <lit>:/sys</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r3"/>
+    <start-no-earlier-than>2016-03-15T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t31">
+    <title>数据管理</title>
+    <effort>87300</effort>
+    <start-constraint-date>2016-03-09T00:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>数据修改</lit>
+          </run>
+          <run>
+            <lit>:/sys/data/edit</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>数据删除</lit>
+          </run>
+          <run>
+            <lit>:/sys/data/delete</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>数据退回</lit>
+          </run>
+          <run>
+            <lit>:/sys/data/status,</lit>
+          </run>
+          <run>
+            <lit>即改变数据的状态</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>图表分析</lit>
+          </run>
+          <run>
+            <lit>:/sys/data/display</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r1"/>
+    <start-no-earlier-than>2016-03-09T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t32">
+    <title>发布通知</title>
+    <effort>57600</effort>
+    <start-constraint-date>2016-03-14T00:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>列表</lit>
+          </run>
+          <run>
+            <lit>:/sys/news</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>新增</lit>
+          </run>
+          <run>
+            <lit>:/sys/news/add</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>修改</lit>
+          </run>
+          <run>
+            <lit>:/sys/news/edit</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>删除</lit>
+          </run>
+          <run>
+            <lit>:/sys/news/delete</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r1"/>
+    <start-no-earlier-than>2016-03-14T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t33">
+    <title>上报时间</title>
+    <effort>29700</effort>
+    <start-constraint-date>2016-03-09T00:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>新增</lit>
+          </run>
+          <run>
+            <lit>:/sys/time/add</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>修改</lit>
+          </run>
+          <run>
+            <lit>:/sys/time/edit</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r2"/>
+    <start-no-earlier-than>2016-03-09T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t34">
+    <title>用户管理</title>
+    <effort>57600</effort>
+    <start-constraint-date>2016-03-10T00:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>用户列表</lit>
+          </run>
+          <run>
+            <lit>:/sys/user</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>用户新增</lit>
+          </run>
+          <run>
+            <lit>:/sys/user/add</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>用户修改</lit>
+          </run>
+          <run>
+            <lit>:/sys/user/edit</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>用户删除</lit>
+          </run>
+          <run>
+            <lit>:/sys/user/delete</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r2"/>
+    <start-no-earlier-than>2016-03-10T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t35">
+    <title>角色管理</title>
+    <effort>57600</effort>
+    <start-constraint-date>2016-03-14T00:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>新增</lit>
+          </run>
+          <run>
+            <lit>:/sys/role/add</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>修改</lit>
+          </run>
+          <run>
+            <lit>:/sys/role/edit</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>删除</lit>
+          </run>
+          <run>
+            <lit>:/sys/role/delete</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <assignment idref="r2"/>
+    <start-no-earlier-than>2016-03-14T00:00:00.000Z</start-no-earlier-than>
   </task>
   <critical-path root="-1" enabled="false" resources="false">
     <color r="1" g="0.5" b="0.5"/>
