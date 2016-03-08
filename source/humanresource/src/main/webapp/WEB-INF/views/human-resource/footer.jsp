@@ -191,10 +191,10 @@ immediately after the control sidebar -->
   $.widget.bridge('uibutton', $.ui.button);
 </script>
 <!-- Bootstrap 3.3.5 -->
-<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=basePath%>static/human/bootstrap/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
-<script src="//cdn.bootcss.com/raphael/2.1.0/raphael-min.js"></script>
-<script src="<%=basePath%>static/human/plugins/morris/morris.min.js"></script>
+<%--<script src="//cdn.bootcss.com/raphael/2.1.0/raphael-min.js"></script>--%>
+<%--<script src="<%=basePath%>static/human/plugins/morris/morris.min.js"></script>--%>
 <!-- Sparkline -->
 <script src="<%=basePath%>static/human/plugins/sparkline/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
@@ -216,6 +216,6 @@ immediately after the control sidebar -->
 <!-- AdminLTE App -->
 <script src="<%=basePath%>static/human/dist/js/app.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<%=basePath%>static/human/dist/js/pages/dashboard.js"></script>
+<%--<script src="<%=basePath%>static/human/dist/js/pages/dashboard.js"></script>--%>
 <!-- AdminLTE for demo purposes -->
 <script src="<%=basePath%>static/human/dist/js/demo.js"></script>
