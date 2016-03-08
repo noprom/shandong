@@ -11,7 +11,7 @@
  Target Server Version : 50624
  File Encoding         : utf-8
 
- Date: 03/08/2016 19:27:21 PM
+ Date: 03/08/2016 20:06:37 PM
 */
 
 SET NAMES utf8;
@@ -71,7 +71,10 @@ CREATE TABLE `auth_role` (
 DROP TABLE IF EXISTS `company`;
 CREATE TABLE `company` (
   `id` int(11) unsigned NOT NULL COMMENT '主键',
-  `area` varchar(100) NOT NULL COMMENT '所属地区,显示企业所属地市、市县、区域，不可修改',
+  `province_id` int(11) unsigned NOT NULL COMMENT '省份id',
+  `city_id` int(11) unsigned NOT NULL COMMENT '城市id',
+  `area_id` int(11) unsigned NOT NULL COMMENT '区域id',
+  `address` varchar(100) NOT NULL COMMENT '联系地址',
   `code` varchar(9) NOT NULL COMMENT '组织机构代码,只可输入字母、数字，不超过9位（统一编码规范）',
   `name` varchar(60) NOT NULL COMMENT '企业名称',
   `business` varchar(255) NOT NULL COMMENT '主要经营业务\r是\r按实际情况填写企业主要经营的业务\r主要经营业务\r是\r按实际情况填写企业主要经营的业务\r主要经营业务,按实际情况填写企业主要经营的业务',
@@ -82,6 +85,12 @@ CREATE TABLE `company` (
   `email` varchar(30) DEFAULT NULL COMMENT 'EMAIL,格式必须符合xxx@xxx.xxx',
   PRIMARY KEY (`id`),
   KEY `id` (`id`) USING BTREE,
+  KEY `province_id` (`province_id`),
+  KEY `city_id` (`city_id`),
+  KEY `area_id` (`area_id`),
+  CONSTRAINT `areaid` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `cityid` FOREIGN KEY (`city_id`) REFERENCES `area` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `provinceid` FOREIGN KEY (`province_id`) REFERENCES `area` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `uid` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -92,6 +101,7 @@ DROP TABLE IF EXISTS `company_data`;
 CREATE TABLE `company_data` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `company_id` int(11) unsigned NOT NULL,
+  `survey_time_id` int(11) unsigned NOT NULL COMMENT '调查期时间id',
   `init_people` int(10) unsigned NOT NULL COMMENT '建档期就业人数,填写初次将档时监测点就业人数',
   `cur_people` int(10) unsigned NOT NULL COMMENT '调查期就业人数,填写本次调查期当时的监测点就业人数',
   `other_reason` varchar(255) NOT NULL COMMENT '其他原因',
@@ -105,10 +115,25 @@ CREATE TABLE `company_data` (
   `status` int(1) NOT NULL COMMENT '状态:-1:审核不通过,0:等待审核,1:审核通过',
   `not_pass_reason` varchar(255) DEFAULT NULL COMMENT '审核不通过原因',
   `create_time` datetime NOT NULL COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
   KEY `company_id` (`company_id`),
-  CONSTRAINT `companyid` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `survey_time_id` (`survey_time_id`),
+  CONSTRAINT `companyid` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `survey_timeid` FOREIGN KEY (`survey_time_id`) REFERENCES `survey_time` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `news`
+-- ----------------------------
+DROP TABLE IF EXISTS `news`;
+CREATE TABLE `news` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `user_id` int(11) unsigned NOT NULL COMMENT '哪一个用户发布',
+  `title` varchar(100) NOT NULL COMMENT '通知标题,50字以内',
+  `content` text NOT NULL COMMENT '通知内容,2000字以内',
+  `create_time` datetime NOT NULL COMMENT '发布时间',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -137,6 +162,17 @@ CREATE TABLE `role` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(20) NOT NULL COMMENT '角色名',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态,-1: 禁用，1:正常',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `survey_time`
+-- ----------------------------
+DROP TABLE IF EXISTS `survey_time`;
+CREATE TABLE `survey_time` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `start_time` datetime NOT NULL COMMENT '开始时间',
+  `end_time` datetime NOT NULL COMMENT '结束时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
