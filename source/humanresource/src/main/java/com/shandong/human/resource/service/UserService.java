@@ -3,6 +3,7 @@ package com.shandong.human.resource.service;
 import com.shandong.human.resource.domain.User;
 
 /**
+ *
  * Created by constantine on 16/3/8.
  */
 public interface UserService {

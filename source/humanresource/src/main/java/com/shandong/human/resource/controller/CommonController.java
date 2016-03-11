@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class CommonController {
 
+
+    //---------------------------------以下为测试部分代码!!!!!!!!!!!!------------------------
+
     // 静态资源前缀
     public static final String STATIC_PREFIX = "human-resource";
 
@@ -55,4 +58,6 @@ public class CommonController {
             return new Result(Result.Status.ERROR, Constant.LOGIN_FAIL);
         }
     }
+    //---------------------------------以上为测试部分代码!!!!!!!!!!!!------------------------
+
 }
