@@ -219,3 +219,8 @@ immediately after the control sidebar -->
 <%--<script src="<%=basePath%>static/human/dist/js/pages/dashboard.js"></script>--%>
 <!-- AdminLTE for demo purposes -->
 <script src="<%=basePath%>static/human/dist/js/demo.js"></script>
+
+<!-- constantine 1194479264@qq.com datatable -->
+<!-- DataTables -->
+<script src="<%=basePath%>static/human/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<%=basePath%>static/human/plugins/datatables/dataTables.bootstrap.min.js"></script>
