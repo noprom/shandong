@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shandong.human.resource.mapper.sys.NewsMapper">
+
+    <resultMap id="News" type="com.shandong.human.resource.domain.News">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <insert id="addNews" parameterType="News">
+        <![CDATA[
+            INSERT INTO news (id, user_id, title, content, create_time)
+            VALUES (#{id}, #{userId}, #{title}, #{content}, #{createTime})
+        ]]>
+        <selectKey resultType="int" keyProperty="id">
+            <![CDATA[
+                SELECT LAST_INSERT_ID() as id
+            ]]>
+        </selectKey>
+    </insert>
+</mapper>

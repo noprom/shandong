@@ -1,7 +1,5 @@
 package com.shandong.human.resource.controller;
 
-import com.shandong.human.resource.domain.User;
-import com.shandong.human.resource.service.UserService;
 import com.shandong.human.resource.util.Constant;
 import com.shandong.human.resource.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +21,7 @@ public class CommonController {
     public static final String STATIC_PREFIX = "human-resource";
 
     @Autowired
-    private UserService usertestService;
+    //private UserService usertestService;
 
     /**
      * 登陆显示界面
@@ -45,14 +43,14 @@ public class CommonController {
      *
      * @return
      */
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public @ResponseBody
-    Result handleLogin(String username, String password) {
-        User loginUser = usertestService.login(username, password);
-        if (loginUser != null) {
-            return new Result(Result.Status.SUCCESS, Constant.LOGIN_SUCCESS);
-        } else {
-            return new Result(Result.Status.ERROR, Constant.LOGIN_FAIL);
-        }
-    }
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//    public @ResponseBody
+//    Result handleLogin(String username, String password) {
+//        User loginUser = usertestService.login(username, password);
+//        if (loginUser != null) {
+//            return new Result(Result.Status.SUCCESS, Constant.LOGIN_SUCCESS);
+//        } else {
+//            return new Result(Result.Status.ERROR, Constant.LOGIN_FAIL);
+//        }
+//    }
 }
