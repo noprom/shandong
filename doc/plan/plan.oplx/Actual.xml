@@ -129,6 +129,7 @@
     <child-task idref="t33"/>
     <child-task idref="t34"/>
     <child-task idref="t35"/>
+    <child-task idref="t37"/>
   </task>
   <task id="t1">
     <title>搭建开发环境</title>
@@ -830,6 +831,30 @@
     </note>
     <assignment idref="r2"/>
     <start-no-earlier-than>2016-03-14T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t37">
+    <title>分工制做Git讲解PPT</title>
+    <effort>28800</effort>
+    <start-constraint-date>2016-03-11T00:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>分别完成</lit>
+          </run>
+          <run>
+            <lit>Git</lit>
+          </run>
+          <run>
+            <lit>讲解的</lit>
+          </run>
+          <run>
+            <lit>PPT</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <start-no-earlier-than>2016-03-11T00:00:00.000Z</start-no-earlier-than>
   </task>
   <critical-path root="-1" enabled="false" resources="false">
     <color r="1" g="0.5" b="0.5"/>

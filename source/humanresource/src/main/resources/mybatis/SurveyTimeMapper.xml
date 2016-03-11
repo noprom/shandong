@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shandong.human.resource.mapper.sys.SurveyTimeMapper">
+
+    <resultMap id="Survey_time" type="com.shandong.human.resource.domain.SurveyTime">
+        <id column="id" property="id"/>
+        <result column="start_time" property="start_time"/>
+        <result column="end_time" property="end_time"/>
+    </resultMap>
+
+
+    <select id="getAllSurveyTime" resultMap="Survey_time">
+        SELECT * FROM survey_time
+    </select>
+</mapper>
