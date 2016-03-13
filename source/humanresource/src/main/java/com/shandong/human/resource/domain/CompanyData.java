@@ -24,8 +24,8 @@ public class CompanyData {
     private String reason3_explain; //原因3解释
     private int status;             //状态:-1:审核不通过,0:等待审核,1:审核通过
     private String not_pass_reason; //审核不通过原因
-    private Date create_time;     //创建时间
-    private Date update_time;    //更新时间
+    private Date create_time;       //创建时间
+    private Date update_time;       //更新时间
 
 
     public int getId() {

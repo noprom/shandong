@@ -1,6 +1,7 @@
 package com.shandong.human.resource.service.sys;
 
 import com.shandong.human.resource.domain.Company;
+import com.shandong.human.resource.domain.CompanyData;
 import com.shandong.human.resource.domain.SurveyTime;
 
 import java.util.ArrayList;
@@ -11,7 +12,11 @@ import java.util.ArrayList;
  */
 public  interface RecordService {
 
+    public Company getCompanyById(Integer id);
+
     public ArrayList<SurveyTime> getAllSurveyTime();
+
+    public ArrayList<CompanyData> getCompanyDataByCompanyId(Integer id);
 
     public ArrayList<Company> getAllCompany();
 
