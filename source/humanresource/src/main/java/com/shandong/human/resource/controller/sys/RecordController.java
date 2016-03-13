@@ -1,6 +1,7 @@
 package com.shandong.human.resource.controller.sys;
 
 import com.shandong.human.resource.domain.Company;
+import com.shandong.human.resource.domain.CompanyData;
 import com.shandong.human.resource.domain.SurveyTime;
 import com.shandong.human.resource.service.sys.RecordService;
 import com.shandong.human.resource.util.Constant;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.Model;
@@ -64,5 +66,19 @@ public class RecordController {
         System.out.println(list.size());
         model.addAttribute("recordResult", list);
         return STATIC_PREFIX + "/query";
+    }
+
+    /**
+     * Author: constantine <1194479264@qq.com>
+     * Date: 16/3/13 下午7:44
+     * 显示详情页面
+     */
+    @RequestMapping(value = "/sys/record/{id}", method = RequestMethod.GET)
+    public String recordDetail(Model model, @PathVariable("id") Integer id) {
+        Company detail = recordService.getCompanyById(id);
+        model.addAttribute("companyDetail", detail);
+        ArrayList<CompanyData> list = recordService.getCompanyDataByCompanyId(id);
+        model.addAttribute("companyDataList",list);
+        return STATIC_PREFIX + "/detail";
     }
 }
