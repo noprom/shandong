@@ -7,15 +7,15 @@
     <status-display>basic</status-display>
     <task-view>
       <split-view-divider-position>269</split-view-divider-position>
-      <outline x="0" y="1312" w="269" h="689">
+      <outline x="0" y="2084" w="269" h="689">
         <column name="Violations" width="20"/>
         <column name="Notes" width="20"/>
-        <column name="Title" width="189"/>
+        <column name="Title" width="135"/>
         <column name="Effort" width="35"/>
-        <expanded-item-notes idrefs="t21 t1 t9 t34 t26 t18 t30 t14 t35 t27 t19 t31 t15 t28 t11 t32 t16 t37 t7 t29 t12 t33 t17"/>
-        <selected-items-at-filter-time idrefs="t21 t9 t34 t26 t18 t30 t14 t35 t27 t19 t31 t15 t28 t11 t32 t16 t37 t7 t29 t12 t33 t17"/>
+        <expanded-item-notes idrefs="t21 t1 t9 t34 t26 t18 t30 t14 t35 t27 t19 t31 t15 t44 t28 t11 t32 t16 t37 t29 t7 t12 t33 t17"/>
+        <selected-items-at-filter-time idrefs="t46 t38 t21 t9 t34 t26 t18 t30 t14 t35 t27 t19 t31 t15 t44 t28 t11 t32 t16 t45 t37 t29 t7 t12 t33 t17"/>
       </outline>
-      <gantt-view x="-29" y="1312" w="1009" h="689">
+      <gantt-view x="481" y="2084" w="1009" h="689">
         <view-mode>actual</view-mode>
         <dependency-lines/>
         <constraints/>
@@ -47,7 +47,7 @@
         <task-bar-label task-type="task" position="right">
           <key>Assigned</key>
         </task-bar-label>
-        <scale scale-name="Automatic" full-day-width="262.589">
+        <scale scale-name="Automatic" full-day-width="334.401">
           <selected/>
         </scale>
         <scale scale-name="Day" full-day-width="1215"/>
@@ -67,9 +67,9 @@
         <column name="Type" width="49"/>
         <column name="Resource" width="135"/>
         <column name="#" width="75"/>
-        <selected-items-at-filter-time idrefs="r3 r12 r6 r9 r11 r4 r7 r2 r10 r5 r8"/>
+        <selected-items-at-filter-time idrefs="r3 r12 r6 r9 r4 r7 r2 r10 r5 r8"/>
       </outline>
-      <timeline x="-100" y="0" w="944" h="689">
+      <timeline x="179" y="838" w="944" h="689">
         <offtime-display>none</offtime-display>
         <show-project-end/>
         <task-bar-label task-type="group" position="left">
@@ -136,7 +136,7 @@ End:</group-table-style>
     </network-view>
   </window>
   <project>
-    <next-task-id>38</next-task-id>
+    <next-task-id>47</next-task-id>
     <next-resource-id>13</next-resource-id>
     <scenario id="emFUud0KsEx" name="Actual" filename="Actual.xml"/>
     <date-display dates="true" times="true" seconds="false"/>

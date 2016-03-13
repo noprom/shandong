@@ -23,6 +23,9 @@
         SELECT * FROM company
     </select>
 
+    <select id="getCompanyById" resultMap="Company">
+        SELECT * FROM company WHERE id = #{id}
+    </select>
 
     <select id="getCompanyByCondition" resultMap="Company">
         SELECT * FROM company WHERE 1=1
