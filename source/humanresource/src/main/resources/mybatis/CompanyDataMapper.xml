@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shandong.human.resource.mapper.sys.CompanyDataMapper">
+
+    <resultMap id="CompanyData" type="com.shandong.human.resource.domain.CompanyData">
+        <id column="id" property="id"/>
+        <result column="pid" property="pid"/>
+        <result column="company_id" property="company_id"/>
+        <result column="survey_time_id" property="survey_time_id"/>
+        <result column="init_people" property="init_people"/>
+        <result column="cur_people" property="cur_people"/>
+        <result column="other_reason" property="other_reason"/>
+        <result column="reduce_type" property="reduce_type"/>
+        <result column="reason1" property="reason1"/>
+        <result column="reason1_explain" property="reason1_explain"/>
+        <result column="reason2" property="reason2"/>
+        <result column="reason2_explain" property="reason2_explain"/>
+        <result column="reason3" property="reason3"/>
+        <result column="reason3_explain" property="reason3_explain"/>
+        <result column="status" property="status"/>
+        <result column="not_pass_reason" property="not_pass_reason"/>
+        <result column="create_time" property="create_time"/>
+        <result column="update_time" property="update_time"/>
+    </resultMap>
+
+
+    <select id="getCompanyDataByCompanyId" resultMap="CompanyData">
+        SELECT * FROM company_data
+    </select>
+
+
+</mapper>
