@@ -10,6 +10,16 @@ import java.util.ArrayList;
  * Date: 16/3/11 下午2:08
  */
 public interface CompanyMapper {
+
+
+    /**
+     * 根据id获得公司详情
+     *
+     * @param id id
+     * @return company
+     */
+    public Company getCompanyById(@Param("id") Integer id);
+
     /**
      * 获取所有Company
      *

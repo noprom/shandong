@@ -1,7 +1,9 @@
 package com.shandong.human.resource.service.sys.impl;
 
 import com.shandong.human.resource.domain.Company;
+import com.shandong.human.resource.domain.CompanyData;
 import com.shandong.human.resource.domain.SurveyTime;
+import com.shandong.human.resource.mapper.sys.CompanyDataMapper;
 import com.shandong.human.resource.mapper.sys.CompanyMapper;
 import com.shandong.human.resource.mapper.sys.SurveyTimeMapper;
 import com.shandong.human.resource.service.sys.RecordService;
@@ -23,6 +25,18 @@ public class RecordServiceImpl implements RecordService {
     @Autowired
     private CompanyMapper companyMapper;
 
+    @Autowired
+    private CompanyDataMapper companyDataMapper;
+
+    /**
+     * 根据id获得公司详情
+     *
+     * @param id id
+     * @return company
+     */
+    public Company getCompanyById(Integer id) {
+        return companyMapper.getCompanyById(id);
+    }
 
     /**
      * 获得全部调查时间
@@ -49,9 +63,18 @@ public class RecordServiceImpl implements RecordService {
      *
      * @return
      */
-    public ArrayList<Company> getCompanyByCondition(String city_id, String area_id, String name, String code, String contact)
+    public ArrayList<Company> getCompanyByCondition(String city_id, String area_id, String name, String code, String contact) {
+        return companyMapper.getCompanyByCondition(city_id, area_id, name, code, contact);
+    }
+
+    /**
+     * 根据条件查找CompanyData
+     *
+     * @return
+     */
+    public ArrayList<CompanyData> getCompanyDataByCompanyId (Integer id)
     {
-        return companyMapper.getCompanyByCondition(city_id,area_id,name,code,contact);
+        return companyDataMapper.getCompanyDataByCompanyId(id);
     }
 
 }
