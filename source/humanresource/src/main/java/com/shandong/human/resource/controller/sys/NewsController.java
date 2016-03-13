@@ -2,11 +2,13 @@ package com.shandong.human.resource.controller.sys;
 
 import com.shandong.human.resource.domain.News;
 import com.shandong.human.resource.service.sys.NewsService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import java.util.List;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -27,8 +29,10 @@ public class NewsController {
     private NewsService newsService;
 
     @RequestMapping(value = "/sys/news", method = RequestMethod.GET)
-    String addNews(News news, HttpSession httpSession){
-        //Integer id = newsService.addNews(news);
+    String newsList(Model model, News news, HttpSession httpSession){
+
+        List<News> newsList = newsService.newsList();
+        model.addAttribute("newsList", newsList);
         return STATIC_PREFIX + "news/list";
     }
 }

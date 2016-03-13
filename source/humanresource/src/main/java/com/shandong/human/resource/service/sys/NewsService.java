@@ -1,6 +1,7 @@
 package com.shandong.human.resource.service.sys;
 
 import com.shandong.human.resource.domain.News;
+import java.util.List;
 
 /**
  * 与News相关的接口
@@ -9,7 +10,7 @@ import com.shandong.human.resource.domain.News;
  * 2.增加通知
  * 3.删除通知
  * 4.修改通知
- *
+ * <p/>
  * Author: helin <helin199210@icloud.com>
  * Time: 16/3/11 下午1:46
  */
@@ -22,4 +23,11 @@ public interface NewsService {
      * @retrun news id
      */
     int addNews(News news);
+
+    /**
+     * 查询所有通知
+     *
+     * @return news
+     */
+    List<News> newsList();
 }
