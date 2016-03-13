@@ -26,26 +26,6 @@
             <button type="button" class="form-control">添加</button>
         </div>
 
-        <form action="#" method="post">
-
-            <div class="form-group">
-                <input type="email" class="form-control" name="emailto" placeholder="Email to:">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="subject" placeholder="Subject">
-            </div>
-            <div>
-                <textarea class="textarea" placeholder="Message"
-                          style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-            </div>
-            <div class="form-group" style="align-content: center">
-                <button type="button" class="form-control">修改</button>
-            </div>
-            <div class="form-group" style="align-content: center">
-                <button type="button" class="form-control">删除</button>
-            </div>
-
-        </form><!-- /.content -->
 
         <div class="row">
             <div class="col-xs-12">
@@ -64,11 +44,12 @@
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-hover">
                             <tbody><tr>
-                                <th>ID</th>
-                                <th>User</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Reason</th>
+                                <th>Id</th>
+                                <th>Title</th>
+                                <th>Content</th>
+                                <th>CreateTime</th>
+                                <th>Modify</th>
+                                <th>Delete</th>
                             </tr>
                             <c:forEach items="${newsList}" var="v">
                             <tr>
@@ -76,6 +57,8 @@
                                 <td>${v.title}</td>
                                 <td>${v.content}</td>
                                 <td><fmt:formatDate value="${v.createTime}" type="both" pattern="yyyy-MM-dd HH:mm"/></td>
+                                <td><button type="button" class="form-control">Modify</button></td>
+                                <td><button type="button" class="form-control">Delete</button></td>
                             </tr>
                             </c:forEach>
                             </tbody>

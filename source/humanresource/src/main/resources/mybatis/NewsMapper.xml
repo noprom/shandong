@@ -23,7 +23,7 @@
     </insert>
 
     <select id="newsList" resultMap="News">
-        SELECT title, content, create_time from news
+        SELECT id, title, content, create_time from news
     </select>
 
 </mapper>
