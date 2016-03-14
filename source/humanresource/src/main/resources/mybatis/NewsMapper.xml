@@ -10,10 +10,11 @@
         <result column="create_time" property="createTime" />
     </resultMap>
 
-    <insert id="addNews" parameterType="News">
+    <insert id="addNews" parameterType="News" >
+        SET @TIME = now();
         <![CDATA[
-            INSERT INTO news (id, user_id, title, content, create_time)
-            VALUES (#{id}, #{userId}, #{title}, #{content}, #{createTime})
+            INSERT INTO news (user_id, title, content, create_time)
+            VALUES (#{userId}, #{title}, #{content}, @TIME)
         ]]>
         <selectKey resultType="int" keyProperty="id">
             <![CDATA[
