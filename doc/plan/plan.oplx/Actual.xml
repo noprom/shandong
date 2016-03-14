@@ -833,8 +833,13 @@
     <start-no-earlier-than>2016-03-14T00:00:00.000Z</start-no-earlier-than>
   </task>
   <task id="t37">
+<<<<<<< HEAD
     <title>分工完成git的PPT演示</title>
     <effort>86400</effort>
+=======
+    <title>分工制做Git讲解PPT</title>
+    <effort>28800</effort>
+>>>>>>> 6bf60152d53548c72cfe9c7c972d36a45e7b5cfb
     <start-constraint-date>2016-03-11T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -843,14 +848,25 @@
             <lit>分别完成</lit>
           </run>
           <run>
+<<<<<<< HEAD
             <lit>PPT</lit>
           </run>
           <run>
             <lit>的讲解</lit>
+=======
+            <lit>Git</lit>
+          </run>
+          <run>
+            <lit>讲解的</lit>
+          </run>
+          <run>
+            <lit>PPT</lit>
+>>>>>>> 6bf60152d53548c72cfe9c7c972d36a45e7b5cfb
           </run>
         </p>
       </text>
     </note>
+<<<<<<< HEAD
     <assignment idref="r1"/>
     <assignment idref="r2"/>
     <assignment idref="r3"/>
@@ -862,6 +878,8 @@
     <assignment idref="r9"/>
     <assignment idref="r10"/>
     <assignment idref="r12"/>
+=======
+>>>>>>> 6bf60152d53548c72cfe9c7c972d36a45e7b5cfb
     <start-no-earlier-than>2016-03-11T00:00:00.000Z</start-no-earlier-than>
   </task>
   <critical-path root="-1" enabled="false" resources="false">

@@ -7,15 +7,25 @@
     <status-display>basic</status-display>
     <task-view>
       <split-view-divider-position>269</split-view-divider-position>
+<<<<<<< HEAD
       <outline x="0" y="1312" w="269" h="689">
+=======
+      <outline x="0" y="1309" w="269" h="689">
+>>>>>>> 6bf60152d53548c72cfe9c7c972d36a45e7b5cfb
         <column name="Violations" width="20"/>
         <column name="Notes" width="20"/>
         <column name="Title" width="189"/>
         <column name="Effort" width="35"/>
         <expanded-item-notes idrefs="t21 t1 t9 t34 t26 t18 t30 t14 t35 t27 t19 t31 t15 t28 t11 t32 t16 t37 t7 t29 t12 t33 t17"/>
+<<<<<<< HEAD
         <selected-items-at-filter-time idrefs="t21 t9 t34 t26 t18 t30 t14 t35 t27 t19 t31 t15 t28 t11 t32 t16 t37 t7 t29 t12 t33 t17"/>
       </outline>
       <gantt-view x="-29" y="1312" w="1009" h="689">
+=======
+        <selected-items-at-filter-time idrefs="t9 t21 t34 t26 t18 t30 t14 t35 t27 t19 t31 t15 t28 t11 t32 t16 t37 t29 t7 t12 t33 t17"/>
+      </outline>
+      <gantt-view x="-29" y="1309" w="1009" h="689">
+>>>>>>> 6bf60152d53548c72cfe9c7c972d36a45e7b5cfb
         <view-mode>actual</view-mode>
         <dependency-lines/>
         <constraints/>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <changelog xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2">
   <version>2.1</version>
+<<<<<<< HEAD
   <task-change-set user="noprom" date="2016-03-11T08:23:48.007Z" timestamp="2016-03-11T08:23:48.007Z">
     <change idref="t37" to="t-1" to-position="22" resolved="yes">
       <change idref="t37" attribute="noEarlierThanConstraintDate" type="date" to="2016-03-11T00:00:00.000Z"/>
@@ -13,5 +14,15 @@
   </task-change-set>
   <task-change-set user="noprom" date="2016-03-11T08:24:18.071Z" timestamp="2016-03-11T08:24:18.071Z">
     <change idref="t37" attribute="internalAssignments" type="string" from="" to="1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 12" resolved="yes"/>
+=======
+  <task-change-set user="noprom" date="2016-03-11T08:14:22.474Z" timestamp="2016-03-11T08:14:22.474Z">
+    <change idref="t37" to="t-1" to-position="22" resolved="yes">
+      <change idref="t37" attribute="noEarlierThanConstraintDate" type="date" to="2016-03-11T00:00:00.000Z"/>
+      <change idref="t37" attribute="title" type="string" to="分工制做Git讲解PPT"/>
+    </change>
+  </task-change-set>
+  <task-change-set user="noprom" date="2016-03-11T08:14:48.098Z" timestamp="2016-03-11T08:14:48.098Z">
+    <change idref="t37" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjE0MDRcY29jb2FzdWJydGYzNDAKe1xmb250dGJsXGYwXGZuaWxcZmNoYXJzZXQxMzQgUGluZ0ZhbmdTQy1SZWd1bGFyO1xmMVxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFx1cDAgXG5vc3VwZXJzdWIgXHVsbm9uZSBcb2JsaXF1ZW5lc3MwIFxleHBhbnNpb24wIFwnYjdcJ2Q2XCdiMVwnZjBcJ2NkXCdlYVwnYjNcJ2M5ClxmMSBHaXQKXGYwIFwnYmRcJ2IyXCdiZFwnZTJcJ2I1XCdjNApcZjEgUFBUfQ==" resolved="yes"/>
+>>>>>>> 6bf60152d53548c72cfe9c7c972d36a45e7b5cfb
   </task-change-set>
 </changelog>
