@@ -22,9 +22,6 @@
         <!-- Content Header (Page header) -->
 
         <!-- Main content -->
-        <div class="form-group" style="align-content: center">
-            <button type="button" class="form-control">添加</button>
-        </div>
 
 
         <div class="row">
@@ -34,7 +31,8 @@
                         <h3 class="box-title">Responsive Hover Table</h3>
                         <div class="box-tools">
                             <div class="input-group" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
+                                <input type="text" name="table_search" class="form-control input-sm pull-right"
+                                       placeholder="Search">
                                 <div class="input-group-btn">
                                     <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                                 </div>
@@ -43,7 +41,8 @@
                     </div><!-- /.box-header -->
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-hover">
-                            <tbody><tr>
+                            <tbody>
+                            <tr>
                                 <th>Id</th>
                                 <th>Title</th>
                                 <th>Content</th>
@@ -52,14 +51,32 @@
                                 <th>Delete</th>
                             </tr>
                             <c:forEach items="${newsList}" var="v">
-                            <tr>
-                                <td>${v.id}</td>
-                                <td>${v.title}</td>
-                                <td>${v.content}</td>
-                                <td><fmt:formatDate value="${v.createTime}" type="both" pattern="yyyy-MM-dd HH:mm"/></td>
-                                <td><button type="button" class="form-control">Modify</button></td>
-                                <td><button type="button" class="form-control">Delete</button></td>
-                            </tr>
+                                <tr>
+                                    <td>${v.id}</td>
+                                    <td>${v.title}</td>
+                                    <td>${v.content}</td>
+                                    <td><fmt:formatDate value="${v.createTime}" type="both"
+                                                        pattern="yyyy-MM-dd HH:mm"/></td>
+                                    <form role="form" method="post" action="<%=basePath%>sys/news/edit">
+                                        <div class="hidden">
+                                            <input type="text" class="form-control" name="id" value="${v.id}"
+                                                   placeholder="">
+                                        </div>
+                                        <td>
+                                            <button type="submit">Modify</button>
+                                        </td>
+                                    </form>
+
+                                    <form role="form" method="post" action="<%=basePath%>sys/news/delete">
+                                        <div class="hidden">
+                                            <input type="text" class="form-control" name="id" value="${v.id}"
+                                                   placeholder="">
+                                        </div>
+                                        <td>
+                                            <button type="submit">delete</button>
+                                        </td>
+                                    </form>
+                                </tr>
                             </c:forEach>
                             </tbody>
                         </table>
@@ -67,6 +84,11 @@
                 </div><!-- /.box -->
             </div>
         </div>
+
+        <a href="<%=basePath%>sys/news/addjsp">
+            <button type="button" class="form-control">添加</button>
+        </a>
+
     </div>
 
 
