@@ -9,13 +9,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="../head.jsp" flush="true"></jsp:include>
+    <jsp:include page="../../head.jsp" flush="true"></jsp:include>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-    <jsp:include page="../header.jsp" flush="true"></jsp:include>
+    <jsp:include page="../../header.jsp" flush="true"></jsp:include>
 
-    <jsp:include page="../left.jsp" flush="true"></jsp:include>
+    <jsp:include page="../../left.jsp" flush="true"></jsp:include>
 
     <!-- 主要内容开始 -->
     <div class="content-wrapper">
@@ -71,6 +71,6 @@
 
 
     <!-- /.主要内容结束 -->
-    <jsp:include page="../footer.jsp" flush="true"></jsp:include>
+    <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
