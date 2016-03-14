@@ -30,4 +30,8 @@ public interface NewsService {
      * @return news
      */
     List<News> newsList();
+
+    void deleteNewsById(Integer id);
+
+    News selectNewsById(int id);
 }

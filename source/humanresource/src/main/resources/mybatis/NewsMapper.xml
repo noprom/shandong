@@ -25,6 +25,10 @@
 
     <select id="newsList" resultMap="News">
         SELECT id, title, content, create_time from news
+        order by id desc
     </select>
 
+    <delete id="deleteNewsById" parameterType="int">
+        DELETE FROM news WHERE id = #{id}
+    </delete>
 </mapper>
