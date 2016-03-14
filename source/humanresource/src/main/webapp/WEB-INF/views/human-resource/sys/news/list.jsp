@@ -57,12 +57,25 @@
                                     <td>${v.content}</td>
                                     <td><fmt:formatDate value="${v.createTime}" type="both"
                                                         pattern="yyyy-MM-dd HH:mm"/></td>
-                                    <td>
-                                        <button type="button" class="form-control">Modify</button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="form-control">Delete</button>
-                                    </td>
+                                    <form role="form" method="post" action="<%=basePath%>sys/news/edit">
+                                        <div class="hidden">
+                                            <input type="text" class="form-control" name="id" value="${v.id}"
+                                                   placeholder="">
+                                        </div>
+                                        <td>
+                                            <button type="submit">Modify</button>
+                                        </td>
+                                    </form>
+
+                                    <form role="form" method="post" action="<%=basePath%>sys/news/delete">
+                                        <div class="hidden">
+                                            <input type="text" class="form-control" name="id" value="${v.id}"
+                                                   placeholder="">
+                                        </div>
+                                        <td>
+                                            <button type="submit">delete</button>
+                                        </td>
+                                    </form>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -72,9 +85,9 @@
             </div>
         </div>
 
-        <div class="form-group" style="align-content: center">
+        <a href="<%=basePath%>sys/news/addjsp">
             <button type="button" class="form-control">添加</button>
-        </div>
+        </a>
 
     </div>
 
