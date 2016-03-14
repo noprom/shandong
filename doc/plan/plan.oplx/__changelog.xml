@@ -103,10 +103,13 @@
     <change idref="t27" attribute="effort" type="real" from="57600" to="86400" resolved="yes"/>
   </task-change-set>
   <task-change-set user="noprom" date="2016-03-13T14:01:05.500Z" timestamp="2016-03-13T14:01:05.500Z">
-    <change idref="t44" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjE0MDRcY29jb2FzdWJydGYzNDAKe1xmb250dGJsXGYwXGZuaWxcZmNoYXJzZXQwIEhlbHZldGljYU5ldWU7fQp7XGNvbG9ydGJsO1xyZWQyNTVcZ3JlZW4yNTVcYmx1ZTI1NTtccmVkODVcZ3JlZW44NVxibHVlODU7fQpccGFyZFx0eDU2MFx0eDExMjBcdHgxNjgwXHR4MjI0MFx0eDI4MDBcdHgzMzYwXHR4MzkyMFx0eDQ0ODBcdHg1MDQwXHR4NTYwMFx0eDYxNjBcdHg2NzIwXHBhcmRpcm5hdHVyYWxccGFydGlnaHRlbmZhY3RvcjAKClxmMFxmczI0IFxjZjIgXHVwMCBcbm9zdXBlcnN1YiBcdWxub25lIFxvYmxpcXVlbmVzczAgXGV4cGFuc2lvbjAgXAp9" resolved="yes"/>
+    <change idref="t44" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjE0MDRcY29jb2FzdWJydGYzNDAKe1xmb250dGJsXGYwXGZuaWxcZmNoYXJzZXQwIEhlbHZldGljYU5ldWU7fQp7XGNvbG9ydGJsO1xyZWQyNTVcZ3JlZW4yNTVcYmx1ZTI1NTtccmVkODVcZ3JlZW44NVxibHVlODU7fQpccGFyZFx0eDU2MFx0eDExMjBcdHgxNjgwXHR4MjI0MFx0eDI4MDBcdHgzMzYwXHR4MzkyMFx0eDQ0ODBcdHg1MDQwXHR4NTYwMFx0eDYxNjBcdHg2NzIwXHBhcmRpcm5hdHVyYWxccGFydGlnaHRlbmZhY3RvcjAKClxmMFxmczI0IFxjZjIgXAp9" resolved="yes"/>
   </task-change-set>
   <task-change-set user="noprom" date="2016-03-13T14:01:22.395Z" timestamp="2016-03-13T14:01:22.395Z">
     <change idref="t44" attribute="internalAssignments" type="string" from="" to="1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 12" resolved="yes"/>
+  </task-change-set>
+  <task-change-set user="noprom" date="2016-03-14T06:55:48.141Z" timestamp="2016-03-14T06:55:48.141Z">
+    <change idref="t15" attribute="effort" type="real" from="403200" to="748800" resolved="yes"/>
   </task-change-set>
   <resource-change-set user="noprom" date="2016-03-13T13:57:31.145Z" timestamp="2016-03-13T13:57:31.145Z">
     <change idref="r-1" attribute="standardHoursString" type="string" from="-;-;-;-;-;-;-" to="28800,43200,46800,61200;28800,43200,46800,61200;28800,43200,46800,61200;28800,43200,46800,61200;28800,43200,46800,61200;28800,43200,46800,61200;28800,43200,46800,61200" resolved="yes"/>

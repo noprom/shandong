@@ -208,7 +208,7 @@
   <task id="t7">
     <title>继续完善制订需求规格说明书v1.0</title>
     <effort>403200</effort>
-    <effort-done>282239.995193481</effort-done>
+    <effort-done>282240</effort-done>
     <note>
       <text>
         <p>
@@ -241,7 +241,7 @@
   <task id="t9">
     <title>完成界面原型</title>
     <effort>144900</effort>
-    <effort-done>130409.996545315</effort-done>
+    <effort-done>130410</effort-done>
     <note>
       <text>
         <p>
@@ -256,7 +256,7 @@
   <task id="t11">
     <title>制作页面设计图</title>
     <effort>144000</effort>
-    <effort-done>100799.998283386</effort-done>
+    <effort-done>100800</effort-done>
     <note>
       <text>
         <p>
@@ -271,7 +271,7 @@
   <task id="t12">
     <title>完成数据库设计</title>
     <effort>173700</effort>
-    <effort-done>138959.991717339</effort-done>
+    <effort-done>138959.984375</effort-done>
     <note>
       <text>
         <p>
@@ -324,8 +324,8 @@
   </task>
   <task id="t15">
     <title>完成详细设计</title>
-    <effort>403200</effort>
-    <effort-done>241919.985580444</effort-done>
+    <effort>748800</effort>
+    <effort-done>241919.984375</effort-done>
     <note>
       <text>
         <p>
@@ -364,7 +364,7 @@
   <task id="t16">
     <title>完成概要设计</title>
     <effort>289800</effort>
-    <effort-done>260819.99309063</effort-done>
+    <effort-done>260820</effort-done>
     <note>
       <text>
         <p>
@@ -544,7 +544,7 @@
   <task id="t26">
     <title>企业信息录入与修改</title>
     <effort>86400</effort>
-    <effort-done>8639.99948501587</effort-done>
+    <effort-done>8639.9990234375</effort-done>
     <start-constraint-date>2016-03-09T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -572,7 +572,7 @@
   <task id="t27">
     <title>数据填报和查询</title>
     <effort>86400</effort>
-    <effort-done>5759.99965667725</effort-done>
+    <effort-done>5759.99951171875</effort-done>
     <start-constraint-date>2016-03-14T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -600,7 +600,7 @@
   <task id="t28">
     <title>企业备案</title>
     <effort>58500</effort>
-    <effort-done>35099.997907877</effort-done>
+    <effort-done>35099.99609375</effort-done>
     <start-constraint-date>2016-03-09T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -732,7 +732,7 @@
   <task id="t32">
     <title>发布通知</title>
     <effort>57600</effort>
-    <effort-done>46079.997253418</effort-done>
+    <effort-done>46079.99609375</effort-done>
     <start-constraint-date>2016-03-09T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -803,7 +803,7 @@
   <task id="t34">
     <title>用户管理</title>
     <effort>115200</effort>
-    <effort-done>5759.99965667725</effort-done>
+    <effort-done>5759.99951171875</effort-done>
     <start-constraint-date>2016-03-10T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
