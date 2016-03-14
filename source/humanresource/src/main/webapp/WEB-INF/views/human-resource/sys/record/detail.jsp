@@ -27,147 +27,6 @@
             </h1>
         </section>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="box box-info">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">${companyDetail.name} 详情</h3>
-                        </div>
-                        <div class="box-body">
-                            <h4>ID</h4>
-                            <div class="input-group">
-                                <span class="input-group-addon"></span>
-                                <input type="text" class="form-control" disabled="disabled" value="${companyDetail.id}">
-                            </div>
-                            <br>
-                            <h4>PROVINCE_ID</h4>
-                            <div class="input-group">
-                                <span class="input-group-addon"></span>
-                                <input type="text" class="form-control" disabled="disabled"
-                                       value="${companyDetail.province_id}">
-                            </div>
-                            <br>
-                            <h4>CITY_ID</h4>
-                            <div class="input-group">
-                                <span class="input-group-addon"></span>
-                                <input type="text" class="form-control" disabled="disabled"
-                                       value="${companyDetail.city_id}">
-                            </div>
-                            <br>
-                            <h4>AREA_ID</h4>
-                            <div class="input-group">
-                                <span class="input-group-addon"></span>
-                                <input type="text" class="form-control" disabled="disabled"
-                                       value="${companyDetail.area_id}">
-                            </div>
-                            <br>
-                            <h4>ADDRESS</h4>
-                            <div class="input-group">
-                                <span class="input-group-addon"></span>
-                                <input type="text" class="form-control" disabled="disabled"
-                                       value="${companyDetail.address}">
-                            </div>
-                            <br>
-                            <h4>CODE</h4>
-                            <div class="input-group">
-                                <span class="input-group-addon"></span>
-                                <input type="text" class="form-control" disabled="disabled"
-                                       value="${companyDetail.code}">
-                            </div>
-                            <br>
-                            <h4>COMPANY NAME</h4>
-                            <div class="input-group">
-                                <span class="input-group-addon"></span>
-                                <input type="text" class="form-control" disabled="disabled"
-                                       value="${companyDetail.name}">
-                            </div>
-                            <br>
-                            <h4>CONTACT</h4>
-                            <div class="input-group">
-                                <span class="input-group-addon"></span>
-                                <input type="text" class="form-control" disabled="disabled"
-                                       value="${companyDetail.contact}">
-                            </div>
-                            <br>
-                            <h4>ZIPCODE</h4>
-                            <div class="input-group">
-                                <span class="input-group-addon"></span>
-                                <input type="text" class="form-control" disabled="disabled"
-                                       value="${companyDetail.zipcode}">
-                            </div>
-                            <br>
-                            <h4>PHONE</h4>
-                            <div class="input-group">
-                                <span class="input-group-addon"></span>
-                                <input type="text" class="form-control" disabled="disabled"
-                                       value="${companyDetail.phone}">
-                            </div>
-                            <br>
-                            <h4>FAX</h4>
-                            <div class="input-group">
-                                <span class="input-group-addon"></span>
-                                <input type="text" class="form-control" disabled="disabled"
-                                       value="${companyDetail.fax}">
-                            </div>
-                            <br>
-                            <h4>E-mail</h4>
-                            <div class="input-group">
-                                <span class="input-group-addon"></span>
-                                <input type="text" class="form-control" disabled="disabled"
-                                       value="${companyDetail.email}">
-                            </div>
-                            <br>
-                            <h4>BUSINESS</h4>
-                            <div class="input-group">
-                                <span class="input-group-addon"></span>
-                                <textarea class="form-control" rows="3" disabled>${companyDetail.business}</textarea>
-                            </div>
-                            <br>
-                        </div><!-- /input-group -->
-                    </div><!-- /.box-body -->
-                </div><!-- /.box -->
-
-                <div class="col-md-6">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">Company Data Of ${companyDetail.name}</h3>
-                        </div><!-- /.box-header -->
-                        <div class="box-body">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th>INITIAL TIME PEOPLE</th>
-                                    <th>CURRENT TIME PEOPLE</th>
-                                    <th>DETAIL</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach items="${companyDataList}" var="v">
-                                    <tr>
-                                        <td>${v.init_people}</td>
-                                        <td>${v.cur_people}</td>
-                                        <td><a href="<%=basePath%>sys/record/companyDataDetail/${v.id}"
-                                               class="btn btn-primary">详情</a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>INITIAL TIME PEOPLE</th>
-                                    <th>CURRENT TIME PEOPLE</th>
-                                    <th>DETAIL</th>
-                                </tr>
-                                </tfoot>
-                            </table>
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                </div>
-            </div>
-        </section><!-- /.content -->
-
 
         <section class="content">
 
@@ -236,66 +95,54 @@
                                 <ul class="timeline timeline-inverse">
                                     <!-- timeline time label -->
                                     <c:forEach items="${companyDataList}" var="v">
-                                    <li class="time-label">
-                        <span class="bg-red">
-                          ${v.create_time}
-                        </span>
-                                    </li>
-                                    <!-- /.timeline-label -->
-                                    <!-- timeline item -->
-                                    <li>
-                                        <i class="fa fa-envelope bg-blue"></i>
-                                        <div class="timeline-item">
-                                            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-                                            <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email
-                                            </h3>
-                                            <div class="timeline-body">
-                                                Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                                weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                                jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                                                quora plaxo ideeli hulu weebly balihoo...
+                                        <li class="time-label">
+                                            <span class="bg-red">${v.create_time}</span>
+                                        </li>
+                                        <!-- /.timeline-label -->
+                                        <!-- timeline item -->
+                                        <li>
+                                            <i class="fa fa-envelope bg-blue"></i>
+                                            <div class="timeline-item">
+                                                <span class="time"><i class="fa fa-clock-o"></i></span>
+                                                <h3 class="timeline-header"><a href="#">${companyDetail.name}</a>Data
+                                                </h3>
+                                                <div class="timeline-body">
+                                                    <strong>ID : </strong>${v.id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <strong>PID : </strong>${v.pid}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <strong>COMPANY_ID : </strong>${v.company_id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <strong>SURVEY_TIME_ID : </strong>${v.survey_time_id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <br>
+                                                    <strong>INITIAL PEOPLE : </strong>${v.init_people}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <strong>CURRENT PEOPLE : </strong>${v.cur_people}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <br>
+                                                    <strong>OTHER REASON : </strong>${v.other_reason}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <strong>REDUCE TYPE : </strong>${v.reduce_type}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <br>
+                                                    <strong>REASON ONE : </strong>${v.reason1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <br>
+                                                    <strong>REASON ONE EXPLAIN : </strong>${v.reason1_explain}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <br>
+                                                    <strong>REASON TWO : </strong>${v.reason2}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <br>
+                                                    <strong>REASON TWO EXPLAIN : </strong>${v.reason2_explain}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <br>
+                                                    <strong>REASON THREE : </strong>${v.reason3}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <br>
+                                                    <strong>REASON THREE EXPLAIN : </strong>${v.reason3_explain}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <br>
+                                                    <strong>STATUS : </strong>${v.status}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(状态:-1:审核不通过,0:等待审核,1:审核通过)
+                                                    <br>
+                                                    <strong>NOT_PASS_REASON: </strong>${v.not_pass_reason}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                </div>
+                                                <div class="timeline-footer">
+                                                </div>
                                             </div>
-                                            <div class="timeline-footer">
-                                                <a class="btn btn-primary btn-xs">Read more</a>
-                                                <a class="btn btn-danger btn-xs">Delete</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <!-- END timeline item -->
-                                    <!-- timeline item -->
-                                    <li>
-                                        <i class="fa fa-user bg-aqua"></i>
-                                        <div class="timeline-item">
-                                            <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-                                            <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted
-                                                your friend request</h3>
-                                        </div>
-                                    </li>
-                                    <!-- END timeline item -->
-                                    <!-- timeline item -->
-                                    <li>
-                                        <i class="fa fa-comments bg-yellow"></i>
-                                        <div class="timeline-item">
-                                            <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-                                            <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post
-                                            </h3>
-                                            <div class="timeline-body">
-                                                Take me to your leader!
-                                                Switzerland is small and neutral!
-                                                We are more like Germany, ambitious and misunderstood!
-                                            </div>
-                                            <div class="timeline-footer">
-                                                <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <!-- END timeline item -->
-                                    <!-- timeline time label -->
-                                    <li class="time-label">
-                        <span class="bg-green">
-                          ${v.update_time}
-                        </span>
-                                    </li>
+                                        </li>
+                                        <!-- END timeline item -->
+                                        <!-- timeline item -->
+                                        <li class="time-label">
+                                            <span class="bg-green">${v.update_time}</span>
+                                        </li>
                                     </c:forEach>
                                 </ul>
                             </div><!-- /.tab-pane -->
