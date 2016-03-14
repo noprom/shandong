@@ -48,6 +48,38 @@
   <top-resource idref="r-1"/>
   <resource id="r-1">
     <type>Group</type>
+    <schedule>
+      <schedule-day day-of-week="sunday">
+        <time-span start-time="28800" end-time="43200"/>
+        <time-span start-time="46800" end-time="61200"/>
+      </schedule-day>
+      <schedule-day day-of-week="monday">
+        <time-span start-time="28800" end-time="43200"/>
+        <time-span start-time="46800" end-time="61200"/>
+      </schedule-day>
+      <schedule-day day-of-week="tuesday">
+        <time-span start-time="28800" end-time="43200"/>
+        <time-span start-time="46800" end-time="61200"/>
+      </schedule-day>
+      <schedule-day day-of-week="wednesday">
+        <time-span start-time="28800" end-time="43200"/>
+        <time-span start-time="46800" end-time="61200"/>
+      </schedule-day>
+      <schedule-day day-of-week="thursday">
+        <time-span start-time="28800" end-time="43200"/>
+        <time-span start-time="46800" end-time="61200"/>
+      </schedule-day>
+      <schedule-day day-of-week="friday">
+        <time-span start-time="28800" end-time="43200"/>
+        <time-span start-time="46800" end-time="61200"/>
+      </schedule-day>
+      <schedule-day day-of-week="saturday">
+        <time-span start-time="28800" end-time="43200"/>
+        <time-span start-time="46800" end-time="61200"/>
+      </schedule-day>
+      <calendar name="Time Off" editable="yes" overtime="no"/>
+      <calendar name="Overtime" editable="yes" overtime="yes"/>
+    </schedule>
     <child-resource idref="r1"/>
     <child-resource idref="r2"/>
     <child-resource idref="r3"/>
@@ -130,10 +162,11 @@
     <child-task idref="t34"/>
     <child-task idref="t35"/>
     <child-task idref="t37"/>
+    <child-task idref="t44"/>
   </task>
   <task id="t1">
     <title>搭建开发环境</title>
-    <effort>28800</effort>
+    <type>milestone</type>
     <note>
       <text>
         <p>
@@ -173,8 +206,9 @@
     <assignment idref="r12"/>
   </task>
   <task id="t7">
-    <title>制订需求规格说明书v1.0</title>
-    <effort>28800</effort>
+    <title>继续完善制订需求规格说明书v1.0</title>
+    <effort>403200</effort>
+    <effort-done>282239.995193481</effort-done>
     <note>
       <text>
         <p>
@@ -206,7 +240,8 @@
   </task>
   <task id="t9">
     <title>完成界面原型</title>
-    <effort>28800</effort>
+    <effort>144900</effort>
+    <effort-done>130409.996545315</effort-done>
     <note>
       <text>
         <p>
@@ -220,7 +255,8 @@
   </task>
   <task id="t11">
     <title>制作页面设计图</title>
-    <effort>57600</effort>
+    <effort>144000</effort>
+    <effort-done>100799.998283386</effort-done>
     <note>
       <text>
         <p>
@@ -234,7 +270,8 @@
   </task>
   <task id="t12">
     <title>完成数据库设计</title>
-    <effort>86400</effort>
+    <effort>173700</effort>
+    <effort-done>138959.991717339</effort-done>
     <note>
       <text>
         <p>
@@ -265,7 +302,8 @@
   </task>
   <task id="t14">
     <title>学习SpringMVC</title>
-    <effort>86400</effort>
+    <type>milestone</type>
+    <completion-percentage>1</completion-percentage>
     <note>
       <text>
         <p>
@@ -286,7 +324,8 @@
   </task>
   <task id="t15">
     <title>完成详细设计</title>
-    <effort>28800</effort>
+    <effort>403200</effort>
+    <effort-done>241919.985580444</effort-done>
     <note>
       <text>
         <p>
@@ -324,7 +363,8 @@
   </task>
   <task id="t16">
     <title>完成概要设计</title>
-    <effort>86400</effort>
+    <effort>289800</effort>
+    <effort-done>260819.99309063</effort-done>
     <note>
       <text>
         <p>
@@ -357,6 +397,7 @@
   <task id="t17">
     <title>组会</title>
     <effort>3600</effort>
+    <effort-done>3600</effort-done>
     <start-constraint-date>2016-03-10T00:15:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -388,7 +429,8 @@
   </task>
   <task id="t18">
     <title>建立数据库</title>
-    <effort>86400</effort>
+    <type>milestone</type>
+    <completion-percentage>1</completion-percentage>
     <note>
       <text>
         <p>
@@ -502,6 +544,7 @@
   <task id="t26">
     <title>企业信息录入与修改</title>
     <effort>86400</effort>
+    <effort-done>8639.99948501587</effort-done>
     <start-constraint-date>2016-03-09T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -528,7 +571,8 @@
   </task>
   <task id="t27">
     <title>数据填报和查询</title>
-    <effort>57600</effort>
+    <effort>86400</effort>
+    <effort-done>5759.99965667725</effort-done>
     <start-constraint-date>2016-03-14T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -556,6 +600,7 @@
   <task id="t28">
     <title>企业备案</title>
     <effort>58500</effort>
+    <effort-done>35099.997907877</effort-done>
     <start-constraint-date>2016-03-09T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -641,7 +686,7 @@
   <task id="t31">
     <title>数据管理</title>
     <effort>87300</effort>
-    <start-constraint-date>2016-03-09T00:00:00.000Z</start-constraint-date>
+    <start-constraint-date>2016-03-10T08:45:00.000Z</start-constraint-date>
     <note>
       <text>
         <p>
@@ -682,12 +727,13 @@
       </text>
     </note>
     <assignment idref="r1"/>
-    <start-no-earlier-than>2016-03-09T00:00:00.000Z</start-no-earlier-than>
+    <start-no-earlier-than>2016-03-10T08:45:00.000Z</start-no-earlier-than>
   </task>
   <task id="t32">
     <title>发布通知</title>
     <effort>57600</effort>
-    <start-constraint-date>2016-03-14T00:00:00.000Z</start-constraint-date>
+    <effort-done>46079.997253418</effort-done>
+    <start-constraint-date>2016-03-09T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
         <p>
@@ -725,7 +771,7 @@
       </text>
     </note>
     <assignment idref="r1"/>
-    <start-no-earlier-than>2016-03-14T00:00:00.000Z</start-no-earlier-than>
+    <start-no-earlier-than>2016-03-09T00:00:00.000Z</start-no-earlier-than>
   </task>
   <task id="t33">
     <title>上报时间</title>
@@ -756,7 +802,8 @@
   </task>
   <task id="t34">
     <title>用户管理</title>
-    <effort>57600</effort>
+    <effort>115200</effort>
+    <effort-done>5759.99965667725</effort-done>
     <start-constraint-date>2016-03-10T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -800,7 +847,7 @@
   <task id="t35">
     <title>角色管理</title>
     <effort>57600</effort>
-    <start-constraint-date>2016-03-14T00:00:00.000Z</start-constraint-date>
+    <start-constraint-date>2016-03-16T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
         <p>
@@ -830,7 +877,7 @@
       </text>
     </note>
     <assignment idref="r2"/>
-    <start-no-earlier-than>2016-03-14T00:00:00.000Z</start-no-earlier-than>
+    <start-no-earlier-than>2016-03-16T00:00:00.000Z</start-no-earlier-than>
   </task>
   <task id="t37">
 <<<<<<< HEAD
@@ -881,6 +928,29 @@
 =======
 >>>>>>> 6bf60152d53548c72cfe9c7c972d36a45e7b5cfb
     <start-no-earlier-than>2016-03-11T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t44">
+    <title>开会讨论项目进展</title>
+    <effort>28800</effort>
+    <start-constraint-date>2016-03-16T00:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p/>
+        <p/>
+      </text>
+    </note>
+    <assignment idref="r1"/>
+    <assignment idref="r2"/>
+    <assignment idref="r3"/>
+    <assignment idref="r4"/>
+    <assignment idref="r5"/>
+    <assignment idref="r6"/>
+    <assignment idref="r7"/>
+    <assignment idref="r8"/>
+    <assignment idref="r9"/>
+    <assignment idref="r10"/>
+    <assignment idref="r12"/>
+    <start-no-earlier-than>2016-03-16T00:00:00.000Z</start-no-earlier-than>
   </task>
   <critical-path root="-1" enabled="false" resources="false">
     <color r="1" g="0.5" b="0.5"/>
