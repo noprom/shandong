@@ -43,7 +43,6 @@ public class CommonController {
      *
      * @return
      */
-
 //    @RequestMapping(value = "/login", method = RequestMethod.POST)
 //    public @ResponseBody
 //    Result handleLogin(String username, String password) {
@@ -54,6 +53,6 @@ public class CommonController {
 //            return new Result(Result.Status.ERROR, Constant.LOGIN_FAIL);
 //        }
 //    }
-    //---------------------------------以上为测试部分代码!!!!!!!!!!!!------------------------
 
+    //---------------------------------以上为测试部分代码!!!!!!!!!!!!------------------------
 }
