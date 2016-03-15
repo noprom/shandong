@@ -57,25 +57,12 @@
                                     <td>${v.content}</td>
                                     <td><fmt:formatDate value="${v.createTime}" type="both"
                                                         pattern="yyyy-MM-dd HH:mm"/></td>
-                                    <form role="form" method="post" action="<%=basePath%>sys/news/edit">
-                                        <div class="hidden">
-                                            <input type="text" class="form-control" name="id" value="${v.id}"
-                                                   placeholder="">
-                                        </div>
-                                        <td>
-                                            <button type="submit">Modify</button>
-                                        </td>
-                                    </form>
-
-                                    <form role="form" method="post" action="<%=basePath%>sys/news/delete">
-                                        <div class="hidden">
-                                            <input type="text" class="form-control" name="id" value="${v.id}"
-                                                   placeholder="">
-                                        </div>
-                                        <td>
-                                            <button type="submit">delete</button>
-                                        </td>
-                                    </form>
+                                    <td>
+                                        <a href="<%=basePath%>sys/news/edit/${v.id}" class="btn btn-primary">修改</a>
+                                    </td>
+                                    <td>
+                                        <a href="<%=basePath%>sys/news/delete/${v.id}" class="btn btn-primary">删除</a>
+                                    </td>
                                 </tr>
                             </c:forEach>
                             </tbody>

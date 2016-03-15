@@ -1,11 +1,6 @@
 package com.shandong.human.resource.domain;
 
-<<<<<<< HEAD
-/**
-=======
-
 /*
->>>>>>> b5f2c555408b511b819cfe5c8fb1e8d7e7ab5101
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/14 9:34
  */
@@ -39,10 +34,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> b5f2c555408b511b819cfe5c8fb1e8d7e7ab5101
     public int getType() {
         return type;
     }

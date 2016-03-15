@@ -1,18 +1,13 @@
-package com.shandong.human.resource.mapper.sys;
+package com.shandong.human.resource.service.sys;
 
 import com.shandong.human.resource.domain.CompanyData;
 import java.util.List;
 
-import java.util.ArrayList;
-
 /**
- * Author: constantine <1194479264@qq.com>
- * Date: 16/3/13 下午8:34
+ * Author: helin <helin199210@icloud.com>
+ * Time: 16/3/15 下午3:11
  */
-public interface CompanyDataMapper {
-
-    public ArrayList<CompanyData> getCompanyDataByCompanyId(Integer id);
-
+public interface CompanyDataService {
     List<CompanyData> companyDataList();
 
     void deleteNewsById(Integer id);

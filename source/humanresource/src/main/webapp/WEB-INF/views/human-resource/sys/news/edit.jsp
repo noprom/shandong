@@ -18,101 +18,69 @@
     <jsp:include page="../../left.jsp" flush="true"></jsp:include>
 
     <!-- 主要内容开始 -->
-    <!-- Content Header (Page header) -->
-    <div class="content-wrapper">
-        <div class="col-xs-12">
-            <!-- Main content -->
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Responsive Hover Table</h3>
-                </div>
-                <div class="box-body table-responsive no-padding">
-                    <form class="noo-ajax-register-form form-horizontal" id="addNews-form">
-                        <!-- text input -->
-                        <div class="form-group">
-                            <input type="text" name="title" class="form-control" required placeholder="Title ...">
-                        </div>
+    <div class="content-wrapper" style="min-height: 946px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                General Form Elements
+                <small>Preview</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Forms</a></li>
+                <li class="active">General Elements</li>
+            </ol>
+        </section>
 
-                        <!-- textarea -->
-                        <div class="form-group">
-                    <textarea class="form-control" name="content" rows="10" required
-                              placeholder="Content ..."></textarea>
-                        </div>
-                        <div class="form-group text-center">
-                            <button type="button" class="btn" id="add-btn">添加</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Edit</h3>
+                        </div><!-- /.box-header -->
+                        <!-- form start -->
+                        <form role="form" id="editNews-form" action="<%=basePath%>sys/news/edit" method="post">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="createTime">CreateTime</label>
+                                    <input type="hidden" name="id" value="${newToEdit.id}" class="form-control"
+                                           placeholder="">
+                                    <input type="hidden" name="userId" id="userId" value="${newToEdit.userId}"
+                                           class="form-control" placeholder="">
+                                    <input type="text" name="createTime" id="createTime" value="${newToEdit.createTime}"
+                                           class="form-control" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">Title</label>
+                                    <input type="text" name="title" id="title" value="${newToEdit.title}"
+                                           class="form-control" required placeholder="title ...">
+                                    <p class="help-block">Example block-level help text here.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="content">Content</label>
+                                    <textarea class="form-control" id="content" name="content" rows="10" required
+                                              placeholder="">${newToEdit.content}</textarea>
+                                </div>
+
+                            </div><!-- /.box-body -->
+
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">Ok</button>
+                            </div>
+                        </form>
+                    </div><!-- /.box -->
+
+                </div><!--/.col (left) -->
+
+            </div>   <!-- /.row -->
+        </section><!-- /.content -->
     </div>
-</div>
-<jsp:include page="../../footer.jsp" flush="true"></jsp:include>
-</div>
 
-
-<!-- /.主要内容结束 -->
-<jsp:include page="../../js.jsp" flush="true"></jsp:include>
-<script type="text/javascript">
-    jQuery('document').ready(function ($) {
-
-        //添加通知
-        $("#add-btn").on('click', function () {
-
-            addNews();
-        });
-
-        /**
-         * 添加通知
-         * @returns {boolean}
-         */
-        function addNews() {
-
-            //标题
-            var title = $("#addNews-form input[name = title]").val();
-            //正文
-            var content = $("#addNews-form textarea[name = content]").val();
-
-            //数据校验
-            if (isEmpty(title)) {
-                alert("标题不能为空");
-                toastr.error("标题不能为空");
-                return false;
-            } else if (isEmpty(content)) {
-                alert("正文不能为空");
-                toastr.error("正文不能为空");
-                return false;
-            } else {
-                var postUrl = "<%=basePath%>sys/news/add";
-                $.ajax({
-                    url: postUrl,
-                    data: $("#addNews-form").serialize(),
-                    method: "get",
-                    dataType: "json",
-                    success: function (data) {
-                        if (data.status == 'SUCCESS') {
-                            toastr.success(data.info);
-                            alert("添加成功");
-                            window.location.href = "<%=basePath%>sys/news";
-                        } else {
-                            alert("添加失败");
-                            toastr.error(data.info);
-                            window.location.href = "<%=basePath%>sys/news";
-                            return false;
-                        }
-                    }
-
-                });
-            }
-
-        }
-
-        function isEmpty(str) {
-            if (!str || $.trim(str).length <= 0)
-                return true;
-            return false;
-        }
-    });
-</script>
+    <!-- /.主要内容结束 -->
+    <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>

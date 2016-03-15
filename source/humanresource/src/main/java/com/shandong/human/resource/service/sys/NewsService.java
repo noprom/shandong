@@ -34,4 +34,6 @@ public interface NewsService {
     void deleteNewsById(Integer id);
 
     News selectNewsById(int id);
+
+    int editNewsById(News news);
 }

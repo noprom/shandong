@@ -7,6 +7,7 @@ import com.shandong.human.resource.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,7 +34,6 @@ public class NewsController {
     private NewsService newsService;
 
     /**
-     *
      * @param model
      * @param news
      * @param httpSession
@@ -81,31 +81,47 @@ public class NewsController {
     }
 
     /**
-     *
      * @param model
      * @param httpSession
      * @param request
      * @return
      */
-    @RequestMapping(value = "sys/news/delete", method = RequestMethod.POST)
-    String newsDelete(Model model, HttpSession httpSession, HttpServletRequest request) {
+    @RequestMapping(value = "sys/news/delete/{id}", method = RequestMethod.GET)
+    String newsDelete(@PathVariable("id") Integer id, Model model, HttpSession httpSession, HttpServletRequest request) {
 
-        newsService.deleteNewsById(Integer.parseInt(request.getParameter("id")));
+        newsService.deleteNewsById(id);
 
         List<News> newsList = newsService.newsList();
         model.addAttribute("newsList", newsList);
         return STATIC_PREFIX + "/list";
     }
-    @RequestMapping(value = "sys/news/edit", method = RequestMethod.POST)
-    String newsEdit(Model model, HttpSession httpSession, HttpServletRequest request) {
 
-        News news = newsService.selectNewsById(Integer.parseInt(request.getParameter("id")));
+
+    /**
+     * @param httpSession
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "sys/news/edit/{id}", method = RequestMethod.GET)
+    String newsEditPage(@PathVariable("id") Integer id, HttpSession httpSession, HttpServletRequest request) {
+        News news = newsService.selectNewsById(id);
         httpSession.setAttribute("newToEdit", news);
-        
+        return STATIC_PREFIX + "/edit";
+    }
+
+    /**
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "sys/news/edit", method = RequestMethod.POST)
+    String newsEdit(Model model, News news, HttpSession httpSession, HttpServletRequest request) {
+        Integer id = newsService.editNewsById(news);
+        System.out.println(news.getId().toString());
+        System.out.println(news.getTitle());
         List<News> newsList = newsService.newsList();
         model.addAttribute("newsList", newsList);
         return STATIC_PREFIX + "/list";
     }
-
 
 }
