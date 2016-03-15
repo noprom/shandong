@@ -24,4 +24,9 @@
         WHERE id = #{id};
     </select>
 
+    <delete id="deleteByID" parameterType="java.lang.Integer">
+        DELETE FROM auth
+        WHERE id = #{id}
+    </delete>
+
 </mapper>

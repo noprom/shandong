@@ -100,7 +100,7 @@ public class AuthTree {
 
         List<Auth> auths= new ArrayList<Auth>();
         int nextLevel = _Level+1;
-        for(int next = _Now+1;next<_Auths.size();++next){
+        for(int next = 0;next<_Auths.size();++next){
             if((_Auths.get(next).getLevel() == nextLevel && _Auths.get(next).getPid() == this.now().getId())
                 ||_Auths.get(next).getLevel()>=nextLevel+1)
                 auths.add(_Auths.get(next));

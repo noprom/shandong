@@ -31,4 +31,8 @@ public class AuthServiceImpl implements AuthService{
     public Auth selectByID(int id) {
         return service.selectByID(id);
     }
+
+    public int deleteByID(int id) {
+        return service.deleteByID(id);
+    }
 }

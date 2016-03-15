@@ -8,4 +8,5 @@ public interface AuthMapper {
     public int insertAuth(Auth auth);
     public List<Auth> selectAll();
     public Auth selectByID(int id);
+    public int deleteByID(int id);
 }
