@@ -1,6 +1,7 @@
 package com.shandong.human.resource.common;
 
 import com.shandong.human.resource.domain.Auth;
+import sun.reflect.generics.tree.Tree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,40 @@ import java.util.List;
 public class AuthTree {
     private List<Auth> _Auths;      /**<所有权限*/
     private int _Now;               /**<当前所在的权限位置*/
+    private int _Str;               /**<第一个权限位置*/
     private int _Level;             /**<当前权限树的等级*/
+
+
+    public static final List<Auth> toList(AuthTree tree)
+    {
+        int now_tmp= tree._Now;
+        List<Auth> result = new ArrayList<Auth>();
+        if(tree == null)
+            return result;
+
+        tree.Restart();
+        while(true){
+            Auth now=tree.now();
+            if(now==null) {
+                System.out.println("Err:Empty tree.");
+                break;
+            }
+            result.add(now);
+            AuthTree child = tree.childAuths();
+            if(child != null){
+                List<Auth> childResult=AuthTree.toList(child);
+                for (Auth r:childResult) {
+                    result.add(r);
+                }
+            }
+            if(!tree.gotoNext())
+                break;
+        }
+        tree._Now=now_tmp;
+
+        System.out.println("result size:"+result.size());
+        return result;
+    }
 
     /**
      * @brief 构造函数
@@ -33,6 +67,7 @@ public class AuthTree {
             if(_Auths.get(_Now).getLevel() == _Level )
                 break;
         }
+        _Str=_Now;
     }
     /**
      * @brief 寻找并指向到下一个该等级Auth
@@ -78,5 +113,10 @@ public class AuthTree {
             return null;
 
         return child;
+    }
+
+    public void Restart()
+    {
+        _Now=_Str;
     }
 }
