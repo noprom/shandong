@@ -69,16 +69,19 @@
                                         <td>
                                             <a href="<%=basePath%>sys/news/edit/${v.id}" class="btn btn-primary">修改</a>
                                         </td>
-
-                                    <form role="form" method="post" action="<%=basePath%>sys/news/delete">
-                                        <div class="hidden">
-                                            <input type="text" class="form-control" name="id" value="${v.id}"
-                                                   placeholder="">
-                                        </div>
                                         <td>
-                                            <button type="submit">delete</button>
+                                            <a href="<%=basePath%>sys/news/delete/${v.id}" class="btn btn-primary">删除</a>
                                         </td>
-                                    </form>
+
+                                    <%--<form role="form" method="post" action="<%=basePath%>sys/news/delete">--%>
+                                        <%--<div class="hidden">--%>
+                                            <%--<input type="text" class="form-control" name="id" value="${v.id}"--%>
+                                                   <%--placeholder="">--%>
+                                        <%--</div>--%>
+                                        <%--<td>--%>
+                                            <%--<button type="submit">delete</button>--%>
+                                        <%--</td>--%>
+                                    <%--</form>--%>
                                 </tr>
                             </c:forEach>
                             </tbody>
