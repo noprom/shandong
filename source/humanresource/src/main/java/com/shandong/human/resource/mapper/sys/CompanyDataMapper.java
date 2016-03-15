@@ -1,8 +1,6 @@
 package com.shandong.human.resource.mapper.sys;
 
-import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.domain.CompanyData;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
 
