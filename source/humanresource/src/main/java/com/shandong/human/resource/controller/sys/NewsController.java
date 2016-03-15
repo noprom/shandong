@@ -86,7 +86,7 @@ public class NewsController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "sys/news/delete/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "sys/news/delete/{id}", method = RequestMethod.GET)
     String newsDelete(@PathVariable("id") Integer id, Model model, HttpSession httpSession, HttpServletRequest request) {
 
         newsService.deleteNewsById(id);
