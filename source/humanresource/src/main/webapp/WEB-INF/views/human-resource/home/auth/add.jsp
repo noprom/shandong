@@ -36,7 +36,7 @@
             <div class="col-lg-6">
                 <div class="box box-info">
                     <div class="box-body">
-                        <form role="form" method="post">
+                        <form action="/home/auth/add/submit" role="form" method="post">
 
                             <div class="form-group">
                                 <label>权限名称</label>
@@ -57,10 +57,10 @@
                                         for (Auth r:authList) {
                                             StringBuilder s = new StringBuilder();
                                             for(int i=0;i<r.getLevel();++i)
-                                                s.append(' ');
+                                                s.append("&nbsp&nbsp&nbsp&nbsp");
                                             s.append('└').append(r.getName());
                                             int id = r.getId();
-                                            %><option value="<%= id%>"><%= s.toString()%></option><%
+                                            %><option name="pid" value="<%= id%>"><%= s.toString()%></option><%
                                         }
                                     %>
 

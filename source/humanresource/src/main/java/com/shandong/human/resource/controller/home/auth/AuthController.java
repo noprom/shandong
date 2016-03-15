@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,11 +47,13 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/home/auth/add/submit")
-    public void addAuth(HttpServletRequest request , HttpServletResponse response){
+    public void addAuth(HttpServletRequest request , HttpServletResponse response) throws IOException {
         Auth toInsert = new Auth();
-        String name = (String)request.getAttribute("name");
-        String url = (String)request.getAttribute("url");
-        int pid = Integer.parseInt((String)request.getAttribute("pid"));
+        String name = (String)request.getParameter("name");
+        String url = (String)request.getParameter("url");
+        String pid_s = (String) request.getParameter("pid");
+        System.out.println(name +"\t" + url +"\t" + pid_s);
+        int pid = Integer.parseInt(pid_s);
         int level =service.selectByID(pid).getLevel()+1;
         toInsert.setId(0);
         toInsert.setLevel(level);
@@ -58,6 +61,8 @@ public class AuthController {
         toInsert.setUrl(url);
         toInsert.setPid(pid);
 
+
         service.insertAuth(toInsert);
+        response.sendRedirect("/home/auth/add");
     }
 }
