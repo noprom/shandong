@@ -7,25 +7,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <a href="#" class="go-to-top hidden-print"><i class="fa fa-angle-up"></i></a>
 
-<script type='text/javascript' src='<%=basePath%>static/human/js/jquery.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/jquery-migrate.min.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/modernizr-2.7.1.min.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/jquery.cookie.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/jquery.blockUI.min.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/imagesloaded.pkgd.min.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/isotope-2.0.0.min.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/jquery.touchSwipe.min.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/bootstrap.min.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/hoverIntent-r7.min.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/superfish-1.7.4.min.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/script.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/chosen.jquery.min.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/jquery.datetimepicker.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/jquery.parallax-1.1.3.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/jquery.carouFredSel-6.2.1-packed.js'></script>
-<script type='text/javascript' src='<%=basePath%>static/human/js/custom.js'></script>
-<script type='text/javascript' src="<%=basePath%>static/human/js/plugins/toastr/toastr.min.js"></script>
-<script type='text/javascript' src="<%=basePath%>static/human/js/validation.js"></script>
+<script type='text/javascript' src='<%=basePath%>static/human/plugins/jQuery/jQuery-2.1.4.min.js'></script>
+<script type='text/javascript' src='<%=basePath%>static/human/bootstrap/js/bootstrap.min.js'></script>
+<script type='text/javascript' src='<%=basePath%>static/human/plugins/chartjs/Chart.min.js'></script>
+<script type='text/javascript' src='<%=basePath%>static/human/plugins/fastclick/fastclick.min.js'></script>
+<script type='text/javascript' src='<%=basePath%>static/human/dist/js/app.min.js'></script>
+<script type='text/javascript' src='<%=basePath%>static/human/dist/js/demo.js'></script>
+
 <script type="text/javascript">
     <%--Toastr配置--%>
     toastr.options = {
