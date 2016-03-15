@@ -35,4 +35,8 @@ public class NewsServiceImpl implements NewsService {
     public List<News> newsList() {
         return newsMapper.newsList();
     }
+
+    public void deleteNewsById(Integer id) {
+        newsMapper.deleteNewsById(id);
+    }
 }
