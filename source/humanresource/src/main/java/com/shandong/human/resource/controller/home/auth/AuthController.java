@@ -20,8 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Author: chenyongpeng <chen9121@foxmail.com>
- * Date: 2016/3/14 10:11
+ * Brief: 权限管理类
+ * Author: syc
+ * Date: 2016/3/15
  */
 @Controller
 public class AuthController {

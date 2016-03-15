@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Created by syc on 3/14/16.
  * Author SYC
+ * Brief 权限树类(两层)
  */
 public class AuthTree {
     private List<Auth> _Auths;      /**<所有权限*/
@@ -16,7 +17,11 @@ public class AuthTree {
     private int _Str;               /**<第一个权限位置*/
     private int _Level;             /**<当前权限树的等级*/
 
-
+    /**
+     * @brief 将权限树转换为有序的list
+     * @param tree 待转换的权限树
+     * @return
+     */
     public static final List<Auth> toList(AuthTree tree)
     {
         int now_tmp= tree._Now;
@@ -115,6 +120,9 @@ public class AuthTree {
         return child;
     }
 
+    /**
+     * @brief 重置遍历
+     */
     public void Restart()
     {
         _Now=_Str;
