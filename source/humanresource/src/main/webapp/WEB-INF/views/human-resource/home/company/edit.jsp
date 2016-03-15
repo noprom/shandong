@@ -48,18 +48,19 @@
             <!-- form start -->
             <form role="form">
                 <div class="box-body">
+                    <%--<form>--%>
                     <div class="form-group">
                         <label>省份</label>
-                        <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;">
-                            <option selected="selected"></option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
+
+                        <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="province" required>
+                            <option selected="selected">北京市</option>
+                            <c:forEach items="${editResult}" var="v">
+                            <option>${v.name}</option>
+                            </c:forEach>
                         </select>
+
                     </div><!-- /.form-group -->
+                    <%--</form>--%>
                     <div class="form-group">
                         <label>城市</label>
                         <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;">

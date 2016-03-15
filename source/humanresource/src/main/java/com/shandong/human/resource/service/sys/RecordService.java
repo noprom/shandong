@@ -21,4 +21,5 @@ public  interface RecordService {
     public ArrayList<Company> getAllCompany();
 
     public ArrayList<Company> getCompanyByCondition(String city_id, String area_id, String name, String code, String contact);
+
 }
