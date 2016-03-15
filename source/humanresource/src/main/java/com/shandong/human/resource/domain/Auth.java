@@ -4,7 +4,6 @@ package com.shandong.human.resource.domain;
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/14 9:09
  */
-
 public class Auth {
     private int id;               //主键
     private String name;          //权限名称
