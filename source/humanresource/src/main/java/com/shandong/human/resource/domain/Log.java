@@ -1,6 +1,6 @@
 package com.shandong.human.resource.domain;
 
-import javafx.scene.chart.PieChart;
+//import javafx.scene.chart.PieChart;
 import java.sql.Date;
 
 /**
