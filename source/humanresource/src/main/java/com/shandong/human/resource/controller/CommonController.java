@@ -43,27 +43,5 @@ public class CommonController {
      *
      * @return
      */
-<<<<<<< HEAD
 
-=======
->>>>>>> 6bf60152d53548c72cfe9c7c972d36a45e7b5cfb
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public @ResponseBody
-//    Result handleLogin(String username, String password) {
-//        User loginUser = usertestService.login(username, password);
-//        if (loginUser != null) {
-//            return new Result(Result.Status.SUCCESS, Constant.LOGIN_SUCCESS);
-//        } else {
-//            return new Result(Result.Status.ERROR, Constant.LOGIN_FAIL);
-//        }
-//    }
-<<<<<<< HEAD
-    //---------------------------------以上为测试部分代码!!!!!!!!!!!!------------------------
-
-=======
-
-    //---------------------------------以上为测试部分代码!!!!!!!!!!!!------------------------
-
-
->>>>>>> 6bf60152d53548c72cfe9c7c972d36a45e7b5cfb
 }
