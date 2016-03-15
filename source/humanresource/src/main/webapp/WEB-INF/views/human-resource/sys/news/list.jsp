@@ -57,15 +57,18 @@
                                     <td>${v.content}</td>
                                     <td><fmt:formatDate value="${v.createTime}" type="both"
                                                         pattern="yyyy-MM-dd HH:mm"/></td>
-                                    <form role="form" method="post" action="<%=basePath%>sys/news/edit">
-                                        <div class="hidden">
-                                            <input type="text" class="form-control" name="id" value="${v.id}"
-                                                   placeholder="">
-                                        </div>
+                                        
+                                            <%--<div class="hidden">--%>
+                                            <%--<input type="text" class="form-control" name="title" value="${v.title}"--%>
+                                            <%--placeholder="">--%>
+                                            <%--</div>--%>
+                                            <%--<div class="hidden">--%>
+                                            <%--<input type="text" class="form-control" name="content" value="${v.content}"--%>
+                                            <%--placeholder="">--%>
+                                            <%--</div>--%>
                                         <td>
-                                            <button type="submit">Modify</button>
+                                            <a href="<%=basePath%>sys/news/edit/${v.id}" class="btn btn-primary">修改</a>
                                         </td>
-                                    </form>
 
                                     <form role="form" method="post" action="<%=basePath%>sys/news/delete">
                                         <div class="hidden">

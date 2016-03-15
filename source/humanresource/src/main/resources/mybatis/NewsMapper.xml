@@ -10,7 +10,7 @@
         <result column="create_time" property="createTime" />
     </resultMap>
 
-    <insert id="addNews" parameterType="News" >
+    <insert id="addNews"   parameterType="News" >
         SET @TIME = now();
         <![CDATA[
             INSERT INTO news (user_id, title, content, create_time)
@@ -31,4 +31,12 @@
     <delete id="deleteNewsById" parameterType="int">
         DELETE FROM news WHERE id = #{id}
     </delete>
+
+    <select id="selectNewsById" resultMap="News" parameterType="int">
+        SELECT * FROM news WHERE id = #{id}
+    </select>
+
+    <update id="editNewsById" parameterType="News">
+        UPDATE news SET title = #{title} , content = #{content} WHERE id = #{id}
+    </update>
 </mapper>
