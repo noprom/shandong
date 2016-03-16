@@ -1,5 +1,6 @@
 package com.shandong.human.resource.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class CommonController {
 
+    protected Logger logger = Logger.getLogger(getClass());
 
     //---------------------------------以下为测试部分代码!!!!!!!!!!!!------------------------
 
