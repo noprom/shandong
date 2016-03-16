@@ -81,46 +81,6 @@ public class MonitorServiceImpl implements MonitorService {
 
     private double getCpuRatioForLinux()
     {
-        InputStream is = null;
-        InputStreamReader isr = null;
-        BufferedReader brStat = null;
-        StringTokenizer tokenStat =null;
-        try
-        {
-            Process process = Runtime.getRuntime().exec("top -b -n 1");
-            is = process.getInputStream();
-            isr = new InputStreamReader(is);
-            brStat = new BufferedReader(isr);
-
-            brStat.readLine();
-            brStat.readLine();
-
-            tokenStat = new StringTokenizer(brStat.readLine());
-            tokenStat.nextToken();
-            tokenStat.nextToken();
-            tokenStat.nextToken();
-            tokenStat.nextToken();
-            tokenStat.nextToken();
-            tokenStat.nextToken();
-            tokenStat.nextToken();
-            String cpuUsage = tokenStat.nextToken();
-
-            System.out.println("CPU idle : " + cpuUsage);
-            Float usage = new Float(cpuUsage.substring(0, cpuUsage.indexOf("%")));
-            is.close();
-            isr.close();
-            brStat.close();
-            return (1 - usage.floatValue() / 100);
-
-        }
-        catch(IOException ioe)
-        {
-            System.out.println(ioe.getMessage());
-            return 1;
-        }
-        finally
-        {
-
-        }
+        return 0.0;
     }
 }

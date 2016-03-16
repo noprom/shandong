@@ -40,7 +40,7 @@ public class MonitorController {
         System.out.println(monitorInformation.getTotalMemorySize());
         System.out.println(monitorInformation.getTotalThread());
         System.out.println(monitorInformation.getUsedMemory());
-        model.addAttribute("monitor",monitorInformation);
+        model.addAttribute("m",monitorInformation);
         return STATIC_PREFIX + "/monitor";
     }
 }
