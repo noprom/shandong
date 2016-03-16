@@ -8,17 +8,8 @@ import java.security.Principal;
  */
 
 public class AuthRole {
-    private int id;          //主键
     private int auth_id;    //权限id
     private int role_id;    //角色id
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getRole_id() {
         return role_id;
