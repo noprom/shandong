@@ -20,4 +20,6 @@ public interface CompanyDataMapper {
     CompanyData getCompanyDataById(Integer id);
 
     Integer companyDataAdd(CompanyData companyData);
+
+    List<CompanyData> getTotalPeopleFromCompanyDataOfEverySuvryTime();
 }
