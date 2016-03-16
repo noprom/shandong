@@ -34,10 +34,11 @@ public class AuthController {
     private AuthService service;
 
     /**
+     * 获取权限树并转到添加权限页面
+     *
      * @param request
      * @param response
      * @return
-     * @brief 获取权限树并转到添加权限页面
      */
     @RequestMapping(value = "/auth/add")
     public String toAddPage(HttpServletRequest request, HttpServletResponse response) {
@@ -49,10 +50,11 @@ public class AuthController {
     }
 
     /**
+     * 对提交的添加权限信息进行处理
+     *
      * @param request
      * @param response
      * @throws IOException
-     * @brief 对提交的添加权限信息进行处理
      */
     @RequestMapping(value = "/auth/add/submit")
     public void addAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -74,10 +76,11 @@ public class AuthController {
     }
 
     /**
+     * 转到删除权限页面
+     *
      * @param request
      * @param response
      * @return
-     * @brief 转到删除权限页面
      */
     @RequestMapping(value = "/auth/delete")
     public String toDeletePage(HttpServletRequest request, HttpServletResponse response) {
@@ -89,10 +92,11 @@ public class AuthController {
     }
 
     /**
+     * 根据ID删除指定权限及其子权限
+     *
      * @param request
      * @param response
      * @throws IOException
-     * @brief 根据ID删除指定权限及其子权限
      */
 
     @RequestMapping(value = "/auth/delete/submit")
@@ -131,8 +135,9 @@ public class AuthController {
     }
 
     /**
+     * 从数据库中删除传入的权限树所包含的该权限树等级的权限及其子权限
+     *
      * @param tree 传入权限树
-     * @brief 从数据库中删除传入的权限树所包含的该权限树等级的权限及其子权限
      */
     private void deleteAuthTree(AuthTree tree) {
         if (tree == null)
