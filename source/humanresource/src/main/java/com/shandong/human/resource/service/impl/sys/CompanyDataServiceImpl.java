@@ -34,4 +34,8 @@ public class CompanyDataServiceImpl implements CompanyDataService{
     public Integer companyDataAdd(CompanyData companyData) {
         return companyDataMapper.companyDataAdd(companyData);
     }
+
+    public List<CompanyData> getTotalPeopleFromCompanyDataOfEverySuvryTime() {
+        return companyDataMapper.getTotalPeopleFromCompanyDataOfEverySuvryTime();
+    }
 }
