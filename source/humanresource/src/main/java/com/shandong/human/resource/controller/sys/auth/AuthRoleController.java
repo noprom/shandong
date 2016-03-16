@@ -41,13 +41,13 @@ public class AuthRoleController {
      */
     @RequestMapping(value = "/authRole/edit", method = RequestMethod.GET)
     public String toEditPage(Integer role_id, HttpServletRequest request, HttpServletResponse response) {
-        List<Auth> allAuth = authService.selectAll();
-        AuthTree existAuth = new AuthTree(0, allAuth);
-
-        List<AuthRole> existAuthRole = authRoleService.selectByRoleID(role_id.intValue());
-
-        request.setAttribute("existAuth", existAuth);
-        request.setAttribute("existAuthRole", existAuthRole);
+//        List<Auth> allAuth = authService.selectAll();
+//        AuthTree existAuth = new AuthTree(0, allAuth);
+//
+//        List<AuthRole> existAuthRole = authRoleService.selectByRoleID(role_id.intValue());
+//
+//        request.setAttribute("existAuth", existAuth);
+//        request.setAttribute("existAuthRole", existAuthRole);
         return STATIC_PREFIX + "/edit";
     }
 
