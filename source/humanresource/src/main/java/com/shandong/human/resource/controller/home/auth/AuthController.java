@@ -33,10 +33,10 @@ public class AuthController {
     private AuthService service;
 
     /**
-     * @brief 获取权限树并转到添加权限页面
      * @param request
      * @param response
      * @return
+     * @brief 获取权限树并转到添加权限页面
      */
     @RequestMapping(value = "/home/auth/add")
     public String toAddPage(HttpServletRequest request, HttpServletResponse response) {
@@ -48,10 +48,10 @@ public class AuthController {
     }
 
     /**
-     * @brief 对提交的添加权限信息进行处理
      * @param request
      * @param response
      * @throws IOException
+     * @brief 对提交的添加权限信息进行处理
      */
     @RequestMapping(value = "/home/auth/add/submit")
     public void addAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -73,10 +73,10 @@ public class AuthController {
     }
 
     /**
-     * @brief 转到删除权限页面
      * @param request
      * @param response
      * @return
+     * @brief 转到删除权限页面
      */
     @RequestMapping(value = "/home/auth/delete")
     public String toDeletePage(HttpServletRequest request, HttpServletResponse response) {
@@ -88,10 +88,10 @@ public class AuthController {
     }
 
     /**
-     * @brief 根据ID删除指定权限及其子权限
      * @param request
      * @param response
      * @throws IOException
+     * @brief 根据ID删除指定权限及其子权限
      */
 
     @RequestMapping(value = "/home/auth/delete/submit")
@@ -99,7 +99,7 @@ public class AuthController {
         String id_s = request.getParameter("id");
         int id = Integer.parseInt(id_s);
         Auth root = service.selectByID(id);
-        if(root == null || root.getLevel()==0){
+        if (root == null || root.getLevel() == 0) {
             response.sendRedirect("/home/auth/delete");
             return;
         }
@@ -109,11 +109,12 @@ public class AuthController {
 
         /*将树指针定位到目标节点*/
         Auth target;
-        for(target = authTree.now();
-            target!=null&&target.getId()!=root.getId();
-            authTree.gotoNext(),target=authTree.now());
+        for (target = authTree.now();
+             target != null && target.getId() != root.getId();
+             authTree.gotoNext(), target = authTree.now())
+            ;
 
-        if(target==null){
+        if (target == null) {
             response.sendRedirect("/home/auth/delete");
             return;
         }
@@ -129,14 +130,14 @@ public class AuthController {
     }
 
     /**
-     * @brief 从数据库中删除传入的权限树所包含的该权限树等级的权限及其子权限
      * @param tree 传入权限树
+     * @brief 从数据库中删除传入的权限树所包含的该权限树等级的权限及其子权限
      */
-    private void deleteAuthTree(AuthTree tree){
-        if(tree == null)
+    private void deleteAuthTree(AuthTree tree) {
+        if (tree == null)
             return;
         Auth str = tree.now();
-        while(str != null){
+        while (str != null) {
             deleteAuthTree(tree.childAuths());
             service.deleteByID(str.getId());
             tree.gotoNext();
