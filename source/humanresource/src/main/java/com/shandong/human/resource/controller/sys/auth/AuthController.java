@@ -24,7 +24,7 @@ import java.util.List;
  * Author: syc
  * Date: 2016/3/15
  */
-@RequestMapping("/sys")
+@RequestMapping("/sys/auth")
 @Controller
 public class AuthController {
 
@@ -40,7 +40,7 @@ public class AuthController {
      * @param response
      * @return
      */
-    @RequestMapping(value = "/auth/add")
+    @RequestMapping(value = "/add")
     public String toAddPage(HttpServletRequest request, HttpServletResponse response) {
         List<Auth> allAuth = service.selectAll();
         System.out.println("size:" + allAuth.size());
@@ -56,7 +56,7 @@ public class AuthController {
      * @param response
      * @throws IOException
      */
-    @RequestMapping(value = "/auth/add/submit")
+    @RequestMapping(value = "/add/submit")
     public void addAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Auth toInsert = new Auth();
         String name = (String) request.getParameter("name");
@@ -82,7 +82,7 @@ public class AuthController {
      * @param response
      * @return
      */
-    @RequestMapping(value = "/auth/delete")
+    @RequestMapping(value = "/delete")
     public String toDeletePage(HttpServletRequest request, HttpServletResponse response) {
         List<Auth> allAuth = service.selectAll();
         System.out.println("size:" + allAuth.size());
@@ -99,7 +99,7 @@ public class AuthController {
      * @throws IOException
      */
 
-    @RequestMapping(value = "/auth/delete/submit")
+    @RequestMapping(value = "/delete/submit")
     public void deleteAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String id_s = request.getParameter("id");
         int id = Integer.parseInt(id_s);
