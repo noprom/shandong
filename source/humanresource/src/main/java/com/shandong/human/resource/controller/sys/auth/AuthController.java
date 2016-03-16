@@ -1,6 +1,7 @@
-package com.shandong.human.resource.controller.home.auth;
+package com.shandong.human.resource.controller.sys.auth;
 
 import com.shandong.human.resource.common.AuthTree;
+import com.shandong.human.resource.controller.CommonController;
 import com.shandong.human.resource.domain.Auth;
 import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.service.sys.AuthService;
@@ -24,21 +25,23 @@ import java.util.List;
  * Author: syc
  * Date: 2016/3/15
  */
+@RequestMapping("/sys/auth")
 @Controller
-public class AuthController {
+public class AuthController extends CommonController {
 
     // 静态资源前缀
-    public static final String STATIC_PREFIX = "human-resource/home/auth";
+    public static final String STATIC_PREFIX = "human-resource/sys/auth";
     @Autowired
     private AuthService service;
 
     /**
+     * 获取权限树并转到添加权限页面
+     *
      * @param request
      * @param response
      * @return
-     * @brief 获取权限树并转到添加权限页面
      */
-    @RequestMapping(value = "/home/auth/add")
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String toAddPage(HttpServletRequest request, HttpServletResponse response) {
         List<Auth> allAuth = service.selectAll();
         System.out.println("size:" + allAuth.size());
@@ -48,19 +51,18 @@ public class AuthController {
     }
 
     /**
+     * 对提交的添加权限信息进行处理
+     *
      * @param request
      * @param response
      * @throws IOException
-     * @brief 对提交的添加权限信息进行处理
      */
-    @RequestMapping(value = "/home/auth/add/submit")
-    public void addAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @RequestMapping(value = "/add/submit", method = RequestMethod.POST)
+    public void addAuth(Integer pid, String name, String url,
+            HttpServletRequest request, HttpServletResponse response) throws IOException {
         Auth toInsert = new Auth();
-        String name = (String) request.getParameter("name");
-        String url = (String) request.getParameter("url");
-        String pid_s = (String) request.getParameter("pid");
-        System.out.println(name + "\t" + url + "\t" + pid_s);
-        int pid = Integer.parseInt(pid_s);
+        logger.debug(name + url + pid);
+
         int level = service.selectByID(pid).getLevel() + 1;
         toInsert.setId(0);
         toInsert.setLevel(level);
@@ -69,16 +71,17 @@ public class AuthController {
         toInsert.setPid(pid);
 
         service.insertAuth(toInsert);
-        response.sendRedirect("/home/auth/add");
+        response.sendRedirect("/sys/auth/add");
     }
 
     /**
+     * 转到删除权限页面
+     *
      * @param request
      * @param response
      * @return
-     * @brief 转到删除权限页面
      */
-    @RequestMapping(value = "/home/auth/delete")
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String toDeletePage(HttpServletRequest request, HttpServletResponse response) {
         List<Auth> allAuth = service.selectAll();
         System.out.println("size:" + allAuth.size());
@@ -88,19 +91,20 @@ public class AuthController {
     }
 
     /**
+     * 根据ID删除指定权限及其子权限
+     *
      * @param request
      * @param response
      * @throws IOException
-     * @brief 根据ID删除指定权限及其子权限
      */
 
-    @RequestMapping(value = "/home/auth/delete/submit")
+    @RequestMapping(value = "/delete/submit", method = RequestMethod.POST)
     public void deleteAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String id_s = request.getParameter("id");
         int id = Integer.parseInt(id_s);
         Auth root = service.selectByID(id);
         if (root == null || root.getLevel() == 0) {
-            response.sendRedirect("/home/auth/delete");
+            response.sendRedirect("/sys/auth/delete");
             return;
         }
 
@@ -115,7 +119,7 @@ public class AuthController {
             ;
 
         if (target == null) {
-            response.sendRedirect("/home/auth/delete");
+            response.sendRedirect("/sys/auth/delete");
             return;
         }
 
@@ -125,13 +129,14 @@ public class AuthController {
 
         /*删除该节点*/
         service.deleteByID(target.getId());
-        response.sendRedirect("/home/auth/delete");
+        response.sendRedirect("/sys/auth/delete");
         return;
     }
 
     /**
+     * 从数据库中删除传入的权限树所包含的该权限树等级的权限及其子权限
+     *
      * @param tree 传入权限树
-     * @brief 从数据库中删除传入的权限树所包含的该权限树等级的权限及其子权限
      */
     private void deleteAuthTree(AuthTree tree) {
         if (tree == null)
