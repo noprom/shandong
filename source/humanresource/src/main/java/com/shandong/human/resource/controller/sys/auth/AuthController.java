@@ -1,6 +1,7 @@
 package com.shandong.human.resource.controller.sys.auth;
 
 import com.shandong.human.resource.common.AuthTree;
+import com.shandong.human.resource.controller.CommonController;
 import com.shandong.human.resource.domain.Auth;
 import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.service.sys.AuthService;
@@ -26,10 +27,10 @@ import java.util.List;
  */
 @RequestMapping("/sys/auth")
 @Controller
-public class AuthController {
+public class AuthController extends CommonController {
 
     // 静态资源前缀
-    public static final String STATIC_PREFIX = "human-resource/home/auth";
+    public static final String STATIC_PREFIX = "human-resource/sys/auth";
     @Autowired
     private AuthService service;
 
@@ -57,13 +58,11 @@ public class AuthController {
      * @throws IOException
      */
     @RequestMapping(value = "/add/submit")
-    public void addAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void addAuth(Integer pid, String name, String url,
+            HttpServletRequest request, HttpServletResponse response) throws IOException {
         Auth toInsert = new Auth();
-        String name = (String) request.getParameter("name");
-        String url = (String) request.getParameter("url");
-        String pid_s = (String) request.getParameter("pid");
-        System.out.println(name + "\t" + url + "\t" + pid_s);
-        int pid = Integer.parseInt(pid_s);
+        logger.debug(name + url + pid);
+
         int level = service.selectByID(pid).getLevel() + 1;
         toInsert.setId(0);
         toInsert.setLevel(level);
