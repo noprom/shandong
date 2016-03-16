@@ -1,4 +1,4 @@
-package com.shandong.human.resource.controller.home.auth;
+package com.shandong.human.resource.controller.sys.auth;
 
 import com.shandong.human.resource.common.AuthTree;
 import com.shandong.human.resource.domain.Auth;

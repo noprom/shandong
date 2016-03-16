@@ -1,4 +1,4 @@
-package com.shandong.human.resource.controller.home.auth;
+package com.shandong.human.resource.controller.sys.auth;
 
 import org.springframework.stereotype.Controller;
 
