@@ -1,27 +1,31 @@
-package com.shandong.human.resource.mapper.sys;
+package com.shandong.human.resource.service.sys;
 
 import com.shandong.human.resource.domain.AuthRole;
+import com.shandong.human.resource.domain.User;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by syc on 3/16/16.
+ *
+ * Created by syc on 16/3/16.
  */
-public interface AuthRoleMapper {
+public interface AuthRoleService {
     /**
      * @brief 插入角色权限
-     * @param authRole 待插入的角色权限
+     * @param auth_id 角色id
+     * @param role_id 权限id
      * @return
      */
-    public int insertAuthRole(Map<Object,Object> authRole);
+    public int insertAuthRole(int auth_id, int role_id);
 
     /**
      * @brief 删除角色权限
-     * @param authRole 待删除的角色权限
+     * @param auth_id 角色id
+     * @param role_id 权限id
      * @return
      */
-    public int deleteAuthRole(Map<Object,Object> authRole);
+    public int deleteAuthRole(int auth_id, int role_id);
 
     /**
      * @brief 根据id查询角色所有权限
