@@ -3,7 +3,6 @@ package com.shandong.human.resource.service.sys.impl;
 import com.shandong.human.resource.domain.MonitorInformation;
 import com.shandong.human.resource.service.sys.MonitorService;
 import com.sun.management.OperatingSystemMXBean;
-import com.sun.tools.internal.ws.wsdl.document.jaxws.Exception;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
