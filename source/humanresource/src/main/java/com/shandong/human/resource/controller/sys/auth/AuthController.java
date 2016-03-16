@@ -41,7 +41,7 @@ public class AuthController extends CommonController {
      * @param response
      * @return
      */
-    @RequestMapping(value = "/add")
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String toAddPage(HttpServletRequest request, HttpServletResponse response) {
         List<Auth> allAuth = service.selectAll();
         System.out.println("size:" + allAuth.size());
@@ -57,7 +57,7 @@ public class AuthController extends CommonController {
      * @param response
      * @throws IOException
      */
-    @RequestMapping(value = "/add/submit")
+    @RequestMapping(value = "/add/submit", method = RequestMethod.POST)
     public void addAuth(Integer pid, String name, String url,
             HttpServletRequest request, HttpServletResponse response) throws IOException {
         Auth toInsert = new Auth();
@@ -81,7 +81,7 @@ public class AuthController extends CommonController {
      * @param response
      * @return
      */
-    @RequestMapping(value = "/delete")
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String toDeletePage(HttpServletRequest request, HttpServletResponse response) {
         List<Auth> allAuth = service.selectAll();
         System.out.println("size:" + allAuth.size());
@@ -98,13 +98,13 @@ public class AuthController extends CommonController {
      * @throws IOException
      */
 
-    @RequestMapping(value = "/delete/submit")
+    @RequestMapping(value = "/delete/submit", method = RequestMethod.POST)
     public void deleteAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String id_s = request.getParameter("id");
         int id = Integer.parseInt(id_s);
         Auth root = service.selectByID(id);
         if (root == null || root.getLevel() == 0) {
-            response.sendRedirect("/home/auth/delete");
+            response.sendRedirect("/sys/auth/delete");
             return;
         }
 
