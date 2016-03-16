@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * Created by syc on 3/16/16.
  */
@@ -31,6 +32,13 @@ public class AuthRoleController {
     private AuthRoleService authRoleService;
 
 
+    /**
+     * @brief 转到角色权限设置页面
+     * @param role_id 角色id
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/home/authRole/edit")
     public String toEditPage(Integer role_id, HttpServletRequest request, HttpServletResponse response) {
         List<Auth> allAuth = authService.selectAll();
@@ -43,6 +51,13 @@ public class AuthRoleController {
         return STATIC_PREFIX + "/edit";
     }
 
+    /**
+     * @brief 角色权限设置
+     * @param role_id 待处理角色id
+     * @param auths 传入权限
+     * @param request
+     * @param response
+     */
     @RequestMapping(value = "/home/authRole/edit/submit")
     public void submitHandle(Integer role_id, List<Integer> auths, HttpServletRequest request, HttpServletResponse response) {
         authRoleService.deleteByRoleID(role_id);
