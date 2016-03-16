@@ -224,3 +224,6 @@ immediately after the control sidebar -->
 <!-- DataTables -->
 <script src="<%=basePath%>static/human/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<%=basePath%>static/human/plugins/datatables/dataTables.bootstrap.min.js"></script>
+
+<!-- ChartJS 1.0.1 -->
+<script src="<%=basePath%>static/human/plugins/chartjs/Chart.min.js"></script>

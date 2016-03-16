@@ -28,5 +28,25 @@
         SELECT * FROM company_data
     </select>
 
+    <select id="companyDataList" resultMap="CompanyData">
+        SELECT id, company_id, survey_time_id, status FROM company_data
+    </select>
 
+    <delete id="deleteNewsById" parameterType="int">
+        DELETE FROM company_data WHERE id = #{id}
+    </delete>
+
+    <select id="getCompanyDataById" parameterType="int" resultMap="CompanyData">
+        SELECT * FROM company_data WHERE id = #{id}
+    </select>
+
+    <insert id="companyDataAdd" parameterType="CompanyData">
+        SET @TIME = now();
+        INSERT INTO company_data
+        (pid, company_id, survey_time_id, init_people, cur_people, reduce_type, reason1, reason1_explain, reason2, reason2_explain, reason3, reason3_explain, other_reason, status, not_pass_reason, create_time, update_time)
+
+        VALUES
+        (#{id}, #{company_id}, #{survey_time_id}, #{init_people}, #{cur_people}, #{reduce_type}, #{reason1}, #{reason1_explain}, #{reason2}, #{reason2_explain}, #{reason3}, #{reason3_explain}, #{other_reason}, #{status}, #{not_pass_reason}, #{create_time}, @TIME )
+
+    </insert>
 </mapper>
