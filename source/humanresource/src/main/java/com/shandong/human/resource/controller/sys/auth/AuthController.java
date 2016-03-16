@@ -24,6 +24,7 @@ import java.util.List;
  * Author: syc
  * Date: 2016/3/15
  */
+@RequestMapping("/sys")
 @Controller
 public class AuthController {
 
@@ -38,7 +39,7 @@ public class AuthController {
      * @return
      * @brief 获取权限树并转到添加权限页面
      */
-    @RequestMapping(value = "/home/auth/add")
+    @RequestMapping(value = "/auth/add")
     public String toAddPage(HttpServletRequest request, HttpServletResponse response) {
         List<Auth> allAuth = service.selectAll();
         System.out.println("size:" + allAuth.size());
@@ -53,7 +54,7 @@ public class AuthController {
      * @throws IOException
      * @brief 对提交的添加权限信息进行处理
      */
-    @RequestMapping(value = "/home/auth/add/submit")
+    @RequestMapping(value = "/auth/add/submit")
     public void addAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Auth toInsert = new Auth();
         String name = (String) request.getParameter("name");
@@ -78,7 +79,7 @@ public class AuthController {
      * @return
      * @brief 转到删除权限页面
      */
-    @RequestMapping(value = "/home/auth/delete")
+    @RequestMapping(value = "/auth/delete")
     public String toDeletePage(HttpServletRequest request, HttpServletResponse response) {
         List<Auth> allAuth = service.selectAll();
         System.out.println("size:" + allAuth.size());
@@ -94,7 +95,7 @@ public class AuthController {
      * @brief 根据ID删除指定权限及其子权限
      */
 
-    @RequestMapping(value = "/home/auth/delete/submit")
+    @RequestMapping(value = "/auth/delete/submit")
     public void deleteAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String id_s = request.getParameter("id");
         int id = Integer.parseInt(id_s);
