@@ -225,4 +225,4 @@ CREATE TABLE `user_role` (
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- [syc]:
-insert into `auth` values(0,'基础权限','/home',0,0);
+insert into `auth` values(0,'基础权限','/sys',0,0);

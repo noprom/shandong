@@ -72,7 +72,7 @@ public class AuthController {
         toInsert.setPid(pid);
 
         service.insertAuth(toInsert);
-        response.sendRedirect("/home/auth/add");
+        response.sendRedirect("/sys/auth/add");
     }
 
     /**
@@ -120,7 +120,7 @@ public class AuthController {
             ;
 
         if (target == null) {
-            response.sendRedirect("/home/auth/delete");
+            response.sendRedirect("/sys/auth/delete");
             return;
         }
 
@@ -130,7 +130,7 @@ public class AuthController {
 
         /*删除该节点*/
         service.deleteByID(target.getId());
-        response.sendRedirect("/home/auth/delete");
+        response.sendRedirect("/sys/auth/delete");
         return;
     }
 
