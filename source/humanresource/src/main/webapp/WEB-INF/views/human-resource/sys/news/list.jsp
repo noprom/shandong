@@ -22,9 +22,6 @@
         <!-- Content Header (Page header) -->
 
         <!-- Main content -->
-        <div class="form-group" style="align-content: center">
-            <button type="button" class="form-control">添加</button>
-        </div>
 
 
         <div class="row">
@@ -34,7 +31,8 @@
                         <h3 class="box-title">Responsive Hover Table</h3>
                         <div class="box-tools">
                             <div class="input-group" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
+                                <input type="text" name="table_search" class="form-control input-sm pull-right"
+                                       placeholder="Search">
                                 <div class="input-group-btn">
                                     <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                                 </div>
@@ -43,7 +41,8 @@
                     </div><!-- /.box-header -->
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-hover">
-                            <tbody><tr>
+                            <tbody>
+                            <tr>
                                 <th>Id</th>
                                 <th>Title</th>
                                 <th>Content</th>
@@ -52,14 +51,19 @@
                                 <th>Delete</th>
                             </tr>
                             <c:forEach items="${newsList}" var="v">
-                            <tr>
-                                <td>${v.id}</td>
-                                <td>${v.title}</td>
-                                <td>${v.content}</td>
-                                <td><fmt:formatDate value="${v.createTime}" type="both" pattern="yyyy-MM-dd HH:mm"/></td>
-                                <td><button type="button" class="form-control">Modify</button></td>
-                                <td><button type="button" class="form-control">Delete</button></td>
-                            </tr>
+                                <tr>
+                                    <td>${v.id}</td>
+                                    <td>${v.title}</td>
+                                    <td>${v.content}</td>
+                                    <td><fmt:formatDate value="${v.createTime}" type="both"
+                                                        pattern="yyyy-MM-dd HH:mm"/></td>
+                                    <td>
+                                        <a href="<%=basePath%>sys/news/edit/${v.id}" class="btn btn-primary">修改</a>
+                                    </td>
+                                    <td>
+                                        <a href="<%=basePath%>sys/news/delete/${v.id}" class="btn btn-primary">删除</a>
+                                    </td>
+                                </tr>
                             </c:forEach>
                             </tbody>
                         </table>
@@ -67,6 +71,11 @@
                 </div><!-- /.box -->
             </div>
         </div>
+
+        <a href="<%=basePath%>sys/news/addjsp">
+            <button type="button" class="form-control">添加</button>
+        </a>
+
     </div>
 
 

@@ -76,5 +76,4 @@ public class RecordServiceImpl implements RecordService {
     {
         return companyDataMapper.getCompanyDataByCompanyId(id);
     }
-
 }

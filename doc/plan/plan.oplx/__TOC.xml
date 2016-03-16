@@ -7,36 +7,15 @@
     <status-display>basic</status-display>
     <task-view>
       <split-view-divider-position>269</split-view-divider-position>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <outline x="0" y="1312" w="269" h="689">
-=======
-      <outline x="0" y="1309" w="269" h="689">
->>>>>>> 6bf60152d53548c72cfe9c7c972d36a45e7b5cfb
-=======
-      <outline x="0" y="2084" w="269" h="689">
->>>>>>> ea68155f588b0ccbd32399a61191eebed4259bed
+      <outline x="0" y="570" w="269" h="689">
         <column name="Violations" width="20"/>
         <column name="Notes" width="20"/>
         <column name="Title" width="135"/>
         <column name="Effort" width="35"/>
-<<<<<<< HEAD
-        <expanded-item-notes idrefs="t21 t1 t9 t34 t26 t18 t30 t14 t35 t27 t19 t31 t15 t28 t11 t32 t16 t37 t7 t29 t12 t33 t17"/>
-<<<<<<< HEAD
-        <selected-items-at-filter-time idrefs="t21 t9 t34 t26 t18 t30 t14 t35 t27 t19 t31 t15 t28 t11 t32 t16 t37 t7 t29 t12 t33 t17"/>
+        <expanded-item-notes idrefs="t9 t21 t1 t34 t26 t18 t30 t14 t35 t27 t19 t31 t15 t44 t28 t11 t32 t16 t37 t7 t29 t12 t33 t17"/>
+        <selected-items-at-filter-time idrefs="t9 t21 t34 t26 t18 t30 t14 t35 t27 t19 t31 t15 t44 t28 t11 t32 t16 t37 t7 t29 t12 t33 t17"/>
       </outline>
-      <gantt-view x="-29" y="1312" w="1009" h="689">
-=======
-        <selected-items-at-filter-time idrefs="t9 t21 t34 t26 t18 t30 t14 t35 t27 t19 t31 t15 t28 t11 t32 t16 t37 t29 t7 t12 t33 t17"/>
-      </outline>
-      <gantt-view x="-29" y="1309" w="1009" h="689">
->>>>>>> 6bf60152d53548c72cfe9c7c972d36a45e7b5cfb
-=======
-        <expanded-item-notes idrefs="t21 t1 t9 t34 t26 t18 t30 t14 t35 t27 t19 t31 t15 t44 t28 t11 t32 t16 t37 t29 t7 t12 t33 t17"/>
-        <selected-items-at-filter-time idrefs="t46 t38 t21 t9 t34 t26 t18 t30 t14 t35 t27 t19 t31 t15 t44 t28 t11 t32 t16 t45 t37 t29 t7 t12 t33 t17"/>
-      </outline>
-      <gantt-view x="481" y="2084" w="1009" h="689">
->>>>>>> ea68155f588b0ccbd32399a61191eebed4259bed
+      <gantt-view x="706.5" y="570" w="1009" h="689">
         <view-mode>actual</view-mode>
         <dependency-lines/>
         <constraints/>

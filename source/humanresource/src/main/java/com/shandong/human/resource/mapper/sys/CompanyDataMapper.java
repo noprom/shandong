@@ -1,8 +1,7 @@
 package com.shandong.human.resource.mapper.sys;
 
-import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.domain.CompanyData;
-import org.apache.ibatis.annotations.Param;
+import java.util.List;
 
 import java.util.ArrayList;
 
@@ -13,4 +12,12 @@ import java.util.ArrayList;
 public interface CompanyDataMapper {
 
     public ArrayList<CompanyData> getCompanyDataByCompanyId(Integer id);
+
+    List<CompanyData> companyDataList();
+
+    void deleteNewsById(Integer id);
+
+    CompanyData getCompanyDataById(Integer id);
+
+    Integer companyDataAdd(CompanyData companyData);
 }

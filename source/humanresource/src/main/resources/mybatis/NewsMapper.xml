@@ -10,10 +10,11 @@
         <result column="create_time" property="createTime" />
     </resultMap>
 
-    <insert id="addNews" parameterType="News">
+    <insert id="addNews"   parameterType="News" >
+        SET @TIME = now();
         <![CDATA[
-            INSERT INTO news (id, user_id, title, content, create_time)
-            VALUES (#{id}, #{userId}, #{title}, #{content}, #{createTime})
+            INSERT INTO news (user_id, title, content, create_time)
+            VALUES (#{userId}, #{title}, #{content}, @TIME)
         ]]>
         <selectKey resultType="int" keyProperty="id">
             <![CDATA[
@@ -24,6 +25,18 @@
 
     <select id="newsList" resultMap="News">
         SELECT id, title, content, create_time from news
+        order by id desc
     </select>
 
+    <delete id="deleteNewsById" parameterType="int">
+        DELETE FROM news WHERE id = #{id}
+    </delete>
+
+    <select id="selectNewsById" resultMap="News" parameterType="int">
+        SELECT * FROM news WHERE id = #{id}
+    </select>
+
+    <update id="editNewsById" parameterType="News">
+        UPDATE news SET title = #{title} , content = #{content} WHERE id = #{id}
+    </update>
 </mapper>

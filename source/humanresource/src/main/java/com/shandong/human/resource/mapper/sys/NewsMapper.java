@@ -20,4 +20,10 @@ public interface NewsMapper {
     int addNews(News news);
 
     List<News> newsList();
+
+    void deleteNewsById(Integer id);
+
+    News selectNewsById(int id);
+
+    int editNewsById(News news);
 }

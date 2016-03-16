@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <changelog xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2">
   <version>2.1</version>
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <task-change-set user="noprom" date="2016-03-11T08:23:48.007Z" timestamp="2016-03-11T08:23:48.007Z">
-    <change idref="t37" to="t-1" to-position="22" resolved="yes">
-      <change idref="t37" attribute="noEarlierThanConstraintDate" type="date" to="2016-03-11T00:00:00.000Z"/>
-      <change idref="t37" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjE0MDRcY29jb2FzdWJydGYzNDAKe1xmb250dGJsXGYwXGZuaWxcZmNoYXJzZXQxMzQgUGluZ0ZhbmdTQy1SZWd1bGFyO1xmMVxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFx1cDAgXG5vc3VwZXJzdWIgXHVsbm9uZSBcb2JsaXF1ZW5lc3MwIFxleHBhbnNpb24wIFwnYjdcJ2Q2XCdiMVwnZjBcJ2NkXCdlYVwnYjNcJ2M5ClxmMSBQUFQKXGYwIFwnYjVcJ2M0XCdiZFwnYjJcJ2JkXCdlMn0="/>
-      <change idref="t37" attribute="title" type="string" to="分工完成git的PPT演示"/>
-=======
   <task-change-set user="noprom" date="2016-03-13T13:43:56.620Z" timestamp="2016-03-13T13:43:56.620Z">
     <change idref="t1" attribute="isSplittableTask" type="real" from="1" to="0" resolved="yes"/>
     <change idref="t1" attribute="taskType" type="real" from="0" to="1" resolved="yes"/>
@@ -102,7 +94,6 @@
     <change idref="t44" to="t-1" to-position="23" resolved="yes">
       <change idref="t44" attribute="noEarlierThanConstraintDate" type="date" to="2016-03-12T16:00:00.000Z"/>
       <change idref="t44" attribute="title" type="string" to="开会讨论项目进展"/>
->>>>>>> ea68155f588b0ccbd32399a61191eebed4259bed
     </change>
   </task-change-set>
   <task-change-set user="noprom" date="2016-03-13T13:57:03.695Z" timestamp="2016-03-13T13:57:03.695Z">
@@ -112,25 +103,13 @@
     <change idref="t27" attribute="effort" type="real" from="57600" to="86400" resolved="yes"/>
   </task-change-set>
   <task-change-set user="noprom" date="2016-03-13T14:01:05.500Z" timestamp="2016-03-13T14:01:05.500Z">
-    <change idref="t44" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjE0MDRcY29jb2FzdWJydGYzNDAKe1xmb250dGJsXGYwXGZuaWxcZmNoYXJzZXQwIEhlbHZldGljYU5ldWU7fQp7XGNvbG9ydGJsO1xyZWQyNTVcZ3JlZW4yNTVcYmx1ZTI1NTtccmVkODVcZ3JlZW44NVxibHVlODU7fQpccGFyZFx0eDU2MFx0eDExMjBcdHgxNjgwXHR4MjI0MFx0eDI4MDBcdHgzMzYwXHR4MzkyMFx0eDQ0ODBcdHg1MDQwXHR4NTYwMFx0eDYxNjBcdHg2NzIwXHBhcmRpcm5hdHVyYWxccGFydGlnaHRlbmZhY3RvcjAKClxmMFxmczI0IFxjZjIgXHVwMCBcbm9zdXBlcnN1YiBcdWxub25lIFxvYmxpcXVlbmVzczAgXGV4cGFuc2lvbjAgXAp9" resolved="yes"/>
+    <change idref="t44" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjE0MDRcY29jb2FzdWJydGYzNDAKe1xmb250dGJsXGYwXGZuaWxcZmNoYXJzZXQwIEhlbHZldGljYU5ldWU7fQp7XGNvbG9ydGJsO1xyZWQyNTVcZ3JlZW4yNTVcYmx1ZTI1NTtccmVkODVcZ3JlZW44NVxibHVlODU7fQpccGFyZFx0eDU2MFx0eDExMjBcdHgxNjgwXHR4MjI0MFx0eDI4MDBcdHgzMzYwXHR4MzkyMFx0eDQ0ODBcdHg1MDQwXHR4NTYwMFx0eDYxNjBcdHg2NzIwXHBhcmRpcm5hdHVyYWxccGFydGlnaHRlbmZhY3RvcjAKClxmMFxmczI0IFxjZjIgXAp9" resolved="yes"/>
   </task-change-set>
-<<<<<<< HEAD
-  <task-change-set user="noprom" date="2016-03-11T08:24:18.071Z" timestamp="2016-03-11T08:24:18.071Z">
-    <change idref="t37" attribute="internalAssignments" type="string" from="" to="1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 12" resolved="yes"/>
-=======
-  <task-change-set user="noprom" date="2016-03-11T08:14:22.474Z" timestamp="2016-03-11T08:14:22.474Z">
-    <change idref="t37" to="t-1" to-position="22" resolved="yes">
-      <change idref="t37" attribute="noEarlierThanConstraintDate" type="date" to="2016-03-11T00:00:00.000Z"/>
-      <change idref="t37" attribute="title" type="string" to="分工制做Git讲解PPT"/>
-    </change>
-  </task-change-set>
-  <task-change-set user="noprom" date="2016-03-11T08:14:48.098Z" timestamp="2016-03-11T08:14:48.098Z">
-    <change idref="t37" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjE0MDRcY29jb2FzdWJydGYzNDAKe1xmb250dGJsXGYwXGZuaWxcZmNoYXJzZXQxMzQgUGluZ0ZhbmdTQy1SZWd1bGFyO1xmMVxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFx1cDAgXG5vc3VwZXJzdWIgXHVsbm9uZSBcb2JsaXF1ZW5lc3MwIFxleHBhbnNpb24wIFwnYjdcJ2Q2XCdiMVwnZjBcJ2NkXCdlYVwnYjNcJ2M5ClxmMSBHaXQKXGYwIFwnYmRcJ2IyXCdiZFwnZTJcJ2I1XCdjNApcZjEgUFBUfQ==" resolved="yes"/>
->>>>>>> 6bf60152d53548c72cfe9c7c972d36a45e7b5cfb
-=======
   <task-change-set user="noprom" date="2016-03-13T14:01:22.395Z" timestamp="2016-03-13T14:01:22.395Z">
     <change idref="t44" attribute="internalAssignments" type="string" from="" to="1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 12" resolved="yes"/>
->>>>>>> ea68155f588b0ccbd32399a61191eebed4259bed
+  </task-change-set>
+  <task-change-set user="noprom" date="2016-03-14T06:55:48.141Z" timestamp="2016-03-14T06:55:48.141Z">
+    <change idref="t15" attribute="effort" type="real" from="403200" to="748800" resolved="yes"/>
   </task-change-set>
   <resource-change-set user="noprom" date="2016-03-13T13:57:31.145Z" timestamp="2016-03-13T13:57:31.145Z">
     <change idref="r-1" attribute="standardHoursString" type="string" from="-;-;-;-;-;-;-" to="28800,43200,46800,61200;28800,43200,46800,61200;28800,43200,46800,61200;28800,43200,46800,61200;28800,43200,46800,61200;28800,43200,46800,61200;28800,43200,46800,61200" resolved="yes"/>
