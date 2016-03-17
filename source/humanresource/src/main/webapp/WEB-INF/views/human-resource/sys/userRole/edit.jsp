@@ -48,7 +48,8 @@
                                 </div>
 
                                 <%
-                                    int hasRoleSize = hasRole.size();
+                                    int hasRoleSize = 0;
+                                    if(hasRole!=null) hasRoleSize = hasRole.size();
                                     for ( Role r: allRole) {
                                         int i;
                                         for(i=0;i<hasRoleSize&&hasRole.get(i).getRole_id()!=r.getId();++i);

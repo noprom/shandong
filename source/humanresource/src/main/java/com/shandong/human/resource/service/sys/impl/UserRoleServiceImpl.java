@@ -40,4 +40,8 @@ public class UserRoleServiceImpl implements UserRoleService{
         toDelete.put("role_id",role_id);
         return service.delectUserRole(toDelete);
     }
+
+    public int delectByUserID(Integer user_id) {
+        return service.delectByUserID(user_id);
+    }
 }

@@ -25,4 +25,9 @@
         DELETE FROM user_role
         WHERE user_id = #{user_id} AND role_id = #{role_id}
     </delete>
+    
+    <delete id="delectByUserID" parameterType="java.lang.Integer">
+        DELETE FROM user_role
+        WHERE user_id = #{user_id}
+    </delete>
 </mapper>

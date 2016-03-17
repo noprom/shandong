@@ -38,4 +38,11 @@ public interface UserRoleService {
      * @return
      */
     public int delectUserRole(int user_id,int role_id);
+
+    /**
+     * @brief 删除一个用户的所有角色
+     * @param user_id
+     * @return
+     */
+    public int delectByUserID(Integer user_id);
 }

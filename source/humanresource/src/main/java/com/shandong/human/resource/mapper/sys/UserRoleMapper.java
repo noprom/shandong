@@ -36,4 +36,11 @@ public interface UserRoleMapper {
      * @return
      */
     public int delectUserRole(Map<Object,Object> userRole);
+
+    /**
+     * @brief 删除一个用户的所有角色
+     * @param user_id
+     * @return
+     */
+    public int delectByUserID(Integer user_id);
 }
