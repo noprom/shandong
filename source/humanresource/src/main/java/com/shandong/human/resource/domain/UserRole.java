@@ -6,17 +6,8 @@ package com.shandong.human.resource.domain;
  */
 
 public class UserRole {
-    private int id;        //主键
     private int user_id;  //用户id
     private int role_id;  //角色id
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getUser_id() {
         return user_id;
