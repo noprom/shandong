@@ -84,11 +84,9 @@
             //数据校验
             if (isEmpty(title)) {
                 alert("标题不能为空");
-                toastr.error("标题不能为空");
                 return false;
             } else if (isEmpty(content)) {
                 alert("正文不能为空");
-                toastr.error("正文不能为空");
                 return false;
             } else {
                 var postUrl = "<%=basePath%>sys/news/add";
@@ -98,6 +96,7 @@
                     method: "post",
                     dataType: "json",
                     success: function (data) {
+
                         toastr.success("添加成功");
                         window.location.href = "<%=basePath%>sys/news";
                         <%--if (data.status == 'SUCCESS') {--%>

@@ -84,6 +84,7 @@ public class CompanyDataController {
      * @param httpSession
      * @return
      */
+    //@RequestMapping(value = "sys/data/edit", method = RequestMethod.POST)
     @RequestMapping(value = "/sys/data/edit", method = RequestMethod.POST)
     String companyDataEdit(CompanyData companyData, Model model, HttpSession httpSession) {
 
@@ -107,7 +108,10 @@ public class CompanyDataController {
 
 
         List<CompanyData> companyDataOfPeople = companyDataService.getTotalPeopleFromCompanyDataOfEverySuvryTime();
-        httpSession.setAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
+       // if (!companyDataOfPeople.isEmpty()) {
+
+
+       // httpSession.setAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
 
         if (companyDataOfPeople.size() > 0) {
             httpSession.setAttribute("peopleOfEverySurveyTime0", companyDataOfPeople.get(0).getInit_people());
@@ -122,8 +126,23 @@ public class CompanyDataController {
             httpSession.setAttribute("peopleOfEverySurveyTime9", companyDataOfPeople.get(9).getInit_people());
             httpSession.setAttribute("peopleOfEverySurveyTime10", companyDataOfPeople.get(10).getInit_people());
             httpSession.setAttribute("peopleOfEverySurveyTime11", companyDataOfPeople.get(11).getInit_people());
+        } else {
+            httpSession.setAttribute("peopleOfEverySurveyTime0", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime1", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime2", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime3", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime4", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime5", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime6", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime7", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime8", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime9", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime10", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime11", 0);
         }
-        return STATIC_PREFIX + "/display";
+            return STATIC_PREFIX + "/display";
+
+
     }
 
 }
