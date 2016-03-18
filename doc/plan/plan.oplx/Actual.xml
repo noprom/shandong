@@ -453,6 +453,7 @@
   <task id="t19">
     <title>建立配置管理计划</title>
     <effort>86400</effort>
+    <effort-done>69119.995880127</effort-done>
     <start-constraint-date>2016-03-05T16:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -485,7 +486,7 @@
   </task>
   <task id="t21">
     <title>熟悉bugzilla系统的使用</title>
-    <effort>86400</effort>
+    <type>milestone</type>
     <start-constraint-date>2016-03-05T16:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -543,8 +544,8 @@
   </task>
   <task id="t26">
     <title>企业信息录入与修改</title>
-    <effort>86400</effort>
-    <effort-done>8639.9990234375</effort-done>
+    <effort>345600</effort>
+    <effort-done>43200</effort-done>
     <start-constraint-date>2016-03-09T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -600,7 +601,7 @@
   <task id="t28">
     <title>企业备案</title>
     <effort>58500</effort>
-    <effort-done>35099.99609375</effort-done>
+    <effort-done>46799.9972105026</effort-done>
     <start-constraint-date>2016-03-09T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -636,7 +637,7 @@
   </task>
   <task id="t29">
     <title>报表管理</title>
-    <effort>57600</effort>
+    <type>milestone</type>
     <start-constraint-date>2016-03-11T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -685,7 +686,8 @@
   </task>
   <task id="t31">
     <title>数据管理</title>
-    <effort>87300</effort>
+    <effort>288900</effort>
+    <effort-done>231119.986224174</effort-done>
     <start-constraint-date>2016-03-10T08:45:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -731,8 +733,7 @@
   </task>
   <task id="t32">
     <title>发布通知</title>
-    <effort>57600</effort>
-    <effort-done>46079.99609375</effort-done>
+    <type>milestone</type>
     <start-constraint-date>2016-03-09T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -802,8 +803,8 @@
   </task>
   <task id="t34">
     <title>用户管理</title>
-    <effort>115200</effort>
-    <effort-done>5759.99951171875</effort-done>
+    <effort>316800</effort>
+    <effort-done>253439.984893799</effort-done>
     <start-constraint-date>2016-03-10T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -846,7 +847,8 @@
   </task>
   <task id="t35">
     <title>角色管理</title>
-    <effort>57600</effort>
+    <effort>144000</effort>
+    <effort-done>86399.9948501587</effort-done>
     <start-constraint-date>2016-03-16T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
@@ -881,7 +883,7 @@
   </task>
   <task id="t37">
     <title>分工完成git的PPT演示</title>
-    <effort>86400</effort>
+    <type>milestone</type>
     <start-constraint-date>2016-03-11T00:00:00.000Z</start-constraint-date>
     <note>
       <text>
