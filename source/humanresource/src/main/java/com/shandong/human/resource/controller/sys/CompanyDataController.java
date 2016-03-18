@@ -26,14 +26,30 @@ public class CompanyDataController {
     @Autowired
     private CompanyDataService companyDataService;
 
-    @RequestMapping(value = "sys/data/list", method = RequestMethod.GET)
+    /**
+     * 显示companyData界面
+     *
+     * @param model
+     * @param httpSession
+     * @return
+     */
+    @RequestMapping(value = "/sys/data/list", method = RequestMethod.GET)
     String companyDataList(Model model, HttpSession httpSession) {
         List<CompanyData> companyDataList = companyDataService.companyDataList();
         model.addAttribute("companyDataList", companyDataList);
         return STATIC_PREFIX + "/list";
     }
 
-    @RequestMapping(value = "sys/data/delete/{id}", method = RequestMethod.GET)
+    /**
+     * 删除companyData项
+     *
+     * @param id
+     * @param model
+     * @param httpSession
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/sys/data/delete/{id}", method = RequestMethod.GET)
     String companyDataDelete(@PathVariable("id") Integer id, Model model, HttpSession httpSession, HttpServletRequest request) {
 
         companyDataService.deleteNewsById(id);
@@ -43,17 +59,34 @@ public class CompanyDataController {
         return STATIC_PREFIX + "/list";
     }
 
-    @RequestMapping(value = "sys/data/edit/{id}", method = RequestMethod.GET)
+    /**
+     * 根据id获取companyData修改页
+     *
+     * @param id
+     * @param model
+     * @param httpSession
+     * @return
+     */
+    @RequestMapping(value = "/sys/data/edit/{id}", method = RequestMethod.GET)
     String companyDataEditPage(@PathVariable Integer id, Model model, HttpSession httpSession) {
 
         CompanyData companyData = companyDataService.getCompanyDataById(id);
-        httpSession.setAttribute("companyData",companyData);
-        httpSession.setAttribute("create_time",companyData.getCreate_time());
+        httpSession.setAttribute("companyData", companyData);
+        httpSession.setAttribute("create_time", companyData.getCreate_time());
         return STATIC_PREFIX + "/edit";
     }
 
-    @RequestMapping(value = "sys/data/edit", method = RequestMethod.POST)
-    String companyDataEdit(CompanyData companyData,Model model, HttpSession httpSession) {
+    /**
+     * 修改companyData项,并添加到数据库中
+     *
+     * @param companyData
+     * @param model
+     * @param httpSession
+     * @return
+     */
+    //@RequestMapping(value = "sys/data/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/sys/data/edit", method = RequestMethod.POST)
+    String companyDataEdit(CompanyData companyData, Model model, HttpSession httpSession) {
 
         companyData.setCreate_time((Date) httpSession.getAttribute("create_time"));
         Integer id = companyDataService.companyDataAdd(companyData);
@@ -63,9 +96,53 @@ public class CompanyDataController {
         return STATIC_PREFIX + "/list";
     }
 
-    @RequestMapping(value = "sys/data/display", method = RequestMethod.GET)
+    /**
+     * 显示companyData图表分析页面
+     *
+     * @param model
+     * @param httpSession
+     * @return
+     */
+    @RequestMapping(value = "/sys/data/display", method = RequestMethod.GET)
     String companyDataDisplay(Model model, HttpSession httpSession) {
-        return STATIC_PREFIX + "/display";
+
+
+        List<CompanyData> companyDataOfPeople = companyDataService.getTotalPeopleFromCompanyDataOfEverySuvryTime();
+       // if (!companyDataOfPeople.isEmpty()) {
+
+
+       // httpSession.setAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
+
+        if (companyDataOfPeople.size() > 0) {
+            httpSession.setAttribute("peopleOfEverySurveyTime0", companyDataOfPeople.get(0).getInit_people());
+            httpSession.setAttribute("peopleOfEverySurveyTime1", companyDataOfPeople.get(1).getInit_people());
+            httpSession.setAttribute("peopleOfEverySurveyTime2", companyDataOfPeople.get(2).getInit_people());
+            httpSession.setAttribute("peopleOfEverySurveyTime3", companyDataOfPeople.get(3).getInit_people());
+            httpSession.setAttribute("peopleOfEverySurveyTime4", companyDataOfPeople.get(4).getInit_people());
+            httpSession.setAttribute("peopleOfEverySurveyTime5", companyDataOfPeople.get(5).getInit_people());
+            httpSession.setAttribute("peopleOfEverySurveyTime6", companyDataOfPeople.get(6).getInit_people());
+            httpSession.setAttribute("peopleOfEverySurveyTime7", companyDataOfPeople.get(7).getInit_people());
+            httpSession.setAttribute("peopleOfEverySurveyTime8", companyDataOfPeople.get(8).getInit_people());
+            httpSession.setAttribute("peopleOfEverySurveyTime9", companyDataOfPeople.get(9).getInit_people());
+            httpSession.setAttribute("peopleOfEverySurveyTime10", companyDataOfPeople.get(10).getInit_people());
+            httpSession.setAttribute("peopleOfEverySurveyTime11", companyDataOfPeople.get(11).getInit_people());
+        } else {
+            httpSession.setAttribute("peopleOfEverySurveyTime0", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime1", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime2", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime3", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime4", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime5", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime6", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime7", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime8", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime9", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime10", 0);
+            httpSession.setAttribute("peopleOfEverySurveyTime11", 0);
+        }
+            return STATIC_PREFIX + "/display";
+
+
     }
 
 }

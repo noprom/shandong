@@ -54,7 +54,7 @@ public class NewsController {
      * @param httpSession
      * @return
      */
-    @RequestMapping(value = "/sys/news/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/sys/news/add", method = RequestMethod.POST)
     public
     @ResponseBody
     Result newsAdd(Model model, News news, HttpSession httpSession) {
@@ -62,7 +62,7 @@ public class NewsController {
         news.setUserId(10);
         Integer id = newsService.addNews(news);
 
-        if (id > 0) {
+        if (id >= 0) {
             return new Result(Result.Status.SUCCESS, Constant.REG_SUCCESS);
         } else {
             return new Result(Result.Status.ERROR, Constant.REG_FAIL);
@@ -75,7 +75,7 @@ public class NewsController {
      * @param httpSession
      * @return
      */
-    @RequestMapping(value = "/sys/news/addjsp", method = RequestMethod.GET)
+    @RequestMapping(value = "/sys/news/add", method = RequestMethod.GET)
     String newsAddjsp(Model model, News news, HttpSession httpSession) {
         return STATIC_PREFIX + "/add";
     }
