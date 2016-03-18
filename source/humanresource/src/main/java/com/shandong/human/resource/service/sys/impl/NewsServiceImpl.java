@@ -1,4 +1,4 @@
-package com.shandong.human.resource.service.impl.sys;
+package com.shandong.human.resource.service.sys.impl;
 
 import com.shandong.human.resource.domain.News;
 import com.shandong.human.resource.mapper.sys.NewsMapper;

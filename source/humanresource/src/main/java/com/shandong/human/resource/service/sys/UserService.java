@@ -1,4 +1,4 @@
-package com.shandong.human.resource.service;
+package com.shandong.human.resource.service.sys;
 
 import com.shandong.human.resource.domain.User;
 
