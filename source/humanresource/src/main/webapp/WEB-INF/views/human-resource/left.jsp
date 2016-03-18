@@ -43,19 +43,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <%--<li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>--%>
         <%--</ul>--%>
       <%--</li>--%>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-files-o"></i>
-          <span>企业备案</span>
-          <span class="label label-primary pull-right">4</span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="<%=basePath%>sys/record/query"><i class="fa fa-circle-o"></i> 备案列表</a></li>
-          <%--<li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>--%>
-          <%--<li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>--%>
-          <%--<li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>--%>
-        </ul>
-      </li>
+      <%--<li class="treeview">--%>
+        <%--<a href="#">--%>
+          <%--<i class="fa fa-files-o"></i>--%>
+          <%--<span>这个地方是陈永鹏那边提交数据的地方的列表</span>--%>
+          <%--<span class="label label-primary pull-right">4</span>--%>
+        <%--</a>--%>
+        <%--<ul class="treeview-menu">--%>
+          <%--<li><a href="<%=basePath%>sys/record/query"><i class="fa fa-circle-o"></i> 备案列表</a></li>--%>
+          <%--&lt;%&ndash;<li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>&ndash;%&gt;--%>
+          <%--&lt;%&ndash;<li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>&ndash;%&gt;--%>
+          <%--&lt;%&ndash;<li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>&ndash;%&gt;--%>
+        <%--</ul>--%>
+      <%--</li>--%>
 
       <li class="treeview">
         <a href="#">
