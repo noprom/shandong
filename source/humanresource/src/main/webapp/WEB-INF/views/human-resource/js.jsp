@@ -10,12 +10,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type='text/javascript' src='<%=basePath%>static/human/plugins/jQuery/jQuery-2.1.4.min.js'></script>
 <script type='text/javascript' src='<%=basePath%>static/human/bootstrap/js/bootstrap.min.js'></script>
 <script type='text/javascript' src='<%=basePath%>static/human/plugins/chartjs/Chart.min.js'></script>
+<script type='text/javascript' src='<%=basePath%>static/human/js/plugins/toastr/toastr.min.js'></script>
 <script type='text/javascript' src='<%=basePath%>static/human/plugins/fastclick/fastclick.min.js'></script>
 <script type='text/javascript' src='<%=basePath%>static/human/dist/js/app.min.js'></script>
 <script type='text/javascript' src='<%=basePath%>static/human/dist/js/demo.js'></script>
 
 <script type="text/javascript">
     <%--Toastr配置--%>
+
     toastr.options = {
         "closeButton": true,
         "debug": false,
