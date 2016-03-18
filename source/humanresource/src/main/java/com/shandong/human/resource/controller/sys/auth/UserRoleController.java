@@ -75,6 +75,6 @@ public class UserRoleController extends CommonController{
                 userRoleService.insertUserRole(user_id_i,role_id);
             }
         }
-        //// TODO: 3/17/16
+        //// TODO: 3/17/16 完成后跳转 
     }
 }
