@@ -76,11 +76,9 @@
             //数据校验
             if (isEmpty(title)) {
                 alert("标题不能为空");
-                toastr.error("标题不能为空");
                 return false;
             } else if (isEmpty(content)) {
                 alert("正文不能为空");
-                toastr.error("正文不能为空");
                 return false;
             } else {
                 var postUrl = "<%=basePath%>sys/news/add";
@@ -91,14 +89,12 @@
                     dataType: "json",
                     success: function (data) {
                         if (data.status == 'SUCCESS') {
-                            toastr.success(data.info);
                             alert("添加成功");
                             window.location.href = "<%=basePath%>sys/news";
                         } else {
                             alert("添加失败");
-                            toastr.error(data.info);
                             window.location.href = "<%=basePath%>sys/news";
-                            return false;
+                            //return false;
                         }
                     }
 
