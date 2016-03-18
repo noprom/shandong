@@ -12,5 +12,12 @@
     <select id="getAllProvince" resultMap="Area">
         SELECT * FROM area WHERE pid=0
     </select>
-
+    <select id="getAllCity" resultMap="Area">
+-- 获取山东的城市
+        SELECT * FROM area WHERE pid=16
+    </select>
+    <!--获取地区-->
+    <select id="getAllAreaById" resultMap="Area">
+    SELECT * FROM area WHERE pid=#{id}
+    </select>
 </mapper>

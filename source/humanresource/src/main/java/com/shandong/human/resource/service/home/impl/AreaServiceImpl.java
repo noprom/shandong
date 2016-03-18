@@ -25,5 +25,15 @@ public class AreaServiceImpl implements AreaService {
     {
         return areaMapper.getAllProvince();
     }
+    public ArrayList<Area> getAllCity()
+    {
+        return areaMapper.getAllCity();
+    }
+    public ArrayList<Area> getAllAreaById(Integer id)
+    {
+        return areaMapper.getAllAreaById(id);
+    }
+
+
 
 }

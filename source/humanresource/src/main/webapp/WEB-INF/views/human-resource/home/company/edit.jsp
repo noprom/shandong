@@ -48,34 +48,28 @@
             <!-- form start -->
             <form role="form">
                 <div class="box-body">
-                    <%--<form>--%>
                     <div class="form-group">
                         <label>省份</label>
+                        <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" disabled="" style="width: 100%;" name="province">
+                            <option selected="selected">山东省</option>
+                            <option>山东省</option>
+                        </select>
+                    </div>
+                    <%--<form>--%>
+                    <div class="form-group">
+                        <label>城市</label>
 
-                        <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="province" required>
-                            <option selected="selected">北京市</option>
+                        <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="city">
+                            <option selected="selected">青岛市</option>
                             <c:forEach items="${editResult}" var="v">
                             <option>${v.name}</option>
                             </c:forEach>
                         </select>
 
                     </div><!-- /.form-group -->
-                    <%--</form>--%>
-                    <div class="form-group">
-                        <label>城市</label>
-                        <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;">
-                            <option selected="selected"></option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                        </select>
-                    </div><!-- /.form-group -->
                     <div class="form-group">
                         <label>区域</label>
-                        <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;">
+                        <select onchange="cityChange()" aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="area">
                             <option selected="selected"></option>
                             <option>Alaska</option>
                             <option>California</option>
@@ -87,7 +81,7 @@
                     </div><!-- /.form-group -->
                     <div class="form-group">
                         <label>联系地址</label>
-                        <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;">
+                        <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="address">
                             <option selected="selected"></option>
                             <option>Alaska</option>
                             <option>California</option>
@@ -128,7 +122,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">EMAIL</label>
-                        <input class="form-control" id="email" placeholder="Enter email" type="email">
+                        <input class="form-control" id="email" placeholder="" type="email">
                     </div>
 
                 </div><!-- /.box-body -->
@@ -152,6 +146,11 @@
                 "autoWidth": false
             });
         });
+        function cityChange()
+        {
+            window.location.href = "<%=basePath%>sys/news";
+        }
+
     </script>
 </body>
 </html>

@@ -10,6 +10,10 @@ import java.util.ArrayList;
  */
 
 public interface AreaMapper {
+//    获取所有的省份
     public ArrayList<Area> getAllProvince();
-
+//    获取所有的城市
+    public ArrayList<Area> getAllCity();
+    //    获取所有的县
+    public ArrayList<Area> getAllAreaById(Integer id);
 }

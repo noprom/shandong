@@ -11,11 +11,10 @@ import java.util.ArrayList;
  */
 
 public interface AreaService {
-    /**
-     * 按条件查找省份
-     *
-     * @return
-     */
+    //    获取所有的省份
     public ArrayList<Area> getAllProvince();
+    //    获取所有的城市
+    public ArrayList<Area> getAllCity();
+    public ArrayList<Area> getAllAreaById(Integer id);
 
 }
