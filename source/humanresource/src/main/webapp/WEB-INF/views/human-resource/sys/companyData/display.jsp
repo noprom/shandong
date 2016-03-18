@@ -9,31 +9,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | ChartJS</title>
-    <!-- Tell the browser to be responsive to screen width -->
-
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
-    <%--<script type='text/javascript' src='<%=basePath%>static/human/plugins/jQuery/jQuery-2.1.4.min.js'></script>--%>
-    <link rel="stylesheet" src='<%=basePath%>static/human/bootstrap/css/bootstrap.min.css'>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" src='<%=basePath%>static/human/dist/css/AdminLTE.min.css'>
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" src='<%=basePath%>static/human/dist/css/skins/_all-skins.min.css'>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
     <jsp:include page="../../head.jsp" flush="true"></jsp:include>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -47,8 +22,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                ChartJS
-                <small>Preview sample</small>
+                图表分析
+                <small>图表汇总</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -60,11 +35,11 @@
         <!-- Main content -->
         <section class="content">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <!-- AREA CHART -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Area Chart</h3>
+                            <h3 class="box-title">月份变化图</h3>
                             <div class="box-tools pull-right">
                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                                 </button>

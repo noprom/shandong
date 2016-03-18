@@ -33,7 +33,7 @@ public class CompanyDataController {
      * @param httpSession
      * @return
      */
-    @RequestMapping(value = "sys/data/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/sys/data/list", method = RequestMethod.GET)
     String companyDataList(Model model, HttpSession httpSession) {
         List<CompanyData> companyDataList = companyDataService.companyDataList();
         model.addAttribute("companyDataList", companyDataList);
@@ -49,7 +49,7 @@ public class CompanyDataController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "sys/data/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/sys/data/delete/{id}", method = RequestMethod.GET)
     String companyDataDelete(@PathVariable("id") Integer id, Model model, HttpSession httpSession, HttpServletRequest request) {
 
         companyDataService.deleteNewsById(id);
@@ -67,7 +67,7 @@ public class CompanyDataController {
      * @param httpSession
      * @return
      */
-    @RequestMapping(value = "sys/data/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/sys/data/edit/{id}", method = RequestMethod.GET)
     String companyDataEditPage(@PathVariable Integer id, Model model, HttpSession httpSession) {
 
         CompanyData companyData = companyDataService.getCompanyDataById(id);
@@ -84,7 +84,8 @@ public class CompanyDataController {
      * @param httpSession
      * @return
      */
-    @RequestMapping(value = "sys/data/edit", method = RequestMethod.POST)
+    //@RequestMapping(value = "sys/data/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/sys/data/edit", method = RequestMethod.POST)
     String companyDataEdit(CompanyData companyData, Model model, HttpSession httpSession) {
 
         companyData.setCreate_time((Date) httpSession.getAttribute("create_time"));
@@ -102,14 +103,17 @@ public class CompanyDataController {
      * @param httpSession
      * @return
      */
-    @RequestMapping(value = "sys/data/display", method = RequestMethod.GET)
+    @RequestMapping(value = "/sys/data/display", method = RequestMethod.GET)
     String companyDataDisplay(Model model, HttpSession httpSession) {
 
 
         List<CompanyData> companyDataOfPeople = companyDataService.getTotalPeopleFromCompanyDataOfEverySuvryTime();
-        if (!companyDataOfPeople.isEmpty()) {
+       // if (!companyDataOfPeople.isEmpty()) {
 
 
+       // httpSession.setAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
+
+        if (companyDataOfPeople.size() > 0) {
             httpSession.setAttribute("peopleOfEverySurveyTime0", companyDataOfPeople.get(0).getInit_people());
             httpSession.setAttribute("peopleOfEverySurveyTime1", companyDataOfPeople.get(1).getInit_people());
             httpSession.setAttribute("peopleOfEverySurveyTime2", companyDataOfPeople.get(2).getInit_people());
