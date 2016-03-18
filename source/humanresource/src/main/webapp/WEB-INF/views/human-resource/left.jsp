@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li><a href="<%=basePath%>sys/news/addjsp"><i class="fa fa-circle-o"></i> 发布通知</a></li>
+          <li><a href="<%=basePath%>sys/news/add"><i class="fa fa-circle-o"></i> 发布通知</a></li>
           <li><a href="<%=basePath%>sys/news"><i class="fa fa-circle-o"></i> 所有通知</a></li>
           <%--<li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>--%>
           <%--<li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>--%>

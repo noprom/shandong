@@ -54,7 +54,7 @@ public class NewsController {
      * @param httpSession
      * @return
      */
-    @RequestMapping(value = "/sys/news/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/sys/news/add", method = RequestMethod.POST)
     public
     @ResponseBody
     Result newsAdd(Model model, News news, HttpSession httpSession) {
@@ -75,7 +75,7 @@ public class NewsController {
      * @param httpSession
      * @return
      */
-    @RequestMapping(value = "/sys/news/addjsp", method = RequestMethod.GET)
+    @RequestMapping(value = "/sys/news/add", method = RequestMethod.GET)
     String newsAddjsp(Model model, News news, HttpSession httpSession) {
         return STATIC_PREFIX + "/add";
     }
