@@ -1,5 +1,6 @@
 package com.shandong.human.resource.controller.sys.user;
 
+import com.shandong.human.resource.controller.CommonController;
 import com.shandong.human.resource.domain.User;
 import com.shandong.human.resource.service.sys.UserService;
 import com.shandong.human.resource.util.Pager;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RequestMapping("/sys")
 @Controller
-public class UserController {
+public class UserController{
     // 静态资源前缀
     public static final String STATIC_PREFIX = "human-resource/sys/user";
 

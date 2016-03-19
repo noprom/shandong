@@ -10,7 +10,7 @@
     </resultMap>
 
     <select id="getCount" resultType="java.lang.Integer">
-        SELECT COUNT (*) FROM user
+        SELECT COUNT(*) FROM user
     </select>
 
     <select id="selectAll" resultMap="User">
@@ -19,7 +19,7 @@
 
     <select id="selectByPos" resultMap="User" parameterType="map">
         SELECT id ,username , password ,type FROM user
-        limit ${offset},${size}
+        limit #{offset},#{size}
     </select>
 
     <insert id="insertUser" parameterType="com.shandong.human.resource.domain.User">
