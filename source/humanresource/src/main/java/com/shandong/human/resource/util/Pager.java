@@ -10,161 +10,92 @@ import java.util.List;
  *
  * @author tyee.noprom@qq.com
  * @time 2/12/16 11:00 AM.
+ *
+ * SYC 更改于 3/19
  */
 public class Pager<T> {
 
     /**
-     * 默认每页显示数
+     * 当前页数
      */
-    public static final int PAGE_SIZE = 3;
-
-    /**
-     * 默认页数
-     */
-    public static final int PAGE_NUM = 1;
-
-    /**
-     * 页数
-     */
-    private int page;
+    private int _CurrentPage;
 
     /**
      * 每页显示数
      */
-    private int limit = PAGE_SIZE;
+    private int _Size;
+
+    /**
+     * 每页最大显示数
+     */
+    private int _MaxSize;
 
     /**
      * 总页数
      */
-    private int totalPageNum;
+    private int _TotalPage;
 
     /**
      * 记录总数
      */
-    private int totalCount;
-
-    /**
-     * 分页计算起始值
-     */
-    private int start;
-
-    /**
-     * 分页计算结束值  暂时没用
-     */
-    private int endIndex;
+    private int _Count;
 
     /**
      * 分页信息
      */
-    private List<T> rows = new ArrayList<T>();
+    private List<T> _Data;
 
-    public void setPageNum(int pageNum) {
-        if(pageNum <= 0){
-            pageNum = PAGE_NUM;
-        }
-        if(pageNum > totalPageNum){
-            pageNum = totalPageNum;
-        }
-        // 分页开始值 关键
-        if(pageNum == 0){
-            start = 0;
-        }else{
-            start = (pageNum - 1) * limit;
-        }
-        this.page = pageNum;
+    /**
+     * @brief 构造函数
+     * @param maxSize 单页最多显示数目
+     */
+    public Pager(int maxSize){
+        _MaxSize = maxSize;
+        if(_MaxSize < 1)
+            _MaxSize =1;
+
+        _Data = new ArrayList<T>();
+        _CurrentPage=1;
     }
 
-    public int getStart() {
-        // 分页开始值 关键
-        if (page == 0) {
-            start = 0;
-        } else {
-            start = (page - 1) * limit;
-        }
-        return start;
+    public void setCount(int count) {
+        _Count = count;
+
+        _TotalPage = _Count/_MaxSize;
+        if(_TotalPage*_MaxSize<_Count)
+            _TotalPage++;
     }
 
-    public void setPageSize(int pageSize) {
-        if(pageSize <= 0){
-            pageSize = PAGE_SIZE;
-        }
-        // 计算最大页数
-        int pageCount = totalCount / pageSize;
-        if(totalCount % pageSize == 0){
-            totalPageNum = pageCount;
-        }else{
-            totalPageNum = pageCount + 1;
-        }
-        this.limit = pageSize;
+    public void setCurrentPage(int currentPage) {
+        _CurrentPage = currentPage;
     }
 
-    public int getTotalPageNum() {
-        return totalPageNum;
+    public void setData(List<T> data) {
+        _Data = data;
+        _Size = _Data.size();
     }
 
-    public void setTotalPageNum(int totalPageNum) {
-        this.totalPageNum = totalPageNum;
+    public int getCount() {
+        return _Count;
     }
 
-    public int getTotalCount() {
-        return totalCount;
+    public int getCurrentPage() {
+        return _CurrentPage;
     }
 
-    public void setTotalCount(int totalCount) {
-        this.totalCount = totalCount;
-        if(totalCount > 0){
-            if(page <= 0){
-                page = PAGE_NUM;
-            }
-            // 计算最大页数
-            int pageCount = totalCount / PAGE_SIZE;
-            if(totalCount % PAGE_SIZE == 0){
-                totalPageNum = pageCount;
-            }else{
-                totalPageNum = pageCount + 1;
-            }
-        }else{
-            totalPageNum = 0;
-        }
-
-        if(page > totalPageNum){
-            page = totalPageNum;
-        }
+    public int getMaxSize() {
+        return _MaxSize;
     }
 
-    public List<T> getRows() {
-        return rows;
+    public int getSize() {
+        return _Size;
     }
 
-    public void setRows(List<T> rows) {
-        this.rows = rows;
+    public int getTotalPage() {
+        return _TotalPage;
     }
 
-    public int getEndIndex() {
-        return endIndex;
-    }
-
-    public void setEndIndex(int endIndex) {
-        this.endIndex = endIndex;
-    }
-
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public int getLimit() {
-        return limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
-
-    public void setStart(int start) {
-        this.start = start;
+    public List<T> getData() {
+        return _Data;
     }
 }

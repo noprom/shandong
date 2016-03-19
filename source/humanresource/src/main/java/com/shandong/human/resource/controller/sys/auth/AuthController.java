@@ -42,7 +42,14 @@ public class AuthController extends CommonController {
      * @return
      */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String toAddPage(HttpServletRequest request, HttpServletResponse response) {
+    public String toAddPage(String toPageNum, HttpServletRequest request, HttpServletResponse response) {
+        int pageNum = 1;
+        try{
+            pageNum = Integer.parseInt(toPageNum);
+        }catch (Exception e){
+        }
+
+
         List<Auth> allAuth = service.selectAll();
         System.out.println("size:" + allAuth.size());
         AuthTree existAuth = new AuthTree(0, allAuth);
