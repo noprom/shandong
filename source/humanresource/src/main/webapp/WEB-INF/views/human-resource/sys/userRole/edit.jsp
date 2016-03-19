@@ -68,7 +68,7 @@
                                 %>
 
                                 <div class="form-group">
-                                    <input type="submit" class="btn-sm btn-info">
+                                    <input type="submit" class="btn-sm btn-info" value="提交">
                                 </div>
                             </form>
                         </div>

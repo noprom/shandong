@@ -1,4 +1,4 @@
-package com.shandong.human.resource.service.sys;
+package com.shandong.human.resource.mapper.sys;
 
 import com.shandong.human.resource.domain.User;
 
@@ -6,18 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
- * Created by syc on 16/3/19.
+ * Created by syc on 3/19/16.
  */
-public interface UserService {
-
+public interface UserMapper {
 
     /**
      * @brief 获取用户数
      * @return
      */
     public int getCount();
-
     /**
      * @brief 查询所有用户
      * @return
@@ -26,11 +23,10 @@ public interface UserService {
 
     /**
      * @brief 按位置查询
-     * @param offset 起始位置
-     * @param size 查询个数
+     * @param pos pos.limit：起始位置 pos.size查询个数
      * @return
      */
-    public List<User> selectByPos(Integer offset,Integer size);
+    public List<User> selectByPos(Map<Object , Object> pos);
 
     /**
      * @brief 插入用户
