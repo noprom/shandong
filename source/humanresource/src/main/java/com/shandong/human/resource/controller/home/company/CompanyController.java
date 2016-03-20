@@ -54,9 +54,9 @@ public class CompanyController {
         return list;
     }
     //保存企业信息
-    @RequestMapping(value = "/home/company/add/{Company}",method = RequestMethod.POST)
+    @RequestMapping(value = "/home/company/add/submit",method = RequestMethod.POST)
     @ResponseBody
-    public Map saveMessage(@PathVariable("Company") Company company , Model model) {
+    public Map saveMessage(Company company) {
         Map map=new HashMap();
         companyService.setCompanyInfo(company);
         System.out.println("company");
@@ -88,6 +88,25 @@ public class CompanyController {
 //        System.out.println(zipcode);
 //        System.out.println(phone);
 //        return STATIC_PREFIX + "/add";
+    }
+
+    //    企业信息修改
+    @RequestMapping(value = "/home/company/edit",method = RequestMethod.GET)
+    public String getProvinceEdit(Model model) {
+        ArrayList<Area> list = areaService.getAllCity();
+//        刚开始打开页面时显示济南市的所有县
+        ArrayList<Area> listCity=areaService.getAllAreaById(170);
+        model.addAttribute("editResult", list);
+        model.addAttribute("editResultCity", listCity);
+        return STATIC_PREFIX + "/edit";
+    }
+    //获取所有的地区
+    @RequestMapping(value = "/home/company/edit/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public ArrayList<Area> getAllAreaEdit(@PathVariable("id") Integer id) {
+        System.out.println(id);
+        ArrayList<Area> list = areaService.getAllAreaById(id);
+        return list;
     }
 
 }

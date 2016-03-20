@@ -1,12 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Tom
-  Date: 2016/3/14
-  Time: 13:25
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%@ page import="com.shandong.human.resource.domain.SurveyTime" %>
+<%@ page import="com.shandong.human.resource.domain.Area" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -30,13 +24,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                企业信息录入
-                <small>table</small>
+                企业信息修改
+                <%--<small>table</small>--%>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Data tables</li>
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>企业用户</li>
+                <li class="active">信息修改</li>
             </ol>
         </section>
 
@@ -46,89 +40,80 @@
                 <h3 class="box-title"></h3>
             </div><!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+            <form role="form" id="add-form">
                 <div class="box-body">
                     <div class="form-group">
                         <label>省份</label>
-                        <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" disabled="" style="width: 100%;" name="province">
-                            <option selected="selected">山东省</option>
-                            <option>山东省</option>
-                        </select>
+                        <input class="form-control" value="山东省" disabled="" type="text" id="province_id" name="province_id">
                     </div>
                     <%--<form>--%>
                     <div class="form-group">
                         <label>城市</label>
-
-                        <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="city">
-                            <option selected="selected">青岛市</option>
+                        <select  onchange="cityChange()" aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="city_id" id="city_id">
                             <c:forEach items="${editResult}" var="v">
-                            <option>${v.name}</option>
+                                <option value="${v.id}">${v.name}</option>
                             </c:forEach>
                         </select>
 
                     </div><!-- /.form-group -->
                     <div class="form-group">
                         <label>区域</label>
-                        <select onchange="cityChange()" aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="area">
-                            <option selected="selected"></option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
+                        <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="area_id" name="area_id">
+                            <%--<option selected="selected"></option>--%>
+                            <c:forEach items="${editResultCity}" var="v">
+                                <option value="${v.id}">${v.name}</option>
+                            </c:forEach>
                         </select>
                     </div><!-- /.form-group -->
                     <div class="form-group">
                         <label>联系地址</label>
-                        <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="address">
-                            <option selected="selected"></option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                        </select>
+                        <input class="form-control" placeholder="请输入联系地址"  type="text" name="address">
+                        <%--<%  ArrayList<Area> areaList=(ArrayList<Area>)request.getAttribute("editResultCity"); %>--%>
+                        <%--<select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="address">--%>
+
+                        <%--<c:forEach items="${editResultCity}" var="v">--%>
+                        <%--<option value="${v.id}">${v.name}</option>--%>
+                        <%--</c:forEach>--%>
+                        <%--</select>--%>
                     </div><!-- /.form-group -->
 
                     <div class="form-group">
                         <label>组织机构代码</label>
-                        <input class="form-control" placeholder="" type="text" id="code">
+                        <input class="form-control" placeholder="只可输入字母、数字，不超过9位" type="text" id="code" name="code">
                     </div>
                     <div class="form-group">
                         <label>企业名称</label>
-                        <input class="form-control" placeholder="" type="text" id="name">
+                        <input class="form-control" placeholder="中文、英文" type="text" name="name">
                     </div>
                     <div class="form-group">
                         <label>主要经营业务</label>
-                        <input class="form-control" placeholder="" type="text" id="business">
+                        <input class="form-control" placeholder="按实际情况填写企业主要经营的业务" type="text" name="business">
                     </div>
                     <div class="form-group">
                         <label>联系人</label>
-                        <input class="form-control" placeholder="" type="text" id="contact">
+                        <input class="form-control" placeholder="中文、英文" type="text" name="contact">
                     </div>
                     <div class="form-group">
                         <label>邮政编码</label>
-                        <input class="form-control" placeholder="" type="text" id="zipcode">
+                        <input class="form-control" placeholder="只可填写6位数字" type="text" name="zipcode">
                     </div>
                     <div class="form-group">
                         <label>联系电话</label>
-                        <input class="form-control" placeholder="" type="text" id="phone">
+                        <input class="form-control" placeholder="" type="text" name="phone">
                     </div>
                     <div class="form-group">
                         <label>传真</label>
-                        <input class="form-control" placeholder="" type="text" id="fax">
+                        <input class="form-control" placeholder="" type="text" name="fax">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">EMAIL</label>
-                        <input class="form-control" id="email" placeholder="" type="email">
+                        <input class="form-control" name="email" placeholder="" type="email">
                     </div>
 
                 </div><!-- /.box-body -->
 
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" onclick="onSubmit()" class="btn btn-primary">提交</button>
                 </div>
             </form>
         </div><!-- /.content -->
@@ -146,9 +131,83 @@
                 "autoWidth": false
             });
         });
+        function  onSubmit()
+        {
+            //标题
+//            var title = $("#addNews-form input[name = title]").val();
+            //正文
+//            var content = $("#addNews-form textarea[name = content]").val();
+
+            //数据校验
+//            if (isEmpty(title)) {
+//                alert("标题不能为空");
+//                return false;
+//            } else if (isEmpty(content)) {
+//                alert("正文不能为空");
+//                return false;
+//            } else {
+            //var str=$("#add-form").serialize();
+            alert("提交成功");
+            var postUrl = "<%=basePath%>home/company/edit/submit";
+            $.ajax({
+                url: postUrl,
+                data: $("#add-form").serialize(),
+                async:false,
+                type: 'POST',
+                dataType: "json",
+                success: function (data) {
+                    if(data.success=="success")
+                    {
+                        alert("提交成功");
+//                            提交成功时返回到主页
+                        window.location.href = "<%=basePath%>index";
+                    }
+                    else
+                    {
+                        alert("提交失败");
+                        window.location.href = "<%=basePath%>home/company/edit";
+                    }
+
+                }});
+
+        }
+
+        function isEmpty(str) {
+            if (!str || $.trim(str).length <= 0)
+                return true;
+            return false;
+        }
+
+
         function cityChange()
         {
-            window.location.href = "<%=basePath%>sys/news";
+            var areaBox = document.getElementById("area_id");
+            var obj=document.getElementById("city_id");
+            var index=obj.selectedIndex; //序号，取当前选中选项的序号
+            var str = obj.options[index].value;
+            var str1="<%=basePath%>home/company/add/"+str;
+
+            $.ajax({
+                type: 'get',
+
+                url: str1 ,
+                async:false,
+                data: {} ,
+                dataType: 'json',
+
+                success:function(data) {
+                    //alert(data[0].id);
+                    areaBox.options.length=0;
+                    for (var i = 0; i < data.length; i++)
+                    {
+                        areaBox.add(new Option(data[i].name,data[i].id));
+                    }
+                    //window.location.href = "<%=basePath%>home/company/add";
+                },
+                error:function(boj,info){
+                    alert(info);}
+            });
+
         }
 
     </script>
