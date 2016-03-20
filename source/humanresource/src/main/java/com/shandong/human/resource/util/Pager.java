@@ -10,92 +10,92 @@ import java.util.List;
  *
  * @author tyee.noprom@qq.com
  * @time 2/12/16 11:00 AM.
- *
- * SYC 更改于 3/19
+ * <p>
+ * SYC 更改于 3/19/16
  */
 public class Pager<T> {
 
     /**
      * 当前页数
      */
-    private int _CurrentPage;
+    private int currentPage;
 
     /**
      * 每页显示数
      */
-    private int _Size;
+    private int size;
 
     /**
      * 每页最大显示数
      */
-    private int _MaxSize;
+    private int maxSize;
 
     /**
      * 总页数
      */
-    private int _TotalPage;
+    private int totalPage;
 
     /**
      * 记录总数
      */
-    private int _Count;
+    private int count;
 
     /**
      * 分页信息
      */
-    private List<T> _Data;
+    private List<T> data;
 
     /**
-     * @brief 构造函数
      * @param maxSize 单页最多显示数目
+     * @brief 构造函数
      */
-    public Pager(int maxSize){
-        _MaxSize = maxSize;
-        if(_MaxSize < 1)
-            _MaxSize =1;
+    public Pager(int maxSize) {
+        maxSize = maxSize;
+        if (maxSize < 1)
+            maxSize = 1;
 
-        _Data = new ArrayList<T>();
-        _CurrentPage=1;
+        data = new ArrayList<T>();
+        currentPage = 1;
     }
 
     public void setCount(int count) {
-        _Count = count;
+        this.count = count;
 
-        _TotalPage = _Count/_MaxSize;
-        if(_TotalPage*_MaxSize<_Count)
-            _TotalPage++;
+        totalPage = count / maxSize;
+        if (totalPage * maxSize < count)
+            totalPage++;
     }
 
     public void setCurrentPage(int currentPage) {
-        _CurrentPage = currentPage;
+        this.currentPage = currentPage;
     }
 
     public void setData(List<T> data) {
-        _Data = data;
-        _Size = _Data.size();
+        this.data = data;
+        size = data.size();
     }
 
     public int getCount() {
-        return _Count;
+        return count;
     }
 
     public int getCurrentPage() {
-        return _CurrentPage;
+        return currentPage;
     }
 
     public int getMaxSize() {
-        return _MaxSize;
+        return maxSize;
     }
 
     public int getSize() {
-        return _Size;
+        return size;
     }
 
     public int getTotalPage() {
-        return _TotalPage;
+        return totalPage;
     }
 
     public List<T> getData() {
-        return _Data;
+        return data;
     }
 }
