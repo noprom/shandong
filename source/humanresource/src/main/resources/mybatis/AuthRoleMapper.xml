@@ -7,7 +7,6 @@
         <result column="role_id" property="role_id" />
     </resultMap>
 
-
     <select id="selectByRoleID" resultMap="AuthRole" parameterType="java.lang.Integer">
         SELECT auth_id , role_id from auth_role
         WHERE role_id = #{role_id};

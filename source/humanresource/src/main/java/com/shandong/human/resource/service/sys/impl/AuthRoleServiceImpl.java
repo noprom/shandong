@@ -38,6 +38,6 @@ public class AuthRoleServiceImpl implements AuthRoleService{
     }
 
     public int deleteByRoleID(int role_id) {
-        return deleteByRoleID(role_id);
+        return service.deleteByRoleID(role_id);
     }
 }

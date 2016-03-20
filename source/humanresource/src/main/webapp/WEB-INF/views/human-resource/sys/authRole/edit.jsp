@@ -31,7 +31,11 @@
 
     <section class="content">
         <div class="row">
-            <form role="form">
+            <form role="form" action="<%=basePath%>sys/authRole/edit" method="post">
+                <%--防止什么都不选择的时候无法参数绑定--%>
+                <input type="hidden" name="authIds" value="0">
+                    <input type="hidden" name="roleId" value="${roleId}">
+                    <%--防止什么都不选择的时候无法参数绑定--%>
                 <c:forEach items="${existAuth}" var="v">
                     <c:choose>
                         <c:when test="${v.level eq 1}">
@@ -39,7 +43,7 @@
                                 <div class="box box-primary">
                                     <div class="box-header with-border">
                                         <h3 class="box-title">
-                                            <input type="checkbox"
+                                            <input type="checkbox" name="authIds" value="${v.id}"
                                                    <c:if test="${v.hasAuth}">checked</c:if>
                                             > ${v.name}
                                         </h3>
@@ -53,7 +57,7 @@
                                                             <div class="col-md-2">
                                                                 <div class="checkbox">
                                                                     <label>
-                                                                        <input type="checkbox"
+                                                                        <input type="checkbox" name="authIds" value="${child.id}"
                                                                         <c:if test="${child.hasAuth}">checked</c:if>
                                                                         >${child.name}
                                                                     </label>
