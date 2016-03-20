@@ -3,6 +3,7 @@ package com.shandong.human.resource.mapper.sys;
 import com.shandong.human.resource.domain.Role;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by syc on 3/17/16.
@@ -35,4 +36,8 @@ public interface RoleMapper {
      * @return
      */
     public int selectByID(Integer id);
+
+    public Integer getCount();
+
+    public  List<Role> selectByPos(Map<Object,Object> pos);
 }

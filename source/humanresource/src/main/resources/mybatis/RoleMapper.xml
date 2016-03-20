@@ -26,4 +26,13 @@
         SELECT id , name , status FROM role
         WHERE id = #{id}
     </select>
+    
+    <select id="getCount" resultType="java.lang.Integer">
+        SELECT  COUNT(*) FROM  role
+    </select>
+
+    <select id="selectByPos" resultMap="Role" parameterType="map">
+        SELECT id , name ,status FROM role
+        limit #{offset},#{size}
+    </select>
 </mapper>
