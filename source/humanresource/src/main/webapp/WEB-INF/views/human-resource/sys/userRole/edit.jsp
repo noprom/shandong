@@ -34,39 +34,21 @@
 
         <section class="content">
             <div class="row">
-                <div class = "col-lg-8">
+                <div class="col-lg-8">
                     <div class="box box-info">
                         <div class="box-body">
                             <form action="" role="form" method="post">
-                                <%
-                                    Integer user_id = (Integer) request.getAttribute("user_id");
-                                    List<Role> allRole = (List<Role>) request.getAttribute("allRole");
-                                    List<UserRole> hasRole = (List<UserRole>) request.getAttribute("hasRole");
-                                %>
                                 <div class="form-group">
-                                    <input type="hidden" value="<%= user_id %>" name="user_id">
-                                </div>
-
-                                <%
-                                    int hasRoleSize = 0;
-                                    if(hasRole!=null) hasRoleSize = hasRole.size();
-                                    for ( Role r: allRole) {
-                                        int i;
-                                        for(i=0;i<hasRoleSize&&hasRole.get(i).getRole_id()!=r.getId();++i);
-                                        %>
+                                    <c:forEach items="${allRole}" var="v">
                                         <div class="checkbox">
-                                            <input type="checkbox" name="roles" value="<%= r.getId()%>"
-                                                <%
-                                                if(i<hasRoleSize){
-                                                    %>checked="checked"<%
-                                                }
-                                                %>
-                                            >
+                                            <label>
+                                                <input type="checkbox" name="roles" value="${v.id}"
+                                                       <c:if test="${v.hasRole eq true}">checked="checked"</c:if>>
+                                                    ${v.name}
+                                            </label>
                                         </div>
-                                        <%
-                                    }
-                                %>
-
+                                    </c:forEach>
+                                </div>
                                 <div class="form-group">
                                     <input type="submit" class="btn-sm btn-info" value="提交">
                                 </div>

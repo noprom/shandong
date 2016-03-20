@@ -73,7 +73,7 @@
                                         </c:choose>
                                     </td>
                                     <td>
-                                        <a href="<%=basePath%>userRole/edit?uid=${v.id}" >授权</a>
+                                        <a href="<%=basePath%>sys/userRole/edit?uid=${v.id}" >授权</a>
                                     </td>
                                     </c:forEach>
                                 </tr>

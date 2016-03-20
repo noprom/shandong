@@ -6,15 +6,16 @@ package com.shandong.human.resource.domain;
  */
 
 public class Role {
-    private int id;         //主键
-    private String name;    //角色名
-    private short status;  //状态,-1: 禁用，1:正常
+    private Integer id;         //主键
+    private String name;        //角色名
+    private short status;       //状态,-1: 禁用，1:正常
+    private Boolean hasRole;    //在用户授权角色页面判断是否有这个角色
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -32,5 +33,13 @@ public class Role {
 
     public void setStatus(short status) {
         this.status = status;
+    }
+
+    public Boolean getHasRole() {
+        return hasRole;
+    }
+
+    public void setHasRole(Boolean hasRole) {
+        this.hasRole = hasRole;
     }
 }

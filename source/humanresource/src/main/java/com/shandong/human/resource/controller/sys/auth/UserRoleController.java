@@ -10,6 +10,7 @@ import com.shandong.human.resource.service.sys.UserRoleService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -48,13 +49,21 @@ public class UserRoleController extends CommonController {
      * @return
      */
     @RequestMapping(value = "/userRole/edit", method = RequestMethod.GET)
-    public String toEditPage(@Param("uid") Integer uid, HttpServletRequest request, HttpServletResponse response) {
+    public String toEditPage(@Param("uid") Integer uid, Model model,
+                             HttpServletRequest request, HttpServletResponse response) {
         List<Role> allRole = roleService.selectAll();
         List<UserRole> hasRole = userRoleService.getRoleByUserID(uid);
-
-        request.setAttribute("hasRole", hasRole);
-        request.setAttribute("allRole", allRole);
-        request.setAttribute("user_id", uid);
+        for (Role role : allRole) {
+            logger.info(role.getName());
+            if (roleIdInUserRole(role.getId(), hasRole)) {
+                role.setHasRole(true);
+            } else {
+                role.setHasRole(false);
+            }
+        }
+        model.addAttribute("hasRole", hasRole);
+        model.addAttribute("allRole", allRole);
+        model.addAttribute("user_id", uid);
         return STATIC_PREFIX + "/edit";
     }
 
@@ -81,5 +90,21 @@ public class UserRoleController extends CommonController {
             }
         }
         //// TODO: 3/17/16 完成后跳转 
+    }
+
+    /**
+     * 判断一个roleId是否在一个角色列表中
+     *
+     * @param roleId
+     * @param hasRole
+     * @return
+     */
+    private Boolean roleIdInUserRole(Integer roleId, List<UserRole> hasRole) {
+        for (UserRole uRole : hasRole) {
+            if (uRole.getRole_id().equals(roleId)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
