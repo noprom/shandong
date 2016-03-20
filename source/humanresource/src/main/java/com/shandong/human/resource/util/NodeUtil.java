@@ -37,6 +37,12 @@ public class NodeUtil {
         return returnList.toString();
     }
 
+    /**
+     * 递归调用节点
+     *
+     * @param list
+     * @param node
+     */
     private void recursionFn(List<Node> list, Node node) {
         List<Node> childList = getChildList(list, node);// 得到子节点列表
         node.setChildList(childList);
@@ -52,7 +58,13 @@ public class NodeUtil {
         }
     }
 
-    // 得到子节点列表
+    /**
+     * 得到子节点列表
+     *
+     * @param list
+     * @param node
+     * @return
+     */
     private List<Node> getChildList(List<Node> list, Node node) {
         List<Node> nodeList = new ArrayList<Node>();
         Iterator<Node> it = list.iterator();
@@ -64,12 +76,6 @@ public class NodeUtil {
         }
         return nodeList;
     }
-
-    // 判断是否有子节点
-    private boolean hasChild(List<Node> list, Node node) {
-        return getChildList(list, node).size() > 0 ? true : false;
-    }
-
 
     // 本地模拟数据测试
     public static void main(String[] args) {

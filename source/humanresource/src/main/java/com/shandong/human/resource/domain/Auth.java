@@ -13,7 +13,15 @@ public class Auth {
     private Integer pid;              // 上级权限
     private Integer level;            // 权限等级，1:一级菜单,2:二级菜单,3:三级菜单,4:页面按钮级别的权限
     private Boolean hasAuth;          // 判断某个角色是否有这个权限
-    private List<Auth> sonAuthList;   // 儿子权限列表,只为遍历方便使用
+    private List<Auth> childList;   // 儿子权限列表,只为遍历方便使用
+
+    public List<Auth> getChildList() {
+        return childList;
+    }
+
+    public void setChildList(List<Auth> childList) {
+        this.childList = childList;
+    }
 
     public Integer getId() {
         return id;

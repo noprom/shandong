@@ -5,6 +5,7 @@ import com.shandong.human.resource.domain.Auth;
 import com.shandong.human.resource.domain.AuthRole;
 import com.shandong.human.resource.service.sys.AuthRoleService;
 import com.shandong.human.resource.service.sys.AuthService;
+import com.shandong.human.resource.util.AuthUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,22 +50,23 @@ public class AuthRoleController {
     public String toEditPage(Integer role_id, Model model,
                              HttpServletRequest request, HttpServletResponse response) {
         List<Auth> allAuth = authService.selectAll();
-        AuthTree authTree = new AuthTree(0, allAuth);
-        List<Auth> existAuth = AuthTree.toList(authTree);
+        //AuthTree authTree = new AuthTree(0, allAuth);
+        //List<Auth> existAuth = AuthTree.toList(authTree);
 
         role_id = role_id == null ? 0 : role_id;
         List<AuthRole> existAuthRole = authRoleService.selectByRoleID(role_id);
 
-        // TODO: DEBUG
-
-        // 遍历所有权限
-        for (Auth auth : existAuth) {
+        // 遍历所有权限设置可见性
+        for (Auth auth : allAuth) {
             if (authInAuthRole(auth.getId(), existAuthRole)) {
                 auth.setHasAuth(true);
             } else {
                 auth.setHasAuth(false);
             }
         }
+        AuthUtil au = new AuthUtil();
+        List<Auth> existAuth = au.getAuthList(allAuth, 0);
+        // 显示到页面
         model.addAttribute("existAuth", existAuth);
         model.addAttribute("existAuthRole", existAuthRole);
         return STATIC_PREFIX + "/edit";

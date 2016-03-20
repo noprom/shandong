@@ -36,36 +36,37 @@
                     <c:choose>
                         <c:when test="${v.level eq 1}">
                             <div class="col-md-12">
-                        <div class="box box-primary">
-
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">
-                                        <input type="checkbox"> ${v.name}
-                                    </h3>
-                                </div>
-
-
-                        <div class="box-body">
-                            <div class="form-group">
-                                <div class="row">
-                                    <c:choose>
-                                        <c:when test="${v.level eq 2}">
-                                            <div class="col-md-1">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">
-                                                            ${v.name}
-                                                    </label>
-                                                </div>
+                                <div class="box box-primary">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">
+                                            <input type="checkbox"
+                                                   <c:if test="${v.hasAuth}">checked</c:if>
+                                            > ${v.name}
+                                        </h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <c:choose>
+                                                    <c:when test="${v.childList != null}">
+                                                        <c:forEach items="${v.childList}" var="child">
+                                                            <div class="col-md-2">
+                                                                <div class="checkbox">
+                                                                    <label>
+                                                                        <input type="checkbox"
+                                                                        <c:if test="${child.hasAuth}">checked</c:if>
+                                                                        >${child.name}
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </c:forEach>
+                                                    </c:when>
+                                                </c:choose>
                                             </div>
-                                        </c:when>
-                                    </c:choose>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                    </div>
-                    </div>
                         </c:when>
                     </c:choose>
                 </c:forEach>
