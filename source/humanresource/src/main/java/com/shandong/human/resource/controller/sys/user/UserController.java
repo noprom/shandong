@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Created by syc on 3/19/16.
@@ -49,5 +50,21 @@ public class UserController {
         pager.setData(service.selectByPos(offset, size));
         request.setAttribute("pager", pager);
         return STATIC_PREFIX + "/list";
+    }
+
+    @RequestMapping(value = "/user/add", method = RequestMethod.POST)
+    public void addUser(String username,String password,String type, HttpServletRequest request, HttpServletResponse response) {
+        System.out.println(username+password+type);
+        User toAdd = new User();
+        toAdd.setUsername(username);
+        toAdd.setPassword(password);
+        toAdd.setType(Integer.parseInt(type));
+        try {
+            service.insertUser(toAdd);
+            response.sendRedirect("/sys/user");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return;
     }
 }

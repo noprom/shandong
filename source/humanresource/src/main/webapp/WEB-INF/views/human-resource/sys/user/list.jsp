@@ -73,7 +73,7 @@
                                         </c:choose>
                                     </td>
                                     <td>
-                                        <a href="<%=basePath%>sys/userRole/edit?uid=${v.id}" >授权</a>
+                                        <a href="<%=basePath%>sys/userRole/edit?uid=${v.id}">授权</a>
                                     </td>
                                     </c:forEach>
                                 </tr>
@@ -91,25 +91,38 @@
                                             <li class="paginate_button previous">
                                                 <a href="<%=basePath%>sys/user?pageNum=${pager.currentPage - 1}">上一页</a>
                                             </li>
-                                            <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=1">1</a></li>
+                                            <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=1">1</a>
+                                            </li>
                                             <li class="paginate_button"><a>...</a></li>
-                                            <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=${pager.currentPage - 2}">${pager.currentPage - 2}</a></li>
-                                            <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=${pager.currentPage - 1}">${pager.currentPage - 1}</a></li>
+                                            <li class="paginate_button "><a
+                                                    href="<%=basePath%>sys/user?pageNum=${pager.currentPage - 2}">${pager.currentPage - 2}</a>
+                                            </li>
+                                            <li class="paginate_button "><a
+                                                    href="<%=basePath%>sys/user?pageNum=${pager.currentPage - 1}">${pager.currentPage - 1}</a>
+                                            </li>
                                         </c:if>
 
                                         <c:if test="${pager.currentPage == 4}">
-                                            <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=1">1</a></li>
-                                            <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=${pager.currentPage - 2}">${pager.currentPage - 2}</a></li>
-                                            <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=${pager.currentPage - 1}">${pager.currentPage - 1}</a></li>
+                                            <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=1">1</a>
+                                            </li>
+                                            <li class="paginate_button "><a
+                                                    href="<%=basePath%>sys/user?pageNum=${pager.currentPage - 2}">${pager.currentPage - 2}</a>
+                                            </li>
+                                            <li class="paginate_button "><a
+                                                    href="<%=basePath%>sys/user?pageNum=${pager.currentPage - 1}">${pager.currentPage - 1}</a>
+                                            </li>
                                         </c:if>
 
                                         <c:if test="${pager.currentPage - 2 lt 2}">
                                             <c:if test="${pager.currentPage == 3}">
-                                                <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=1">1</a></li>
-                                                <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=2">2</a></li>
+                                                <li class="paginate_button "><a
+                                                        href="<%=basePath%>sys/user?pageNum=1">1</a></li>
+                                                <li class="paginate_button "><a
+                                                        href="<%=basePath%>sys/user?pageNum=2">2</a></li>
                                             </c:if>
                                             <c:if test="${pager.currentPage == 2}">
-                                                <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=1">1</a></li>
+                                                <li class="paginate_button "><a
+                                                        href="<%=basePath%>sys/user?pageNum=1">1</a></li>
                                             </c:if>
                                         </c:if>
                                         <%--当前页码--%>
@@ -119,26 +132,46 @@
                                         <%--当前页码--%>
 
                                         <c:if test="${pager.currentPage + 3 lt pager.totalPage}">
-                                            <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 1}">${pager.currentPage + 1}</a></li>
-                                            <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 2}">${pager.currentPage + 2}</a></li>
+                                            <li class="paginate_button "><a
+                                                    href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 1}">${pager.currentPage + 1}</a>
+                                            </li>
+                                            <li class="paginate_button "><a
+                                                    href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 2}">${pager.currentPage + 2}</a>
+                                            </li>
                                             <li class="paginate_button"><a>...</a></li>
-                                            <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=${pager.totalPage}">${pager.totalPage}</a></li>
-                                            <li class="paginate_button next"><a href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 1}">下一页</a></li>
+                                            <li class="paginate_button "><a
+                                                    href="<%=basePath%>sys/user?pageNum=${pager.totalPage}">${pager.totalPage}</a>
+                                            </li>
+                                            <li class="paginate_button next"><a
+                                                    href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 1}">下一页</a>
+                                            </li>
                                         </c:if>
 
                                         <c:if test="${pager.currentPage + 3 == pager.totalPage}">
-                                            <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 1}">${pager.currentPage + 1}</a></li>
-                                            <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 2}">${pager.currentPage + 2}</a></li>
-                                            <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 3}">${pager.currentPage + 3}</a></li>
+                                            <li class="paginate_button "><a
+                                                    href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 1}">${pager.currentPage + 1}</a>
+                                            </li>
+                                            <li class="paginate_button "><a
+                                                    href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 2}">${pager.currentPage + 2}</a>
+                                            </li>
+                                            <li class="paginate_button "><a
+                                                    href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 3}">${pager.currentPage + 3}</a>
+                                            </li>
                                         </c:if>
 
                                         <c:if test="${pager.currentPage + 3 gt pager.totalPage}">
                                             <c:if test="${pager.currentPage == pager.totalPage -1}">
-                                                <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 1}">${pager.currentPage + 1}</a></li>
+                                                <li class="paginate_button "><a
+                                                        href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 1}">${pager.currentPage + 1}</a>
+                                                </li>
                                             </c:if>
                                             <c:if test="${pager.currentPage == pager.totalPage -2}">
-                                                <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 1}">${pager.currentPage + 1}</a></li>
-                                                <li class="paginate_button "><a href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 2}">${pager.currentPage + 2}</a></li>
+                                                <li class="paginate_button "><a
+                                                        href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 1}">${pager.currentPage + 1}</a>
+                                                </li>
+                                                <li class="paginate_button "><a
+                                                        href="<%=basePath%>sys/user?pageNum=${pager.currentPage + 2}">${pager.currentPage + 2}</a>
+                                                </li>
                                             </c:if>
                                         </c:if>
                                     </ul>
@@ -146,6 +179,47 @@
                             </div>
                         </div>
                     </div><!-- /.box -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">新增用户</h3>
+                        </div>
+                        <div class="box-body">
+                            <form class="form-horizontal" role="form" action="<%= basePath%>sys/user/add" method="post">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <div class="col-lg-4 form-group">
+                                            <lable class="col-sm-4 control-label" for="name">用户名</lable>
+                                            <div class="col-sm-8">
+                                                <input id="name" class="form-control" type="text" name="username" placeholder="用户名">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 form-group">
+                                            <lable class="col-sm-4 control-label" for="pwd">密码</lable>
+                                            <div class="col-sm-8">
+                                                <input id="pwd" class="form-control" type="password" name="password" placeholder="密码">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 form-group">
+                                            <lable class="col-sm-4 control-label" for="type">类型</lable>
+                                            <div class="col-sm-8">
+                                                <select id="type" name="type" class="form-control">
+                                                    <option name="type" value="1">省用户</option>
+                                                    <option name="type" value="2">企业用户</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="submit" class="btn btn-adn" value="添加">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section><!-- /.content -->

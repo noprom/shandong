@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -51,6 +52,9 @@ public class UserRoleController extends CommonController {
     @RequestMapping(value = "/userRole/edit", method = RequestMethod.GET)
     public String toEditPage(@Param("uid") Integer uid, Model model,
                              HttpServletRequest request, HttpServletResponse response) {
+        if(uid == null)
+            return "/404";
+
         List<Role> allRole = roleService.selectAll();
         List<UserRole> hasRole = userRoleService.getRoleByUserID(uid);
         for (Role role : allRole) {
@@ -89,7 +93,16 @@ public class UserRoleController extends CommonController {
                 userRoleService.insertUserRole(user_id_i, role_id);
             }
         }
-        //// TODO: 3/17/16 完成后跳转 
+        try {
+            response.sendRedirect("/sys/user");
+        } catch (IOException e) {
+            e.printStackTrace();
+            try {
+                response.sendRedirect("/404");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
     }
 
     /**
