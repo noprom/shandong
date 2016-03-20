@@ -50,9 +50,9 @@ public class Pager<T> {
      * @brief 构造函数
      */
     public Pager(int maxSize) {
-        maxSize = maxSize;
+        this.maxSize = maxSize;
         if (maxSize < 1)
-            maxSize = 1;
+            this.maxSize = 1;
 
         data = new ArrayList<T>();
         currentPage = 1;

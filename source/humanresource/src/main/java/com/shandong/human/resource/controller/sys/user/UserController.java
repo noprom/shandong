@@ -38,16 +38,16 @@ public class UserController {
             currentPage = Integer.parseInt(pageNum);
         } catch (Exception e) {
         }
-        /*单页显示个数*/
-        int pageSize = 10;
 
-        Pager<User> pageParam = new Pager<User>(pageSize);
-        pageParam.setCount(service.getCount());
-        pageParam.setCurrentPage(currentPage);
-        int offset = pageParam.getMaxSize() * (currentPage - 1);
-        int size = pageParam.getMaxSize();
-        pageParam.setData(service.selectByPos(offset, size));
-        request.setAttribute("pager", pageParam);
-        return STATIC_PREFIX + "/show";
+        /*单页显示个数*/
+        int pageSize = 3;
+        Pager<User> pager = new Pager<User>(pageSize);
+        pager.setCount(service.getCount());
+        pager.setCurrentPage(currentPage);
+        int offset = pager.getMaxSize() * (currentPage - 1);
+        int size = pager.getMaxSize();
+        pager.setData(service.selectByPos(offset, size));
+        request.setAttribute("pager", pager);
+        return STATIC_PREFIX + "/list";
     }
 }
