@@ -44,5 +44,14 @@
             AND contact = #{contact}
         </if>
     </select>
+    <!--保存输入信息-->
+    <insert id="setCompanyInfo" parameterType="Company">
+        INSERT INTO company
+        (id,province_id, city_id, area_id, address, code, name, business, contact, zipcode, phone, fax, email)
+
+        VALUES
+        (1,#{province_id}, #{city_id}, #{area_id}, #{address}, #{code}, #{name}, #{business}, #{contact}, #{zipcode}, #{phone}, #{fax}, #{email})
+
+    </insert>
 
 </mapper>

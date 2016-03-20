@@ -31,75 +31,57 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                企业信息录入
+                数据填报
                 <%--<small>table</small>--%>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
-                <li>企业用户</li>
-                <li class="active">信息录入</li>
+                <li>企业</li>
+                <li class="active">数据填报</li>
             </ol>
         </section>
 
         <!-- Main content -->
         <div class="row">
             <!-- left column -->
-            <form role="form" id="add-form">
-
             <div class="col-md-6">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title"></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
+                    <form role="form" id="left-form">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>省份</label>
-                                <input class="form-control" value="山东省" disabled="" type="text" id="province_id" name="province_id">
+                                <label>建档期就业人数</label>
+                                <input class="form-control" type="text" id="init_people" name="init_people">
                             </div>
                             <%--<form>--%>
                             <div class="form-group">
-                                <label>城市</label>
-                                <select  onchange="cityChange()" aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="city_id" id="city_id">
-                                    <c:forEach items="${editResult}" var="v">
-                                        <option value="${v.id}">${v.name}</option>
-                                    </c:forEach>
-                                </select>
-
-                            </div><!-- /.form-group -->
-                            <div class="form-group">
-                                <label>区域</label>
-                                <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="area_id" name="area_id">
-                                    <%--<option selected="selected"></option>--%>
-                                    <c:forEach items="${editResultCity}" var="v">
-                                        <option value="${v.id}">${v.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div><!-- /.form-group -->
-                            <div class="form-group">
-                                <label>联系地址</label>
-                                <input class="form-control" placeholder="请输入联系地址"  type="text" name="address">
-                                <%--<%  ArrayList<Area> areaList=(ArrayList<Area>)request.getAttribute("editResultCity"); %>--%>
-                                <%--<select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="address">--%>
-
-                                <%--<c:forEach items="${editResultCity}" var="v">--%>
-                                <%--<option value="${v.id}">${v.name}</option>--%>
-                                <%--</c:forEach>--%>
-                                <%--</select>--%>
-                            </div><!-- /.form-group -->
+                                <label>调查期就业人数</label>
+                                <input class="form-control" type="text" id="cur_people" name="cur_people">
+                            </div>
 
                             <div class="form-group">
-                                <label>组织机构代码</label>
-                                <input class="form-control" placeholder="只可输入字母、数字，不超过9位" type="text" id="code" name="code">
+                                <label>其它原因</label>
+                                <textarea style=" height: 64px;" class="form-control" rows="3" id="other_reason">
+                                </textarea>
+                            </div><!-- /.form-group -->
+                            <div class="form-group">
+                                <label>就业人数减少类型</label>
+                                <input class="form-control" type="text" id="reduce_type" name="reduce_type">
                             </div>
                             <div class="form-group">
-                                <label>企业名称</label>
-                                <input class="form-control" placeholder="中文、英文" type="text" name="name">
+                                <label>主要原因</label>
+                                <input class="form-control" type="text" id="reason1" name="reason1">
                             </div>
-                            <div class="box-footer">
-                                <button type="button" onclick="onSubmit()" class="btn btn-primary">更改</button>
-                            </div>
+                            <div class="form-group">
+                                <label>主要原因说明</label>
+                                <textarea style="height: 64px;" class="form-control" rows="3" id="reason1_explain">
+                                </textarea>
+                            </div><!-- /.form-group -->
                         </div><!-- /.box-body -->
+                    </form>
                 </div><!-- /.content -->
             </div><!--/.col (left) -->
             <!-- right column -->
@@ -110,38 +92,35 @@
                         <h3 class="box-title"></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
+                    <form role="form" id="add-form">
                         <div class="box-body">
+
                             <div class="form-group">
-                                <label>主要经营业务</label>
-                                <input class="form-control" placeholder="按实际情况填写企业主要经营的业务" type="text" name="business">
+                                <label>次要原因</label>
+                                <input class="form-control" type="text" id="reason2" name="reason2">
                             </div>
+
                             <div class="form-group">
-                                <label>联系人</label>
-                                <input class="form-control" placeholder="中文、英文" type="text" name="contact">
-                            </div>
+                                <label>次要原因说明</label>
+                                <textarea style="height: 64px;" class="form-control" rows="3" id="reason2_explain">
+                                </textarea>
+                            </div><!-- /.form-group -->
                             <div class="form-group">
-                                <label>邮政编码</label>
-                                <input class="form-control" placeholder="只可填写6位数字" type="text" name="zipcode">
+                                <label>第三原因</label>
+                                <input class="form-control" type="text" id="reason3" name="reason3">
                             </div>
+
                             <div class="form-group">
-                                <label>联系电话</label>
-                                <input class="form-control" placeholder="" type="text" name="phone">
-                            </div>
-                            <div class="form-group">
-                                <label>传真</label>
-                                <input class="form-control" placeholder="" type="text" name="fax">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">EMAIL</label>
-                                <input class="form-control" name="email" placeholder="" type="email">
-                            </div>
+                                <label>第三原因说明</label>
+                                <textarea style="height: 64px;" class="form-control" rows="3" id="reason3_explain">
+                                </textarea>
+                            </div><!-- /.form-group -->
 
                         </div><!-- /.box-body -->
+                    </form>
                 </div><!-- /.content -->
             </div><!--/.col (right) -->
-            </form>
-
-        </div><!-- /.content -->
+        </div>
     </div><!-- /.content-wrapper -->
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
     <script>
