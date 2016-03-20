@@ -32,89 +32,43 @@
     <section class="content">
         <div class="row">
             <form role="form">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">
-                                <input type="checkbox"> 用户管理
-                            </h3>
-                        </div>
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox">
-                                                    新增
-                                                </label>
-                                            </div>
-                                        </div>
+                <c:forEach items="${existAuth}" var="v">
+                    <c:choose>
+                        <c:when test="${v.level eq 1}">
+                            <div class="col-md-12">
+                        <div class="box box-primary">
 
-                                        <div class="col-md-1">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox">
-                                                    删除
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-1">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox">
-                                                    编辑
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">
+                                        <input type="checkbox"> ${v.name}
+                                    </h3>
                                 </div>
-                            </div><!-- /.box-body -->
-                    </div>
-                </div>
 
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">
-                                <input type="checkbox"> 新闻管理
-                            </h3>
-                        </div>
+
                         <div class="box-body">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox">
-                                                    新增
-                                                </label>
+                            <div class="form-group">
+                                <div class="row">
+                                    <c:choose>
+                                        <c:when test="${v.level eq 2}">
+                                            <div class="col-md-1">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">
+                                                            ${v.name}
+                                                    </label>
+                                                </div>
                                             </div>
-                                        </div>
-
-                                        <div class="col-md-1">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox">
-                                                    删除
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-1">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox">
-                                                    编辑
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        </c:when>
+                                    </c:choose>
                                 </div>
                             </div>
+                        </div>
+
                     </div>
-                </div>
+                    </div>
+                        </c:when>
+                    </c:choose>
+                </c:forEach>
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-primary">提 交</button>
                 </div>
