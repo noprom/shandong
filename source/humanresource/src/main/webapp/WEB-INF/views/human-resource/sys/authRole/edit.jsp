@@ -27,66 +27,103 @@
     <jsp:include page="../../left.jsp" flush="true"></jsp:include>
 
     <div class="content-wrapper">
-    <section class="content-header"><h1>修改权限</h1></section>
+        <section class="content-header"><h1>修改权限</h1></section>
 
-    <section class="content">
-        <div class="row">
-            <form role="form" action="<%=basePath%>sys/authRole/edit" method="post">
-                <%--防止什么都不选择的时候无法参数绑定--%>
-                <input type="hidden" name="authIds" value="0">
+        <section class="content">
+            <div class="row">
+                <form role="form" action="<%=basePath%>sys/authRole/edit" method="post">
+                    <%--防止什么都不选择的时候无法参数绑定--%>
+                    <input type="hidden" name="authIds" value="0">
                     <input type="hidden" name="roleId" value="${roleId}">
                     <%--防止什么都不选择的时候无法参数绑定--%>
-                <c:forEach items="${existAuth}" var="v">
-                    <c:choose>
-                        <c:when test="${v.level eq 1}">
-                            <div class="col-md-12">
-                                <div class="box box-primary">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title">
-                                            <input type="checkbox" name="authIds" value="${v.id}"
-                                                   <c:if test="${v.hasAuth}">checked</c:if>
-                                            > ${v.name}
-                                        </h3>
-                                    </div>
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <c:choose>
-                                                    <c:when test="${v.childList != null}">
-                                                        <c:forEach items="${v.childList}" var="child">
-                                                            <div class="col-md-2">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input type="checkbox" name="authIds" value="${child.id}"
-                                                                        <c:if test="${child.hasAuth}">checked</c:if>
-                                                                        >${child.name}
-                                                                    </label>
+                    <c:forEach items="${existAuth}" var="v">
+                        <c:choose>
+                            <c:when test="${v.level eq 1}">
+                                <div class="col-md-12">
+                                    <div class="box box-primary">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">
+                                                <input type="checkbox" class="auth-pid" name="authIds" value="${v.id}"
+                                                       <c:if test="${v.hasAuth}">checked</c:if>
+                                                > ${v.name}
+                                            </h3>
+                                        </div>
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <c:choose>
+                                                        <c:when test="${v.childList != null}">
+                                                            <c:forEach items="${v.childList}" var="child">
+                                                                <div class="col-md-2">
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="checkbox" class="child-${v.id}"
+                                                                                   id="child-auth-${child.id}"
+                                                                                   name="authIds" value="${child.id}"
+                                                                                   <c:if test="${child.hasAuth}">checked</c:if>
+                                                                            >${child.name}
+                                                                        </label>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </c:forEach>
-                                                    </c:when>
-                                                </c:choose>
+                                                            </c:forEach>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </c:when>
-                    </c:choose>
-                </c:forEach>
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary">提 交</button>
-                </div>
-            </form>
-        </div>
-    </section>
+                            </c:when>
+                        </c:choose>
+                    </c:forEach>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">提 交</button>
+                    </div>
+                </form>
+            </div>
+        </section>
     </div>
 
 
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
     <script>
         $(function () {
+            // 复选框的一系列操作
+            // 选择父框
+            $(".auth-pid").on('click', function () {
+                var pidObj = $(this);
+                var pid = $(this).val();
+                console.log("pid = " + pid);
+                var check = $(this).attr('checked');
+                console.log(check);
+                var toCheck = false;
+                if (typeof(check) == "undefined") {
+                    console.log("toChcek");
+                    toCheck = true;
+                    pidObj.prop("checked", true);
+                    pidObj.attr('checked', true);
+                } else {
+                    console.log("noCheck");
+                    toCheck = false;
+                    pidObj.removeAttr("checked");
+                }
+                // 子权限
+                var childAuth = $(".child-" + pid);
+                childAuth.each(function (index, value) {
+                    var iCheck = $(this).attr('checked');
+                    console.log(iCheck);
+                    if (toCheck || typeof(iCheck) == "undefined") {
+                        console.log('toCheck2');
+                        $(this).prop("checked", true);
+                        $(this).attr('checked', true);
+                    } else {
+                        $(this).removeAttr("checked");
+                    }
 
+//                    console.log(index);//循环的下标值，从0开始
+//                    console.log(this.value);
+                });
+            });
         });
     </script>
 </div>
