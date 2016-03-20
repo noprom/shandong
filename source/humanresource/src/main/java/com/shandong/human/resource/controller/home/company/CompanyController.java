@@ -4,6 +4,7 @@ import com.shandong.human.resource.domain.Area;
 import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.domain.CompanyData;
 import com.shandong.human.resource.service.home.AreaService;
+import com.shandong.human.resource.service.home.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.plaf.nimbus.NimbusStyle;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Author: chenyongpeng <chen9121@foxmail.com>
@@ -29,6 +32,8 @@ public class CompanyController {
     public static final String STATIC_PREFIX = "human-resource/home/company";
     @Autowired
     private AreaService areaService;
+    @Autowired
+    private CompanyService companyService;
     //获取所有的城市
     @RequestMapping(value = "/home/company/add",method = RequestMethod.GET)
     public String getProvince(Model model) {
@@ -44,29 +49,45 @@ public class CompanyController {
     @ResponseBody
     public ArrayList<Area> getAllArea(@PathVariable("id") Integer id) {
 //获取地区
+        System.out.println(id);
         ArrayList<Area> list = areaService.getAllAreaById(id);
         return list;
     }
     //保存企业信息
-    @RequestMapping(value = "/home/company/add/submit",method = RequestMethod.POST)
-    public String saveMessage(String province_id,int city_id,int area_id,String address,String code,String name,String business,String contact,
-                              String zipcode,String phone,String fax,String email ,Model model) {
-        Company company=new Company();
-        company.setProvince_id(0);
-        company.setCity_id(city_id);
-        company.setArea_id(area_id);
-        company.setAddress(address);
-        company.setBusiness(business);
-        company.setCode(code);
-        company.setContact(contact);
-        company.setEmail(email);
-        company.setName(province_id);
-        company.setFax(fax);
-        company.setPhone(phone);
-        company.setZipcode(zipcode);
-        System.out.println(province_id);
-        System.out.println(phone);
-        return STATIC_PREFIX + "/add";
+    @RequestMapping(value = "/home/company/add/{Company}",method = RequestMethod.POST)
+    @ResponseBody
+    public Map saveMessage(@PathVariable("Company") Company company , Model model) {
+        Map map=new HashMap();
+        companyService.setCompanyInfo(company);
+        System.out.println("company");
+        System.out.println(company);
+        map.put("success","success");
+        return map;
+//        company.setProvince_id(0);
+//        company.setCity_id(city_id);
+//        System.out.println(city_id);
+//        company.setArea_id(area_id);
+//        System.out.println(area_id);
+//        company.setAddress(address);
+//        System.out.println(address);
+//        company.setBusiness(business);
+//        System.out.println(business);
+//        company.setCode(code);
+//        System.out.println(code);
+//        company.setContact(contact);
+//        System.out.println(contact);
+//        company.setEmail(email);
+//        System.out.println(email);
+//        company.setName(province_id);
+//        System.out.println(province_id);
+//        company.setFax(fax);
+//        System.out.println(fax);
+//        company.setPhone(phone);
+//        System.out.println(phone);
+//        company.setZipcode(zipcode);
+//        System.out.println(zipcode);
+//        System.out.println(phone);
+//        return STATIC_PREFIX + "/add";
     }
 
 }

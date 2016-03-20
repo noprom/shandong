@@ -47,11 +47,11 @@
                 <h3 class="box-title"></h3>
             </div><!-- /.box-header -->
             <!-- form start -->
-            <form role="form" id="add-form" action="<%=basePath%>home/company/add/submit" method="post">
+            <form role="form" id="add-form">
                 <div class="box-body">
                     <div class="form-group">
                         <label>省份</label>
-                        <input class="form-control" value="山东省" type="text" name="province_id">
+                        <input class="form-control" value="山东省" disabled="" type="text" name="province_id">
                     </div>
                     <%--<form>--%>
                     <div class="form-group">
@@ -74,34 +74,35 @@
                     </div><!-- /.form-group -->
                     <div class="form-group">
                         <label>联系地址</label>
+                        <input class="form-control" placeholder="请输入联系地址"  type="text" name="address">
                         <%--<%  ArrayList<Area> areaList=(ArrayList<Area>)request.getAttribute("editResultCity"); %>--%>
-                        <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="address">
+                        <%--<select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="address">--%>
 
-                                <c:forEach items="${editResultCity}" var="v">
-                                    <option value="${v.id}">${v.name}</option>
-                                </c:forEach>
-                        </select>
+                                <%--<c:forEach items="${editResultCity}" var="v">--%>
+                                    <%--<option value="${v.id}">${v.name}</option>--%>
+                                <%--</c:forEach>--%>
+                        <%--</select>--%>
                     </div><!-- /.form-group -->
 
                     <div class="form-group">
                         <label>组织机构代码</label>
-                        <input class="form-control" placeholder="" type="text" id="code" name="code">
+                        <input class="form-control" placeholder="只可输入字母、数字，不超过9位" type="text" id="code" name="code">
                     </div>
                     <div class="form-group">
                         <label>企业名称</label>
-                        <input class="form-control" placeholder="" type="text" name="name">
+                        <input class="form-control" placeholder="中文、英文" type="text" name="name">
                     </div>
                     <div class="form-group">
                         <label>主要经营业务</label>
-                        <input class="form-control" placeholder="" type="text" name="business">
+                        <input class="form-control" placeholder="按实际情况填写企业主要经营的业务" type="text" name="business">
                     </div>
                     <div class="form-group">
                         <label>联系人</label>
-                        <input class="form-control" placeholder="" type="text" name="contact">
+                        <input class="form-control" placeholder="中文、英文" type="text" name="contact">
                     </div>
                     <div class="form-group">
                         <label>邮政编码</label>
-                        <input class="form-control" placeholder="" type="text" name="zipcode">
+                        <input class="form-control" placeholder="只可填写6位数字" type="text" name="zipcode">
                     </div>
                     <div class="form-group">
                         <label>联系电话</label>
@@ -137,6 +138,50 @@
                 "autoWidth": false
             });
         });
+        function  onSubmit()
+        {
+            //标题
+//            var title = $("#addNews-form input[name = title]").val();
+            //正文
+//            var content = $("#addNews-form textarea[name = content]").val();
+
+            //数据校验
+//            if (isEmpty(title)) {
+//                alert("标题不能为空");
+//                return false;
+//            } else if (isEmpty(content)) {
+//                alert("正文不能为空");
+//                return false;
+//            } else {
+            var str=$("#add-form").serialize();
+                var postUrl = "<%=basePath%>home/company/add/"+str;
+                $.ajax({
+                    url: postUrl,
+                    data: $("#add-form").serialize(),
+                    method: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if(data.success=="success")
+                        {
+                            alert("提交成功");
+                            window.location.href = "<%=basePath%>index";
+                        }
+                        else
+                        {
+                            alert("提交失败");
+                        }
+
+                }});
+
+        }
+
+        function isEmpty(str) {
+            if (!str || $.trim(str).length <= 0)
+                return true;
+            return false;
+        }
+
+
         function cityChange()
         {
             var areaBox = document.getElementById("select-area");
@@ -144,6 +189,7 @@
             var index=obj.selectedIndex; //序号，取当前选中选项的序号
             var str = obj.options[index].value;
             var str1="<%=basePath%>home/company/add/"+str;
+            alert("提交成功");
           //  window.location.href = str1;
 
             $.ajax({
