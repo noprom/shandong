@@ -45,4 +45,11 @@ public class UserServiceImpl implements UserService{
     public int deleteByID(Integer id) {
         return service.deleteByID(id);
     }
+
+    public User selectByNamePwd(String username, String password) {
+        Map<Object,Object> info = new HashMap<Object, Object>();
+        info.put("username",username);
+        info.put("password",password);
+        return service.selectByNamePwd(info);
+    }
 }

@@ -45,4 +45,12 @@ public interface UserService {
      * @return
      */
     public int deleteByID(Integer id);
+
+    /**
+     * @brief 按用户名及密码查询用户
+     * @param username
+     * @param password
+     * @return
+     */
+    public User selectByNamePwd(String username,String password);
 }

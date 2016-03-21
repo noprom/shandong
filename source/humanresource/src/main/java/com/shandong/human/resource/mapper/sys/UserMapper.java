@@ -41,4 +41,11 @@ public interface UserMapper {
      * @return
      */
     public int deleteByID(Integer id);
+
+    /**
+     * @brief 按用户名及密码查询用户
+     * @param user
+     * @return
+     */
+    public User selectByNamePwd(Map<Object,Object> user);
 }

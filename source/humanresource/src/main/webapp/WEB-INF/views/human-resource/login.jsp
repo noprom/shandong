@@ -19,13 +19,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div><!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
-    <form action="../../index2.html" method="post">
+    <form action="<%=basePath%>login/submit" method="post">
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Email" type="email">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <input name="userName" class="form-control" placeholder="用户名" type="text">
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Password" type="password">
+        <input name="password" class="form-control" placeholder="密码" type="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
@@ -33,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         </div><!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
         </div><!-- /.col -->
       </div>
     </form>

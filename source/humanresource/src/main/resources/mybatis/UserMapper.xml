@@ -31,4 +31,9 @@
         DELETE FROM user
         WHERE id = #{id}
     </delete>
+
+    <select id="selectByNamePwd" resultType="com.shandong.human.resource.domain.User" parameterType="map">
+        SELECT id ,username , password ,type FROM user
+        WHERE username=#{username} AND password=#{password}
+    </select>
 </mapper>

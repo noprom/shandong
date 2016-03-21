@@ -74,6 +74,8 @@
                                     </td>
                                     <td>
                                         <a href="<%=basePath%>sys/userRole/edit?uid=${v.id}">授权</a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="<%=basePath%>sys/user/delete?uid=${v.id}">删除</a>
                                     </td>
                                     </c:forEach>
                                 </tr>
