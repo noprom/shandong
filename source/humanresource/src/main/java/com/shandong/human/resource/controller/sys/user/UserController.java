@@ -54,7 +54,6 @@ public class UserController {
 
     @RequestMapping(value = "/user/add", method = RequestMethod.POST)
     public void addUser(String username,String password,String type, HttpServletRequest request, HttpServletResponse response) {
-        System.out.println(username+password+type);
         User toAdd = new User();
         toAdd.setUsername(username);
         toAdd.setPassword(password);
@@ -63,6 +62,28 @@ public class UserController {
             service.insertUser(toAdd);
             response.sendRedirect("/sys/user");
         } catch (IOException e) {
+            e.printStackTrace();
+            try {
+                response.sendRedirect("/404");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+        return;
+    }
+
+    @RequestMapping(value = "/user/delete", method = RequestMethod.GET)
+    public void deleteUser(Integer uid, HttpServletRequest request, HttpServletResponse response) {
+        System.out.println(uid);
+        try {
+            service.deleteByID(uid);
+            response.sendRedirect("/sys/user");
+        } catch (IOException e) {
+            try {
+                response.sendRedirect("/404");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
             e.printStackTrace();
         }
         return;
