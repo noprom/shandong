@@ -27,7 +27,7 @@
     <jsp:include page="../../left.jsp" flush="true"></jsp:include>
 
     <div class="content-wrapper">
-    <section class="content-header"><h1>新增后台菜单</h1></section>
+    <section class="content-header"><h1>删除后台菜单</h1></section>
 
     <section class="content">
         <div class="row">

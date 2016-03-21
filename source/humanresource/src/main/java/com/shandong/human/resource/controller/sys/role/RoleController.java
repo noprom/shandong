@@ -38,6 +38,54 @@ public class RoleController{
     @Autowired
     private RoleService service;
 
+    @RequestMapping(value = "/role/add", method = RequestMethod.POST)
+    public void add(String name, HttpServletRequest request, HttpServletResponse response) {
+        if(name == null ){
+            try {
+                response.sendRedirect("/404");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+
+        service.insertRole(name);
+        try {
+            response.sendRedirect("/sys/role");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @RequestMapping(value = "/role/delete", method = RequestMethod.GET)
+    public void delete(String id, HttpServletRequest request, HttpServletResponse response) {
+        if(id == null ){
+            try {
+                response.sendRedirect("/404");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+
+        Integer iID = Integer.parseInt(id);
+        if(iID == null){
+            try {
+                response.sendRedirect("/404");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+
+        service.deleteRole(iID);
+        try {
+            response.sendRedirect("/sys/role");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @RequestMapping(value = "/role", method = RequestMethod.GET)
     public String toRolePage(String pageNum,
                              HttpServletRequest request, HttpServletResponse response) {
@@ -57,25 +105,5 @@ public class RoleController{
         pager.setData(service.selectByPos(offset, size));
         request.setAttribute("pager", pager);
         return STATIC_PREFIX + "/list";
-
-    }
-
-    @RequestMapping(value = "/role/add", method = RequestMethod.POST)
-    public void add(String name, HttpServletRequest request, HttpServletResponse response) {
-        if(name == null ){
-            try {
-                response.sendRedirect("/404");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return;
-        }
-
-        service.insertRole(name);
-        try {
-            response.sendRedirect("/sys/role");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
