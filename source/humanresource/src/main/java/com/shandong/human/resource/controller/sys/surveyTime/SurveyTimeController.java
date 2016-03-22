@@ -34,11 +34,22 @@ public class SurveyTimeController{
     @Autowired
     private SurveyTimeService service;
 
+    /**
+     * @brief 转到surveyTime页面
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/surveyTime", method = RequestMethod.GET)
-    public String toServeyTimePage(String strTime,String endTime, HttpServletRequest request, HttpServletResponse response) {
+    public String toServeyTimePage(HttpServletRequest request, HttpServletResponse response) {
         return STATIC_PREFIX+"/add";
     }
 
+    /**
+     * @brief 提交surveyTime
+     * @param date
+     * @param response
+     */
     @RequestMapping(value = "/surveyTime/add", method = RequestMethod.POST)
     public void add(String date, HttpServletResponse response) {
 
