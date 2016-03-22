@@ -63,7 +63,7 @@ public class LogIOController {
      * @param response
      * @return
      */
-    @RequestMapping(value = "/login/submit", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public void login(String userName, String password, Model model , HttpServletRequest request, HttpServletResponse response) {
         if(userName == null|| password == null){
             try {

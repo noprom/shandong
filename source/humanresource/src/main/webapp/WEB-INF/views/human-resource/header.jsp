@@ -70,11 +70,10 @@
                                 <%--<a href="#" class="btn btn-default btn-flat">Sign out</a>--%>
                             <%--</div>--%>
                         <%--</li>--%>
-                        <% if(!loged){ %>
                         <li class="user-footer">
-                            <a href="<%= basePath%>/login" class="btn btn-default">登录</a>
+                            <a href="<%= basePath%>/<%= loged==true?"logout":"login"%>" class="btn btn-default">
+                                <%= loged==true?"注销":"登录"%></a>
                         </li>
-                        <%}%>
                     </ul>
                 </li>
 

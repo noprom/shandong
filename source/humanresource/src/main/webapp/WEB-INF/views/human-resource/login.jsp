@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div><!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
-    <form action="<%=basePath%>login/submit" method="post">
+    <form action="<%=basePath%>login" method="post">
       <div class="form-group has-feedback">
         <input name="userName" class="form-control" placeholder="用户名" type="text">
       </div>

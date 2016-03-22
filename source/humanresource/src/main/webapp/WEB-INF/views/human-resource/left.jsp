@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page import="com.shandong.human.resource.domain.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -17,8 +18,16 @@
                 <img src="<%=basePath%>static/human/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>管理员</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+
+                <% /*用户信息*/
+                    User localUser = (User) request.getSession().getAttribute("localUser");
+                    /*是否已登录*/
+                    boolean loged = (localUser != null);%>
+                <p><%= loged == true ? localUser.getUsername() : "未登录"%>
+                </p>
+                <a href="#"><i class="fa fa-circle  <%= loged ==true?"text-success":"text-danger"%>"></i>
+                    <%= loged == true ? "online" : "offline"%>
+                </a>
             </div>
         </div>
         <!-- search form -->
