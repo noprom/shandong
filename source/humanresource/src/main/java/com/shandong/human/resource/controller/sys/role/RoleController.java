@@ -38,6 +38,12 @@ public class RoleController{
     @Autowired
     private RoleService service;
 
+    /**
+     * @brief 添加角色
+     * @param name
+     * @param request
+     * @param response
+     */
     @RequestMapping(value = "/role/add", method = RequestMethod.POST)
     public void add(String name, HttpServletRequest request, HttpServletResponse response) {
         if(name == null ){
@@ -57,6 +63,12 @@ public class RoleController{
         }
     }
 
+    /**
+     * @brief 删除角色
+     * @param id
+     * @param request
+     * @param response
+     */
     @RequestMapping(value = "/role/delete", method = RequestMethod.GET)
     public void delete(String id, HttpServletRequest request, HttpServletResponse response) {
         if(id == null ){
@@ -86,6 +98,13 @@ public class RoleController{
         }
     }
 
+    /**
+     * @brief 显示角色
+     * @param pageNum
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/role", method = RequestMethod.GET)
     public String toRolePage(String pageNum,
                              HttpServletRequest request, HttpServletResponse response) {

@@ -64,7 +64,7 @@ public class AuthController extends CommonController {
      * @param response
      * @throws IOException
      */
-    @RequestMapping(value = "/add/submit", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void addAuth(Integer pid, String name, String url,
             HttpServletRequest request, HttpServletResponse response) throws IOException {
         Auth toInsert = new Auth();
@@ -105,7 +105,7 @@ public class AuthController extends CommonController {
      * @throws IOException
      */
 
-    @RequestMapping(value = "/delete/submit", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public void deleteAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String id_s = request.getParameter("id");
         int id = Integer.parseInt(id_s);

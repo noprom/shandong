@@ -79,7 +79,7 @@ public class UserRoleController extends CommonController {
      * @param request
      * @param response
      */
-    @RequestMapping(value = "/userRole/edit/submit", method = RequestMethod.POST)
+    @RequestMapping(value = "/userRole/edit", method = RequestMethod.POST)
     public void submitHandle(String[] roles, String user_id, HttpServletRequest request, HttpServletResponse response) {
         if (user_id == null) {
             logger.debug("invalid user_id");
