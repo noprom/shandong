@@ -34,7 +34,7 @@
             <div class="col-lg-6">
                 <div class="box box-info">
                     <div class="box-body">
-                        <form action="<%=basePath%>sys/auth/delete/submit" role="form" method="post">
+                        <form action="<%=basePath%>sys/auth/delete" role="form" method="post">
                             <% AuthTree _Auths=(AuthTree)request.getAttribute("existAuth"); %>
                             <div class="form-group">
                                 <label>选择权限</label>

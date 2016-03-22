@@ -34,7 +34,7 @@
             <div class="col-lg-6">
                 <div class="box box-info">
                     <div class="box-body">
-                        <form action="<%=basePath%>sys/auth/add/submit" role="form" method="post">
+                        <form action="<%=basePath%>sys/auth/add" role="form" method="post">
 
                             <div class="form-group">
                                 <label>权限名称</label>

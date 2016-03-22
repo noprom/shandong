@@ -37,7 +37,7 @@
                 <div class="col-lg-8">
                     <div class="box box-info">
                         <div class="box-body">
-                            <form action="<%= basePath%>sys/userRole/edit/submit" role="form" method="post">
+                            <form action="<%= basePath%>sys/userRole/edit" role="form" method="post">
                                 <%--<% String user_id = (String)request.getAttribute("user_id"); %>--%>
                                 <%--<input name="user_id" value="<%= user_id%>" type="hidden">--%>
                                 <input name="user_id" value=${user_id} type="hidden">
