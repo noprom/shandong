@@ -28,7 +28,10 @@ public class DataController {
     private AreaService areaService;
     @Autowired
     private CompanyService companyService;
+
+
     //获取所有的城市
+    //获取数据显示页面
     @RequestMapping(value = "/home/data/add",method = RequestMethod.GET)
     public String add(Model model) {
 //        ArrayList<Area> list = areaService.getAllCity();
@@ -38,6 +41,9 @@ public class DataController {
 //        model.addAttribute("editResultCity", listCity);
         return STATIC_PREFIX + "/add";
     }
+
+
+    //获取修改页面
     @RequestMapping(value = "/home/data/query",method = RequestMethod.GET)
     public String query(Model model) {
 //        ArrayList<Area> list = areaService.getAllCity();
@@ -48,15 +54,18 @@ public class DataController {
         return STATIC_PREFIX + "/query";
     }
     //获取所有的地区
+    //获取数据显示页面
     @RequestMapping(value = "/home/data/add/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ArrayList<Area> getAllArea(@PathVariable("id") Integer id) {
-//获取地区
+        //获取地区
         System.out.println(id);
         ArrayList<Area> list = areaService.getAllAreaById(id);
         return list;
     }
+
     //保存企业信息
+    //获取图形显示页面
     @RequestMapping(value = "/home/data/add/submit",method = RequestMethod.POST)
     @ResponseBody
     public Map saveMessage(Company company) {
