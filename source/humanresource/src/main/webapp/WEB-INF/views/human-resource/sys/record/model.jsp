@@ -1,19 +1,68 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: constantine
-  Date: 2016/3/22
-  Time: 23:45
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="application/vnd.ms-excel;charset=gb2312" pageEncoding="gb2312" language="java" %>
-<%@ page import="com.shandong.human.resource.domain.*"%>
-
+<%@ page language="java" import="java.util.*,java.io.*" pageEncoding="GBK"%>
+<%@ page contentType="application/msexcel" %>
+<%
+    //response.setHeader("Content-disposition","inline; filename=videos.xls");
+    response.setHeader("Content-disposition","attachment; filename=test.xls");
+    //以上这行设定传送到前端浏览器时的档名为test.xls
+    //就是靠这一行，让前端浏览器以为接收到一个excel档
+%>
+<%@ page import="com.shandong.human.resource.domain.Company"%>
+<%@ page import="org.springframework.web.context.WebApplicationContext" %>
+<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+    <head>
+        <base href="<%=basePath%>">
+        <title>spring jdbc test</title>
+        <meta http-equiv="pragma" content="no-cache">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="expires" content="0">
+        <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+        <meta http-equiv="description" content="This is my page">
+        <!--
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        -->
+    </head>
 
-</body>
+    <body>
+        <table border="1" width="100%">
+            <tr>
+                <td>ID</td>
+                <td>省ID</td>
+                <td>市ID</td>
+                <td>区ID</td>
+                <td>地址</td>
+                <td>企业代码</td>
+                <td>企业名称</td>
+                <td>业务</td>
+                <td>联系人</td>
+                <td>邮编</td>
+                <td>电话</td>
+                <td>传真</td>
+                <td>邮箱</td>
+            </tr>
+            <c:forEach items="${exResult}" var="v">
+            <tr>
+                <td>${v.id}</td>
+                <td>${v.province_id}</td>
+                <td>${v.city_id}</td>
+                <td>${v.area_id}</td>
+                <td>${v.address}</td>
+                <td>${v.code}</td>
+                <td>${v.name}</td>
+                <td>${v.business}</td>
+                <td>${v.contact}</td>
+                <td>${v.zipcode}</td>
+                <td>${v.phone}</td>
+                <td>${v.fax}</td>
+                <td>${v.email}</td>
+            </tr>
+            </c:forEach>
+        </table>
+    </body>
 </html>
