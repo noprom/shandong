@@ -24,7 +24,7 @@
 
     <insert id="insertUser" parameterType="com.shandong.human.resource.domain.User">
         INSERT INTO user (id , username , password ,type)
-        VALUES (${id} , ${username} , ${password} , ${type})
+        VALUES (#{id} , #{username} , #{password} , #{type})
     </insert>
 
     <delete id="deleteByID" parameterType="java.lang.Integer">
