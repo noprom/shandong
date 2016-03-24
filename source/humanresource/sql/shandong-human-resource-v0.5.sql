@@ -118,7 +118,7 @@ CREATE TABLE `company_data` (
   `reason2_explain` varchar(255) DEFAULT NULL COMMENT '次要原因说明',
   `reason3` varchar(255) DEFAULT NULL COMMENT '第三原因',
   `reason3_explain` varchar(255) DEFAULT NULL COMMENT '第三原因说明',
-  `status` int(1) NOT NULL COMMENT '状态:-1:审核不通过,0:等待审核,1:审核通过',
+  `status` int(1) NOT NULL COMMENT '状态:-1:审核不通过,0:等待审核,1:审核通过,等待上报 2:已上报',
   `not_pass_reason` varchar(255) DEFAULT NULL COMMENT '审核不通过原因',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` datetime NOT NULL COMMENT '更新时间',
