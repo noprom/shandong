@@ -18,7 +18,7 @@ public interface CompanyDataMapper {
 
     public ArrayList<CompanyData> getCompanyDataByCompanyIdZTR(@Param("id") Integer id);
 
-    public ArrayList<CompanyData> getCompanyDataByCompanyId(Integer id);
+    public ArrayList<CompanyData> getCompanyDataByCompanyId(@Param("id") Integer id);
 
     List<CompanyData> companyDataList();
 

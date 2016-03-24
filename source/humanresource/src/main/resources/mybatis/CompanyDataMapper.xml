@@ -35,7 +35,7 @@
 
 
     <select id="getCompanyDataByCompanyId" resultMap="CompanyData">
-        SELECT * FROM company_data
+        SELECT * FROM company_data WHERE company_id = #{id} ORDER BY create_time
     </select>
 
     <select id="companyDataList" resultMap="CompanyData">

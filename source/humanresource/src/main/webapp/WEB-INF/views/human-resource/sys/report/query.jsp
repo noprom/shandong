@@ -90,7 +90,7 @@
                                 <tbody>
                                 <c:forEach items="${reportResult}" var="v">
                                     <tr>
-                                        <td><input type="checkbox" name="choose" vlaue="${v.id}"></td>
+                                        <td><input type="checkbox" name="choose" value="${v.id}">${v.id}</td>
                                         <td>${v.id}</td>
                                         <td>${v.company_id}</td>
                                         <td>${v.init_people}</td>
@@ -99,7 +99,8 @@
                                         <td>${v.status}</td>
                                         <td>${v.create_time}</td>
                                         <td>${v.update_time}</td>
-                                        <td>详情</td>
+                                        <td><a href="<%=basePath%>sys/report/${v.id}" class="btn btn-primary">详情</a>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>

@@ -23,7 +23,13 @@ public  interface ReportService {
      * 根据company_id获取CompanyData
      * 返回类型为一个ArrayList<CompanyData>
      */
-    public ArrayList<CompanyData> getCompanyDataById(Integer id);
+    public ArrayList<CompanyData> getCompanyDataByCompanyId(Integer id);
+
+    /*
+     * 根据id获取CompanyData
+     * 返回类型为一个ArrayList<CompanyData>
+     */
+    public CompanyData getCompanyDataById(Integer id);
 
 
 

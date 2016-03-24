@@ -36,8 +36,12 @@ public class ReportServiceImpl implements ReportService {
      * 根据company_id获取CompanyData
      *
      */
-    public ArrayList<CompanyData> getCompanyDataById(Integer id) {
+    public ArrayList<CompanyData> getCompanyDataByCompanyId(Integer id) {
         return companyDataMapper.getCompanyDataByCompanyIdZTR(id);
+    }
+
+    public CompanyData getCompanyDataById(Integer id) {
+        return companyDataMapper.getCompanyDataById(id);
     }
 
 }
