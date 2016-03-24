@@ -38,10 +38,10 @@
     <!-- 拦截器配置-->
     <mvc:interceptors>
         <!--&lt;!&ndash;权限控制拦截器&ndash;&gt;-->
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/**"/>-->
-            <!--<bean class="com.shandong.human.resource.util.interceptor.PrivilegeInterceptor"></bean>-->
-        <!--</mvc:interceptor>-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.shandong.human.resource.util.interceptor.PrivilegeInterceptor"></bean>
+        </mvc:interceptor>
         <!-- SQL注入拦截-->
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
