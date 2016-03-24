@@ -1,6 +1,9 @@
 package com.shandong.human.resource.mapper.sys;
 
+import com.fasterxml.jackson.databind.type.ArrayType;
 import com.shandong.human.resource.domain.CompanyData;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 import java.util.ArrayList;
@@ -10,6 +13,10 @@ import java.util.ArrayList;
  * Date: 16/3/13 下午8:34
  */
 public interface CompanyDataMapper {
+
+    public ArrayList<CompanyData> getAllCompanyData();
+
+    public ArrayList<CompanyData> getCompanyDataByCompanyIdZTR(@Param("id") Integer id);
 
     public ArrayList<CompanyData> getCompanyDataByCompanyId(Integer id);
 

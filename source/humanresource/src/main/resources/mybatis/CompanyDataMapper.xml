@@ -24,6 +24,16 @@
     </resultMap>
 
 
+    <select id="getAllCompanyData" resultMap="CompanyData">
+        SELECT * FROM company_data WHERE status = 1 ORDER BY company_id
+    </select>
+
+
+    <select id="getCompanyDataByCompanyIdZTR" resultMap="CompanyData">
+        SELECT * FROM company_data WHERE company_id = #{id} ORDER BY company_id
+    </select>
+
+
     <select id="getCompanyDataByCompanyId" resultMap="CompanyData">
         SELECT * FROM company_data
     </select>
