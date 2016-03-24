@@ -132,6 +132,9 @@
                     </div><!-- /.box -->
                 </div><!-- /.col -->
             </div><!-- /.row -->
+            <form id="excel-form" action="<%=basePath%>sys/record/export" method="post">
+                <button type="submit" id="submit-btn">导出到excel</button>
+            </form>
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>

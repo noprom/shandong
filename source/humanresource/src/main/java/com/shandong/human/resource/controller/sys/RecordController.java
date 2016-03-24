@@ -46,12 +46,12 @@ public class RecordController {
      */
     @RequestMapping(value = "/sys/record/query", method = RequestMethod.POST)
     public String handleQuery(String city_id, String area_id, String name, String code, String contact, Model model) {
-        System.out.println(city_id);
-        System.out.println(area_id);
-        System.out.println(name);
-        System.out.println(code);
-
-        System.out.println(contact);
+//        System.out.println(city_id);
+//        System.out.println(area_id);
+//        System.out.println(name);
+//        System.out.println(code);
+//
+//        System.out.println(contact);
         ArrayList<Company> list = recordService.getCompanyByCondition(city_id,
                 area_id,
                 name,
@@ -74,5 +74,13 @@ public class RecordController {
         ArrayList<CompanyData> list = recordService.getCompanyDataByCompanyId(id);
         model.addAttribute("companyDataList",list);
         return STATIC_PREFIX + "/detail";
+    }
+
+    @RequestMapping(value = "/sys/record/export", method = RequestMethod.POST)
+    public String export(Model model) {
+        ArrayList<Company> list = recordService.getAllCompany();
+        model.addAttribute("exResult", list);
+
+        return STATIC_PREFIX + "/model";
     }
 }
