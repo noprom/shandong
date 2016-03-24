@@ -162,7 +162,7 @@
             <!-- 系统管理 -->
             <% boolean sys_surveyTime = PermissionUtil.find("sys/surveyTime", auths);
                 boolean sys_auth_add = PermissionUtil.find("sys/auth/add", auths);
-                boolean sys_auth_delete = PermissionUtil.find("sys/auth_delete", auths);
+                boolean sys_auth_delete = PermissionUtil.find("sys/auth/delete", auths);
                 boolean sys_role = PermissionUtil.find("sys/role", auths);
                 boolean sys_user = PermissionUtil.find("sys/user", auths);
                 boolean sys_monitor = PermissionUtil.find("sys/monitor", auths);
