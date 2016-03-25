@@ -49,29 +49,8 @@
                                 </small>
                             </p>
                         </li>
-                        <!-- Menu Body -->
-                        <%--<li class="user-body">--%>
-                            <%--<div class="col-xs-4 text-center">--%>
-                                <%--<a href="#">Followers</a>--%>
-                            <%--</div>--%>
-                            <%--<div class="col-xs-4 text-center">--%>
-                                <%--<a href="#">Sales</a>--%>
-                            <%--</div>--%>
-                            <%--<div class="col-xs-4 text-center">--%>
-                                <%--<a href="#">Friends</a>--%>
-                            <%--</div>--%>
-                        <%--</li> --%>
-                        <!-- Menu Footer-->
-                        <%--<li class="user-footer">--%>
-                            <%--<div class="pull-left">--%>
-                                <%--<a href="#" class="btn btn-default btn-flat">Profile</a>--%>
-                            <%--</div>--%>
-                            <%--<div class="pull-right">--%>
-                                <%--<a href="#" class="btn btn-default btn-flat">Sign out</a>--%>
-                            <%--</div>--%>
-                        <%--</li>--%>
                         <li class="user-footer">
-                            <a href="<%= basePath%>/<%= loged==true?"logout":"login"%>" class="btn btn-default">
+                            <a href="<%= basePath%><%= loged==true?"logout":"login"%>" class="btn btn-default">
                                 <%= loged==true?"注销":"登录"%></a>
                         </li>
                     </ul>
