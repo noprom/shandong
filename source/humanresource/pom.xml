@@ -399,6 +399,6 @@
   </dependencies>
 
   <build>
-    <finalName>humanresource</finalName>
+    <finalName>ROOT</finalName>
   </build>
 </project>

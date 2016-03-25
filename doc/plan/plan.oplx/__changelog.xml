@@ -1,62 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <changelog xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2">
   <version>2.1</version>
-  <task-change-set user="noprom" date="2016-03-18T15:16:53.620Z" timestamp="2016-03-18T15:16:53.620Z">
-    <change idref="t19" attribute="internalEffortDone" type="real" from="0" to="69119.99588012695" resolved="yes"/>
+  <task-change-set user="noprom" date="2016-03-25T10:49:36.359Z" timestamp="2016-03-25T10:49:36.359Z">
+    <change idref="t9" attribute="internalEffortDone" type="real" from="130410" to="144900" resolved="yes"/>
   </task-change-set>
-  <task-change-set user="noprom" date="2016-03-18T15:17:05.111Z" timestamp="2016-03-18T15:17:05.111Z">
-    <change idref="t21" attribute="isSplittableTask" type="real" from="1" to="0" resolved="yes"/>
-    <change idref="t21" attribute="taskType" type="real" from="0" to="1" resolved="yes"/>
-    <change idref="t21" attribute="effort" type="real" from="86400" to="0" resolved="yes"/>
-    <change idref="t21" attribute="percentCompleteForMilestone" type="real" to="0" resolved="yes"/>
+  <task-change-set user="noprom" date="2016-03-25T10:50:24.044Z" timestamp="2016-03-25T10:50:24.044Z">
+    <change idref="t11" attribute="internalEffortDone" type="real" from="100800" to="144000" resolved="yes"/>
   </task-change-set>
-  <task-change-set user="noprom" date="2016-03-18T15:17:33.172Z" timestamp="2016-03-18T15:17:33.172Z">
-    <change idref="t26" attribute="internalEffortDone" type="real" from="8639.9990234375" to="43200" resolved="yes"/>
+  <task-change-set user="noprom" date="2016-03-25T10:50:30.090Z" timestamp="2016-03-25T10:50:30.090Z">
+    <change idref="t12" attribute="internalEffortDone" type="real" from="138959.984375" to="173700" resolved="yes"/>
   </task-change-set>
-  <task-change-set user="noprom" date="2016-03-18T15:17:46.304Z" timestamp="2016-03-18T15:17:46.304Z">
-    <change idref="t26" attribute="effort" type="real" from="86400" to="345600" resolved="yes"/>
+  <task-change-set user="noprom" date="2016-03-25T10:50:42.164Z" timestamp="2016-03-25T10:50:42.164Z">
+    <change idref="t15" attribute="internalEffortDone" type="real" from="241919.984375" to="599039.9642944336" resolved="yes"/>
   </task-change-set>
-  <task-change-set user="noprom" date="2016-03-18T15:17:55.403Z" timestamp="2016-03-18T15:17:55.403Z">
-    <change idref="t28" attribute="internalEffortDone" type="real" from="35099.99609375" to="46799.99721050262" resolved="yes"/>
+  <task-change-set user="noprom" date="2016-03-25T10:50:53.094Z" timestamp="2016-03-25T10:50:53.094Z">
+    <change idref="t19" attribute="internalEffortDone" type="real" from="69119.9921875" to="77759.99794006348" resolved="yes"/>
   </task-change-set>
-  <task-change-set user="noprom" date="2016-03-18T15:18:00.343Z" timestamp="2016-03-18T15:18:00.343Z">
-    <change idref="t29" attribute="isSplittableTask" type="real" from="1" to="0" resolved="yes"/>
-    <change idref="t29" attribute="taskType" type="real" from="0" to="1" resolved="yes"/>
-    <change idref="t29" attribute="effort" type="real" from="57600" to="0" resolved="yes"/>
-    <change idref="t29" attribute="percentCompleteForMilestone" type="real" to="0" resolved="yes"/>
+  <task-change-set user="noprom" date="2016-03-25T10:51:07.417Z" timestamp="2016-03-25T10:51:07.417Z">
+    <change idref="t26" attribute="internalEffortDone" type="real" from="43200" to="276479.9835205078" resolved="yes"/>
   </task-change-set>
-  <task-change-set user="noprom" date="2016-03-18T15:18:11.038Z" timestamp="2016-03-18T15:18:11.038Z">
-    <change idref="t31" attribute="internalEffortDone" type="real" from="0" to="69839.99583721161" resolved="yes"/>
+  <task-change-set user="noprom" date="2016-03-25T10:51:15.037Z" timestamp="2016-03-25T10:51:15.037Z">
+    <change idref="t28" attribute="internalEffortDone" type="real" from="46799.99609375" to="52649.99860525131" resolved="yes"/>
   </task-change-set>
-  <task-change-set user="noprom" date="2016-03-18T15:18:15.579Z" timestamp="2016-03-18T15:18:15.579Z">
-    <change idref="t31" attribute="effort" type="real" from="87300" to="288900" resolved="yes"/>
+  <task-change-set user="noprom" date="2016-03-25T10:51:24.293Z" timestamp="2016-03-25T10:51:24.293Z">
+    <change idref="t30" attribute="internalEffortDone" type="real" from="0" to="28800" resolved="yes"/>
   </task-change-set>
-  <task-change-set user="noprom" date="2016-03-18T15:18:19.757Z" timestamp="2016-03-18T15:18:19.757Z">
-    <change idref="t31" attribute="internalEffortDone" type="real" from="69839.99583721161" to="231119.9862241745" resolved="yes"/>
+  <task-change-set user="noprom" date="2016-03-25T10:51:30.092Z" timestamp="2016-03-25T10:51:30.092Z">
+    <change idref="t31" attribute="internalEffortDone" type="real" from="231119.984375" to="260009.9931120872" resolved="yes"/>
   </task-change-set>
-  <task-change-set user="noprom" date="2016-03-18T15:18:23.531Z" timestamp="2016-03-18T15:18:23.531Z">
-    <change idref="t32" attribute="isSplittableTask" type="real" from="1" to="0" resolved="yes"/>
-    <change idref="t32" attribute="taskType" type="real" from="0" to="1" resolved="yes"/>
-    <change idref="t32" attribute="effort" type="real" from="57600" to="0" resolved="yes"/>
-    <change idref="t32" attribute="percentCompleteForMilestone" type="real" to="0" resolved="yes"/>
-    <change idref="t32" attribute="internalEffortDone" type="real" from="46079.99609375" to="0" resolved="yes"/>
+  <task-change-set user="noprom" date="2016-03-25T10:51:35.295Z" timestamp="2016-03-25T10:51:35.295Z">
+    <change idref="t34" attribute="internalEffortDone" type="real" from="253439.984375" to="316800" resolved="yes"/>
   </task-change-set>
-  <task-change-set user="noprom" date="2016-03-18T15:18:31.555Z" timestamp="2016-03-18T15:18:31.555Z">
-    <change idref="t34" attribute="effort" type="real" from="115200" to="316800" resolved="yes"/>
+  <task-change-set user="noprom" date="2016-03-25T10:51:39.554Z" timestamp="2016-03-25T10:51:39.554Z">
+    <change idref="t35" attribute="internalEffortDone" type="real" from="86399.9921875" to="144000" resolved="yes"/>
   </task-change-set>
-  <task-change-set user="noprom" date="2016-03-18T15:18:34.960Z" timestamp="2016-03-18T15:18:34.960Z">
-    <change idref="t34" attribute="internalEffortDone" type="real" from="5759.99951171875" to="253439.9848937988" resolved="yes"/>
+  <task-change-set user="noprom" date="2016-03-25T10:52:22.804Z" timestamp="2016-03-25T10:52:22.804Z">
+    <change idref="t47" to="t-1" to-position="24" resolved="yes">
+      <change idref="t47" attribute="noEarlierThanConstraintDate" type="date" to="2016-03-25T00:00:00.000Z"/>
+      <change idref="t47" attribute="title" type="string" to="需求变更之后调整系统结构"/>
+    </change>
   </task-change-set>
-  <task-change-set user="noprom" date="2016-03-18T15:18:45.062Z" timestamp="2016-03-18T15:18:45.062Z">
-    <change idref="t35" attribute="effort" type="real" from="57600" to="144000" resolved="yes"/>
+  <task-change-set user="noprom" date="2016-03-25T10:52:43.990Z" timestamp="2016-03-25T10:52:43.990Z">
+    <change idref="t47" attribute="effort" type="real" from="28800" to="144000" resolved="yes"/>
   </task-change-set>
-  <task-change-set user="noprom" date="2016-03-18T15:18:48.928Z" timestamp="2016-03-18T15:18:48.928Z">
-    <change idref="t35" attribute="internalEffortDone" type="real" from="0" to="86399.99485015869" resolved="yes"/>
+  <task-change-set user="noprom" date="2016-03-25T10:53:05.323Z" timestamp="2016-03-25T10:53:05.323Z">
+    <change idref="t49" to="t-1" to-position="25" resolved="yes">
+      <change idref="t49" attribute="noEarlierThanConstraintDate" type="date" to="2016-03-25T00:00:00.000Z"/>
+      <change idref="t49" attribute="title" type="string" to="任务 2"/>
+    </change>
+    <change idref="t48" to="t-1" to-position="26" resolved="yes">
+      <change idref="t48" attribute="noEarlierThanConstraintDate" type="date" to="2016-03-25T00:00:00.000Z"/>
+      <change idref="t48" attribute="title" type="string" to="任务 1"/>
+    </change>
+    <change idref="t47" attribute="effort" type="real" from="144000" to="57600" resolved="yes"/>
   </task-change-set>
-  <task-change-set user="noprom" date="2016-03-18T15:19:07.758Z" timestamp="2016-03-18T15:19:07.758Z">
-    <change idref="t37" attribute="isSplittableTask" type="real" from="1" to="0" resolved="yes"/>
-    <change idref="t37" attribute="taskType" type="real" from="0" to="1" resolved="yes"/>
-    <change idref="t37" attribute="effort" type="real" from="86400" to="0" resolved="yes"/>
-    <change idref="t37" attribute="percentCompleteForMilestone" type="real" to="0" resolved="yes"/>
+  <task-change-set user="noprom" date="2016-03-25T10:53:18.853Z" timestamp="2016-03-25T10:53:18.853Z">
+    <change idref="t48" from="t-1" from-position="26" resolved="yes">
+      <change idref="t48" attribute="noEarlierThanConstraintDate" type="date" to="2016-03-25T00:00:00.000Z"/>
+      <change idref="t48" attribute="title" type="string" to="任务 1"/>
+    </change>
+    <change idref="t49" attribute="title" type="string" from="任务 2" to="修改bug" resolved="yes"/>
+  </task-change-set>
+  <task-change-set user="noprom" date="2016-03-25T10:53:45.667Z" timestamp="2016-03-25T10:53:45.667Z">
+    <change idref="t49" attribute="effort" type="real" from="28800" to="172800" resolved="yes"/>
+  </task-change-set>
+  <task-change-set user="noprom" date="2016-03-25T11:07:11.935Z" timestamp="2016-03-25T11:07:11.935Z">
+    <change idref="t47" attribute="internalAssignments" type="string" from="" to="1; 2; 4; 3" resolved="yes"/>
+  </task-change-set>
+  <task-change-set user="noprom" date="2016-03-25T11:07:32.282Z" timestamp="2016-03-25T11:07:32.282Z">
+    <change idref="t49" attribute="internalAssignments" type="string" from="" to="1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 12" resolved="yes"/>
   </task-change-set>
 </changelog>
