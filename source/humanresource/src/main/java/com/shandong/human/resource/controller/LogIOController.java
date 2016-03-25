@@ -48,6 +48,7 @@ public class LogIOController {
 
     /**
      * 转登录界面
+     *
      * @param model
      * @return
      */
@@ -58,6 +59,7 @@ public class LogIOController {
 
     /**
      * 登录
+     *
      * @param userName
      * @param password
      * @param model
@@ -66,9 +68,9 @@ public class LogIOController {
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public void login(String userName, String password,  HttpSession session,
-                      Model model , HttpServletRequest request, HttpServletResponse response) {
-        if(userName == null|| password == null){
+    public void login(String userName, String password, HttpSession session,
+                      Model model, HttpServletRequest request, HttpServletResponse response) {
+        if (userName == null || password == null) {
             try {
                 response.sendRedirect("/404");
             } catch (IOException e) {
@@ -77,8 +79,8 @@ public class LogIOController {
             return;
         }
 
-        User localUser = userService.selectByNamePwd(userName,password);
-        if(localUser == null){
+        User localUser = userService.selectByNamePwd(userName, password);
+        if (localUser == null) {
             try {
                 response.sendRedirect("/404");
             } catch (IOException e) {
@@ -90,20 +92,20 @@ public class LogIOController {
         List<UserRole> roles = userRoleService.getRoleByUserID(localUser.getId());
 
         Set<Auth> auth = new HashSet<Auth>();
-        for(UserRole r:roles){
+        for (UserRole r : roles) {
             List<AuthRole> roleAuth = authRoleService.selectByRoleID(r.getRole_id());
-            for(AuthRole c:roleAuth){
+            for (AuthRole c : roleAuth) {
                 Auth oneAuth = authService.selectByID(c.getAuth_id());
-                if(oneAuth!=null){
+                if (oneAuth != null) {
                     auth.add(oneAuth);
                 }
             }
         }
-        if(auth.isEmpty())
-            auth=null;
+        if (auth.isEmpty())
+            auth = null;
 
-        session.setAttribute(Constant.LOGIN_USER,localUser);
-        session.setAttribute("auth",auth);
+        session.setAttribute(Constant.LOGIN_USER, localUser);
+        session.setAttribute("auth", auth);
         try {
             response.sendRedirect("/");
         } catch (IOException e) {
@@ -118,9 +120,14 @@ public class LogIOController {
      * @return 视图
      */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(Model model, HttpServletRequest request, HttpServletResponse response) {
-        request.getSession().setAttribute("localUser",null);
-        request.getSession().setAttribute("auth",null);
-        return STATIC_PREFIX + "/index";
+    public void logout(Model model, HttpSession session,
+                       HttpServletRequest request, HttpServletResponse response) {
+        session.setAttribute(Constant.LOGIN_USER, null);
+        session.setAttribute("auth", null);
+        try {
+            response.sendRedirect("/login");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
