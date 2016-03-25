@@ -5,6 +5,7 @@ import com.shandong.human.resource.service.sys.AuthRoleService;
 import com.shandong.human.resource.service.sys.AuthService;
 import com.shandong.human.resource.service.sys.UserRoleService;
 import com.shandong.human.resource.service.sys.UserService;
+import com.shandong.human.resource.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -64,7 +66,8 @@ public class LogIOController {
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public void login(String userName, String password, Model model , HttpServletRequest request, HttpServletResponse response) {
+    public void login(String userName, String password,  HttpSession session,
+                      Model model , HttpServletRequest request, HttpServletResponse response) {
         if(userName == null|| password == null){
             try {
                 response.sendRedirect("/404");
@@ -99,8 +102,8 @@ public class LogIOController {
         if(auth.isEmpty())
             auth=null;
 
-        request.getSession().setAttribute("localUser",localUser);
-        request.getSession().setAttribute("auth",auth);
+        session.setAttribute(Constant.LOGIN_USER,localUser);
+        session.setAttribute("auth",auth);
         try {
             response.sendRedirect("/");
         } catch (IOException e) {

@@ -87,6 +87,9 @@
         <error-code>404</error-code>
         <location>/404</location>
     </error-page>
+    <!--<welcome-file-list>-->
+        <!--<welcome-file>/WEB-INF/views/login.jsp</welcome-file>-->
+    <!--</welcome-file-list>-->
     <!--开发阶段不配置500方便调试错误-->
     <!--<error-page>-->
         <!--<error-code>500</error-code>-->

@@ -116,6 +116,9 @@ public class Constant {
     /** session失效时间 **/
     public static final String SESSION_INVALID_TIME = "SESSION_INVALID_TIME";
 
+    /** 登录的用户 **/
+    public static final String LOGIN_USER = "localUser";
+
     public static final String HOST_URL = "http://localhost:8080/bigdatatalentpool";
 
     public static void main(String[] args) {
