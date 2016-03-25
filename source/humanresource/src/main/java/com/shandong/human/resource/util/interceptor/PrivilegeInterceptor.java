@@ -22,6 +22,13 @@ import java.util.Set;
  */
 public class PrivilegeInterceptor implements HandlerInterceptor {
 
+
+    // 静态资源前缀
+    private static final String STATIC_PREFIX = "human-resource";
+
+
+    private static final String STATIC_RESOURCE = "/static";
+
     /**
      * 默认可访问url
      */
@@ -29,10 +36,13 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
     static {
         defaultUrl = new ArrayList<String>();
         defaultUrl.clear();
+        defaultUrl.add("/static");
         defaultUrl.add("/");
         defaultUrl.add("/404");
         defaultUrl.add("/500");
         defaultUrl.add("/login");
+        defaultUrl.add("/logout");
+        defaultUrl.add("/error");
     }
 
     public boolean preHandle(HttpServletRequest request,
@@ -40,11 +50,14 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
         String url = request.getRequestURI();
         HttpSession session = request.getSession();
 
-
         if(url == null){
-            response.sendRedirect("/404");
+            request.setAttribute("error","无效的链接");
+            response.sendRedirect("/error");
             return true;
         }
+
+        if(url.contains(STATIC_RESOURCE))
+            return true;
 
         for(String r:defaultUrl){
             if(r.contains(url)){
@@ -53,13 +66,15 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
         }
 
         if(session == null){
-            response.sendRedirect("/404");
+            request.setAttribute("error","您尚未登录");
+            response.sendRedirect("/error");
             return true;
         }
 
         Set<Auth> auths = (Set<Auth>)session.getAttribute("auth");
         if(auths == null){
-            response.sendRedirect("/500");
+            request.setAttribute("error","您尚未登录");
+            request.getRequestDispatcher("/error").forward(request, response);
             return true;
         }
 
@@ -69,7 +84,8 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
             }
         }
 
-        response.sendRedirect("/500");
+        request.setAttribute("error","无效的访问请求");
+        response.sendRedirect("/error");
         return  true;
     }
 
