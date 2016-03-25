@@ -1,0 +1,36 @@
+//获取数据显示页面
+    @RequestMapping(value = "/home/company/add",method = RequestMethod.GET)
+//获取数据显示页面
+    @RequestMapping(value = "/home/company/add/{id}", method = RequestMethod.GET)
+ //处理修改请求
+    @RequestMapping(value = "/home/company/add/submit",method = RequestMethod.POST)
+//获取修改页面
+    @RequestMapping(value = "/home/company/edit",method = RequestMethod.GET)
+    public String getProvinceEdit(Model model) {
+//获得页面信息
+    @RequestMapping(value = "/home/company/edit/{id}", method = RequestMethod.GET)
+//获取数据显示页面
+    @RequestMapping(value = "/home/data/add",method = RequestMethod.GET)
+//获取修改页面
+    @RequestMapping(value = "/home/data/query",method = RequestMethod.GET)
+ //获取数据显示页面
+    @RequestMapping(value = "/home/data/add/{id}", method = RequestMethod.GET)
+//获取图形显示页面
+    @RequestMapping(value = "/home/data/add/submit",method = RequestMethod.POST)
+
+
+
+
+@RequestMapping(value = “/sys/news”, method = RequestMethod.GET) 显示通知页面
+@RequestMapping(value = “/sys/news/add”, method = RequestMethod.POST)  处理add请求
+@RequestMapping(value = “/sys/news/add”, method = RequestMethod.GET) 显示add页面
+@RequestMapping(value = “sys/news/delete/{id}”, method = RequestMethod.GET) 处理删除请求
+@RequestMapping(value = “sys/news/edit/{id}”, method = RequestMethod.GET) 获取修改页面
+@RequestMapping(value = “sys/news/edit”, method = RequestMethod.POST) 处理修改请求
+
+何林 2016/3/22 11:07:42
+@RequestMapping(value = “/sys/data/list”, method = RequestMethod.GET) 获取数据显示页面
+@RequestMapping(value = "/sys/data/delete/{id}", method = RequestMethod.GET)处理删除请求
+@RequestMapping(value = "/sys/data/edit/{id}", method = RequestMethod.GET)获取修改页面
+@RequestMapping(value = "/sys/data/edit", method = RequestMethod.POST)处理修改请求
+@RequestMapping(value = “/sys/data/display”, method = RequestMethod.GET)获取图形显示页面
