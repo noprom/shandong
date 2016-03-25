@@ -190,33 +190,36 @@
                             <h3 class="box-title">新增用户</h3>
                         </div>
                         <div class="box-body">
-                            <form class="form-horizontal" role="form" action="<%= basePath%>sys/user/add" method="post">
+                            <form class="form-horizontal" role="form" method="post" id="add-user-form">
                                 <div class="row">
                                     <div class="col-md-10">
                                         <div class="col-lg-4 form-group">
                                             <lable class="col-sm-4 control-label" for="name">用户名</lable>
                                             <div class="col-sm-8">
-                                                <input id="name" class="form-control" type="text" name="username" placeholder="用户名">
+                                                <input id="name" class="form-control" type="text" name="username"
+                                                       placeholder="用户名">
                                             </div>
                                         </div>
                                         <div class="col-lg-4 form-group">
                                             <lable class="col-sm-4 control-label" for="pwd">密码</lable>
                                             <div class="col-sm-8">
-                                                <input id="pwd" class="form-control" type="password" name="password" placeholder="密码">
+                                                <input id="pwd" class="form-control" type="password" name="password"
+                                                       placeholder="密码">
                                             </div>
                                         </div>
                                         <div class="col-lg-4 form-group">
                                             <lable class="col-sm-4 control-label" for="type">类型</lable>
                                             <div class="col-sm-8">
                                                 <select id="type" name="type" class="form-control">
-                                                    <option name="type" value="1">省用户</option>
-                                                    <option name="type" value="2">企业用户</option>
+                                                    <c:forEach items="${roleList}" var="v">
+                                                        <option name="type" value="${v.id}">${v.name}</option>
+                                                    </c:forEach>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="submit" class="btn btn-adn" value="添加">
+                                        <input type="button" class="btn btn-adn" value="添加" id="submit-btn">
                                     </div>
                                 </div>
                             </form>
@@ -230,7 +233,39 @@
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
     <script>
         $(function () {
-
+            // 新增用户
+            $("#submit-btn").on('click', function () {
+                // ajax 方式提交数据到某个url
+                var postUrl = "<%=basePath%>sys/user/add";
+                $.ajax({
+                    url: postUrl,//提交的地址
+                    data: $("#add-user-form").serialize(),
+                    // 提交的数据,此处将整个表单的字段全部提交
+                    // 也可以单独提交某个字段
+//                data: {
+//                    "username": username,
+//                    "password": password
+//                },
+                    method: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == 'SUCCESS') {
+                            alert(data.info);
+                            toastr.success(data.info);
+                            // 1000ms之后执行的操作
+                            setTimeout(function () {
+                                // 刷新页面
+                                location.reload(true);
+                                // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                                //window.location.href = "<%=basePath%>sys/user";
+                            }, 1000);
+                        } else {
+                            toastr.error(data.info);
+                            return false;
+                        }
+                    }
+                });
+            });
         });
     </script>
 </div>
