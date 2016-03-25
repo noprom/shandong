@@ -76,12 +76,11 @@ public class UserController {
     public @ResponseBody
     Result addUser(User user, HttpServletRequest request, HttpServletResponse response) {
         Integer uid = userService.insertUser(user);
-        return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
-//        if (uid > 0) {
-//            return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
-//        } else {
-//            return new Result(Result.Status.ERROR, Constant.DEAL_FAIL);
-//        }
+        if (uid > 0) {
+            return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
+        } else {
+            return new Result(Result.Status.ERROR, Constant.DEAL_FAIL);
+        }
     }
 
     @RequestMapping(value = "/user/delete", method = RequestMethod.GET)

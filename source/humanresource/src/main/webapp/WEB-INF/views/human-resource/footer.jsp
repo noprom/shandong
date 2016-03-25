@@ -229,25 +229,25 @@ immediately after the control sidebar -->
 <script src="<%=basePath%>static/human/plugins/chartjs/Chart.min.js"></script>
 
 <%-- 消息提示小插件 --%>
-<script type='text/javascript' src='<%=basePath%>static/human/js/plugins/toastr/toastr.min.js'></script>
+<%--<script type='text/javascript' src='<%=basePath%>static/human/js/plugins/toastr/toastr.min.js'></script>--%>
 <script type="text/javascript">
   <%--Toastr配置--%>
 
-  toastr.options = {
-    "closeButton": true,
-    "debug": false,
-    "progressBar": true,
-    "positionClass": "toast-top-center",
-    "onclick": null,
-    "showDuration": "50",
-    "hideDuration": "100",
-    "timeOut": "1200",
-    "extendedTimeOut": "100",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-  };
+//  toastr.options = {
+//    "closeButton": true,
+//    "debug": false,
+//    "progressBar": true,
+//    "positionClass": "toast-top-center",
+//    "onclick": null,
+//    "showDuration": "50",
+//    "hideDuration": "100",
+//    "timeOut": "1200",
+//    "extendedTimeOut": "100",
+//    "showEasing": "swing",
+//    "hideEasing": "linear",
+//    "showMethod": "fadeIn",
+//    "hideMethod": "fadeOut"
+//  };
 
 
 </script>

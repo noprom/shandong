@@ -231,7 +231,23 @@
     </div>
 
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
+    <script type='text/javascript' src='<%=basePath%>static/human/js/plugins/toastr/toastr.min.js'></script>
     <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "progressBar": true,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "50",
+            "hideDuration": "100",
+            "timeOut": "1200",
+            "extendedTimeOut": "100",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
         $(function () {
             // 新增用户
             $("#submit-btn").on('click', function () {
