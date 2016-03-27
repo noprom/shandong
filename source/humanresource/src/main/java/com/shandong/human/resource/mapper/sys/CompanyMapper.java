@@ -4,6 +4,7 @@ import com.shandong.human.resource.domain.Company;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Author: constantine <1194479264@qq.com>
@@ -37,4 +38,6 @@ public interface CompanyMapper {
                                                     @Param("contact")String contact);
 //    保存输入信息
     public void setCompanyInfo(Company company);
+
+    List<Company> getCompanyNumberByCity();
 }

@@ -103,46 +103,5 @@ public class CompanyDataController {
      * @param httpSession
      * @return
      */
-    @RequestMapping(value = "/sys/data/display", method = RequestMethod.GET)
-    String companyDataDisplay(Model model, HttpSession httpSession) {
-
-
-        List<CompanyData> companyDataOfPeople = companyDataService.getTotalPeopleFromCompanyDataOfEverySuvryTime();
-       // if (!companyDataOfPeople.isEmpty()) {
-
-
-       // httpSession.setAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
-
-        if (companyDataOfPeople.size() > 0) {
-            httpSession.setAttribute("peopleOfEverySurveyTime0", companyDataOfPeople.get(0).getInit_people());
-            httpSession.setAttribute("peopleOfEverySurveyTime1", companyDataOfPeople.get(1).getInit_people());
-            httpSession.setAttribute("peopleOfEverySurveyTime2", companyDataOfPeople.get(2).getInit_people());
-            httpSession.setAttribute("peopleOfEverySurveyTime3", companyDataOfPeople.get(3).getInit_people());
-            httpSession.setAttribute("peopleOfEverySurveyTime4", companyDataOfPeople.get(4).getInit_people());
-            httpSession.setAttribute("peopleOfEverySurveyTime5", companyDataOfPeople.get(5).getInit_people());
-            httpSession.setAttribute("peopleOfEverySurveyTime6", companyDataOfPeople.get(6).getInit_people());
-            httpSession.setAttribute("peopleOfEverySurveyTime7", companyDataOfPeople.get(7).getInit_people());
-            httpSession.setAttribute("peopleOfEverySurveyTime8", companyDataOfPeople.get(8).getInit_people());
-            httpSession.setAttribute("peopleOfEverySurveyTime9", companyDataOfPeople.get(9).getInit_people());
-            httpSession.setAttribute("peopleOfEverySurveyTime10", companyDataOfPeople.get(10).getInit_people());
-            httpSession.setAttribute("peopleOfEverySurveyTime11", companyDataOfPeople.get(11).getInit_people());
-        } else {
-            httpSession.setAttribute("peopleOfEverySurveyTime0", 0);
-            httpSession.setAttribute("peopleOfEverySurveyTime1", 0);
-            httpSession.setAttribute("peopleOfEverySurveyTime2", 0);
-            httpSession.setAttribute("peopleOfEverySurveyTime3", 0);
-            httpSession.setAttribute("peopleOfEverySurveyTime4", 0);
-            httpSession.setAttribute("peopleOfEverySurveyTime5", 0);
-            httpSession.setAttribute("peopleOfEverySurveyTime6", 0);
-            httpSession.setAttribute("peopleOfEverySurveyTime7", 0);
-            httpSession.setAttribute("peopleOfEverySurveyTime8", 0);
-            httpSession.setAttribute("peopleOfEverySurveyTime9", 0);
-            httpSession.setAttribute("peopleOfEverySurveyTime10", 0);
-            httpSession.setAttribute("peopleOfEverySurveyTime11", 0);
-        }
-            return STATIC_PREFIX + "/display";
-
-
-    }
 
 }

@@ -37,13 +37,14 @@
             <div class="col-md-12">
                 <div id="main" style="width: 830px;height:300px;"></div>
             </div>
+
             <div class="col-md-12">
-                <div id="shandong" style="width: 98%; height: 500px;border: 1px solid #ccc; padding: 10px;"></div>
-            </div>
-            <div class="col-md-12">
-                <div id="zhanbi" style="width: 830px;height:300px;"></div>
+                <div id="zhanbi" style="width: 830px;height:500px;"></div>
             </div>
 
+            <div class="col-md-12">
+                <div id="duibifenxi" style="width: 830px;height:500px;"></div>
+            </div>
         </section><!-- /.content -->
     </div>
 
@@ -58,6 +59,10 @@
 <script type="text/javascript">
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
+    var seriesDataJson = [];
+    <c:forEach items="${peopleOfEverySurveyTime}" var="v">
+    seriesDataJson.push(${v.init_people});
+    </c:forEach>
 
     // 指定图表的配置项和数据
     var option = {
@@ -75,19 +80,7 @@
         series: [{
             name: '统计：根据不同的调查期显示出企业的汇总数据',
             type: 'bar',
-            data: [
-                ${peopleOfEverySurveyTime0},
-                ${peopleOfEverySurveyTime1},
-                ${peopleOfEverySurveyTime2},
-                ${peopleOfEverySurveyTime3},
-                ${peopleOfEverySurveyTime4},
-                ${peopleOfEverySurveyTime5},
-                ${peopleOfEverySurveyTime6},
-                ${peopleOfEverySurveyTime7},
-                ${peopleOfEverySurveyTime8},
-                ${peopleOfEverySurveyTime9},
-                ${peopleOfEverySurveyTime10},
-                ${peopleOfEverySurveyTime11}]
+            data: seriesDataJson
         }]
     };
 
@@ -100,58 +93,79 @@
 
     // 指定图表的配置项和数据
     option = {
-        title : {
+        title: {
             text: '山东各市企业占比',
             subtext: '纯属虚构',
-            x:'center'
+            x: 'center'
         },
-        tooltip : {
+        tooltip: {
             trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
+            formatter: "{a}<br/>" + " {a}<br/>{b} : {c} ({d}%)"
         },
+
         legend: {
-            x : 'center',
-            y : 'bottom',
-            data:['rose1','rose2','rose3','rose4','rose5','rose6','rose7','rose8']
+
+            x: 'center',
+            y: 'bottom',
+            data: ['济南', '青岛', '淄博', '枣庄', '东营', '烟台', '潍坊', '济宁', '泰安', '威海', '日照', '莱芜', '临沂', '德州', '聊城', '滨州', '菏泽'],
+            selected: {
+                '济南': false,
+                '青岛': false,
+                '淄博': false,
+                '枣庄': false,
+                '东营': false,
+                '烟台': false,
+                '潍坊': false,
+                '济宁': false,
+                '泰安': false,
+                '威海': false,
+                '日照': false,
+                '莱芜': false,
+                '临沂': false,
+                '德州': false,
+                '聊城': false,
+                '滨州': false,
+                '菏泽': false
+            }
         },
         toolbox: {
-            show : true,
-            feature : {
-                mark : {show: true},
-                dataView : {show: true, readOnly: false},
-                magicType : {
+            show: true,
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: false},
+                magicType: {
                     show: true,
                     type: ['pie', 'funnel']
                 },
-                restore : {show: true},
-                saveAsImage : {show: true}
+                restore: {show: true},
+                saveAsImage: {show: true}
             }
         },
-        calculable : true,
-        series : [
+        calculable: true,
+        series: [
             {
-                name:'山东各市企业占比',
-                type:'pie',
-                radius : [20, 110],
-                roseType : 'area',
-                data:[
-                    {name: "济南", value:20},
-                    {name: "青岛", value:5},
-                    {name: "淄博", value:5},
-                    {name: "枣庄", value:5},
-                    {name: "东营", value:5},
-                    {name: "烟台", value:5},
-                    {name: "潍坊", value:5},
-                    {name: "济宁", value:5},
-                    {name: "泰安", value:5},
-                    {name: "威海", value:5},
-                    {name: "日照", value:5},
-                    {name: "莱芜", value:5},
-                    {name: "临沂", value:5},
-                    {name: "德州", value:5},
-                    {name: "聊城", value:5},
-                    {name: "滨州", value:5},
-                    {name: "菏泽", value:5}
+                name: '山东各市企业占比',
+                type: 'pie',
+                radius: [20, 110],
+                roseType: 'radius',
+                data: [
+                    {name: "济南", value: 7},
+                    {name: "青岛", value: 5},
+                    {name: "淄博", value: 5},
+                    {name: "枣庄", value: 5},
+                    {name: "东营", value: 5},
+                    {name: "烟台", value: 5},
+                    {name: "潍坊", value: 5},
+                    {name: "济宁", value: 5},
+                    {name: "泰安", value: 5},
+                    {name: "威海", value: 5},
+                    {name: "日照", value: 5},
+                    {name: "莱芜", value: 5},
+                    {name: "临沂", value: 5},
+                    {name: "德州", value: 5},
+                    {name: "聊城", value: 5},
+                    {name: "滨州", value: 5},
+                    {name: "菏泽", value: 5}
 
                 ]
             }
@@ -161,77 +175,58 @@
     myChart.setOption(option);
 </script>
 
+
 <script>
-    var chart = echarts.init(document.getElementById('shandong'));
+    var chart = echarts.init(document.getElementById('duibifenxi'));
     option = {
         title: {
-            text: '山东各市企业数量汇总',
+            text: '对比两个调查期的企业岗位变动情况',
             subtext: '纯属虚构',
-            left: 'center'
+            x: 'center'
         },
         tooltip: {
-            trigger: 'item'
-        },
-        legend: {
-            orient: 'vertical',
-            left: 'left',
-        },
-        visualMap: {
-            min: 0,
-            max: 8,
-            left: 'left',
-            top: 'bottom',
-            text: ['高', '低'],           // 文本，默认为数值文本
-            calculable: true
-        },
-        toolbox: {
-            show: true,
-            orient: 'vertical',
-            left: 'right',
-            top: 'center',
-            feature: {
-                dataView: {readOnly: false},
-                restore: {},
-                saveAsImage: {}
+            trigger: 'axis',
+            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
             }
         },
+        legend: {
+            data: ['调查期一', '调查期二']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: 'category',
+                data: ['企业总数', '建档期总岗位数', '调查期总岗位数', '岗位变化总数', '岗位减少总数', '岗位变化数量占比']
+            }
+        ],
+
+
+        yAxis: [
+            {
+                type: 'value'
+            }
+        ],
         series: [
             {
-                name: '山东各市企业数量汇总',
-                type: 'map',
-                mapType: '山东',
-                roam: false,
-                label: {
-                    normal: {
-                        show: true
-                    },
-                    emphasis: {
-                        show: true
-                    }
-                },
-                data: [
-                    {name: "济南市", value: 5},
-                    {name: "青岛市", value: 5},
-                    {name: "淄博市", value: 5},
-                    {name: "枣庄市", value: 5},
-                    {name: "东营市", value: 5},
-                    {name: "烟台市", value: 5},
-                    {name: "潍坊市", value: 5},
-                    {name: "济宁市", value: 5},
-                    {name: "泰安市", value: 5},
-                    {name: "威海市", value: 5},
-                    {name: "日照市", value: 5},
-                    {name: "莱芜市", value: 5},
-                    {name: "临沂市", value: 5},
-                    {name: "德州市", value: 5},
-                    {name: "聊城市", value: 5},
-                    {name: "滨州市", value: 5},
-                    {name: "菏泽市", value: 5}
-                ]
+                name: '调查期一',
+                type: 'bar',
+                data: [320, 332, 301, 334, 390, 330]
             },
-
+            {
+                name: '调查期二',
+                type: 'bar',
+                stack: '调查期二',
+                data: [120, 132, 101, 134, 90, 230]
+            },
         ]
     };
+
     chart.setOption(option)
 </script>
 

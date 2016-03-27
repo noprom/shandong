@@ -2,6 +2,8 @@ package com.shandong.human.resource.service.home;
 
 import com.shandong.human.resource.domain.Company;
 
+import java.util.List;
+
 /**
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/20 10:29
@@ -10,4 +12,6 @@ import com.shandong.human.resource.domain.Company;
 public interface CompanyService {
     //    保存输入信息
     public void setCompanyInfo(Company company);
+
+    List<Company> getCompanyNumberByCity();
 }

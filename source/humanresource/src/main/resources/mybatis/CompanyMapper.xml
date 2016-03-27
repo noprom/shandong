@@ -18,6 +18,7 @@
         <result column="email" property="email"/>
     </resultMap>
 
+
     <select id="getAllCompany" resultMap="Company">
         SELECT * FROM company
     </select>
@@ -54,4 +55,9 @@
 
     </insert>
 
+    <select id="getCompanyNumberByCity" resultType="Company">
+        SELECT area.name as address,count(*) as city_id  FROM company,area
+        WHERE area.id = company.city_id
+        GROUP BY city_id
+    </select>
 </mapper>
