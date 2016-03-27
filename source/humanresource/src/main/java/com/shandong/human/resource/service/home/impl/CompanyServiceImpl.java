@@ -6,6 +6,8 @@ import com.shandong.human.resource.service.home.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 /**
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/20 10:30
@@ -18,5 +20,17 @@ public class CompanyServiceImpl implements CompanyService {
     public void setCompanyInfo(Company company)
     {
         companyMapper.setCompanyInfo(company);
+    }
+    public ArrayList<Company> isNull(int id)
+    {
+        return companyMapper.isNull(id);
+    }
+    public Company getCompanyById(int id)
+    {
+        return companyMapper.getCompanyById(id);
+    }
+    public void updateCompanyInfo(Company company)
+    {
+        companyMapper.updateCompanyInfo(company);
     }
 }

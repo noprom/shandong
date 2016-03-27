@@ -35,6 +35,18 @@ public interface CompanyMapper {
     public ArrayList<Company> getCompanyByCondition(@Param("city_id")String city_id, @Param("area_id")String area_id,
                                                     @Param("name")String name, @Param("code")String code,
                                                     @Param("contact")String contact);
-//    保存输入信息
+    //保存输入信息
     public void setCompanyInfo(Company company);
+
+    public ArrayList<Company> isNull(int id);
+    /**
+     * 按条件查找Company
+     *
+     * @return
+     */
+    public Company getCompanyById(int id);
+    /**
+     * 更新Company
+     */
+    public void updateCompanyInfo(Company company);
 }

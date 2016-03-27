@@ -33,7 +33,8 @@ public class AreaServiceImpl implements AreaService {
     {
         return areaMapper.getAllAreaById(id);
     }
-
-
-
+    public Area getById(int id)
+    {
+        return areaMapper.getById(id);
+    }
 }

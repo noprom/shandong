@@ -16,5 +16,6 @@ public interface AreaService {
     //    获取所有的城市
     public ArrayList<Area> getAllCity();
     public ArrayList<Area> getAllAreaById(Integer id);
+    public Area getById(int id);
 
 }
