@@ -91,7 +91,6 @@ public class AuthController extends CommonController {
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String toDeletePage(HttpServletRequest request, HttpServletResponse response) {
         List<Auth> allAuth = service.selectAll();
-        System.out.println("size:" + allAuth.size());
         AuthTree existAuth = new AuthTree(0, allAuth);
         request.setAttribute("existAuth", existAuth);
         return STATIC_PREFIX + "/delete";

@@ -57,7 +57,6 @@ public class AuthTree {
         }
         tree._Now = now_tmp;
 
-        System.out.println("result size:" + result.size());
         return result;
     }
 
