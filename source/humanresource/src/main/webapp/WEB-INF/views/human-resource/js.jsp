@@ -18,6 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type='text/javascript' src='<%=basePath%>static/human/js/shandong.js'></script>
 <script type='text/javascript' src='<%=basePath%>static/human/js/vintage.js'></script>
 <script type='text/javascript' src='<%=basePath%>static/human/js/china.js'></script>
+<script type='text/javascript' src='<%=basePath%>static/human/js/xianggang.js'></script>
 
 <script type="text/javascript">
     <%--Toastr配置--%>

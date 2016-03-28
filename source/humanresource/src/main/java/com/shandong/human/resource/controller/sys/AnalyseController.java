@@ -2,6 +2,7 @@ package com.shandong.human.resource.controller.sys;
 
 import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.domain.CompanyData;
+import com.shandong.human.resource.domain.StatisticsOfCompany;
 import com.shandong.human.resource.service.home.CompanyService;
 import com.shandong.human.resource.service.sys.CompanyDataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * Author: helin <helin199210@icloud.com>
@@ -70,9 +72,34 @@ public class AnalyseController {
         }
 
         List<Company> companyNumberByCity = companyService.getCompanyNumberByCity();
+        float sum = 0;
+        for (int i = 0; i < companyNumberByCity.size(); i++) {
+
+            sum += companyNumberByCity.get(i).getCity_id();
+        }
+
+        List<StatisticsOfCompany> statisticsOfCompanyList = new ArrayList<StatisticsOfCompany>();
+        DecimalFormat df   = new DecimalFormat("######0.00");
+        for (int i = 0; i < companyNumberByCity.size(); i++) {
 
 
-        httpSession.setAttribute("companyNumberByCityOfIntType", companyNumberByCity);
+            StatisticsOfCompany statisticsOfCompany = new StatisticsOfCompany();
+
+            float proportion = companyNumberByCity.get(i).getCity_id() / sum * 100;
+
+            statisticsOfCompany.setCity(companyNumberByCity.get(i).getAddress());
+            statisticsOfCompany.setNumber(companyNumberByCity.get(i).getCity_id());
+            statisticsOfCompany.setProportion(df.format(proportion));
+
+            statisticsOfCompanyList.add(statisticsOfCompany);
+        }
+
+        httpSession.setAttribute("statisticsOfCompanyList", statisticsOfCompanyList);
+
+//        httpSession.setAttribute("sum",sum);
+//        httpSession.setAttribute("companyProportionByCity",companyProportionByCity);
+//        httpSession.setAttribute("companyNumberByCityOfIntType", companyNumberByCity);
+
         return STATIC_PREFIX + "/analyse";
     }
 

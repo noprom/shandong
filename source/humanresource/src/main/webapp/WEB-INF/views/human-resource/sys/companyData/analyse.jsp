@@ -37,7 +37,10 @@
         <div class="col-md-12">
             <div id="shandong" style="width: 98%; height: 500px;border: 1px solid #ccc; padding: 10px;"></div>
         </div>
+
+
         <!-- Main content -->
+
 
     </div>
 
@@ -81,6 +84,7 @@
 </script>
 
 <script>
+
     var chart = echarts.init(document.getElementById('shandong'));
 
     option = {
@@ -90,7 +94,14 @@
             left: 'center'
         },
         tooltip: {
-            trigger: 'item'
+            trigger: 'item',
+            formatter: function (params,ticket,callback) {
+                var res = '所选地区:' + params.name+'<br/>';
+                res+='数量:'+params.value+'<br/>';
+                res+='比例：'+params.data.proportion  + "%" + '<br/>';
+                setTimeout(function (){callback(ticket, res);}, 120);
+                return 'loading';
+            }
         },
         legend: {
             orient: 'vertical',
@@ -115,8 +126,7 @@
                 saveAsImage: {}
             }
         },
-        series: [
-            {
+        series: [{
                 name: '山东各市企业数量汇总',
                 type: 'map',
                 mapType: '山东',
@@ -130,15 +140,14 @@
                     }
                 },
                 data: [
-                    <c:forEach var="v" items="${companyNumberByCityOfIntType}">
-                    {name: "${v.address}", value: ${v.city_id}},
+                    <c:forEach var="v" items="${statisticsOfCompanyList}">
+                    {name: "${v.city}", value: ${v.number}, proportion:${v.proportion}},
                     </c:forEach>
                 ]
-            },
-
-        ]
+            }]
     };
     chart.setOption(option)
 </script>
+
 </body>
 </html>
