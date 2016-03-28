@@ -22,4 +22,6 @@ public interface SurveyTimeService {
      * @return
      */
     public Integer insertSurveyTime(SurveyTime time);
+
+    public SurveyTime getAllSurveyTimeById(int id);
 }

@@ -1,6 +1,8 @@
 package com.shandong.human.resource.service.sys;
 
 import com.shandong.human.resource.domain.CompanyData;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,4 +19,8 @@ public interface CompanyDataService {
     Integer companyDataAdd(CompanyData companyData);
 
     List<CompanyData> getTotalPeopleFromCompanyDataOfEverySuvryTime();
+
+    public void companyDataAddFirst(CompanyData companyData);
+
+    public ArrayList<CompanyData> getAllCompanyDataFromSQL();
 }
