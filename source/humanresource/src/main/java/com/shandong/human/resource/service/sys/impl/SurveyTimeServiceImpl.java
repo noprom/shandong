@@ -30,4 +30,9 @@ public class SurveyTimeServiceImpl implements SurveyTimeService
     public Integer insertSurveyTime(SurveyTime time) {
         return service.insertSurveyTime(time);
     }
+
+    public SurveyTime getAllSurveyTimeById(int id)
+    {
+        return service.getAllSurveyTimeById(id);
+    }
 }

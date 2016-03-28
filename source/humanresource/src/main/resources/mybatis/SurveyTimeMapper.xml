@@ -15,6 +15,10 @@
     
     <insert id="insertSurveyTime" parameterType="com.shandong.human.resource.domain.SurveyTime">
         INSERT INTO survey_time (id , start_time , end_time)
-        VALUES (${id} , ${start_time,jdbcType=DATE } , ${end_time,jdbcType=DATE });
+        VALUES (#{id}, #{start_time,jdbcType=DATE} , #{end_time,jdbcType=DATE})
     </insert>
+
+    <select id="getAllSurveyTimeById" resultMap="Survey_time">
+        SELECT * FROM survey_time WHERE id=#{id}
+    </select>
 </mapper>

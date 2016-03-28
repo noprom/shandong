@@ -3,8 +3,10 @@ package com.shandong.human.resource.controller.home.company;
 import com.shandong.human.resource.domain.Area;
 import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.domain.CompanyData;
+import com.shandong.human.resource.domain.User;
 import com.shandong.human.resource.service.home.AreaService;
 import com.shandong.human.resource.service.home.CompanyService;
+import com.shandong.human.resource.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,49 +66,40 @@ public class CompanyController {
     //处理修改请求
     @RequestMapping(value = "/home/company/add/submit",method = RequestMethod.POST)
     @ResponseBody
-    public Map saveMessage(Company company) {
+    public Map saveMessage(Company company,HttpSession session) {
         Map map=new HashMap();
+        User user=(User)session.getAttribute(Constant.LOGIN_USER);
+        int id=user.getId();
+        //检查数据是否已经插入到数据库中
+        ArrayList<Company> companies=companyService.isNull(id);
+        if(companies.size()>0)
+        {
+            map.put("success","exit");
+            return map;
+        }
+        company.setId(id);
         companyService.setCompanyInfo(company);
-        System.out.println("company");
-        System.out.println(company);
         map.put("success","success");
         return map;
-//        company.setProvince_id(0);
-//        company.setCity_id(city_id);
-//        System.out.println(city_id);
-//        company.setArea_id(area_id);
-//        System.out.println(area_id);
-//        company.setAddress(address);
-//        System.out.println(address);
-//        company.setBusiness(business);
-//        System.out.println(business);
-//        company.setCode(code);
-//        System.out.println(code);
-//        company.setContact(contact);
-//        System.out.println(contact);
-//        company.setEmail(email);
-//        System.out.println(email);
-//        company.setName(province_id);
-//        System.out.println(province_id);
-//        company.setFax(fax);
-//        System.out.println(fax);
-//        company.setPhone(phone);
-//        System.out.println(phone);
-//        company.setZipcode(zipcode);
-//        System.out.println(zipcode);
-//        System.out.println(phone);
-//        return STATIC_PREFIX + "/add";
     }
 
     //企业信息修改
     //获取修改页面
     @RequestMapping(value = "/home/company/edit",method = RequestMethod.GET)
-    public String getProvinceEdit(Model model) {
-        ArrayList<Area> list = areaService.getAllCity();
-        //刚开始打开页面时显示济南市的所有县
-        ArrayList<Area> listCity=areaService.getAllAreaById(170);
-        model.addAttribute("editResult", list);
-        model.addAttribute("editResultCity", listCity);
+    public String getProvinceEdit(Model model,HttpSession session) {
+        User user=(User)session.getAttribute(Constant.LOGIN_USER);
+        int id=user.getId();
+        Company company=companyService.getCompanyById(id);
+        //id是主键，数组只有一个元素
+        Area cityArea=areaService.getById(company.getCity_id());
+        Area areaArea=areaService.getById(company.getArea_id());
+        ArrayList<Area> listCity = areaService.getAllCity();
+        ArrayList<Area> listArea=areaService.getAllAreaById(company.getCity_id());
+        model.addAttribute("listCity", listCity);
+        model.addAttribute("listArea", listArea);
+        model.addAttribute("company",company);
+        model.addAttribute("cityArea",cityArea);
+        model.addAttribute("areaArea",areaArea);
         return STATIC_PREFIX + "/edit";
     }
 
@@ -119,5 +112,23 @@ public class CompanyController {
         ArrayList<Area> list = areaService.getAllAreaById(id);
         return list;
     }
-
+    //保存修改信息
+    @RequestMapping(value = "/home/company/edit/submit", method = RequestMethod.POST)
+    @ResponseBody
+    public Map saveInfo(Company company,HttpSession session) {
+        Map map=new HashMap();
+        User user=(User)session.getAttribute(Constant.LOGIN_USER);
+        int id=user.getId();
+        //检查数据是否已经插入到数据库中
+        ArrayList<Company> companies=companyService.isNull(id);
+        if(companies.size()==0)
+        {
+            map.put("success","noInfo");
+            return map;
+        }
+        company.setId(id);
+        companyService.updateCompanyInfo(company);
+        map.put("success","success");
+        return map;
+    }
 }

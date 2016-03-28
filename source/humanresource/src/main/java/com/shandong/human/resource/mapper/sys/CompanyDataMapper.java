@@ -29,4 +29,8 @@ public interface CompanyDataMapper {
     Integer companyDataAdd(CompanyData companyData);
 
     List<CompanyData> getTotalPeopleFromCompanyDataOfEverySuvryTime();
+
+    public void companyDataAddFirst(CompanyData companyData);
+
+    public ArrayList<CompanyData> getAllCompanyDataFromSQL();
 }

@@ -51,13 +51,24 @@
         (id,province_id, city_id, area_id, address, code, name, business, contact, zipcode, phone, fax, email)
 
         VALUES
-        (1,#{province_id}, #{city_id}, #{area_id}, #{address}, #{code}, #{name}, #{business}, #{contact}, #{zipcode}, #{phone}, #{fax}, #{email})
+        (#{id},16, #{city_id}, #{area_id}, #{address}, #{code}, #{name}, #{business}, #{contact}, #{zipcode}, #{phone}, #{fax}, #{email})
 
     </insert>
+<<<<<<< HEAD
 
     <select id="getCompanyNumberByCity" resultType="Company">
         SELECT area.name as address,count(*) as city_id  FROM company,area
         WHERE area.id = company.city_id
         GROUP BY city_id
     </select>
+=======
+    <select id="isNull" resultMap="Company">
+        SELECT * FROM company WHERE id=#{id}
+    </select>
+    <update id="updateCompanyInfo" parameterType="Company">
+        UPDATE company
+        SET city_id = #{city_id} , area_id = #{area_id} , address = #{address}, code = #{code}, name = #{name}, business = #{business}, contact = #{contact}, zipcode = #{zipcode}, phone = #{phone}, fax = #{fax}, email = #{email}
+        WHERE id = #{id}
+    </update>
+>>>>>>> 15ac3b8b785a47c52ec8100202032fb5b31ea7c9
 </mapper>

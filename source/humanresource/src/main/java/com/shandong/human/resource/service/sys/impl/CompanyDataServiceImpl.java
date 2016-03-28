@@ -3,6 +3,8 @@ package com.shandong.human.resource.service.sys.impl;
 import com.shandong.human.resource.domain.CompanyData;
 import com.shandong.human.resource.mapper.sys.CompanyDataMapper;
 import com.shandong.human.resource.service.sys.CompanyDataService;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +39,15 @@ public class CompanyDataServiceImpl implements CompanyDataService{
 
     public List<CompanyData> getTotalPeopleFromCompanyDataOfEverySuvryTime() {
         return companyDataMapper.getTotalPeopleFromCompanyDataOfEverySuvryTime();
+    }
+
+    public void companyDataAddFirst(CompanyData companyData)
+    {
+        companyDataMapper.companyDataAddFirst(companyData);
+    }
+
+    public ArrayList<CompanyData> getAllCompanyDataFromSQL()
+    {
+        return companyDataMapper.getAllCompanyDataFromSQL();
     }
 }

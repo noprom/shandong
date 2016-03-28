@@ -97,7 +97,7 @@
                                 <input class="form-control" placeholder="中文、英文" type="text" name="name">
                             </div>
                             <div class="box-footer">
-                                <button type="button" onclick="onSubmit()" class="btn btn-primary">更改</button>
+                                <button type="button" onclick="onSubmit()" class="btn btn-primary">提交</button>
                             </div>
                         </div><!-- /.box-body -->
                 </div><!-- /.content -->
@@ -172,7 +172,7 @@
 //                return false;
 //            } else {
             //var str=$("#add-form").serialize();
-            alert("提交成功");
+//            alert("提交成功");
                 var postUrl = "<%=basePath%>home/company/add/submit";
                 $.ajax({
                     url: postUrl,
@@ -185,15 +185,18 @@
                         {
                             alert("提交成功");
 //                            提交成功时返回到主页
-                            window.location.href = "<%=basePath%>index";
+                            window.location.href = "<%=basePath%>";
                         }
-                        else
+                        else if(data.success=="exit")
                         {
-                            alert("提交失败");
-                            window.location.href = "<%=basePath%>home/company/add";
+                            alert("已经提交完毕，请勿重复提交！");
+                            window.location.href = "<%=basePath%>";
                         }
-
-                }});
+                    },
+                    error: function(){
+                        alert("服务器无法连接！");
+                    }
+                });
 
         }
 
