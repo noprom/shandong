@@ -39,9 +39,7 @@ public interface CompanyMapper {
     //保存输入信息
     public void setCompanyInfo(Company company);
 
-<<<<<<< HEAD
     List<Company> getCompanyNumberByCity();
-=======
     public ArrayList<Company> isNull(int id);
     /**
      * 按条件查找Company
@@ -53,5 +51,4 @@ public interface CompanyMapper {
      * 更新Company
      */
     public void updateCompanyInfo(Company company);
->>>>>>> 15ac3b8b785a47c52ec8100202032fb5b31ea7c9
 }

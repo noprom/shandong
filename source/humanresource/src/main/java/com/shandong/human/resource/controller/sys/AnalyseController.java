@@ -96,9 +96,6 @@ public class AnalyseController {
 
         httpSession.setAttribute("statisticsOfCompanyList", statisticsOfCompanyList);
 
-//        httpSession.setAttribute("sum",sum);
-//        httpSession.setAttribute("companyProportionByCity",companyProportionByCity);
-//        httpSession.setAttribute("companyNumberByCityOfIntType", companyNumberByCity);
 
         return STATIC_PREFIX + "/analyse";
     }
