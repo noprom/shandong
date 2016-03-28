@@ -42,6 +42,7 @@
         </section>
 
         <!-- Main content -->
+        <form role="form" id="add-form">
         <div class="row">
             <!-- left column -->
             <div class="col-md-6">
@@ -50,38 +51,53 @@
                         <h3 class="box-title"></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" id="left-form">
+
                         <div class="box-body">
+                            <div class="form-group">
+                                <label>调查期时间</label>
+                                <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="survey_time_id" name="survey_time_id">
+                                    <%--<option selected="selected"></option>--%>
+                                    <c:forEach items="${listSurverTime}" var="v">
+                                        <option value="${v.id}">${v.start_time}----${v.end_time}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label>建档期就业人数</label>
                                 <input class="form-control" type="text" id="init_people" name="init_people">
                             </div>
-                            <%--<form>--%>
                             <div class="form-group">
                                 <label>调查期就业人数</label>
                                 <input class="form-control" type="text" id="cur_people" name="cur_people">
                             </div>
-
-                            <div class="form-group">
-                                <label>其它原因</label>
-                                <textarea style=" height: 64px;" class="form-control" rows="3" id="other_reason">
-                                </textarea>
-                            </div><!-- /.form-group -->
                             <div class="form-group">
                                 <label>就业人数减少类型</label>
-                                <input class="form-control" type="text" id="reduce_type" name="reduce_type">
+                                <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="reduce_type" name="reduce_type">
+                                    <option selected="selected"></option>
+                                    <c:forEach items="${listType}" var="v">
+                                        <option value="${v.id}">${v.name}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>主要原因</label>
-                                <input class="form-control" type="text" id="reason1" name="reason1">
+                                <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="reason1" name="reason1">
+                                    <option selected="selected"></option>
+                                    <c:forEach items="${listReason}" var="v">
+                                        <option value="${v.id}">${v.name}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>主要原因说明</label>
-                                <textarea style="height: 64px;" class="form-control" rows="3" id="reason1_explain">
+                                <textarea style="height: 64px;" class="form-control" rows="3" name="reason1_explain" id="reason1_explain">
                                 </textarea>
-                            </div><!-- /.form-group -->
+                            </div>
+                            <div class="box-footer">
+                                <button type="button" onclick="onSave()" class="btn btn-primary">保存</button>
+                                <button type="button" onclick="onSubmit()" class="btn btn-primary">上报</button>
+                            </div>
                         </div><!-- /.box-body -->
-                    </form>
                 </div><!-- /.content -->
             </div><!--/.col (left) -->
             <!-- right column -->
@@ -92,36 +108,53 @@
                         <h3 class="box-title"></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" id="add-form">
+
                         <div class="box-body">
 
                             <div class="form-group">
                                 <label>次要原因</label>
-                                <input class="form-control" type="text" id="reason2" name="reason2">
+                                <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="reason2" name="reason2">
+                                    <option selected="selected"></option>
+                                    <c:forEach items="${listReason}" var="v">
+                                        <option value="${v.id}">${v.name}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
 
                             <div class="form-group">
                                 <label>次要原因说明</label>
-                                <textarea style="height: 64px;" class="form-control" rows="3" id="reason2_explain">
+                                <textarea style="height: 64px;" class="form-control" rows="3" name="reason2_explain" id="reason2_explain">
                                 </textarea>
                             </div><!-- /.form-group -->
                             <div class="form-group">
                                 <label>第三原因</label>
-                                <input class="form-control" type="text" id="reason3" name="reason3">
+                                <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="reason3" name="reason3">
+                                    <option selected="selected"></option>
+                                    <c:forEach items="${listReason}" var="v">
+                                        <option value="${v.id}">${v.name}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
 
                             <div class="form-group">
                                 <label>第三原因说明</label>
-                                <textarea style="height: 64px;" class="form-control" rows="3" id="reason3_explain">
+                                <textarea class="form-control" rows="3" placeholder="" name="reason3_explain" id="reason3_explain">
                                 </textarea>
                             </div><!-- /.form-group -->
+                            <div class="form-group">
+                                <label>其它原因</label>
+                                <textarea  class="form-control" rows="3" placeholder="" id="other_reason" name="other_reason">
+                                </textarea>
+                            </div>
 
                         </div><!-- /.box-body -->
-                    </form>
+
                 </div><!-- /.content -->
             </div><!--/.col (right) -->
         </div>
+        </form>
     </div><!-- /.content-wrapper -->
+
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
     <script>
         $(function () {
@@ -135,24 +168,31 @@
                 "autoWidth": false
             });
         });
+        function  onSave()
+        {
+            var postUrl = "<%=basePath%>home/data/add/onSave";
+            $.ajax({
+                url: postUrl,
+                data: $("#add-form").serialize(),
+                async:false,
+                type: 'POST',
+                dataType: "json",
+                success: function (data) {
+                    if(data.success=="success")
+                    {
+                        alert("保存成功");
+                    }
+                },
+                error:function()
+                {
+                    alert("保存失败");
+                }
+            });
+
+        }
         function  onSubmit()
         {
-            //标题
-//            var title = $("#addNews-form input[name = title]").val();
-            //正文
-//            var content = $("#addNews-form textarea[name = content]").val();
-
-            //数据校验
-//            if (isEmpty(title)) {
-//                alert("标题不能为空");
-//                return false;
-//            } else if (isEmpty(content)) {
-//                alert("正文不能为空");
-//                return false;
-//            } else {
-            //var str=$("#add-form").serialize();
-            alert("提交成功");
-                var postUrl = "<%=basePath%>home/company/add/submit";
+                var postUrl = "<%=basePath%>home/data/add/submit";
                 $.ajax({
                     url: postUrl,
                     data: $("#add-form").serialize(),
@@ -162,17 +202,17 @@
                     success: function (data) {
                         if(data.success=="success")
                         {
-                            alert("提交成功");
-//                            提交成功时返回到主页
-                            window.location.href = "<%=basePath%>index";
-                        }
-                        else
-                        {
-                            alert("提交失败");
-                            window.location.href = "<%=basePath%>home/company/add";
+                            alert("上报成功");
+                            window.location.href = "<%=basePath%>";
                         }
 
-                }});
+
+                    },
+                    error:function()
+                    {
+                        alert("上报失败");
+                    }
+                });
 
         }
 
