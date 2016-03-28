@@ -64,9 +64,9 @@ public class SurveyTimeController{
         }
 
         SurveyTime toAdd = new SurveyTime();
-        DateFormat date_t =new SimpleDateFormat("MM/dd/yyyy");
-        String strTime_s = times[0];
-        String endTime_s = times[1];
+        DateFormat date_t =new SimpleDateFormat("MM-dd-yyyy");
+        String strTime_s = times[0].replace('/','-');
+        String endTime_s = times[1].replace('/','-');
 
         Date strDate = new Date();
         Date endDate = new Date();

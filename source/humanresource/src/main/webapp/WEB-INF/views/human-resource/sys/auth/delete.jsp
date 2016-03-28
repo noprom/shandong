@@ -40,7 +40,6 @@
                                 <label>选择权限</label>
                                 <select name="id" class="form-control">
                                     <% List<Auth> authList= AuthTree.toList(_Auths);
-                                        System.out.println("list_size:"+authList.size());
                                         for (Auth r:authList) {
                                             StringBuilder s = new StringBuilder();
                                             for(int i=0;i<r.getLevel();++i)
