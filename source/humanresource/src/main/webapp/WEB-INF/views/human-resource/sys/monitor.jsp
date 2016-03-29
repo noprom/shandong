@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="com.shandong.human.resource.domain.MonitorInformationAddtion" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -78,6 +79,12 @@
                             <ul class="nav nav-pills nav-stacked">
                                 <li><a href="#">操作系统名称 : <span class=" text-green"><i class="fa"></i>${m.osName}</span></a></li>
                                 <li><a href="#">总线程数 : <span class=" text-green"><i class="fa"></i> ${m.totalThread}</span></a></li>
+                                <li><a href="#">JavaVersion : <span class=" text-green"><i class="fa"></i> ${mia.javaVersion}</span></a></li>
+                                <li><a href="#">操作系统架构 : <span class=" text-green"><i class="fa"></i> ${mia.arch}</span></a></li>
+                                <li><a href="#">Server Name : <span class=" text-green"><i class="fa"></i> ${mia.serverName}</span></a></li>
+                                <li><a href="#">Server Address : <span class=" text-green"><i class="fa"></i> ${mia.serverAddr}</span></a></li>
+                                <li><a href="#">Server Host : <span class=" text-green"><i class="fa"></i> ${mia.serverHost}</span></a></li>
+                                <li><a href="#">Server Port : <span class=" text-green"><i class="fa"></i> ${mia.serverPort}</span></a></li>
                             </ul>
                         </div><!-- /.footer -->
                     </div>
