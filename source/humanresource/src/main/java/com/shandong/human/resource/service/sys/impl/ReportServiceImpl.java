@@ -44,4 +44,13 @@ public class ReportServiceImpl implements ReportService {
         return companyDataMapper.getCompanyDataById(id);
     }
 
+    /**
+     * 根据id获取更改CompanyData的status
+     * void
+     */
+    public void changeCompanyDataStatusById(Integer id)
+    {
+        companyDataMapper.changeCompanyDataStatusById(id);
+    }
+
 }

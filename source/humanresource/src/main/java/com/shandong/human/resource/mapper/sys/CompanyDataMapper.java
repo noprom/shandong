@@ -33,4 +33,6 @@ public interface CompanyDataMapper {
     public void companyDataAddFirst(CompanyData companyData);
 
     public ArrayList<CompanyData> getAllCompanyDataFromSQL();
+
+    public void changeCompanyDataStatusById(@Param("id") Integer id);
 }

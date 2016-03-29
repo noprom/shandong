@@ -32,5 +32,13 @@ public  interface ReportService {
     public CompanyData getCompanyDataById(Integer id);
 
 
+    /*
+     * 根据id获取更改CompanyData的status
+     * void
+     */
+    public void changeCompanyDataStatusById(Integer id);
+
+
+
 
 }

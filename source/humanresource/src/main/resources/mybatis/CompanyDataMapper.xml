@@ -25,7 +25,7 @@
 
 
     <select id="getAllCompanyData" resultMap="CompanyData">
-        SELECT * FROM company_data WHERE status = 1 ORDER BY company_id
+        SELECT * FROM company_data WHERE status = 2 ORDER BY company_id
     </select>
 
 
@@ -75,4 +75,8 @@
     <select id="getAllCompanyDataFromSQL" resultMap="CompanyData">
         SELECT * FROM company_data
     </select>
+
+    <update id="changeCompanyDataStatusById" parameterType="int">
+        UPDATE company_data SET status = 3 WHERE id = #{id}
+    </update>
 </mapper>
