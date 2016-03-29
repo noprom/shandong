@@ -15,7 +15,7 @@
 
 <div class="login-box">
     <div class="login-logo" data-color="gray">
-        <b>山东</b>&nbsp;&nbsp;人力资源
+        <b>山东人力资源</b>&nbsp;&nbsp;采集系统
     </div><!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">欢迎来到山东资源管理系统</p>
