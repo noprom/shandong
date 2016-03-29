@@ -119,16 +119,13 @@ public class AnalyseController {
     @RequestMapping(value = "/sys/data/duibifenxi", method = RequestMethod.POST)
     public
     @ResponseBody
-    List<String>  companyNumber(Model model, HttpSession httpSession, HttpServletRequest request) {
+    List<String>  companyNumber(HttpServletRequest request) {
         List<CompanyData> companyDataOfPeriodOneList = companyDataService.getCompanyDataBySurveyTimeId(Integer.parseInt(String.valueOf(request.getParameter("period"))));
-//        List<CompanyData> companyDataOfPeriodTwoList = companyDataService.getCompanyDataBySurveyTimeId(Integer.parseInt(String.valueOf(request.getParameter("periodTwo"))));
 
-        return analysis(model, httpSession, companyDataOfPeriodOneList, "One");
-//        /**/analysis(model, httpSession, companyDataOfPeriodTwoList, "Two");
-//        return STATIC_PREFIX + "/analyse";
+        return analysis( companyDataOfPeriodOneList );
     }
 
-    private List<String> analysis(Model model, HttpSession httpSession, List<CompanyData> companyDataList, String identify) {
+    private List<String> analysis(List<CompanyData> companyDataList) {
         /**
          * 计算企业总数、建档期总岗位数、调查期总岗位数、岗位变化总数、岗位减少总数、岗位变化数量占比。
          */
@@ -156,13 +153,6 @@ public class AnalyseController {
             if (I < C)
                 totalReduceOfPeople++;
         }
-//        model.addAttribute("totalCompanyNumber" + identify, totalCompanyNumber);
-//        model.addAttribute("totalInitPeople" + identify, totalInitPeople);
-//        model.addAttribute("totalCurPeople" + identify, totalCurPeople);
-//        model.addAttribute("totalChangeOfCompany" + identify, totalCurPeople - totalInitPeople);
-//        model.addAttribute("totalReduceOfPeople" + identify, totalReduceOfPeople);
-////        DecimalFormat df = new DecimalFormat("######0.00");
-//        model.addAttribute("rateOfChange" + identify, (totalCurPeople - totalInitPeople) / (float) totalInitPeople);
 
 
         List<String> ajaxReturn = new ArrayList<String>();
@@ -179,13 +169,6 @@ public class AnalyseController {
             System.out.println(ajaxReturn.get(i));
         return ajaxReturn;
 
-//        httpSession.setAttribute("totalCompanyNumber" + identify, totalCompanyNumber);
-//        httpSession.setAttribute("totalInitPeople" + identify, totalInitPeople);
-//        httpSession.setAttribute("totalCurPeople" + identify, totalCurPeople);
-//        httpSession.setAttribute("totalChangeOfCompany" + identify, totalCurPeople - totalInitPeople);
-//        httpSession.setAttribute("totalReduceOfPeople" + identify, totalReduceOfPeople);
-////        DecimalFormat df = new DecimalFormat("######0.00");
-//        httpSession.setAttribute("rateOfChange" + identify, (totalCurPeople - totalInitPeople) / (float) totalInitPeople);
 
     }
 

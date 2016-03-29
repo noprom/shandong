@@ -525,8 +525,7 @@
                         }
                     },
                     legend: {
-                        data: ['调查期一']
-//                        data: ['调查期一', '调查期二']
+                        data: ['调查期一', '调查期二']
                     },
                     grid: {
                         left: '3%',
@@ -577,7 +576,7 @@
                                         }
                                     },
                                     error: function (errorMsg) {
-                                        alert("不好意思，大爷，图表请求数据失败啦!");
+                                        alert("图表请求数据失败");
                                         myChart.hideLoading();
                                     }
 
@@ -589,7 +588,6 @@
                             name: '调查期二',
                             type: 'bar',
                             stack: '调查期二',
-                            <%--data: [${totalCompanyNumberTwo}, ${totalInitPeopleTwo}, ${totalCurPeopleTwo}, ${totalChangeOfCompanyTwo}, ${totalReduceOfPeopleTwo}, ${rateOfChangeTwo}]--%>
                             data: (function () {
                                 var arr = [];
                                 var period = periodTwo;
@@ -609,7 +607,7 @@
                                         }
                                     },
                                     error: function (errorMsg) {
-                                        alert("不好意思，大爷，图表请求数据失败啦!");
+                                        alert("图表请求数据失败");
                                         myChart.hideLoading();
                                     }
 
