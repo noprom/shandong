@@ -32,6 +32,8 @@ public interface CompanyDataMapper {
 
     public ArrayList<CompanyData> getAllCompanyDataFromSQL();
 
+    public void changeCompanyDataStatusById(@Param("id") Integer id);
+
     public ArrayList<CompanyData> getCompanyDataBySurveyTimeId(int survey_time_id);
 
     public Integer getCompanyDataCountByCity();

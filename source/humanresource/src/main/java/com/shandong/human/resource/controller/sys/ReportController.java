@@ -70,6 +70,13 @@ public class ReportController {
                 list.add(companyData);
             }
         }
+        for (String r : ids) {
+            if (!r.equals("0"))
+            {
+                int id = Integer.parseInt(r);
+                reportService.changeCompanyDataStatusById(id);
+            }
+        }
         //上报
     }
 

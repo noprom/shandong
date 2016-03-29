@@ -99,7 +99,7 @@
                                         <td>${v.status}</td>
                                         <td>${v.create_time}</td>
                                         <td>${v.update_time}</td>
-                                        <td><a href="<%=basePath%>sys/report/${v.id}" class="btn btn-primary">详情</a>
+                                        <td><a href="<%=basePath%>sys/report/${v.company_id}" class="btn btn-primary">详情</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
