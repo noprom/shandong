@@ -109,7 +109,7 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
             }
 
             //包含替换符
-            if(signCheck(url)){
+            if(signCheck(r_url)){
                 int i;
                 for(i=0;i<r_url_splid.length;++i){
                     //当前节为替换符
