@@ -70,8 +70,8 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
                              HttpServletResponse response, Object handler) throws Exception {
         String redirectUrl = doPreHandle(request, response, handler);
         if (!redirectUrl.equals(request.getRequestURI())) {
+            response.sendRedirect(redirectUrl);
             return false;
-            //response.sendRedirect(redirectUrl);
         }
         return true;
     }
@@ -133,7 +133,7 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
 
         if (url == null) {
             request.setAttribute("error", "无效的链接");
-            return "error";
+            return "/error";
         }
 
         if (url.contains(STATIC_RESOURCE))
