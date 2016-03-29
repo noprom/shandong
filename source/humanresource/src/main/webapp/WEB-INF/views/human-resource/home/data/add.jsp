@@ -55,7 +55,7 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label>调查期时间</label>
-                                <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="survey_time_id" name="survey_time_id">
+                                <select aria-hidden="true" tabindex="-1" class="form-control" style="width: 100%;" id="survey_time_id" name="survey_time_id">
                                     <%--<option selected="selected"></option>--%>
                                     <c:forEach items="${listSurverTime}" var="v">
                                         <option value="${v.id}">${v.start_time}----${v.end_time}</option>
@@ -72,7 +72,7 @@
                             </div>
                             <div class="form-group">
                                 <label>就业人数减少类型</label>
-                                <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="reduce_type" name="reduce_type">
+                                <select aria-hidden="true" tabindex="-1" class="form-control" style="width: 100%;" id="reduce_type" name="reduce_type">
                                     <option selected="selected"></option>
                                     <c:forEach items="${listType}" var="v">
                                         <option value="${v.id}">${v.name}</option>
@@ -81,7 +81,7 @@
                             </div>
                             <div class="form-group">
                                 <label>主要原因</label>
-                                <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="reason1" name="reason1">
+                                <select aria-hidden="true" tabindex="-1" class="form-control" style="width: 100%;" id="reason1" name="reason1">
                                     <option selected="selected"></option>
                                     <c:forEach items="${listReason}" var="v">
                                         <option value="${v.id}">${v.name}</option>
@@ -113,7 +113,7 @@
 
                             <div class="form-group">
                                 <label>次要原因</label>
-                                <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="reason2" name="reason2">
+                                <select aria-hidden="true" tabindex="-1" class="form-control" style="width: 100%;" id="reason2" name="reason2">
                                     <option selected="selected"></option>
                                     <c:forEach items="${listReason}" var="v">
                                         <option value="${v.id}">${v.name}</option>
@@ -128,7 +128,7 @@
                             </div><!-- /.form-group -->
                             <div class="form-group">
                                 <label>第三原因</label>
-                                <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="reason3" name="reason3">
+                                <select aria-hidden="true" tabindex="-1" class="form-control" style="width: 100%;" id="reason3" name="reason3">
                                     <option selected="selected"></option>
                                     <c:forEach items="${listReason}" var="v">
                                         <option value="${v.id}">${v.name}</option>
@@ -170,7 +170,7 @@
         });
         function  onSave()
         {
-            var postUrl = "<%=basePath%>home/data/add/onSave";
+            var postUrl = "<%=basePath%>home/data/addOnSave";
             $.ajax({
                 url: postUrl,
                 data: $("#add-form").serialize(),

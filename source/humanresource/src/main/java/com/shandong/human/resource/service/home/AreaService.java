@@ -15,7 +15,7 @@ public interface AreaService {
     public ArrayList<Area> getAllProvince();
     //    获取所有的城市
     public ArrayList<Area> getAllCity();
-    public ArrayList<Area> getAllAreaById(Integer id);
+    public ArrayList<Area> getAllAreaById(int id);
     public Area getById(int id);
 
 }

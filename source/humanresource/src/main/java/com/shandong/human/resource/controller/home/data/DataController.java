@@ -55,7 +55,7 @@ public class DataController {
 
 
     //保存数据
-    @RequestMapping(value = "/home/data/add/onSave",method = RequestMethod.POST)
+    @RequestMapping(value = "/home/data/addOnSave",method = RequestMethod.POST)
     @ResponseBody
     public Map onSave(CompanyData companyData,HttpSession session) {
         Map map=new HashMap();
