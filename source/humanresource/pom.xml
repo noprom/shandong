@@ -401,6 +401,12 @@
       <artifactId>jersey-server</artifactId>
       <version>1.9</version>
     </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>4.3.1.Final</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
 
   <build>

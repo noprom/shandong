@@ -6,18 +6,22 @@ import com.shandong.human.resource.domain.User;
 import com.shandong.human.resource.domain.UserRole;
 import com.shandong.human.resource.service.sys.RoleService;
 import com.shandong.human.resource.service.sys.UserRoleService;
+import com.shandong.human.resource.util.Constant;
 import com.shandong.human.resource.util.Pager;
+import com.shandong.human.resource.util.Result;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -45,22 +49,21 @@ public class RoleController{
      * @param response
      */
     @RequestMapping(value = "/role/add", method = RequestMethod.POST)
-    public void add(String name, HttpServletRequest request, HttpServletResponse response) {
+    public
+    @ResponseBody
+    Result add(String name, HttpServletRequest request, HttpServletResponse response) {
         if(name == null ){
-            try {
-                response.sendRedirect("/404");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return;
+            return new Result(Result.Status.ERROR, Constant.ROLENAME_ILLEGAL);
+        }
+
+        Pattern pattern = Pattern.compile(".{1,10}");
+        Matcher matcher = pattern.matcher(name);
+        if(!matcher.matches()){
+            return new Result(Result.Status.ERROR, Constant.ROLENAME_ILLEGAL);
         }
 
         service.insertRole(name);
-        try {
-            response.sendRedirect("/sys/role");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
     }
 
     /**

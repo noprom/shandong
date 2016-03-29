@@ -10,12 +10,14 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 
 /**
@@ -73,8 +75,14 @@ public class UserController {
      * @param response
      */
     @RequestMapping(value = "/user/add", method = RequestMethod.POST)
-    public @ResponseBody
-    Result addUser(User user, HttpServletRequest request, HttpServletResponse response) {
+    public
+    @ResponseBody
+    Result addUser(@Valid User user, BindingResult result,
+                   HttpServletRequest request, HttpServletResponse response) {
+        if (result.hasErrors()) {
+            return new Result(Result.Status.ERROR, Constant.USERNAME_ILLEGAL);
+        }
+
         Integer uid = userService.insertUser(user);
         if (uid > 0) {
             return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
@@ -85,7 +93,6 @@ public class UserController {
 
     @RequestMapping(value = "/user/delete", method = RequestMethod.GET)
     public void deleteUser(Integer uid, HttpServletRequest request, HttpServletResponse response) {
-        System.out.println(uid);
         try {
             userService.deleteByID(uid);
             response.sendRedirect("/sys/user");
