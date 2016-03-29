@@ -78,6 +78,7 @@ public class ReportController {
             }
         }
         //上报
+
     }
 
     /**
@@ -95,6 +96,25 @@ public class ReportController {
         model.addAttribute("companyDataList",list);
         return STATIC_PREFIX + "/detail";
     }
+
+    /**
+     * Created by constantine on 2016/3/23.
+     * 获取指定company_id并且status为1的CompanyData
+     */
+    @RequestMapping(value = "/sys/report/queryByName", method = RequestMethod.POST)
+    public String getAllCompanyDataByName(Model model,String name) {
+
+        int company_id = 0;
+
+        company_id = reportService.getCompanyIdByName(name);
+
+        ArrayList<CompanyData> list = reportService.getCompanyDataByCompanyIdS2(company_id);
+        model.addAttribute("reportResult",list);
+
+        return STATIC_PREFIX + "/query";
+    }
+
+
 
 
 }

@@ -36,6 +36,8 @@ public interface CompanyDataMapper {
 
     public ArrayList<CompanyData> getCompanyDataBySurveyTimeId(int survey_time_id);
 
+    public ArrayList<CompanyData> getCompanyDataByCompanyIdS2(@Param("id")int id);
+
 
 
 

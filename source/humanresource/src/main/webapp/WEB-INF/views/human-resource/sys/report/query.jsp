@@ -44,7 +44,7 @@
                     <div class="row">
                         <form id="query-form" action="<%=basePath%>sys/report/query" method="get">
                             <div class="col-xs-2">
-                            <button type="submit" id="submit-btn">查询</button>
+                            <button type="submit" id="submit-btn">查询全部</button>
                             </div>
                         </form>
                     </div>
@@ -54,13 +54,24 @@
                     <div class="row">
                         <form id="query-form" action="<%=basePath%>sys/report/query" method="post">
                             <div class="col-xs-2">
-                            <input name="company_id">
+                                请输入公司ID<input name="company_id">
                             </div>
                             <div class="col-xs-2">
-                            <button type="submit" id="submit-btn">查询</button>
+                            <button type="submit" id="submit-btn">通过公司ID查询</button>
                             </div>
                         </form>
                     </div>
+                    <div class="row">
+                        <form id="query-form" action="<%=basePath%>sys/report/queryByName" method="post">
+                            <div class="col-xs-2">
+                                请输入公司名称<input name="name">
+                            </div>
+                            <div class="col-xs-2">
+                                <button type="submit" id="submit-btn">通过公司名称查询</button>
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
             </div>
 
@@ -90,7 +101,7 @@
                                 <tbody>
                                 <c:forEach items="${reportResult}" var="v">
                                     <tr>
-                                        <td><input type="checkbox" name="choose" value="${v.id}">${v.id}</td>
+                                        <td><input type="checkbox" name="choose" value="${v.id}"></td>
                                         <td>${v.id}</td>
                                         <td>${v.company_id}</td>
                                         <td>${v.init_people}</td>
