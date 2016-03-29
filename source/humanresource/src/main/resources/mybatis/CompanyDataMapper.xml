@@ -60,7 +60,7 @@
 
     </insert>
     <select id="getTotalPeopleFromCompanyDataOfEverySuvryTime" resultType="CompanyData">
-        SELECT sum(init_people) AS init_people  FROM company_data
+        SELECT sum(cur_people) AS cur_people  FROM company_data
         GROUP BY survey_time_id
     </select>
     <insert id="companyDataAddFirst" parameterType="CompanyData">
@@ -75,6 +75,32 @@
     <select id="getAllCompanyDataFromSQL" resultMap="CompanyData">
         SELECT * FROM company_data
     </select>
+
+    <select id="getCompanyDataBySurveyTimeId" parameterType="int" resultMap="CompanyData">
+        SELECT * FROM company_data WHERE survey_time_id = #{survey_time_id} AND pid = 0
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <update id="changeCompanyDataStatusById" parameterType="int">
         UPDATE company_data SET status = 3 WHERE id = #{id}

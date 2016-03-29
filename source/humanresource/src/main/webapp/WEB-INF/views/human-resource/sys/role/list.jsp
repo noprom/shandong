@@ -190,7 +190,7 @@
                             <h3 class="box-title">新增角色</h3>
                         </div>
                         <div class="box-body">
-                            <form class="form-horizontal" role="form" action="<%= basePath%>sys/role/add" method="post">
+                            <form id="add-role-form" class="form-horizontal" role="form" method="post">
                                 <div class="row">
                                     <div class="col-md-10">
                                         <div class="col-lg-4 form-group">
@@ -201,7 +201,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
-                                        <input type="submit" class="btn btn-adn pull-left" value="添加">
+                                        <input type="button" class="btn btn-adn pull-left" value="添加" id="add-role-btn">
                                     </div>
                                 </div>
                             </form>
@@ -213,9 +213,59 @@
     </div>
 
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
+    <%--<script type='text/javascript' src='<%=basePath%>static/human/js/plugins/toastr/toastr.min.js'></script>--%>
     <script>
+        //        toastr.options = {
+        //            "closeButton": true,
+        //            "debug": false,
+        //            "progressBar": true,
+        //            "positionClass": "toast-top-center",
+        //            "onclick": null,
+        //            "showDuration": "50",
+        //            "hideDuration": "100",
+        //            "timeOut": "1200",
+        //            "extendedTimeOut": "100",
+        //            "showEasing": "swing",
+        //            "hideEasing": "linear",
+        //            "showMethod": "fadeIn",
+        //            "hideMethod": "fadeOut"
+        //        };
         $(function () {
+            // 新增角色
+            $("#add-role-btn").on('click', function () {
+                // ajax 方式提交数据到某个url
+                var postUrl = "<%= basePath%>sys/role/add";
+                $.ajax({
+                    url: postUrl,//提交的地址
+                    data: $("#add-role-form").serialize(),
+                    // 提交的数据,此处将整个表单的字段全部提交
+                    // 也可以单独提交某个字段
+//                data: {
+//                    "username": username,
+//                    "password": password
+//                },
+                    method: "post",
+                    dataType: "json",
+                    success: function (data) {
 
+                        if (data.status == 'SUCCESS') {
+                            alert(data.info);
+//                            toastr.success(data.info);
+                            // 1000ms之后执行的操作
+                            setTimeout(function () {
+                                // 刷新页面
+                                location.reload(true);
+                                // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                                //window.location.href = "<%=basePath%>sys/user";
+                            }, 1000);
+                        } else {
+                            alert(data.info);
+//                            toastr.error(data.info);
+                            return false;
+                        }
+                    }
+                });
+            });
         });
     </script>
 </div>

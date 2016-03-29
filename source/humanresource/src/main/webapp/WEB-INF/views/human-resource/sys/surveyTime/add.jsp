@@ -82,62 +82,34 @@
     </div>
 
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
+    <!-- Page script -->
     <script>
         $(function () {
+            //Initialize Select2 Elements
+            $(".select2").select2();
 
+            //Date range picker
+            $('#reservation').daterangepicker();
+            //Date range as a button
+            $('#daterange-btn').daterangepicker(
+                    {
+                        ranges: {
+                            'Today': [moment(), moment()],
+                            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                            'This Month': [moment().startOf('month'), moment().endOf('month')],
+                            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                        },
+                        startDate: moment().subtract(29, 'days'),
+                        endDate: moment()
+                    },
+                    function (start, end) {
+                        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                    }
+            );
         });
     </script>
 </div>
-
-<!-- InputMask -->
-<script src="<%=basePath%>static/human/plugins/input-mask/jquery.inputmask.js"></script>
-<script src="<%=basePath%>static/human/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-<script src="<%=basePath%>static/human/plugins/input-mask/jquery.inputmask.extensions.js"></script>
-<!-- date-range-picker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-<script src="<%=basePath%>static/human/plugins/daterangepicker/daterangepicker.js"></script>
-<!-- bootstrap color picker -->
-<script src="<%=basePath%>static/human/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
-<!-- bootstrap time picker -->
-<script src="<%=basePath%>static/human/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-<!-- SlimScroll 1.3.0 -->
-<script src="<%=basePath%>static/human/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- iCheck 1.0.1 -->
-<script src="<%=basePath%>static/human/plugins/iCheck/icheck.min.js"></script>
-<!-- FastClick -->
-<script src="<%=basePath%>static/human/plugins/fastclick/fastclick.min.js"></script>
-<!-- AdminLTE App -->
-<script src="<%=basePath%>static/human/dist/js/app.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<%=basePath%>static/human/dist/js/demo.js"></script>
-<!-- Page script -->
-<script>
-    $(function () {
-        //Initialize Select2 Elements
-        $(".select2").select2();
-
-        //Date range picker
-        $('#reservation').daterangepicker();
-        //Date range as a button
-        $('#daterange-btn').daterangepicker(
-                {
-                    ranges: {
-                        'Today': [moment(), moment()],
-                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                        'This Month': [moment().startOf('month'), moment().endOf('month')],
-                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                    },
-                    startDate: moment().subtract(29, 'days'),
-                    endDate: moment()
-                },
-                function (start, end) {
-                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-                }
-        );
-    });
-</script>
-
 </body>
 </html>

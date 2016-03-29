@@ -6,6 +6,8 @@ import com.shandong.human.resource.domain.Auth;
 import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.service.sys.AuthService;
 import com.shandong.human.resource.service.sys.RecordService;
+import com.shandong.human.resource.util.Constant;
+import com.shandong.human.resource.util.Result;
 import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -13,12 +15,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Brief: 权限管理类
@@ -64,10 +69,18 @@ public class AuthController extends CommonController {
      * @throws IOException
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public void addAuth(Integer pid, String name, String url,
+    public
+    @ResponseBody
+    Result addAuth(Integer pid, String name, String url,
             HttpServletRequest request, HttpServletResponse response) throws IOException {
         Auth toInsert = new Auth();
         logger.debug(name + url + pid);
+
+        Pattern pattern = Pattern.compile(".{1,10}");
+        Matcher matcher = pattern.matcher(name);
+        if(!matcher.matches()){
+            return new Result(Result.Status.ERROR, Constant.AUTHNAME_ILLEGAL);
+        }
 
         int level = service.selectByID(pid).getLevel() + 1;
         toInsert.setId(0);
@@ -77,7 +90,8 @@ public class AuthController extends CommonController {
         toInsert.setPid(pid);
 
         service.insertAuth(toInsert);
-        response.sendRedirect("/sys/auth/add");
+
+        return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
     }
 
     /**
@@ -104,13 +118,14 @@ public class AuthController extends CommonController {
      */
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public void deleteAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public
+    @ResponseBody
+    Result deleteAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String id_s = request.getParameter("id");
         int id = Integer.parseInt(id_s);
         Auth root = service.selectByID(id);
         if (root == null || root.getLevel() == 0) {
-            response.sendRedirect("/sys/auth/delete");
-            return;
+            return new Result(Result.Status.ERROR, Constant.AUTHDELETE_REFUSE);
         }
 
         List<Auth> allAuth = service.selectAll();
@@ -124,8 +139,7 @@ public class AuthController extends CommonController {
             ;
 
         if (target == null) {
-            response.sendRedirect("/sys/auth/delete");
-            return;
+            return new Result(Result.Status.ERROR, Constant.AUTHDELETE_REFUSE);
         }
 
         /*删除其子节点*/
@@ -134,8 +148,7 @@ public class AuthController extends CommonController {
 
         /*删除该节点*/
         service.deleteByID(target.getId());
-        response.sendRedirect("/sys/auth/delete");
-        return;
+        return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
     }
 
     /**

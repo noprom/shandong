@@ -34,7 +34,7 @@
             <div class="col-lg-6">
                 <div class="box box-info">
                     <div class="box-body">
-                        <form action="<%=basePath%>sys/auth/delete" role="form" method="post">
+                        <form  role="form" id = "delete-auth-form">
                             <% AuthTree _Auths=(AuthTree)request.getAttribute("existAuth"); %>
                             <div class="form-group">
                                 <label>选择权限</label>
@@ -54,7 +54,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" class="btn btn-warning" value="确认删除">
+                                <input type="button" class="btn btn-warning" value="确认删除" id="delete-auth-btn">
                             </div>
 
                         </form>
@@ -67,16 +67,58 @@
 
 
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
+    <%--<script type='text/javascript' src='<%=basePath%>static/human/js/plugins/toastr/toastr.min.js'></script>--%>
     <script>
+        //        toastr.options = {
+        //            "closeButton": true,
+        //            "debug": false,
+        //            "progressBar": true,
+        //            "positionClass": "toast-top-center",
+        //            "onclick": null,
+        //            "showDuration": "50",
+        //            "hideDuration": "100",
+        //            "timeOut": "1200",
+        //            "extendedTimeOut": "100",
+        //            "showEasing": "swing",
+        //            "hideEasing": "linear",
+        //            "showMethod": "fadeIn",
+        //            "hideMethod": "fadeOut"
+        //        };
         $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false
+            // 新增角色
+            $("#delete-auth-btn").on('click', function () {
+                // ajax 方式提交数据到某个url
+                var postUrl = "<%=basePath%>sys/auth/delete";
+                $.ajax({
+                    url: postUrl,//提交的地址
+                    data: $("#delete-auth-form").serialize(),
+                    // 提交的数据,此处将整个表单的字段全部提交
+                    // 也可以单独提交某个字段
+//                data: {
+//                    "username": username,
+//                    "password": password
+//                },
+                    method: "post",
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data.status == 'SUCCESS') {
+                            alert(data.info);
+//                            toastr.success(data.info);
+                            // 1000ms之后执行的操作
+                            setTimeout(function () {
+                                // 刷新页面
+                                location.reload(true);
+                                // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                                //window.location.href = "<%=basePath%>sys/user";
+                            }, 1000);
+                        } else {
+                            alert(data.info);
+//                            toastr.error(data.info);
+                            return false;
+                        }
+                    }
+                });
             });
         });
     </script>

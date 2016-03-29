@@ -33,15 +33,15 @@
             </div>
         </div>
         <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-        </form>
+        <%--<form action="#" method="get" class="sidebar-form">--%>
+            <%--<div class="input-group">--%>
+                <%--<input type="text" name="q" class="form-control" placeholder="Search...">--%>
+              <%--<span class="input-group-btn">--%>
+                <%--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--%>
+                <%--</button>--%>
+              <%--</span>--%>
+            <%--</div>--%>
+        <%--</form>--%>
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
@@ -92,15 +92,19 @@
 
             <!-- 企业备案管理 -->
             <% boolean sys_record_query = PermissionUtil.find("sys/record/query", auths);
-                if (sys_record_query) {%>
+                boolean sys_data_list = PermissionUtil.find("sys/data/list", auths);
+                if (sys_record_query || sys_data_list) {%>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
                     <span>企业备案</span>
-                    <span class="label label-primary pull-right">4</span>
+                    <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="<%=basePath%>sys/record/query"><i class="fa fa-circle-o"></i> 备案列表</a></li>
+                    <% if (sys_data_list) { %>
+                    <li><a href="<%=basePath%>sys/data/list"><i class="fa fa-circle-o"></i> 数据列表</a></li>
+                    <%}%>
                 </ul>
             </li>
             <%}%>
@@ -116,9 +120,9 @@
             <%--<%}%>--%>
 
             <!-- 报表管理 -->
-            <% boolean sys_data_list = PermissionUtil.find("sys/data/list", auths);
+            <%
                 boolean sys_data_display = PermissionUtil.find("sys/data/display", auths);
-                if (sys_data_display || sys_data_list) {%>
+                if (sys_data_display) {%>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-pie-chart"></i>
@@ -126,9 +130,7 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <% if (sys_data_list) { %>
-                    <li><a href="<%=basePath%>sys/data/list"><i class="fa fa-circle-o"></i> 所有报表</a></li>
-                    <%}%>
+
                     <% if (sys_data_display) { %>
                     <li><a href="<%=basePath%>sys/data/display"><i class="fa fa-circle-o"></i> 图表分析</a></li>
                     <%}%>

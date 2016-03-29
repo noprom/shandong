@@ -1,5 +1,6 @@
 package com.shandong.human.resource.domain;
 
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 /**
