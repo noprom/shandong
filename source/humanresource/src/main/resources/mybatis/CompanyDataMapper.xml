@@ -60,7 +60,7 @@
 
     </insert>
     <select id="getTotalPeopleFromCompanyDataOfEverySuvryTime" resultType="CompanyData">
-        SELECT sum(init_people) AS init_people  FROM company_data
+        SELECT sum(cur_people) AS cur_people  FROM company_data
         GROUP BY survey_time_id
     </select>
     <insert id="companyDataAddFirst" parameterType="CompanyData">

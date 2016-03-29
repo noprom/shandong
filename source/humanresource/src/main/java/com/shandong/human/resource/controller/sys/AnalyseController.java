@@ -67,11 +67,27 @@ public class AnalyseController {
     @RequestMapping(value = "/sys/data/display", method = RequestMethod.GET)
     String companyNumber(Model model, HttpSession httpSession) {
         /**
-         *
+         * 全省企业的汇总数据
          */
         List<CompanyData> companyDataOfPeople = companyDataService.getTotalPeopleFromCompanyDataOfEverySuvryTime();
+        List<Float> trend = new ArrayList<Float>();
+        DecimalFormat df = new DecimalFormat("######0.00");
         if (companyDataOfPeople.size() > 0) {
             model.addAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
+
+            /**
+             * 走势
+             */
+            trend.add((float) 0.0);
+            for (int i=1;i<companyDataOfPeople.size();i++){
+                float temp = (companyDataOfPeople.get(i).getCur_people() - companyDataOfPeople.get(i-1).getCur_people())/(float)companyDataOfPeople.get(i-1).getCur_people();
+                trend.add(Float.valueOf(df.format(temp)));
+                System.out.println(trend.get(i-1));
+            }
+            model.addAttribute("trend",trend);
+
+
+
         } else {
             for (int i = 0; i < 12; i++) {
                 companyDataOfPeople.get(i).setInit_people(0);
@@ -79,7 +95,7 @@ public class AnalyseController {
             model.addAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
         }
         /**
-         *
+         *企业分布
          */
         List<Company> companyNumberByCity = companyService.getCompanyNumberByCity();
         float sum = 0;
@@ -89,7 +105,7 @@ public class AnalyseController {
         }
 
         List<StatisticsOfCompany> statisticsOfCompanyList = new ArrayList<StatisticsOfCompany>();
-        DecimalFormat df = new DecimalFormat("######0.00");
+
         for (int i = 0; i < companyNumberByCity.size(); i++) {
 
 
@@ -113,22 +129,27 @@ public class AnalyseController {
         surveyTimeList = surveyTimeService.getAllSurveyTime();
         model.addAttribute("surveyTimeList", surveyTimeList);
 
+
+
         return STATIC_PREFIX + "/analyse";
     }
 
+    /**
+     * 对比分析
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/sys/data/duibifenxi", method = RequestMethod.POST)
     public
     @ResponseBody
-    List<String>  companyNumber(Model model, HttpSession httpSession, HttpServletRequest request) {
+    List<String>  companyNumber(HttpServletRequest request) {
         List<CompanyData> companyDataOfPeriodOneList = companyDataService.getCompanyDataBySurveyTimeId(Integer.parseInt(String.valueOf(request.getParameter("period"))));
-//        List<CompanyData> companyDataOfPeriodTwoList = companyDataService.getCompanyDataBySurveyTimeId(Integer.parseInt(String.valueOf(request.getParameter("periodTwo"))));
 
-        return analysis(model, httpSession, companyDataOfPeriodOneList, "One");
-//        /**/analysis(model, httpSession, companyDataOfPeriodTwoList, "Two");
-//        return STATIC_PREFIX + "/analyse";
+        return analysis( companyDataOfPeriodOneList );
     }
 
-    private List<String> analysis(Model model, HttpSession httpSession, List<CompanyData> companyDataList, String identify) {
+    private List<String> analysis(List<CompanyData> companyDataList) {
         /**
          * 计算企业总数、建档期总岗位数、调查期总岗位数、岗位变化总数、岗位减少总数、岗位变化数量占比。
          */
@@ -156,13 +177,6 @@ public class AnalyseController {
             if (I < C)
                 totalReduceOfPeople++;
         }
-//        model.addAttribute("totalCompanyNumber" + identify, totalCompanyNumber);
-//        model.addAttribute("totalInitPeople" + identify, totalInitPeople);
-//        model.addAttribute("totalCurPeople" + identify, totalCurPeople);
-//        model.addAttribute("totalChangeOfCompany" + identify, totalCurPeople - totalInitPeople);
-//        model.addAttribute("totalReduceOfPeople" + identify, totalReduceOfPeople);
-////        DecimalFormat df = new DecimalFormat("######0.00");
-//        model.addAttribute("rateOfChange" + identify, (totalCurPeople - totalInitPeople) / (float) totalInitPeople);
 
 
         List<String> ajaxReturn = new ArrayList<String>();
@@ -172,20 +186,15 @@ public class AnalyseController {
         Integer temp1 =totalCurPeople - totalInitPeople;
         ajaxReturn.add(temp1.toString());
         ajaxReturn.add(totalReduceOfPeople.toString());
-        Float temp2 = (totalCurPeople - totalInitPeople) / (float) totalInitPeople;
-        ajaxReturn.add(temp2.toString());
+        Float temp2 = (totalCurPeople - totalInitPeople) / (float) totalInitPeople  * 100 ;
+        DecimalFormat df = new DecimalFormat("######0.00");
+
+        ajaxReturn.add(df.format(temp2).toString());
 
         for (int i = 0; i<ajaxReturn.size();i++)
             System.out.println(ajaxReturn.get(i));
         return ajaxReturn;
 
-//        httpSession.setAttribute("totalCompanyNumber" + identify, totalCompanyNumber);
-//        httpSession.setAttribute("totalInitPeople" + identify, totalInitPeople);
-//        httpSession.setAttribute("totalCurPeople" + identify, totalCurPeople);
-//        httpSession.setAttribute("totalChangeOfCompany" + identify, totalCurPeople - totalInitPeople);
-//        httpSession.setAttribute("totalReduceOfPeople" + identify, totalReduceOfPeople);
-////        DecimalFormat df = new DecimalFormat("######0.00");
-//        httpSession.setAttribute("rateOfChange" + identify, (totalCurPeople - totalInitPeople) / (float) totalInitPeople);
 
     }
 
