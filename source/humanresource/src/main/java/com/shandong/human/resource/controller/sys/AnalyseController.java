@@ -67,11 +67,27 @@ public class AnalyseController {
     @RequestMapping(value = "/sys/data/display", method = RequestMethod.GET)
     String companyNumber(Model model, HttpSession httpSession) {
         /**
-         *
+         * 全省企业的汇总数据
          */
         List<CompanyData> companyDataOfPeople = companyDataService.getTotalPeopleFromCompanyDataOfEverySuvryTime();
+        List<Float> trend = new ArrayList<Float>();
+        DecimalFormat df = new DecimalFormat("######0.00");
         if (companyDataOfPeople.size() > 0) {
             model.addAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
+
+            /**
+             * 走势
+             */
+            trend.add((float) 0.0);
+            for (int i=1;i<companyDataOfPeople.size();i++){
+                float temp = (companyDataOfPeople.get(i).getCur_people() - companyDataOfPeople.get(i-1).getCur_people())/(float)companyDataOfPeople.get(i-1).getCur_people();
+                trend.add(Float.valueOf(df.format(temp)));
+                System.out.println(trend.get(i-1));
+            }
+            model.addAttribute("trend",trend);
+
+
+
         } else {
             for (int i = 0; i < 12; i++) {
                 companyDataOfPeople.get(i).setInit_people(0);
@@ -79,7 +95,7 @@ public class AnalyseController {
             model.addAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
         }
         /**
-         *
+         *企业分布
          */
         List<Company> companyNumberByCity = companyService.getCompanyNumberByCity();
         float sum = 0;
@@ -89,7 +105,7 @@ public class AnalyseController {
         }
 
         List<StatisticsOfCompany> statisticsOfCompanyList = new ArrayList<StatisticsOfCompany>();
-        DecimalFormat df = new DecimalFormat("######0.00");
+
         for (int i = 0; i < companyNumberByCity.size(); i++) {
 
 
@@ -113,9 +129,17 @@ public class AnalyseController {
         surveyTimeList = surveyTimeService.getAllSurveyTime();
         model.addAttribute("surveyTimeList", surveyTimeList);
 
+
+
         return STATIC_PREFIX + "/analyse";
     }
 
+    /**
+     * 对比分析
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/sys/data/duibifenxi", method = RequestMethod.POST)
     public
     @ResponseBody
@@ -162,8 +186,10 @@ public class AnalyseController {
         Integer temp1 =totalCurPeople - totalInitPeople;
         ajaxReturn.add(temp1.toString());
         ajaxReturn.add(totalReduceOfPeople.toString());
-        Float temp2 = (totalCurPeople - totalInitPeople) / (float) totalInitPeople;
-        ajaxReturn.add(temp2.toString());
+        Float temp2 = (totalCurPeople - totalInitPeople) / (float) totalInitPeople  * 100 ;
+        DecimalFormat df = new DecimalFormat("######0.00");
+
+        ajaxReturn.add(df.format(temp2).toString());
 
         for (int i = 0; i<ajaxReturn.size();i++)
             System.out.println(ajaxReturn.get(i));
