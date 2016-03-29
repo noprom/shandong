@@ -29,7 +29,7 @@ public class AreaServiceImpl implements AreaService {
     {
         return areaMapper.getAllCity();
     }
-    public ArrayList<Area> getAllAreaById(Integer id)
+    public ArrayList<Area> getAllAreaById(int id)
     {
         return areaMapper.getAllAreaById(id);
     }
