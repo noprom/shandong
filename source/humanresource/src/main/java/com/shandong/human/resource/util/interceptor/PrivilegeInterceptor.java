@@ -17,7 +17,7 @@ import java.util.*;
  *
  * @author tyee.noprom@qq.com
  * @time 2/7/16 10:16 AM.
- * <p>
+ * <p/>
  * Modify SYC<522560298@qq.com>: Rewrite
  */
 public class PrivilegeInterceptor implements HandlerInterceptor {
@@ -68,84 +68,11 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
 
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
-        String url = request.getRequestURI();
-        HttpSession session = request.getSession();
-
-        if (url == null) {
-            request.setAttribute("error", "无效的链接");
-            response.sendRedirect("/error");
-            return true;
+        String redirectUrl = doPreHandle(request, response, handler);
+        if (!redirectUrl.equals(request.getRequestURI())) {
+            return false;
+            //response.sendRedirect(redirectUrl);
         }
-
-        if (url.contains(STATIC_RESOURCE))
-            return true;
-
-        for (String r : defaultUrl) {
-            if (r.contains(url)) {
-                return true;
-            }
-        }
-
-        if (session == null) {
-            request.setAttribute("error", "您尚未登录");
-            response.sendRedirect("/error");
-            return true;
-        }
-
-        Set<Auth> auths = (Set<Auth>) session.getAttribute("auth");
-        if (auths == null) {
-            request.setAttribute("error", "您尚未登录");
-            request.getRequestDispatcher("/error").forward(request, response);
-            return true;
-        }
-
-        String[] url_splid = url.split("/");
-        for (Auth r : auths) {
-            String r_url = r.getUrl();
-            String[] r_url_splid = r_url.split("/");
-
-            //长度不匹配
-            if (r_url_splid.length != url_splid.length) {
-                continue;
-            }
-
-            //包含替换符
-            if (signCheck(r_url)) {
-                int i;
-                for (i = 0; i < r_url_splid.length; ++i) {
-                    //当前节为替换符
-                    if (alterSign.containsKey(r_url_splid[i])) {
-                        if (typeCheck(url_splid[i], alterSign.get(r_url_splid[i]))) {
-                            continue;
-                        } else {
-                            break;
-                        }
-                    }
-                    //当前节非替换符
-                    else {
-                        if (r_url_splid[i].equals(url_splid[i])) {
-                            continue;
-                        } else {
-                            break;
-                        }
-                    }
-                }
-                if (i != r_url_splid.length) {
-                    request.setAttribute("error", "无效的访问请求");
-                    response.sendRedirect("/error");
-                    return true;
-                } else {
-                    return true;
-                }
-            }
-            //不包含替换符
-            else if (r.getUrl().contains(url)) {
-                return true;
-            }
-        }
-
-        request.setAttribute("error", "无效的访问请求");
-        response.sendRedirect("/error");
         return true;
     }
 
@@ -196,5 +123,81 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
             }
         }
         return false;
+    }
+
+
+    private String doPreHandle(HttpServletRequest request,
+                               HttpServletResponse response, Object handler) throws Exception {
+        String url = request.getRequestURI();
+        HttpSession session = request.getSession();
+
+        if (url == null) {
+            request.setAttribute("error", "无效的链接");
+            return "error";
+        }
+
+        if (url.contains(STATIC_RESOURCE))
+            return url;
+
+        for (String r : defaultUrl) {
+            if (r.contains(url)) {
+                return url;
+            }
+        }
+
+        if (session == null) {
+            request.setAttribute("error", "您尚未登录");
+            return "/error";
+        }
+
+        Set<Auth> auths = (Set<Auth>) session.getAttribute("auth");
+        if (auths == null) {
+            request.setAttribute("error", "您尚未登录");
+            return "/error";
+        }
+
+        String[] url_splid = url.split("/");
+        for (Auth r : auths) {
+            //不包含替换符
+            if (r.getUrl().equals(url)) {
+                return url;
+            }
+
+            String r_url = r.getUrl();
+            String[] r_url_splid = r_url.split("/");
+
+            //长度不匹配
+            if (r_url_splid.length != url_splid.length) {
+                continue;
+            }
+
+            //包含替换符
+            if (signCheck(r_url)) {
+                int i;
+                for (i = 0; i < r_url_splid.length; ++i) {
+                    //当前节为替换符
+                    if (alterSign.containsKey(r_url_splid[i])) {
+                        if (typeCheck(url_splid[i], alterSign.get(r_url_splid[i]))) {
+                            continue;
+                        } else {
+                            break;
+                        }
+                    }
+                    //当前节非替换符
+                    else {
+                        if (r_url_splid[i].equals(url_splid[i])) {
+                            continue;
+                        } else {
+                            break;
+                        }
+                    }
+                }
+                if (i == r_url_splid.length) {
+                    return url;
+                }
+            }
+        }
+        request.setAttribute("error", "无效的访问请求");
+        return "/error";
     }
 }
