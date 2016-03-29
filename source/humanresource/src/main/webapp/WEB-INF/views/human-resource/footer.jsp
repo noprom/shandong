@@ -10,9 +10,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <footer class="main-footer">
   <div class="pull-right hidden-xs">
-    <b>Version</b> 2.3.0
+    <b>Version</b> 1.1
   </div>
-  <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+  <strong>Copyright &copy; 2016-2017 <a href="<%=basePath%>">山东省人力资源采集系统</a>.</strong> All rights reserved.
 </footer>
 
 <!-- Control Sidebar -->
@@ -227,6 +227,13 @@ immediately after the control sidebar -->
 
 <!-- ChartJS 1.0.1 -->
 <script src="<%=basePath%>static/human/plugins/chartjs/Chart.min.js"></script>
+<%--ADD AT 2016/03/29 11:27AM--%>
+<!-- Select2 -->
+<script src="<%=basePath%>static/human/plugins/select2/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="<%=basePath%>static/human/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="<%=basePath%>static/human/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="<%=basePath%>static/human/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
 <%-- 消息提示小插件 --%>
 <%--<script type='text/javascript' src='<%=basePath%>static/human/js/plugins/toastr/toastr.min.js'></script>--%>
