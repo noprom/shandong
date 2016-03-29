@@ -85,7 +85,6 @@ public class UserController {
 
     @RequestMapping(value = "/user/delete", method = RequestMethod.GET)
     public void deleteUser(Integer uid, HttpServletRequest request, HttpServletResponse response) {
-        System.out.println(uid);
         try {
             userService.deleteByID(uid);
             response.sendRedirect("/sys/user");
