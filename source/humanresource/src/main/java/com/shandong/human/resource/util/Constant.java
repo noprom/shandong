@@ -119,8 +119,17 @@ public class Constant {
     /** 登录的用户 **/
     public static final String LOGIN_USER = "localUser";
 
-    /** 用户名、密码必须在5~20位,且为以字母开头的数字加字母组合 **/
+    /** 用户名、密码必须在5~20位且为以字母开头的数字加字母组合 **/
     public static final String USERNAME_ILLEGAL = "USERNAME_ILLEGAL";
+
+    /** 角色名长度不合法 **/
+    public static final String ROLENAME_ILLEGAL = "ROLENAME_ILLEGAL";
+
+    /** 权限名长度不合法 **/
+    public static final String AUTHNAME_ILLEGAL = "AUTHNAME_ILLEGAL";
+
+    /** 拒绝删除基本权限或不存在的权限 **/
+    public static final String AUTHDELETE_REFUSE = "AUTHDELETE_REFUSE";
 
     public static final String HOST_URL = "http://localhost:8080/bigdatatalentpool";
 
