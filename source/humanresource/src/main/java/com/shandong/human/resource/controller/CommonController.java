@@ -17,6 +17,9 @@ public class CommonController {
 
     protected Logger logger = Logger.getLogger(getClass());
 
+    // 静态资源前缀
+    private static final String STATIC_PREFIX = "human-resource";
+
     /**
      * 404错误页面
      *
@@ -36,8 +39,5 @@ public class CommonController {
     public String error_500() {
         return STATIC_PREFIX + "/500";
     }
-
-
-    // 静态资源前缀
-    private static final String STATIC_PREFIX = "human-resource";
+    
 }
