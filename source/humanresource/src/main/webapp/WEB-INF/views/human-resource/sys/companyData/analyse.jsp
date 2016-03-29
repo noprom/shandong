@@ -231,11 +231,14 @@
 
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                    <form action="<%=basePath%>sys/data/duibifenxi" id="form1" name="form1" method="post">
+                    <%--<form action="<%=basePath%>sys/data/duibifenxi" id="form1" name="form1" method="post">--%>
+                    <form id="condition-form">
 
+                        <h3 class="box-title">选择调查期</h3>
                         <div class="form-group col-md-6">
                             <label>调查期一</label>
-                            <select name="periodOne" class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                            <select name="periodOne" class="form-control select2 select2-hidden-accessible"
+                                    style="width: 100%;"
                                     tabindex="-1" aria-hidden="true">
                                 <c:forEach items="${surveyTimeList}" var="v">
                                     <option value="${v.id}">${v.start_time} - ${v.end_time}</option>
@@ -246,7 +249,8 @@
 
                         <div class="form-group col-md-6">
                             <label>调查期二</label>
-                            <select name="periodTwo" class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                            <select name="periodTwo" class="form-control select2 select2-hidden-accessible"
+                                    style="width: 100%;"
                                     tabindex="-1" aria-hidden="true">
                                 <c:forEach items="${surveyTimeList}" var="v">
                                     <option value="${v.id}">${v.start_time} - ${v.end_time}</option>
@@ -254,6 +258,27 @@
                             </select>
 
                         </div><!-- /.form-group -->
+                        <div class="form-group col-md-6">
+                            <h3 align="left" class="box-title">选择样本条件 </h3>
+                            <label>审核</label>
+                            <select name="sampleRequirements" class="form-control select2 select2-hidden-accessible"
+                                    style="width: 100%;"
+                                    tabindex="-1" aria-hidden="true">
+                                <option value="1" selected="通过审核">通过审核</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <h3 align="left" class="box-title">选择分析方式</h3>
+                            <label>地区</label>
+                            <select name="areaRequirements" class="form-control select2 select2-hidden-accessible"
+                                    style="width: 100%;"
+                                    tabindex="-1" aria-hidden="true">
+                                <option value="1" selected="山东省">山东省</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <button type="button" class="btn btn-primary" id="condition-btn">提交</button>
+                        </div>
                     </form>
 
                 </div><!-- /.col -->
@@ -286,8 +311,8 @@
 
 <!-- page script -->
 <%--<script language="javascript">--%>
-<%--//    document.form1.submit();--%>
-    <%--setTimeout("form1.submit();",4000);--%>
+<%--document.form1.submit();--%>
+<%--//setTimeout("form1.submit();", 4000);--%>
 <%--</script>--%>
 
 <script type="text/javascript">
@@ -394,66 +419,221 @@
     };
     chart.setOption(option)
 </script>
-<script>
-    var chart = echarts.init(document.getElementById('duibifenxi'));
-    option = {
-        title: {
+<%--<script>--%>
+<%--var chart = echarts.init(document.getElementById('duibifenxi'));--%>
+<%--option = {--%>
+<%--title: {--%>
+<%--//            text: '对比两个调查期的企业岗位变动情况',--%>
+<%--subtext: '纯属虚构',--%>
+<%--x: 'center'--%>
+<%--},--%>
+<%--tooltip: {--%>
+<%--trigger: 'axis',--%>
+<%--axisPointer: {            // 坐标轴指示器，坐标轴触发有效--%>
+<%--type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'--%>
+<%--}--%>
+<%--},--%>
+<%--legend: {--%>
+<%--data: ['调查期一', '调查期二']--%>
+<%--},--%>
+<%--grid: {--%>
+<%--left: '3%',--%>
+<%--right: '4%',--%>
+<%--bottom: '3%',--%>
+<%--containLabel: true--%>
+<%--},--%>
+<%--xAxis: {--%>
+<%--type: 'category',--%>
+<%--data: ['企业总数', '建档期总岗位数', '调查期总岗位数', '岗位变化总数', '岗位减少总数', '岗位变化数量占比'],--%>
+<%--axisTick: {--%>
+<%--interval: 0--%>
+<%--},--%>
+<%--axisLabel: {--%>
+<%--interval: 0--%>
+<%--}--%>
+<%--},--%>
+
+
+<%--yAxis: [--%>
+<%--{--%>
+<%--type: 'value'--%>
+<%--}--%>
+<%--],--%>
+<%--series: [--%>
+<%--{--%>
+<%--name: '调查期一',--%>
+<%--type: 'bar',--%>
+<%--//                data: [320, 332, 301, 334, 390, 330]--%>
+<%--data: [${totalCompanyNumberOne}, ${totalInitPeopleOne}, ${totalCurPeopleOne}, ${totalChangeOfCompanyOne}, ${totalReduceOfPeopleOne}, ${rateOfChangeOne}]--%>
+<%--},--%>
+<%--{--%>
+<%--name: '调查期二',--%>
+<%--type: 'bar',--%>
+<%--stack: '调查期二',--%>
+<%--data: [${totalCompanyNumberTwo}, ${totalInitPeopleTwo}, ${totalCurPeopleTwo}, ${totalChangeOfCompanyTwo}, ${totalReduceOfPeopleTwo}, ${rateOfChangeTwo}]--%>
+<%--},--%>
+<%--]--%>
+<%--};--%>
+
+<%--chart.setOption(option)--%>
+<%--</script>--%>
+<script type="text/javascript">
+    jQuery('document').ready(function ($) {
+
+        //添加通知
+        $("#condition-btn").on('click', function () {
+
+            condition();
+        });
+
+        /**
+         * 添加通知
+         * @returns {boolean}
+         */
+        function condition() {
+
+            //标题
+            var periodOne = $("#condition-form select[name = periodOne]").val();
+            var periodTwo = $("#condition-form select[name = periodTwo]").val();
+            var sampleRequirements = $("#condition-form select[name = sampleRequirements]").val();
+            var areaRequirements = $("#condition-form select[name = areaRequirements]").val();
+
+            //正文
+
+            //数据校验
+            if (isEmpty(periodOne)) {
+//                alert("标题不能为空");
+                return false;
+            } else if (isEmpty(periodTwo)) {
+//                alert("正文不能为空");
+                return false;
+            } else {
+
+                var postUrl = "<%=basePath%>sys/data/duibifenxi";
+
+                var chart = echarts.init(document.getElementById('duibifenxi'));
+                option = {
+                    title: {
 //            text: '对比两个调查期的企业岗位变动情况',
-            subtext: '纯属虚构',
-            x: 'center'
-        },
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-            }
-        },
-        xAxis: {
-            axisTick: {
-                interval: 0
-            },
-            axisLabel: {
-                interval: 0
-            }
-        },
-        legend: {
-            data: ['调查期一', '调查期二']
-        },
-        grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-        },
-        xAxis: [
-            {
-                type: 'category',
-                data: ['企业总数', '建档期总岗位数', '调查期总岗位数', '岗位变化总数', '岗位减少总数', '岗位变化数量占比']
-            }
-        ],
+                        subtext: '纯属虚构',
+                        x: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    legend: {
+                        data: ['调查期一']
+//                        data: ['调查期一', '调查期二']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['企业总数', '建档期总岗位数', '调查期总岗位数', '岗位变化总数', '岗位减少总数', '岗位变化数量占比'],
+                        axisTick: {
+                            interval: 0
+                        },
+                        axisLabel: {
+                            interval: 0
+                        }
+                    },
 
 
-        yAxis: [
-            {
-                type: 'value'
-            }
-        ],
-        series: [
-            {
-                name: '调查期一',
-                type: 'scatter',
-                data: [320, 332, 301, 334, 390, 330]
-            },
-            {
-                name: '调查期二',
-                type: 'scatter',
-                stack: '调查期二',
-                data: [120, 132, 101, 134, 90, 230]
-            },
-        ]
-    };
+                    yAxis: [
+                        {
+                            type: 'value'
+                        }
+                    ],
+                    series: [
+                        {
+                            name: '调查期一',
+                            type: 'bar',
+                            data: (function () {
+                                var arr = [];
+                                var period = periodOne;
+                                $.ajax({
+                                    url: postUrl,
+                                    async: false, //同步执行
+                                    data: {period},
+                                    method: "post",
+                                    dataType: "json",
+                                    success: function (result) {
 
-    chart.setOption(option)
+                                        if (result) {
+//                                            alert(result[0]);
+                                            for (var i = 0; i < result.length; i++) {
+                                                console.log(result[i]);
+                                                arr.push(result[i]);
+
+//                                                arr.push(result.get(i));
+                                            }
+                                        }
+                                    },
+                                    error: function (errorMsg) {
+                                        alert("不好意思，大爷，图表请求数据失败啦!");
+                                        myChart.hideLoading();
+                                    }
+
+                                })
+                                return arr;
+                            })()
+                        },
+                        {
+                            name: '调查期二',
+                            type: 'bar',
+                            stack: '调查期二',
+                            <%--data: [${totalCompanyNumberTwo}, ${totalInitPeopleTwo}, ${totalCurPeopleTwo}, ${totalChangeOfCompanyTwo}, ${totalReduceOfPeopleTwo}, ${rateOfChangeTwo}]--%>
+                            data: (function () {
+                                var arr = [];
+                                var period = periodTwo;
+                                $.ajax({
+                                    url: postUrl,
+                                    async: false, //同步执行
+                                    data: {period},
+                                    method: "post",
+                                    dataType: "json",
+                                    success: function (result) {
+
+                                        if (result) {
+                                            for (var i = 0; i < result.length; i++) {
+                                                console.log(result[i]);
+                                                arr.push(result[i]);
+                                            }
+                                        }
+                                    },
+                                    error: function (errorMsg) {
+                                        alert("不好意思，大爷，图表请求数据失败啦!");
+                                        myChart.hideLoading();
+                                    }
+
+                                })
+                                return arr;
+                            })()
+
+
+                        },
+                    ]
+                };
+
+                chart.setOption(option)
+
+            }
+
+        }
+
+        function isEmpty(str) {
+            if (!str || $.trim(str).length <= 0)
+                return true;
+            return false;
+        }
+    });
 </script>
 </body>
 </html>

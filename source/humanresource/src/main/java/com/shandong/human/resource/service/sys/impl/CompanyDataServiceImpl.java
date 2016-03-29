@@ -6,6 +6,7 @@ import com.shandong.human.resource.service.sys.CompanyDataService;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -49,5 +50,9 @@ public class CompanyDataServiceImpl implements CompanyDataService{
     public ArrayList<CompanyData> getAllCompanyDataFromSQL()
     {
         return companyDataMapper.getAllCompanyDataFromSQL();
+    }
+
+    public List<CompanyData> getCompanyDataBySurveyTimeId(int survey_time_id) {
+        return companyDataMapper.getCompanyDataBySurveyTimeId(survey_time_id);
     }
 }

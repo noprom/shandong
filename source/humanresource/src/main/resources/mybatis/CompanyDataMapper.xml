@@ -75,4 +75,7 @@
     <select id="getAllCompanyDataFromSQL" resultMap="CompanyData">
         SELECT * FROM company_data
     </select>
+    <select id="getCompanyDataBySurveyTimeId" parameterType="int" resultMap="CompanyData">
+        SELECT * FROM company_data WHERE survey_time_id = #{survey_time_id} AND pid = 0
+    </select>
 </mapper>

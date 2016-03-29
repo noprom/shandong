@@ -23,4 +23,7 @@ public interface CompanyDataService {
     public void companyDataAddFirst(CompanyData companyData);
 
     public ArrayList<CompanyData> getAllCompanyDataFromSQL();
+
+    List<CompanyData> getCompanyDataBySurveyTimeId(int survey_time_id);
+
 }
