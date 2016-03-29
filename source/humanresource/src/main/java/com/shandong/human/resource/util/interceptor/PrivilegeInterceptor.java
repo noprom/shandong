@@ -17,7 +17,7 @@ import java.util.*;
  *
  * @author tyee.noprom@qq.com
  * @time 2/7/16 10:16 AM.
- *
+ * <p>
  * Modify SYC<522560298@qq.com>: Rewrite
  */
 public class PrivilegeInterceptor implements HandlerInterceptor {
@@ -38,15 +38,16 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
     /**
      * 替换符数据类型
      */
-    private enum alterType{
+    private enum alterType {
         _BEGIN, //enum 起始
         _INTEGER, //int类型
         _END //enum 结束
     }
+
     /**
      * 替换符
      */
-    private static Map<String,alterType> alterSign;
+    private static Map<String, alterType> alterSign;
 
     static {
         defaultUrl = new HashSet<String>();
@@ -60,9 +61,9 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
         defaultUrl.add("/error");
 
 
-        alterSign=new HashMap<String, alterType>();
+        alterSign = new HashMap<String, alterType>();
         alterSign.clear();
-        alterSign.put("{id}",alterType._INTEGER);
+        alterSign.put("{id}", alterType._INTEGER);
     }
 
     public boolean preHandle(HttpServletRequest request,
@@ -70,85 +71,82 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
         String url = request.getRequestURI();
         HttpSession session = request.getSession();
 
-        if(url == null){
-            request.setAttribute("error","无效的链接");
+        if (url == null) {
+            request.setAttribute("error", "无效的链接");
             response.sendRedirect("/error");
             return true;
         }
 
-        if(url.contains(STATIC_RESOURCE))
+        if (url.contains(STATIC_RESOURCE))
             return true;
 
-        for(String r:defaultUrl){
-            if(r.contains(url)){
+        for (String r : defaultUrl) {
+            if (r.contains(url)) {
                 return true;
             }
         }
 
-        if(session == null){
-            request.setAttribute("error","您尚未登录");
+        if (session == null) {
+            request.setAttribute("error", "您尚未登录");
             response.sendRedirect("/error");
             return true;
         }
 
-        Set<Auth> auths = (Set<Auth>)session.getAttribute("auth");
-        if(auths == null){
-            request.setAttribute("error","您尚未登录");
+        Set<Auth> auths = (Set<Auth>) session.getAttribute("auth");
+        if (auths == null) {
+            request.setAttribute("error", "您尚未登录");
             request.getRequestDispatcher("/error").forward(request, response);
             return true;
         }
 
         String[] url_splid = url.split("/");
-        for(Auth r:auths){
+        for (Auth r : auths) {
             String r_url = r.getUrl();
             String[] r_url_splid = r_url.split("/");
 
             //长度不匹配
-            if(r_url_splid.length != url_splid.length){
+            if (r_url_splid.length != url_splid.length) {
                 continue;
             }
 
             //包含替换符
-            if(signCheck(r_url)){
+            if (signCheck(r_url)) {
                 int i;
-                for(i=0;i<r_url_splid.length;++i){
+                for (i = 0; i < r_url_splid.length; ++i) {
                     //当前节为替换符
-                    if(alterSign.containsKey(r_url_splid[i])){
-                        if(typeCheck(url_splid[i],alterSign.get(r_url_splid[i]))){
+                    if (alterSign.containsKey(r_url_splid[i])) {
+                        if (typeCheck(url_splid[i], alterSign.get(r_url_splid[i]))) {
                             continue;
-                        }
-                        else{
+                        } else {
                             break;
                         }
                     }
                     //当前节非替换符
-                    else{
-                        if(r_url_splid[i].equals(url_splid[i])){
+                    else {
+                        if (r_url_splid[i].equals(url_splid[i])) {
                             continue;
-                        }
-                        else{
+                        } else {
                             break;
                         }
                     }
                 }
-                if(i!=r_url_splid.length){
-                    request.setAttribute("error","无效的访问请求");
+                if (i != r_url_splid.length) {
+                    request.setAttribute("error", "无效的访问请求");
                     response.sendRedirect("/error");
                     return true;
-                }
-                else{
+                } else {
                     return true;
                 }
             }
             //不包含替换符
-            else if(r.getUrl().contains(url)){
+            else if (r.getUrl().contains(url)) {
                 return true;
             }
         }
 
-        request.setAttribute("error","无效的访问请求");
+        request.setAttribute("error", "无效的访问请求");
         response.sendRedirect("/error");
-        return  true;
+        return true;
     }
 
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse
@@ -164,34 +162,36 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
 
     /**
      * 字符串类型判定
-     * @param in 字符串
+     *
+     * @param in     字符串
      * @param toType 目标类型
      * @return
      */
-    private boolean typeCheck(String in,alterType toType)
-    {
-        switch (toType){
+    private boolean typeCheck(String in, alterType toType) {
+        switch (toType) {
             //int 判定
-            case _INTEGER:{
+            case _INTEGER: {
                 try {
                     Integer.parseInt(in);
-                }catch (Exception e){
+                } catch (Exception e) {
                     return false;
                 }
                 return true;
             }
-            default:return false;
+            default:
+                return false;
         }
     }
 
     /**
      * 检查链接是否拥有助记符
+     *
      * @param url 链接
      * @return
      */
-    private boolean signCheck(String url){
-        for(Map.Entry<String,alterType> entry : alterSign.entrySet()){
-            if(url.contains(entry.getKey())){
+    private boolean signCheck(String url) {
+        for (Map.Entry<String, alterType> entry : alterSign.entrySet()) {
+            if (url.contains(entry.getKey())) {
                 return true;
             }
         }
