@@ -235,6 +235,19 @@ immediately after the control sidebar -->
 <script src="<%=basePath%>static/human/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
 <script src="<%=basePath%>static/human/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+<script src="<%=basePath%>static/human/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="<%=basePath%>static/human/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+<!-- bootstrap time picker -->
+<script src="<%=basePath%>static/human/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<!-- SlimScroll 1.3.0 -->
+<script src="<%=basePath%>static/human/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="<%=basePath%>static/human/plugins/iCheck/icheck.min.js"></script>
+<!-- FastClick -->
+<script src="<%=basePath%>static/human/plugins/fastclick/fastclick.min.js"></script>
+
 <%-- 消息提示小插件 --%>
 <%--<script type='text/javascript' src='<%=basePath%>static/human/js/plugins/toastr/toastr.min.js'></script>--%>
 <script type="text/javascript">
