@@ -231,27 +231,30 @@
 
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                    <div class="form-group col-md-6">
-                        <label>调查期一</label>
-                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;"
-                                tabindex="-1" aria-hidden="true">
-                            <c:forEach items="${surveyTimeList}" var="v">
-                                <option value="${v.id}">${v.start_time} - ${v.end_time}</option>
-                            </c:forEach>
-                        </select>
+                    <form action="<%=basePath%>sys/data/duibifenxi" id="form1" name="form1" method="post">
 
-                    </div><!-- /.form-group -->
+                        <div class="form-group col-md-6">
+                            <label>调查期一</label>
+                            <select name="periodOne" class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                                    tabindex="-1" aria-hidden="true">
+                                <c:forEach items="${surveyTimeList}" var="v">
+                                    <option value="${v.id}">${v.start_time} - ${v.end_time}</option>
+                                </c:forEach>
+                            </select>
 
-                    <div class="form-group col-md-6">
-                        <label>调查期二</label>
-                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;"
-                                tabindex="-1" aria-hidden="true">
-                            <c:forEach items="${surveyTimeList}" var="v">
-                                <option value="${v.id}">${v.start_time} - ${v.end_time}</option>
-                            </c:forEach>
-                        </select>
+                        </div><!-- /.form-group -->
 
-                    </div><!-- /.form-group -->
+                        <div class="form-group col-md-6">
+                            <label>调查期二</label>
+                            <select name="periodTwo" class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                                    tabindex="-1" aria-hidden="true">
+                                <c:forEach items="${surveyTimeList}" var="v">
+                                    <option value="${v.id}">${v.start_time} - ${v.end_time}</option>
+                                </c:forEach>
+                            </select>
+
+                        </div><!-- /.form-group -->
+                    </form>
 
                 </div><!-- /.col -->
                 <div class="box-body no-padding">
@@ -282,6 +285,11 @@
 <jsp:include page="../../js.jsp" flush="true"></jsp:include>
 
 <!-- page script -->
+<%--<script language="javascript">--%>
+<%--//    document.form1.submit();--%>
+    <%--setTimeout("form1.submit();",4000);--%>
+<%--</script>--%>
+
 <script type="text/javascript">
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));

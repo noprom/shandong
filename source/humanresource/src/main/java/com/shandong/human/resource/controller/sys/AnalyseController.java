@@ -35,25 +35,25 @@ public class AnalyseController {
     private SurveyTimeService surveyTimeService;
 
 
-    @RequestMapping(value = "/sys/data/display", method = RequestMethod.GET)
-    String companyDataDisplay(Model model, HttpSession httpSession) {
-
-
-//        List<CompanyData> companyDataOfPeople = companyDataService.getTotalPeopleFromCompanyDataOfEverySuvryTime();
-//        if (companyDataOfPeople.size() > 0) {
-//            httpSession.setAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
-//        } else {
-//            for (int i = 0; i < 12; i++) {
-//                companyDataOfPeople.get(i).setInit_people(0);
-//            }
-//            httpSession.setAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
-//        }
-
-
-        return STATIC_PREFIX + "/display";
-
-
-    }
+//    @RequestMapping(value = "/sys/data/display", method = RequestMethod.GET)
+//    String companyDataDisplay(Model model, HttpSession httpSession) {
+//
+//
+////        List<CompanyData> companyDataOfPeople = companyDataService.getTotalPeopleFromCompanyDataOfEverySuvryTime();
+////        if (companyDataOfPeople.size() > 0) {
+////            httpSession.setAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
+////        } else {
+////            for (int i = 0; i < 12; i++) {
+////                companyDataOfPeople.get(i).setInit_people(0);
+////            }
+////            httpSession.setAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
+////        }
+//
+//
+//        return STATIC_PREFIX + "/display";
+//
+//
+//    }
 
     /**
      * 按照城市获取企业数量
@@ -62,7 +62,7 @@ public class AnalyseController {
      * @param httpSession
      * @return
      */
-    @RequestMapping(value = "/sys/data/companyNumberByCity", method = RequestMethod.GET)
+    @RequestMapping(value = "/sys/data/display", method = RequestMethod.GET)
     String companyNumber(Model model, HttpSession httpSession) {
         /**
          *
@@ -113,6 +113,11 @@ public class AnalyseController {
 
         return STATIC_PREFIX + "/analyse";
     }
+//    @RequestMapping(value = "/sys/data/duibifenxi", method = RequestMethod.GET)
+//    String companyNumber(Model model, HttpSession httpSession,Request request) {
+//
+//        request.getParameterByName("periodOne")
+//    }
 
 
 }
