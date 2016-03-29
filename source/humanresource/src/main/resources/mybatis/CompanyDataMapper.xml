@@ -78,4 +78,20 @@
     <select id="getCompanyDataBySurveyTimeId" parameterType="int" resultMap="CompanyData">
         SELECT * FROM company_data WHERE survey_time_id = #{survey_time_id} AND pid = 0
     </select>
+
+    <select id="getCompanyDataCountByCity" resultType="java.lang.Integer">
+        SELECT count(1) FROM company_data WHERE status IN (-1, 0, 1);
+    </select>
+
+    <select id="getCompanyDataCountByProvince" resultType="java.lang.Integer">
+        SELECT count(1) FROM company_data WHERE status IN (-2, 1, 2, 3);
+    </select>
+
+    <select id="getCompanyDataList" resultMap="CompanyData">
+        SELECT * FROM company_data WHERE status IN
+        <foreach item="item" index="index" collection="ids"
+                 open="(" separator="," close=")">#{item}
+        </foreach>
+        ORDER BY company_id
+    </select>
 </mapper>

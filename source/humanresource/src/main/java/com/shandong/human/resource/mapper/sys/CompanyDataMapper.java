@@ -33,4 +33,10 @@ public interface CompanyDataMapper {
     public ArrayList<CompanyData> getAllCompanyDataFromSQL();
 
     public ArrayList<CompanyData> getCompanyDataBySurveyTimeId(int survey_time_id);
+
+    public Integer getCompanyDataCountByCity();
+
+    public Integer getCompanyDataCountByProvince();
+
+    List<CompanyData> getCompanyDataList(@Param("ids") List<Long> ids);
 }

@@ -1,7 +1,10 @@
 package com.shandong.human.resource.controller.sys;
 
 import com.shandong.human.resource.domain.CompanyData;
+import com.shandong.human.resource.domain.User;
 import com.shandong.human.resource.service.sys.CompanyDataService;
+import com.shandong.human.resource.util.Constant;
+import com.shandong.human.resource.util.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
+ * 企业上报数据控制器
+ * <p>
  * Author: helin <helin199210@icloud.com>
  * Time: 16/3/15 下午2:52
  */
@@ -30,12 +36,25 @@ public class CompanyDataController {
      * 显示companyData界面
      *
      * @param model
-     * @param httpSession
+     * @param session
      * @return
      */
     @RequestMapping(value = "/sys/data/list", method = RequestMethod.GET)
-    String companyDataList(Model model, HttpSession httpSession) {
-        List<CompanyData> companyDataList = companyDataService.companyDataList();
+    String companyDataList(Model model, HttpSession session) {
+        User loginUser = (User) session.getAttribute(Constant.LOGIN_USER);
+        List<Long> status = new ArrayList<Long>();
+        if (loginUser.getType() == 1) { // 省用户
+            status.add(-2L);
+            status.add(1L);
+            status.add(2L);
+            status.add(3L);
+        } else if (loginUser.getType() == 2) { // 市用户
+            status.add(-1L);
+            status.add(0L);
+            status.add(1L);
+        }
+
+        List<CompanyData> companyDataList = companyDataService.getCompanyDataList(status);
         model.addAttribute("companyDataList", companyDataList);
         return STATIC_PREFIX + "/list";
     }

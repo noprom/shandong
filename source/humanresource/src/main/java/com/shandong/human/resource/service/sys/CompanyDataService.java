@@ -1,6 +1,7 @@
 package com.shandong.human.resource.service.sys;
 
 import com.shandong.human.resource.domain.CompanyData;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,4 +27,9 @@ public interface CompanyDataService {
 
     List<CompanyData> getCompanyDataBySurveyTimeId(int survey_time_id);
 
+    public Integer getCompanyDataCountByCity();
+
+    public Integer getCompanyDataCountByProvince();
+
+    List<CompanyData> getCompanyDataList(List<Long> ids);
 }
