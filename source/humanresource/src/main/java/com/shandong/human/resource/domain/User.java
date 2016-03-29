@@ -5,13 +5,17 @@ package com.shandong.human.resource.domain;
  * Date: 2016/3/14 9:34
  */
 
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class User {
 
     private int id;            //主键
-    @Size(min = 5, max = 20)
+
+    @Pattern(regexp = "[a-z]|[A-Z]([a-z]|[A-Z]){4,19}")
     private String username;  //用户名
+
+    @Pattern(regexp = "[a-z]|[A-Z]([a-z]|[A-Z]){4,19}")
     private String password;  //MD5加密密码
     private int type;         //1:省用户，2:企业用户
 

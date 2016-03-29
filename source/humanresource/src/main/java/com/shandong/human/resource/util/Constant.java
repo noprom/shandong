@@ -119,7 +119,7 @@ public class Constant {
     /** 登录的用户 **/
     public static final String LOGIN_USER = "localUser";
 
-    /** 用户名必须在5~20位 **/
+    /** 用户名、密码必须在5~20位,且为以字母开头的数字加字母组合 **/
     public static final String USERNAME_ILLEGAL = "USERNAME_ILLEGAL";
 
     public static final String HOST_URL = "http://localhost:8080/bigdatatalentpool";
