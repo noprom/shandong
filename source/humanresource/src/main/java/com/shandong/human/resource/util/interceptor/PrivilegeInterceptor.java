@@ -1,16 +1,16 @@
 package com.shandong.human.resource.util.interceptor;
 
 import com.shandong.human.resource.domain.Auth;
+import org.springframework.data.redis.connection.DataType;
+import org.springframework.data.redis.connection.StringRedisConnection;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * 登录拦截器
@@ -32,9 +32,24 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
     /**
      * 默认可访问url
      */
-    private static List<String> defaultUrl;
+    private static Set<String> defaultUrl;
+
+
+    /**
+     * 替换符数据类型
+     */
+    private enum alterType{
+        _BEGIN, //enum 起始
+        _INTEGER, //int类型
+        _END //enum 结束
+    }
+    /**
+     * 替换符
+     */
+    private static Map<String,alterType> alterSign;
+
     static {
-        defaultUrl = new ArrayList<String>();
+        defaultUrl = new HashSet<String>();
         defaultUrl.clear();
         defaultUrl.add("/static");
         defaultUrl.add("/");
@@ -43,6 +58,11 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
         defaultUrl.add("/login");
         defaultUrl.add("/logout");
         defaultUrl.add("/error");
+
+
+        alterSign=new HashMap<String, alterType>();
+        alterSign.clear();
+        alterSign.put("{id}",alterType._INTEGER);
     }
 
     public boolean preHandle(HttpServletRequest request,
@@ -78,8 +98,50 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
             return true;
         }
 
+        String[] url_splid = url.split("/");
         for(Auth r:auths){
-            if(r.getUrl().contains(url)){
+            String r_url = r.getUrl();
+            String[] r_url_splid = r_url.split("/");
+
+            //长度不匹配
+            if(r_url_splid.length != url_splid.length){
+                continue;
+            }
+
+            //包含替换符
+            if(signCheck(url)){
+                int i;
+                for(i=0;i<r_url_splid.length;++i){
+                    //当前节为替换符
+                    if(alterSign.containsKey(r_url_splid[i])){
+                        if(typeCheck(url_splid[i],alterSign.get(r_url_splid[i]))){
+                            continue;
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    //当前节非替换符
+                    else{
+                        if(r_url_splid[i].equals(url_splid[i])){
+                            continue;
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                }
+                if(i!=r_url_splid.length){
+                    request.setAttribute("error","无效的访问请求");
+                    response.sendRedirect("/error");
+                    return true;
+                }
+                else{
+                    return true;
+                }
+            }
+            //不包含替换符
+            else if(r.getUrl().contains(url)){
                 return true;
             }
         }
@@ -97,5 +159,42 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse
             httpServletResponse, Object handler, Exception e) throws Exception {
 
+    }
+
+
+    /**
+     * 字符串类型判定
+     * @param in 字符串
+     * @param toType 目标类型
+     * @return
+     */
+    private boolean typeCheck(String in,alterType toType)
+    {
+        switch (toType){
+            //int 判定
+            case _INTEGER:{
+                try {
+                    Integer.parseInt(in);
+                }catch (Exception e){
+                    return false;
+                }
+                return true;
+            }
+            default:return false;
+        }
+    }
+
+    /**
+     * 检查链接是否拥有助记符
+     * @param url 链接
+     * @return
+     */
+    private boolean signCheck(String url){
+        for(Map.Entry<String,alterType> entry : alterSign.entrySet()){
+            if(url.contains(entry.getKey())){
+                return true;
+            }
+        }
+        return false;
     }
 }
