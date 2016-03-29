@@ -3,8 +3,10 @@ package com.shandong.human.resource.controller.sys;
 import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.domain.CompanyData;
 import com.shandong.human.resource.domain.StatisticsOfCompany;
+import com.shandong.human.resource.domain.SurveyTime;
 import com.shandong.human.resource.service.home.CompanyService;
 import com.shandong.human.resource.service.sys.CompanyDataService;
+import com.shandong.human.resource.service.sys.SurveyTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +31,8 @@ public class AnalyseController {
     private CompanyDataService companyDataService;
     @Autowired
     private CompanyService companyService;
+    @Autowired
+    private SurveyTimeService surveyTimeService;
 
 
     @RequestMapping(value = "/sys/data/display", method = RequestMethod.GET)
@@ -60,7 +64,9 @@ public class AnalyseController {
      */
     @RequestMapping(value = "/sys/data/companyNumberByCity", method = RequestMethod.GET)
     String companyNumber(Model model, HttpSession httpSession) {
-
+        /**
+         *
+         */
         List<CompanyData> companyDataOfPeople = companyDataService.getTotalPeopleFromCompanyDataOfEverySuvryTime();
         if (companyDataOfPeople.size() > 0) {
             httpSession.setAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
@@ -70,7 +76,9 @@ public class AnalyseController {
             }
             httpSession.setAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
         }
-
+        /**
+         *
+         */
         List<Company> companyNumberByCity = companyService.getCompanyNumberByCity();
         float sum = 0;
         for (int i = 0; i < companyNumberByCity.size(); i++) {
@@ -96,6 +104,12 @@ public class AnalyseController {
 
         httpSession.setAttribute("statisticsOfCompanyList", statisticsOfCompanyList);
 
+        /**
+         *
+         */
+        List<SurveyTime> surveyTimeList = new ArrayList<SurveyTime>();
+        surveyTimeList = surveyTimeService.getAllSurveyTime();
+        httpSession.setAttribute("surveyTimeList",surveyTimeList);
 
         return STATIC_PREFIX + "/analyse";
     }
