@@ -135,7 +135,8 @@
                                         <td>
                                             <c:choose>
                                                 <c:when test="${(v.status eq 1) or (v.status eq 0)}">
-                                                    <a href="<%=basePath%>sys/data/edit/${v.id}" class="btn btn-primary">审核</a>
+                                                    <a href="<%=basePath%>sys/data/edit/${v.id}" class="btn btn-primary">编辑</a>
+                                                    <a href="<%=basePath%>sys/data/audit/${v.id}" class="btn btn-primary">审核</a>
                                                 </c:when>
                                             </c:choose>
                                             <%--貌似没有删除的需求--%>

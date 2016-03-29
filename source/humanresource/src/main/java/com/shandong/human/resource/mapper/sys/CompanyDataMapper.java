@@ -41,4 +41,6 @@ public interface CompanyDataMapper {
     public Integer getCompanyDataCountByProvince();
 
     List<CompanyData> getCompanyDataList(@Param("ids") List<Long> ids);
+
+    int updateCompanyDataStatus(@Param("id") Integer id, @Param("status") Integer status);
 }

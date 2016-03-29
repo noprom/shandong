@@ -82,4 +82,15 @@ public class CompanyDataServiceImpl implements CompanyDataService {
     public List<CompanyData> getCompanyDataList(List<Long> ids) {
         return companyDataMapper.getCompanyDataList(ids);
     }
+
+    /**
+     * 更新数据的状态
+     *
+     * @param id
+     * @param status
+     * @return
+     */
+    public int updateCompanyDataStatus(Integer id, Integer status) {
+        return companyDataMapper.updateCompanyDataStatus(id, status);
+    }
 }
