@@ -1,27 +1,26 @@
 package com.shandong.human.resource.util;
 
-import java.util.Date;
 
 public class CompanyDataQuaryList {
-    private Date start_time;//开始时间
-    private Date end_time;  //结束时间
+    private String start_time;       //开始时间
+    private String end_time;         //结束时间
     private int init_people;        //建档期就业人数,填写初次将档时监测点就业人数
     private int cur_people;         //调查期就业人数,填写本次调查期当时的监测点就业人数
     private String other_reason;    //其他原因
 
-    public Date getStart_time() {
+    public String getStart_time() {
         return start_time;
     }
 
-    public void setStart_time(Date start_time) {
+    public void setStart_time(String start_time) {
         this.start_time = start_time;
     }
 
-    public Date getEnd_time() {
+    public String getEnd_time() {
         return end_time;
     }
 
-    public void setEnd_time(Date end_time) {
+    public void setEnd_time(String end_time) {
         this.end_time = end_time;
     }
 

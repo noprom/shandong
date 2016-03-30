@@ -34,4 +34,6 @@ public interface CompanyDataService {
     List<CompanyData> getCompanyDataList(List<Long> ids);
 
     int updateCompanyDataStatus(Integer id, Integer status);
+
+    public  ArrayList<CompanyData> getCompanyDataByCompanyIdLastestTime(int company_id);
 }
