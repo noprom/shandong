@@ -38,6 +38,10 @@ public  interface ReportService {
      */
     public void changeCompanyDataStatusById(Integer id);
 
+    public int getCompanyIdByName(String name);
+
+    public ArrayList<CompanyData> getCompanyDataByCompanyIdS2(Integer id);
+
 
 
 

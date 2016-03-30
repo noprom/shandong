@@ -41,8 +41,9 @@
             </ol>
         </section>
 
-        <!-- Main content -->
-        <div class="row">
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
             <!-- left column -->
             <form role="form" id="add-form">
 
@@ -60,7 +61,7 @@
                             <%--<form>--%>
                             <div class="form-group">
                                 <label>城市</label>
-                                <select  onchange="cityChange()" aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="city_id" id="city_id">
+                                <select  onchange="cityChange()" aria-hidden="true" tabindex="-1" class="form-control" style="width: 100%;" name="city_id" id="city_id">
                                     <option selected="selected" value="${cityArea.id}">${cityArea.name}</option>
                                     <c:forEach items="${listCity}" var="v">
                                         <option value="${v.id}">${v.name}</option>
@@ -70,7 +71,7 @@
                             </div><!-- /.form-group -->
                             <div class="form-group">
                                 <label>区域</label>
-                                <select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="area_id" name="area_id">
+                                <select aria-hidden="true" tabindex="-1" class="form-control" style="width: 100%;" id="area_id" name="area_id">
                                     <option selected="selected" value="${areaArea.id}">${areaArea.name}</option>
                                     <c:forEach items="${listArea}" var="v">
                                         <option value="${v.id}">${v.name}</option>
@@ -119,15 +120,15 @@
                             </div>
                             <div class="form-group">
                                 <label>联系电话</label>
-                                <input class="form-control" value="${company.phone}" placeholder="" type="text" name="phone">
+                                <input class="form-control" value="${company.phone}" placeholder="格式必须符合（区号）+电话号码或者为手机号码" type="text" name="phone">
                             </div>
                             <div class="form-group">
                                 <label>传真</label>
-                                <input class="form-control" value="${company.fax}" placeholder="" type="text" name="fax">
+                                <input class="form-control" value="${company.fax}" placeholder="格式必须符合（区号）+电话" type="text" name="fax">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">EMAIL</label>
-                                <input class="form-control" value="${company.email}" name="email" placeholder="" type="email">
+                                <input class="form-control" value="${company.email}" name="email" placeholder="格式必须符合xxx@xxx.xxx" type="email">
                             </div>
 
                         </div><!-- /.box-body -->
@@ -135,8 +136,10 @@
                 </div><!--/.col (right) -->
             </form>
 
-        </div><!-- /.content -->
-    </div><!-- /.content-wrapper -->
+            </div><!-- /.content -->
+            </div><!-- /.content-wrapper -->
+        </section>
+    </div>
         <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
         <script>
             $(function () {
@@ -152,7 +155,7 @@
             });
             function  onSubmit()
             {
-                var postUrl = "<%=basePath%>home/company/edit/submit";
+                var postUrl = "<%=basePath%>home/company/edit";
                 $.ajax({
                     url: postUrl,
                     data: $("#add-form").serialize(),
@@ -166,12 +169,15 @@
                             //提交成功时返回到主页
                             window.location.href = "<%=basePath%>";
                         }
-                        if(data.success=="noInfo")
+                        else if(data.success=="noInfo")
                         {
                             alert("请填写信息！");
                             window.location.href = "<%=basePath%>home/company/add";
                         }
-                        alert("修改失败");
+                        else
+                        {
+                            alert("修改失败");
+                        }
                     },
                     error: function(){
                         alert("服务器无法连接！");
@@ -193,11 +199,10 @@
                 var obj=document.getElementById("city_id");
                 var index=obj.selectedIndex; //序号，取当前选中选项的序号
                 var str = obj.options[index].value;
-                var str1="<%=basePath%>home/company/edit/"+str;
+                var str1="<%=basePath%>home/company/add/"+str;
 
                 $.ajax({
                     type: 'get',
-
                     url: str1 ,
                     async:false,
                     data: {} ,
@@ -211,12 +216,13 @@
                             areaBox.add(new Option(data[i].name,data[i].id));
                         }
                     },
-                    error:function(boj,info){
-                        alert(info);}
+                    error:function(){
+                        alert("服务器无法连接！");}
                 });
 
             }
 
         </script>
+</div>
 </body>
 </html>

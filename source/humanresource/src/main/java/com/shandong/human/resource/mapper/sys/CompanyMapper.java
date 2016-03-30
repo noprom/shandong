@@ -47,8 +47,21 @@ public interface CompanyMapper {
      * @return
      */
     public Company getCompanyById(int id);
+
     /**
      * 更新Company
      */
     public void updateCompanyInfo(Company company);
+
+
+
+
+
+
+    /**
+     * 根据name获取CompanyID
+     */
+    public Company getCompanyIdByName(@Param("name")String name);
+
+
 }

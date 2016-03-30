@@ -267,8 +267,7 @@
                     success: function (data) {
 
                         if (data.status == 'SUCCESS') {
-                            alert(data.info);
-//                            toastr.success(data.info);
+                            toastr.success(data.info);
                             // 1000ms之后执行的操作
                             setTimeout(function () {
                                 // 刷新页面
@@ -277,8 +276,7 @@
                                 //window.location.href = "<%=basePath%>sys/user";
                             }, 1000);
                         } else {
-                            alert(data.info);
-//                            toastr.error(data.info);
+                            toastr.error(data.info);
                             return false;
                         }
                     }

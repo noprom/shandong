@@ -1,12 +1,15 @@
 package com.shandong.human.resource.service.sys.impl;
 
 import com.shandong.human.resource.domain.MonitorInformation;
+import com.shandong.human.resource.domain.MonitorInformationAddtion;
 import com.shandong.human.resource.service.sys.MonitorService;
 import com.sun.management.OperatingSystemMXBean;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.lang.management.ManagementFactory;
+import java.util.Properties;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
@@ -26,6 +29,11 @@ public class MonitorServiceImpl implements MonitorService {
 
     public MonitorInformation getMonitorInformation()
     {
+
+//        System.out.println(javaVersion);
+//        System.out.println(arch);
+
+
         int kb = 1024;
 
         // 可使用内存
@@ -78,9 +86,24 @@ public class MonitorServiceImpl implements MonitorService {
      *
      * 等待添加
      */
-
     private double getCpuRatioForLinux()
     {
         return 0.0;
+    }
+
+    public MonitorInformationAddtion getMonitorInformationAddtion(HttpServletRequest request)
+    {
+        Properties props = System.getProperties();
+        MonitorInformationAddtion mia = new MonitorInformationAddtion();
+
+        mia.setJavaVersion(props.getProperty("java.version"));
+        mia.setArch(props.getProperty("os.arch"));
+        mia.setServerAddr(request.getRemoteAddr());
+        mia.setServerHost(request.getRemoteHost());
+        mia.setServerPort(request.getServerPort());
+        mia.setServerName(request.getServerName());
+
+        return mia;
+
     }
 }

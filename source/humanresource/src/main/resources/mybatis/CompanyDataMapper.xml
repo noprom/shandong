@@ -23,16 +23,13 @@
         <result column="update_time" property="update_time"/>
     </resultMap>
 
-
     <select id="getAllCompanyData" resultMap="CompanyData">
         SELECT * FROM company_data WHERE status = 2 ORDER BY company_id
     </select>
 
-
     <select id="getCompanyDataByCompanyIdZTR" resultMap="CompanyData">
         SELECT * FROM company_data WHERE company_id = #{id} ORDER BY company_id
     </select>
-
 
     <select id="getCompanyDataByCompanyId" resultMap="CompanyData">
         SELECT * FROM company_data WHERE company_id = #{id} ORDER BY create_time
@@ -50,19 +47,22 @@
         SELECT * FROM company_data WHERE id = #{id}
     </select>
 
+    <!--TODO:新增纪录之后要向log表中插入一条日志-->
     <insert id="companyDataAdd" parameterType="CompanyData">
         SET @TIME = now();
         INSERT INTO company_data
         (pid, company_id, survey_time_id, init_people, cur_people, reduce_type, reason1, reason1_explain, reason2, reason2_explain, reason3, reason3_explain, other_reason, status, not_pass_reason, create_time, update_time)
 
         VALUES
-        (#{id}, #{company_id}, #{survey_time_id}, #{init_people}, #{cur_people}, #{reduce_type}, #{reason1}, #{reason1_explain}, #{reason2}, #{reason2_explain}, #{reason3}, #{reason3_explain}, #{other_reason}, #{status}, #{not_pass_reason}, #{create_time}, @TIME )
+        (#{id}, #{company_id}, #{survey_time_id}, #{init_people}, #{cur_people}, #{reduce_type}, #{reason1}, #{reason1_explain}, #{reason2}, #{reason2_explain}, #{reason3}, #{reason3_explain}, #{other_reason}, #{status}, #{not_pass_reason}, @TIME, @TIME )
 
     </insert>
+
     <select id="getTotalPeopleFromCompanyDataOfEverySuvryTime" resultType="CompanyData">
         SELECT sum(cur_people) AS cur_people  FROM company_data
         GROUP BY survey_time_id
     </select>
+
     <insert id="companyDataAddFirst" parameterType="CompanyData">
         SET @TIME = now();
         INSERT INTO company_data
@@ -72,6 +72,7 @@
         (#{pid}, #{company_id}, #{survey_time_id}, #{init_people}, #{cur_people}, #{reduce_type}, #{reason1}, #{reason1_explain}, #{reason2}, #{reason2_explain}, #{reason3}, #{reason3_explain}, #{other_reason}, #{status}, #{not_pass_reason}, #{create_time}, @TIME )
 
     </insert>
+
     <select id="getAllCompanyDataFromSQL" resultMap="CompanyData">
         SELECT * FROM company_data
     </select>
@@ -80,29 +81,35 @@
         SELECT * FROM company_data WHERE survey_time_id = #{survey_time_id} AND pid = 0
     </select>
 
+    <select id="getCompanyDataCountByCity" resultType="java.lang.Integer">
+        SELECT count(1) FROM company_data WHERE status IN (-1, 0, 1);
+    </select>
 
+    <select id="getCompanyDataCountByProvince" resultType="java.lang.Integer">
+        SELECT count(1) FROM company_data WHERE status IN (-2, 1, 2, 3);
+    </select>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <select id="getCompanyDataList" resultMap="CompanyData">
+        SELECT * FROM company_data WHERE status IN
+        <foreach item="item" index="index" collection="ids"
+                 open="(" separator="," close=")">#{item}
+        </foreach>
+        ORDER BY company_id
+    </select>
 
 
 
     <update id="changeCompanyDataStatusById" parameterType="int">
         UPDATE company_data SET status = 3 WHERE id = #{id}
     </update>
+
+
+    <select id="getCompanyDataByCompanyIdS2" parameterType="int" resultMap="CompanyData">
+        SELECT * FROM company_data WHERE company_id = #{id} AND status = 2
+    </select>
+
+    <update id="updateCompanyDataStatus">
+        UPDATE company_data SET status = #{status} WHERE id = #{id}
+    </update>
+
 </mapper>

@@ -122,4 +122,23 @@ public class Company {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", province_id=" + province_id +
+                ", city_id=" + city_id +
+                ", area_id=" + area_id +
+                ", address='" + address + '\'' +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", business='" + business + '\'' +
+                ", contact='" + contact + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", phone='" + phone + '\'' +
+                ", fax='" + fax + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
