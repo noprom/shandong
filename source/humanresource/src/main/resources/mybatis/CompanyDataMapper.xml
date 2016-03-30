@@ -96,29 +96,7 @@
         ORDER BY company_id
     </select>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <update id="changeCompanyDataStatusById" parameterType="int">
         UPDATE company_data SET status = 3 WHERE id = #{id}
     </update>
->>>>>>> 3d48a098b8ba842661129cbe0e4ebf48c06467cf
 </mapper>
