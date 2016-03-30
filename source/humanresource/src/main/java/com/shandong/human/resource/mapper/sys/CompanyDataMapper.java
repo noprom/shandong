@@ -45,4 +45,6 @@ public interface CompanyDataMapper {
     List<CompanyData> getCompanyDataList(@Param("ids") List<Long> ids);
 
     int updateCompanyDataStatus(@Param("id") Integer id, @Param("status") Integer status);
+
+    public  ArrayList<CompanyData> getCompanyDataByCompanyIdLastestTime(int company_id);
 }

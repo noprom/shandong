@@ -131,6 +131,9 @@ public class Constant {
     /** 拒绝删除基本权限或不存在的权限 **/
     public static final String AUTHDELETE_REFUSE = "AUTHDELETE_REFUSE";
 
+    /** 上报成功 **/
+    public static final String SUBMIT_SUCCESS = "SUBMIT_SUCCESS";
+
     public static final String HOST_URL = "http://localhost:8080/bigdatatalentpool";
 
     public static void main(String[] args) {

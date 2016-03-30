@@ -93,4 +93,15 @@ public class CompanyDataServiceImpl implements CompanyDataService {
     public int updateCompanyDataStatus(Integer id, Integer status) {
         return companyDataMapper.updateCompanyDataStatus(id, status);
     }
+
+    /**
+     * 按照最新时间获取公司的ID
+     *
+     * @param company_id
+     * @return
+     */
+    public  ArrayList<CompanyData> getCompanyDataByCompanyIdLastestTime(int company_id)
+    {
+        return companyDataMapper.getCompanyDataByCompanyIdLastestTime(company_id);
+    }
 }

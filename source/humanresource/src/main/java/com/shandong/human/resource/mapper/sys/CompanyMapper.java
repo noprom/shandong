@@ -1,6 +1,7 @@
 package com.shandong.human.resource.mapper.sys;
 
 import com.shandong.human.resource.domain.Company;
+import com.shandong.human.resource.domain.CompanyData;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
@@ -62,6 +63,5 @@ public interface CompanyMapper {
      * 根据name获取CompanyID
      */
     public Company getCompanyIdByName(@Param("name")String name);
-
 
 }
