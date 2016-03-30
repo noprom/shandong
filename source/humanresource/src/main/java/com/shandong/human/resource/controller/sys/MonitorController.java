@@ -1,13 +1,20 @@
 package com.shandong.human.resource.controller.sys;
 
 import com.shandong.human.resource.domain.MonitorInformation;
+import com.shandong.human.resource.domain.MonitorInformationAddtion;
 import com.shandong.human.resource.service.sys.MonitorService;
 import com.shandong.human.resource.service.sys.RecordService;
+import com.shandong.human.resource.util.SysInfo;
+import org.hyperic.sigar.CpuInfo;
+import org.hyperic.sigar.Sigar;
+import org.hyperic.sigar.SigarException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -25,15 +32,30 @@ public class MonitorController {
     @Autowired
     private MonitorService monitorService;
 
+
+
+
     /**
      * Author: constantine <1194479264@qq.com>
      * Date: 16/3/14 下午2:15
      * 获取系统监控数据
      */
     @RequestMapping(value = "/sys/monitor", method = RequestMethod.GET)
-    public String monitor(Model model) {
+    public String monitor(Model model, HttpServletRequest request) {
 
         MonitorInformation monitorInformation = monitorService.getMonitorInformation();
+
+        MonitorInformationAddtion mia = monitorService.getMonitorInformationAddtion(request);
+
+
+
+
+//        System.out.println(mia.getArch());
+//        System.out.println(mia.getJavaVersion());
+//        System.out.println(mia.getServerAddr());
+//        System.out.println(mia.getServerHost());
+//        System.out.println(mia.getServerName());
+//        System.out.println(mia.getServerPort());
 
         //Constantine Testing code
 //        System.out.println(monitorInformation.getCpuRatio());
@@ -48,6 +70,7 @@ public class MonitorController {
         //end of testing
 
         model.addAttribute("m",monitorInformation);
+        model.addAttribute("mia",mia);
         return STATIC_PREFIX + "/monitor";
     }
 }

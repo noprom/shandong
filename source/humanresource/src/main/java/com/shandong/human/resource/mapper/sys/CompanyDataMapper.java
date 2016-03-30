@@ -36,9 +36,15 @@ public interface CompanyDataMapper {
 
     public ArrayList<CompanyData> getCompanyDataBySurveyTimeId(int survey_time_id);
 
+    public ArrayList<CompanyData> getCompanyDataByCompanyIdS2(@Param("id")int id);
+
     public Integer getCompanyDataCountByCity();
 
     public Integer getCompanyDataCountByProvince();
 
     List<CompanyData> getCompanyDataList(@Param("ids") List<Long> ids);
+
+    int updateCompanyDataStatus(@Param("id") Integer id, @Param("status") Integer status);
+
+    public  ArrayList<CompanyData> getCompanyDataByCompanyIdLastestTime(int company_id);
 }

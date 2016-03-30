@@ -41,6 +41,9 @@
             </ol>
         </section>
 
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
         <div class="box-body">
             <div class="dataTables_wrapper form-inline dt-bootstrap" id="example1_wrapper">
 
@@ -79,7 +82,10 @@
                 </div>
 
             </div>
-        </div><!-- /.box-body -->
+        </div>
+                    </div>
+                </div>
+            </section>
 
     </div>
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>

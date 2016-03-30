@@ -43,7 +43,7 @@
                             <h3 class="box-title">上报数据详情</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <form role="form" action="<%=basePath%>sys/data/edit" method="post">
+                            <form role="form" action="<%=basePath%>sys/data/audit" method="post">
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label for="company_id">公司名</label>
@@ -64,69 +64,71 @@
                                            placeholder="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="init_people">建档期就业人数</label>
-                                    <input type="text" value=${companyData.init_people} class="form-control"
-                                           name="init_people" id="init_people"
-                                           placeholder="建档期就业人数">
+                                    <label>建档期就业人数</label>
+                                    <p>${companyData.init_people}</p>
+                                    <%--<input type="text" value=${companyData.init_people} class="form-control"--%>
+                                           <%--name="init_people" id="init_people"--%>
+                                           <%--placeholder="建档期就业人数">--%>
                                 </div>
                                 <div class="form-group">
-                                    <label for="cur_people">调查期就业人数</label>
-                                    <input type="text" value=${companyData.cur_people} class="form-control"
-                                           name="cur_people" id="cur_people"
-                                           placeholder="调查期就业人数">
+                                    <label>调查期就业人数</label>
+                                    <p>${companyData.cur_people}</p>
+                                    <%--<input type="text" value=${companyData.cur_people} class="form-control"--%>
+                                           <%--name="cur_people" id="cur_people"--%>
+                                           <%--placeholder="调查期就业人数">--%>
                                 </div>
                                 <div class="form-group">
-                                    <label for="reduce_type">减少类型</label>
-                                    <input type="text" value=${companyData.reduce_type} class="form-control"
-                                           name="reduce_type" id="reduce_type"
-                                           placeholder="Enter ...">
+                                    <label>减少类型</label>
+                                    <p>${companyData.reduce_type}</p>
+                                    <%--<input type="text" value=${companyData.reduce_type} class="form-control"--%>
+                                           <%--name="reduce_type" id="reduce_type"--%>
+                                           <%--placeholder="Enter ...">--%>
                                 </div>
                                 <div class="form-group">
-                                    <label for="reason1">主要原因</label>
-                                    <input type="text" value=${companyData.reason1} class="form-control" name="reason1"
-                                           id="reason1"
-                                           placeholder="主要原因">
+                                    <label>主要原因</label>
+                                    <p>${companyData.reason1}</p>
+                                    <%--<input type="text" value=${companyData.reason1} class="form-control" name="reason1"--%>
+                                           <%--id="reason1"--%>
+                                           <%--placeholder="主要原因">--%>
                                 </div>
                                 <div class="form-group">
-                                    <label for="reason1_explain">主要原因说明</label>
-                                    <input type="text" value=${companyData.reason1_explain} class="form-control"
-                                           name="reason1_explain" id="reason1_explain"
-                                           placeholder="主要原因说明">
+                                    <label>主要原因说明</label>
+                                    <p>${companyData.reason1_explain}</p>
+                                    <%--<input type="text" value=${companyData.reason1_explain} class="form-control"--%>
+                                           <%--name="reason1_explain" id="reason1_explain"--%>
+                                           <%--placeholder="主要原因说明">--%>
                                 </div>
                                 <div class="form-group">
-                                    <label for="reason2">次要原因</label>
-                                    <input type="text" value=${companyData.reason2} class="form-control" name="reason2"
-                                           id="reason2"
-                                           placeholder="次要原因">
+                                    <label>次要原因</label>
+                                    <p>${companyData.reason2}</p>
+                                    <%--<input type="text" value=${companyData.reason2} class="form-control" name="reason2"--%>
+                                           <%--id="reason2"--%>
+                                           <%--placeholder="次要原因">--%>
                                 </div>
                                 <div class="form-group">
-                                    <label for="reason2_explain">次要原因说明</label>
-                                    <input type="text" value=${companyData.reason2_explain} class="form-control"
-                                           name="reason2_explain" id="reason2_explain"
-                                           placeholder="次要原因说明">
+                                    <label>次要原因说明</label>
+                                    <p>${companyData.reason2_explain}</p>
+                                    <%--<input type="text" value=${companyData.reason2_explain} class="form-control"--%>
+                                           <%--name="reason2_explain" id="reason2_explain"--%>
+                                           <%--placeholder="次要原因说明">--%>
                                 </div>
                                 <div class="form-group">
-                                    <label for="reason3">第三原因</label>
-                                    <input type="text" value=${companyData.reason3} class="form-control" name="reason3"
-                                           id="reason3"
-                                           placeholder="第三原因">
+                                    <label>第三原因</label>
+                                    <p>${companyData.reason3}</p>
+                                    <%--<input type="text" value=${companyData.reason3} class="form-control" name="reason3"--%>
+                                           <%--id="reason3"--%>
+                                           <%--placeholder="第三原因">--%>
                                 </div>
                                 <div class="form-group">
-                                    <label for="reason3_explain">第三原因说明</label>
-                                    <input type="text" value=${companyData.reason3_explain} class="form-control"
-                                           name="reason3_explain" id="reason3_explain"
-                                           placeholder="第三原因说明">
+                                    <label>第三原因说明</label>
+                                    <p>${companyData.reason3_explain}</p>
+                                    <%--<input type="text" value=${companyData.reason3_explain} class="form-control"--%>
+                                           <%--name="reason3_explain" id="reason3_explain"--%>
+                                           <%--placeholder="第三原因说明">--%>
                                 </div>
-                                <div class="form-group">
-                                    <label for="other_reason">审核不通过原因</label>
-                                    <input type="text" value=${companyData.not_pass_reason} class="form-control"
-                                           name="other_reason" id="other_reason"
-                                           placeholder="审核不通过原因">
-                                </div>
-
                                 <!-- select -->
                                 <div class="form-group">
-                                    <label>状态</label>
+                                    <label>审核</label>
                                     <select class="form-control" name="status">
                                         <c:choose>
                                             <c:when test="${localUser.type eq 1}">
@@ -150,7 +152,7 @@
                                     <label for="not_pass_reason">审核不通过原因</label>
                                     <input type="text" value=${companyData.not_pass_reason} class="form-control"
                                            name="not_pass_reason" id="not_pass_reason"
-                                           placeholder="Enter ...">
+                                           placeholder="${companyData.not_pass_reason}">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">提交修改</button>
@@ -162,8 +164,6 @@
             </div>   <!-- /.row -->
         </section>
     </div>
-
-
 </div>
 
 

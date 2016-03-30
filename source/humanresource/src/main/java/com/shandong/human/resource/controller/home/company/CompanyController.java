@@ -57,8 +57,8 @@ public class CompanyController {
     @ResponseBody
     public ArrayList<Area> getAllArea(@PathVariable("id") Integer id) {
         //获取地区
-        System.out.println(id);
-        ArrayList<Area> list = areaService.getAllAreaById(id);
+        System.out.println(id.intValue());
+        ArrayList<Area> list = areaService.getAllAreaById(id.intValue());
         return list;
     }
 
@@ -86,9 +86,15 @@ public class CompanyController {
     //企业信息修改
     //获取修改页面
     @RequestMapping(value = "/home/company/edit",method = RequestMethod.GET)
-    public String getProvinceEdit(Model model,HttpSession session) {
+    public String getProvinceEdit(Model model,HttpSession session,HttpServletResponse response)throws IOException {
         User user=(User)session.getAttribute(Constant.LOGIN_USER);
         int id=user.getId();
+        ArrayList<Company> companies=companyService.isNull(id);
+        if(companies.size()==0)
+        {
+            response.sendRedirect("/home/company/add");
+            return null;
+        }
         Company company=companyService.getCompanyById(id);
         //id是主键，数组只有一个元素
         Area cityArea=areaService.getById(company.getCity_id());
@@ -103,17 +109,9 @@ public class CompanyController {
         return STATIC_PREFIX + "/edit";
     }
 
-    //获取所有的地区
-    //获得页面信息
-    @RequestMapping(value = "/home/company/edit/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public ArrayList<Area> getAllAreaEdit(@PathVariable("id") Integer id) {
-        System.out.println(id);
-        ArrayList<Area> list = areaService.getAllAreaById(id);
-        return list;
-    }
+
     //保存修改信息
-    @RequestMapping(value = "/home/company/edit/submit", method = RequestMethod.POST)
+    @RequestMapping(value = "/home/company/edit", method = RequestMethod.POST)
     @ResponseBody
     public Map saveInfo(Company company,HttpSession session) {
         Map map=new HashMap();

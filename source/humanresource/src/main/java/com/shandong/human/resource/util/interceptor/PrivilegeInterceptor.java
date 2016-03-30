@@ -70,8 +70,9 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
                              HttpServletResponse response, Object handler) throws Exception {
         String redirectUrl = doPreHandle(request, response, handler);
         if (!redirectUrl.equals(request.getRequestURI())) {
-            response.sendRedirect(redirectUrl);
-            return false;
+//            response.sendRedirect(redirectUrl);
+//            return false;
+            //ztr
         }
         return true;
     }

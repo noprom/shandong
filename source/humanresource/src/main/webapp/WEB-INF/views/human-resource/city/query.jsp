@@ -12,13 +12,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="../../head.jsp" flush="true"></jsp:include>
+    <jsp:include page="../head.jsp" flush="true"></jsp:include>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-    <jsp:include page="../../header.jsp" flush="true"></jsp:include>
+    <jsp:include page="../header.jsp" flush="true"></jsp:include>
 
-    <jsp:include page="../../left.jsp" flush="true"></jsp:include>
+    <jsp:include page="../left.jsp" flush="true"></jsp:include>
 
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -42,36 +42,12 @@
                 </div>
                 <div class="box-body">
                     <div class="row">
-                        <form id="query-form" action="<%=basePath%>sys/report/query" method="get">
+                        <form id="query-form" action="<%=basePath%>city/query" method="get">
                             <div class="col-xs-2">
                             <button type="submit" id="submit-btn">查询全部</button>
                             </div>
                         </form>
                     </div>
-                    <div class="row">
-                        <br>
-                        </div>
-                    <div class="row">
-                        <form id="query-form" action="<%=basePath%>sys/report/query" method="post">
-                            <div class="col-xs-2">
-                                请输入公司ID<input name="company_id">
-                            </div>
-                            <div class="col-xs-2">
-                            <button type="submit" id="submit-btn">通过公司ID查询</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="row">
-                        <form id="query-form" action="<%=basePath%>sys/report/queryByName" method="post">
-                            <div class="col-xs-2">
-                                请输入公司名称<input name="name">
-                            </div>
-                            <div class="col-xs-2">
-                                <button type="submit" id="submit-btn">通过公司名称查询</button>
-                            </div>
-                        </form>
-                    </div>
-
                 </div>
             </div>
 
@@ -82,11 +58,9 @@
                             <h3 class="box-title">Data Table With Full Features</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <form id="query-form" action="<%=basePath%>sys/report" method="post">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>选择</th>
                                     <th>ID</th>
                                     <th>公司ID</th>
                                     <th>初始人数</th>
@@ -99,9 +73,8 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${reportResult}" var="v">
+                                <c:forEach items="${cityQueryResult}" var="v">
                                     <tr>
-                                        <td><input type="checkbox" name="choose" value="${v.id}"></td>
                                         <td>${v.id}</td>
                                         <td>${v.company_id}</td>
                                         <td>${v.init_people}</td>
@@ -110,14 +83,13 @@
                                         <td>${v.status}</td>
                                         <td>${v.create_time}</td>
                                         <td>${v.update_time}</td>
-                                        <td><a href="<%=basePath%>sys/report/${v.company_id}" class="btn btn-primary">详情</a>
+                                        <td><a href="<%=basePath%>city/check/${v.id}" class="btn btn-primary">审核</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>选择</th>
                                     <th>ID</th>
                                     <th>公司ID</th>
                                     <th>初始人数</th>
@@ -130,15 +102,13 @@
                                 </tr>
                                 </tfoot>
                             </table>
-                                <input type="submit" value="上报">
-                            </form>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
-    <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
+    <jsp:include page="../footer.jsp" flush="true"></jsp:include>
     <script>
         $(function () {
             $("#example1").DataTable();

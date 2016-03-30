@@ -15,7 +15,7 @@ public interface AreaMapper {
     //获取所有的城市
     public ArrayList<Area> getAllCity();
     //获取所有的县
-    public ArrayList<Area> getAllAreaById(Integer id);
+    public ArrayList<Area> getAllAreaById(int id);
     //获取相应的id
     public Area getById(int id);
 }
