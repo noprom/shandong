@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional(isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
-public class CompanyDataServiceImpl implements CompanyDataService{
+public class CompanyDataServiceImpl implements CompanyDataService {
     @Autowired
     private CompanyDataMapper companyDataMapper;
 
@@ -42,17 +42,55 @@ public class CompanyDataServiceImpl implements CompanyDataService{
         return companyDataMapper.getTotalPeopleFromCompanyDataOfEverySuvryTime();
     }
 
-    public void companyDataAddFirst(CompanyData companyData)
-    {
+    public void companyDataAddFirst(CompanyData companyData) {
         companyDataMapper.companyDataAddFirst(companyData);
     }
 
-    public ArrayList<CompanyData> getAllCompanyDataFromSQL()
-    {
+    public ArrayList<CompanyData> getAllCompanyDataFromSQL() {
         return companyDataMapper.getAllCompanyDataFromSQL();
     }
 
     public List<CompanyData> getCompanyDataBySurveyTimeId(int survey_time_id) {
         return companyDataMapper.getCompanyDataBySurveyTimeId(survey_time_id);
+    }
+
+    /**
+     * 获得市用户应该看到的数据总数
+     *
+     * @return
+     */
+    public Integer getCompanyDataCountByCity() {
+        return companyDataMapper.getCompanyDataCountByCity();
+    }
+
+    /**
+     * 获得省用户应该看到的数据总数
+     *
+     * @return
+     */
+    public Integer getCompanyDataCountByProvince() {
+        return companyDataMapper.getCompanyDataCountByProvince();
+    }
+
+    /**
+     * 根据status字段的值使用
+     * in查询查询数据列表
+     *
+     * @param ids
+     * @return
+     */
+    public List<CompanyData> getCompanyDataList(List<Long> ids) {
+        return companyDataMapper.getCompanyDataList(ids);
+    }
+
+    /**
+     * 更新数据的状态
+     *
+     * @param id
+     * @param status
+     * @return
+     */
+    public int updateCompanyDataStatus(Integer id, Integer status) {
+        return companyDataMapper.updateCompanyDataStatus(id, status);
     }
 }

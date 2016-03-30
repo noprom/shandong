@@ -47,7 +47,7 @@ public class MonitorController {
 
         MonitorInformationAddtion mia = monitorService.getMonitorInformationAddtion(request);
 
-  
+
 
 
 //        System.out.println(mia.getArch());
