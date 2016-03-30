@@ -48,30 +48,6 @@
                             </div>
                         </form>
                     </div>
-                    <div class="row">
-                        <br>
-                        </div>
-                    <div class="row">
-                        <form id="query-form" action="<%=basePath%>sys/report/query" method="post">
-                            <div class="col-xs-2">
-                                请输入公司ID<input name="company_id">
-                            </div>
-                            <div class="col-xs-2">
-                            <button type="submit" id="submit-btn">通过公司ID查询</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="row">
-                        <form id="query-form" action="<%=basePath%>sys/report/queryByName" method="post">
-                            <div class="col-xs-2">
-                                请输入公司名称<input name="name">
-                            </div>
-                            <div class="col-xs-2">
-                                <button type="submit" id="submit-btn">通过公司名称查询</button>
-                            </div>
-                        </form>
-                    </div>
-
                 </div>
             </div>
 
@@ -82,11 +58,9 @@
                             <h3 class="box-title">Data Table With Full Features</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <form id="query-form" action="<%=basePath%>sys/report" method="post">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>选择</th>
                                     <th>ID</th>
                                     <th>公司ID</th>
                                     <th>初始人数</th>
@@ -101,7 +75,6 @@
                                 <tbody>
                                 <c:forEach items="${cityQueryResult}" var="v">
                                     <tr>
-                                        <td><input type="checkbox" name="choose" value="${v.id}"></td>
                                         <td>${v.id}</td>
                                         <td>${v.company_id}</td>
                                         <td>${v.init_people}</td>
@@ -110,14 +83,13 @@
                                         <td>${v.status}</td>
                                         <td>${v.create_time}</td>
                                         <td>${v.update_time}</td>
-                                        <td><a href="<%=basePath%>sys/report/${v.company_id}" class="btn btn-primary">详情</a>
+                                        <td><a href="<%=basePath%>city/check/${v.id}" class="btn btn-primary">审核</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>选择</th>
                                     <th>ID</th>
                                     <th>公司ID</th>
                                     <th>初始人数</th>
@@ -130,8 +102,6 @@
                                 </tr>
                                 </tfoot>
                             </table>
-                                <input type="submit" value="上报">
-                            </form>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </div><!-- /.col -->

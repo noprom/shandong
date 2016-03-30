@@ -15,4 +15,8 @@ public interface CityMapper {
     public ArrayList<Company> getCompanyIdByCityId(@Param("city_id")Integer city_id);
 
     public ArrayList<CompanyData> getCompanyDataByCompanyIdStatus0(@Param("company_id")Integer company_id);
+
+    public void cityCheckPass(@Param("id") Integer id);
+
+    public void cityCheckFail(@Param("id") String id,@Param("reason") String reason);
 }

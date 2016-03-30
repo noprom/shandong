@@ -35,4 +35,14 @@ public class CityServiceImpl implements CityService {
     {
         return cityMapper.getCompanyDataByCompanyIdStatus0(company_id);
     }
+
+    public void cityCheckPass(Integer id)
+    {
+        cityMapper.cityCheckPass(id);
+    }
+
+    public void cityCheckFail(Integer id,String reason)
+    {
+        cityMapper.cityCheckFail(id.toString(),reason);
+    }
 }

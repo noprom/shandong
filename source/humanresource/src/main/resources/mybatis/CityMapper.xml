@@ -48,6 +48,14 @@
         SELECT * FROM company_data WHERE company_id = #{company_id} AND status = 0 ORDER BY company_id
     </select>
 
+    <update id="cityCheckPass" parameterType="int">
+        UPDATE company_data SET status = 1 ,not_pass_reason='' WHERE id = #{id}
+    </update>
+
+    <update id="cityCheckFail" parameterType="String">
+        UPDATE company_data SET status = -1 ,not_pass_reason = #{reason} WHERE id = #{id}
+    </update>
+
 
 
 

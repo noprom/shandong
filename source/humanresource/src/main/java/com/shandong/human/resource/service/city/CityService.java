@@ -13,4 +13,8 @@ public interface CityService {
     public Integer[] getCompanyIdByCity(Integer city_id);
 
     public ArrayList<CompanyData> getCompanyDataByCompanyIdStatus0(Integer company_id);
+
+    public void cityCheckPass(Integer id);
+
+    public void cityCheckFail(Integer id,String reason);
 }

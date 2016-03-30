@@ -4,17 +4,22 @@ import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.domain.CompanyData;
 import com.shandong.human.resource.domain.User;
 import com.shandong.human.resource.service.city.CityService;
+import com.shandong.human.resource.service.sys.CompanyDataService;
 import com.shandong.human.resource.util.Constant;
 import com.shandong.human.resource.util.SysInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Author: constantine <1194479264@qq.com>
@@ -26,13 +31,16 @@ public class CityController {
     @Autowired
     CityService cityService;
 
+    @Autowired
+    CompanyDataService companyDataService;
+
     /**
      * Author: constantine <1194479264@qq.com>
      * Date: 16/3/30 上午10:37
      * 显示查询页面
      */
     @RequestMapping(value = "/city/query", method = RequestMethod.GET)
-    public String record(Model model, HttpServletRequest request, HttpServletResponse response) {
+    public String query(Model model, HttpServletRequest request, HttpServletResponse response) {
         User localUser = (User) request.getSession().getAttribute(Constant.LOGIN_USER);
         int city_id = localUser.getType();
 
@@ -52,6 +60,34 @@ public class CityController {
         System.out.println(list.size());
         model.addAttribute("cityQueryResult",list);
         return STATIC_PREFIX + "/query";
+    }
+
+    @RequestMapping(value = "/city/check/{id}", method = RequestMethod.GET)
+    public String check(Model model, @PathVariable("id") Integer id) {
+
+        CompanyData cd = companyDataService.getCompanyDataById(id);
+        model.addAttribute("check",cd);
+
+        return STATIC_PREFIX + "/check";
+    }
+
+    @RequestMapping(value = "/city/check" , method = RequestMethod.POST)
+    @ResponseBody
+    public Map checked(Model model, String cdid, String pass, String reason)
+    {
+        int id = Integer.parseInt(cdid);
+        int flag = Integer.parseInt(pass);
+        Map map=new HashMap();
+        if(flag==1)
+        {
+            cityService.cityCheckPass(id);
+        }
+        else
+        {
+            cityService.cityCheckFail(id,reason);
+        }
+        map.put("success","success");
+        return map;
     }
 
 }
