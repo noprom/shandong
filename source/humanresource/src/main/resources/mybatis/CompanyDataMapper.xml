@@ -97,11 +97,19 @@
         ORDER BY company_id
     </select>
 
+
+
     <update id="changeCompanyDataStatusById" parameterType="int">
         UPDATE company_data SET status = 3 WHERE id = #{id}
     </update>
 
+
+    <select id="getCompanyDataByCompanyIdS2" parameterType="int" resultMap="CompanyData">
+        SELECT * FROM company_data WHERE company_id = #{id} AND status = 2
+    </select>
+
     <update id="updateCompanyDataStatus">
         UPDATE company_data SET status = #{status} WHERE id = #{id}
     </update>
+
 </mapper>

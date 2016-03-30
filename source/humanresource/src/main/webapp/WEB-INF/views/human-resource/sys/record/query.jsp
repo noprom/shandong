@@ -23,13 +23,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Data Tables
-                <small>advanced tables</small>
+                企业备案
+                <small>备案列表</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Data tables</li>
+                <li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
+                <li><a href="#">企业备案</a></li>
+                <li class="active">备案列表</li>
             </ol>
         </section>
 
@@ -37,7 +37,7 @@
         <section class="content">
             <div class="box box-danger">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Different Width</h3>
+                    <h3 class="box-title">条件查询</h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
@@ -90,18 +90,18 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Data Table With Full Features</h3>
+                            <h3 class="box-title">备案列表</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>ADDRESS</th>
-                                    <th>COMPANY NAME</th>
-                                    <th>CONTACT</th>
-                                    <th>PHONE NUMBER</th>
-                                    <th>DETAIL</th>
+                                    <th>地址</th>
+                                    <th>公司名称</th>
+                                    <th>联系人</th>
+                                    <th>电话号码</th>
+                                    <th>详情</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -120,11 +120,11 @@
                                 <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th>ADDRESS</th>
-                                    <th>COMPANY NAME</th>
-                                    <th>CONTACT</th>
-                                    <th>PHONE NUMBER</th>
-                                    <th>DETAIL</th>
+                                    <th>地址</th>
+                                    <th>公司名称</th>
+                                    <th>联系人</th>
+                                    <th>电话号码</th>
+                                    <th>详情</th>
                                 </tr>
                                 </tfoot>
                             </table>
