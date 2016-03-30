@@ -46,115 +46,125 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
-        <form role="form" id="add-form">
-        <div class="row">
-            <!-- left column -->
-            <div class="col-md-6">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title"></h3>
-                    </div><!-- /.box-header -->
-                    <!-- form start -->
+                    <form role="form" id="add-form">
+                        <div class="row">
+                            <!-- left column -->
+                            <div class="col-md-6">
+                                <div class="box box-primary">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title"></h3>
+                                    </div><!-- /.box-header -->
+                                    <!-- form start -->
 
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label>调查期时间</label>
-                                <select aria-hidden="true" tabindex="-1" class="form-control" style="width: 100%;" id="survey_time_id" name="survey_time_id">
-                                    <%--<option selected="selected"></option>--%>
-                                    <c:forEach items="${listSurverTime}" var="v">
-                                        <option value="${v.id}">${v.start_time} ---- ${v.end_time}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>建档期就业人数</label>
-                                <input class="form-control" type="text" id="init_people" name="init_people">
-                            </div>
-                            <div class="form-group">
-                                <label>调查期就业人数</label>
-                                <input class="form-control" type="text" id="cur_people" name="cur_people">
-                            </div>
-                            <div class="form-group">
-                                <label>就业人数减少类型</label>
-                                <select aria-hidden="true" tabindex="-1" class="form-control" style="width: 100%;" id="reduce_type" name="reduce_type">
-                                    <option selected="selected"></option>
-                                    <c:forEach items="${listType}" var="v">
-                                        <option value="${v.id}">${v.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>主要原因</label>
-                                <select aria-hidden="true" tabindex="-1" class="form-control" style="width: 100%;" id="reason1" name="reason1">
-                                    <option selected="selected"></option>
-                                    <c:forEach items="${listReason}" var="v">
-                                        <option value="${v.id}">${v.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>主要原因说明</label>
-                                <textarea style="height: 64px;" class="form-control" rows="3" name="reason1_explain" id="reason1_explain"></textarea>
-                            </div>
-                            <div class="box-footer">
-                                <button type="button" onclick="onSubmit()" class="btn btn-primary">上报</button>
-                            </div>
-                        </div><!-- /.box-body -->
-                </div><!-- /.content -->
-            </div><!--/.col (left) -->
-            <!-- right column -->
-            <div class="col-md-6">
-                <!-- Horizontal Form -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title"></h3>
-                    </div><!-- /.box-header -->
-                    <!-- form start -->
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label>调查期时间</label>
+                                            <select aria-hidden="true" tabindex="-1" class="form-control"
+                                                    style="width: 100%;" id="survey_time_id" name="survey_time_id">
+                                                <%--<option selected="selected"></option>--%>
+                                                <c:forEach items="${listSurverTime}" var="v">
+                                                    <option value="${v.id}">${v.start_time} ---- ${v.end_time}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>建档期就业人数</label>
+                                            <input class="form-control" type="text" id="init_people" name="init_people">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>调查期就业人数</label>
+                                            <input class="form-control" type="text" id="cur_people" name="cur_people">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>就业人数减少类型</label>
+                                            <select aria-hidden="true" tabindex="-1" class="form-control"
+                                                    style="width: 100%;" id="reduce_type" name="reduce_type">
+                                                <option selected="selected"></option>
+                                                <c:forEach items="${listType}" var="v">
+                                                    <option value="${v.id}">${v.name}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>主要原因</label>
+                                            <select aria-hidden="true" tabindex="-1" class="form-control"
+                                                    style="width: 100%;" id="reason1" name="reason1">
+                                                <option selected="selected"></option>
+                                                <c:forEach items="${listReason}" var="v">
+                                                    <option value="${v.id}">${v.name}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>主要原因说明</label>
+                                            <textarea style="height: 64px;" class="form-control" rows="3"
+                                                      name="reason1_explain" id="reason1_explain"></textarea>
+                                        </div>
+                                        <div class="box-footer">
+                                            <button type="button" onclick="onSubmit()" class="btn btn-primary">上报
+                                            </button>
+                                        </div>
+                                    </div><!-- /.box-body -->
+                                </div><!-- /.content -->
+                            </div><!--/.col (left) -->
+                            <!-- right column -->
+                            <div class="col-md-6">
+                                <!-- Horizontal Form -->
+                                <div class="box box-primary">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title"></h3>
+                                    </div><!-- /.box-header -->
+                                    <!-- form start -->
 
-                        <div class="box-body">
+                                    <div class="box-body">
 
-                            <div class="form-group">
-                                <label>次要原因</label>
-                                <select aria-hidden="true" tabindex="-1" class="form-control" style="width: 100%;" id="reason2" name="reason2">
-                                    <option selected="selected"></option>
-                                    <c:forEach items="${listReason}" var="v">
-                                        <option value="${v.id}">${v.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
+                                        <div class="form-group">
+                                            <label>次要原因</label>
+                                            <select aria-hidden="true" tabindex="-1" class="form-control"
+                                                    style="width: 100%;" id="reason2" name="reason2">
+                                                <option selected="selected"></option>
+                                                <c:forEach items="${listReason}" var="v">
+                                                    <option value="${v.id}">${v.name}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
 
-                            <div class="form-group">
-                                <label>次要原因说明</label>
-                                <textarea style="height: 64px;" class="form-control" rows="3" name="reason2_explain" id="reason2_explain"></textarea>
-                            </div><!-- /.form-group -->
-                            <div class="form-group">
-                                <label>第三原因</label>
-                                <select aria-hidden="true" tabindex="-1" class="form-control" style="width: 100%;" id="reason3" name="reason3">
-                                    <option selected="selected"></option>
-                                    <c:forEach items="${listReason}" var="v">
-                                        <option value="${v.id}">${v.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
+                                        <div class="form-group">
+                                            <label>次要原因说明</label>
+                                            <textarea style="height: 64px;" class="form-control" rows="3"
+                                                      name="reason2_explain" id="reason2_explain"></textarea>
+                                        </div><!-- /.form-group -->
+                                        <div class="form-group">
+                                            <label>第三原因</label>
+                                            <select aria-hidden="true" tabindex="-1" class="form-control"
+                                                    style="width: 100%;" id="reason3" name="reason3">
+                                                <option selected="selected"></option>
+                                                <c:forEach items="${listReason}" var="v">
+                                                    <option value="${v.id}">${v.name}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
 
-                            <div class="form-group">
-                                <label>第三原因说明</label>
-                                <textarea class="form-control" rows="3" placeholder="" name="reason3_explain" id="reason3_explain"></textarea>
-                            </div><!-- /.form-group -->
-                            <div class="form-group">
-                                <label>其它原因</label>
-                                <textarea  class="form-control" rows="3" placeholder="" id="other_reason" name="other_reason"></textarea>
-                            </div>
+                                        <div class="form-group">
+                                            <label>第三原因说明</label>
+                                            <textarea class="form-control" rows="3" placeholder=""
+                                                      name="reason3_explain" id="reason3_explain"></textarea>
+                                        </div><!-- /.form-group -->
+                                        <div class="form-group">
+                                            <label>其它原因</label>
+                                            <textarea class="form-control" rows="3" placeholder="" id="other_reason"
+                                                      name="other_reason"></textarea>
+                                        </div>
 
-                        </div><!-- /.box-body -->
+                                    </div><!-- /.box-body -->
 
-                </div><!-- /.content -->
-            </div><!--/.col (right) -->
-        </div>
-        </form>
-                    </div>
+                                </div><!-- /.content -->
+                            </div><!--/.col (right) -->
+                        </div>
+                    </form>
                 </div>
-            </section>
+            </div>
+        </section>
     </div><!-- /.content-wrapper -->
 
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
@@ -171,47 +181,40 @@
             });
         });
 
-        $(document).ready(function()
-        {
+        $(document).ready(function () {
             <%Integer status=(Integer) request.getAttribute("status");%>
-            var status="<%=status.intValue()%>";
+            var status = "<%=status.intValue()%>";
             <%String infoStr=(String)request.getAttribute("Info");%>
-            var info="<%=infoStr%>";
-//            alert(status);
-//            alert(info);
-            if(status==-2 || status==-1)
-            {
-                alert(info);
+            var info = "<%=infoStr%>";
+            if (status == -2 || status == -1) {
+                toastr.error(info);
             }
-            else if(status>=0){
-                alert(info);
-                window.location.href = "<%=basePath%>";
+            else if (status >= 0) {
+                toastr.error(info);
+                setTimeout(function(){
+                    window.location.href = "<%=basePath%>";
+                }, 3500);
             }
         });
 
-        function  onSubmit()
-        {
-                var postUrl = "<%=basePath%>home/data/add/submit";
-                $.ajax({
-                    url: postUrl,
-                    data: $("#add-form").serialize(),
-                    async:false,
-                    type: 'POST',
-                    dataType: "json",
-                    success: function (data) {
-                        if(data.success=="success")
-                        {
-                            alert("上报成功");
-                            window.location.href = "<%=basePath%>";
-                        }
-
-
-                    },
-                    error:function()
-                    {
-                        alert("上报失败");
+        function onSubmit() {
+            var postUrl = "<%=basePath%>home/data/add/submit";
+            $.ajax({
+                url: postUrl,
+                data: $("#add-form").serialize(),
+                async: false,
+                type: 'POST',
+                dataType: "json",
+                success: function (data) {
+                    if (data.success == "success") {
+                        toastr.success("上报成功");
+                        window.location.href = "<%=basePath%>";
                     }
-                });
+                },
+                error: function () {
+                    toastr.error("上报失败");
+                }
+            });
 
         }
 
