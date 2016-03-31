@@ -47,6 +47,62 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
+                            <h3 class="box-title">新增用户</h3>
+                        </div>
+                        <div class="box-body">
+                            <form class="form-horizontal" role="form" id="add-user-form">
+                                <div class="row">
+                                    <div class="col-md-11">
+                                        <div class="col-lg-3 form-group">
+                                            <lable class="col-sm-5 control-label" for="name">用户名</lable>
+                                            <div class="col-sm-7">
+                                                <input id="name" class="form-control" type="text" name="username"
+                                                       placeholder="用户名">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 form-group">
+                                            <lable class="col-sm-4 control-label" for="pwd">密码</lable>
+                                            <div class="col-sm-8">
+                                                <input id="pwd" class="form-control" type="password" name="password"
+                                                       placeholder="密码">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 form-group">
+                                            <lable class="col-sm-4 control-label" for="type">类型</lable>
+                                            <div class="col-sm-8">
+                                                <select id="type" name="type" class="form-control">
+                                                    <option name="type" value="1">省用户</option>
+                                                    <option name="type" value="2">企业用户</option>
+                                                    <c:forEach items="${cityList}" var="v">
+                                                        <option name="type" value="${v.id}">${v.name}用户</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 form-group">
+                                            <lable class="col-sm-4 control-label" for="role">角色</lable>
+                                            <div class="col-sm-8">
+                                                <select id="role" name="role" class="form-control">
+                                                    <c:forEach items="${roleList}" var="v">
+                                                        <option name="type" value="${v.id}">${v.name}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="button" class="btn btn-adn" value="添加" id="submit-btn">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
                             <h3 class="box-title">用户列表</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body table-responsive no-padding">
@@ -181,50 +237,6 @@
                             </div>
                         </div>
                     </div><!-- /.box -->
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">新增用户</h3>
-                        </div>
-                        <div class="box-body">
-                            <form class="form-horizontal" role="form" method="post" id="add-user-form">
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <div class="col-lg-4 form-group">
-                                            <lable class="col-sm-4 control-label" for="name">用户名</lable>
-                                            <div class="col-sm-8">
-                                                <input id="name" class="form-control" type="text" name="username"
-                                                       placeholder="用户名">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 form-group">
-                                            <lable class="col-sm-4 control-label" for="pwd">密码</lable>
-                                            <div class="col-sm-8">
-                                                <input id="pwd" class="form-control" type="password" name="password"
-                                                       placeholder="密码">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 form-group">
-                                            <lable class="col-sm-4 control-label" for="type">类型</lable>
-                                            <div class="col-sm-8">
-                                                <select id="type" name="type" class="form-control">
-                                                    <c:forEach items="${roleList}" var="v">
-                                                        <option name="type" value="${v.id}">${v.name}</option>
-                                                    </c:forEach>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <input type="button" class="btn btn-adn" value="添加" id="submit-btn">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section><!-- /.content -->
