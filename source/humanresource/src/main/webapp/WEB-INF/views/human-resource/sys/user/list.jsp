@@ -31,7 +31,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                用户列表
+                用户管理
                 <small>系统用户</small>
             </h1>
             <%--<ol class="breadcrumb">--%>
@@ -297,7 +297,7 @@
                                 location.reload(true);
                                 // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
                                 //window.location.href = "<%=basePath%>sys/user";
-                            }, 1000);
+                            }, 3000);
                         } else {
                             toastr.error(data.info);
                             return false;
