@@ -1,5 +1,6 @@
 package com.shandong.human.resource.service.sys;
 
+import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.domain.CompanyData;
 import org.apache.ibatis.annotations.Param;
 
@@ -111,4 +112,21 @@ public interface CompanyDataService {
      * @return
      */
     ArrayList<CompanyData> getCompanyDataByCompanyIdLastestTime(int company_id);
+
+
+    /**
+     * 通过公司状态获得企业上报数据
+     *
+     * @param status
+     * @return
+     */
+    List<CompanyData> selectByStatus(Integer status);
+
+
+    /**
+     * 根据surveyTime查询
+     *
+     * @return
+     */
+    List<CompanyData> selectBySurveyTimeID(Integer id);
 }

@@ -67,4 +67,38 @@ public class CompanyServiceImpl implements CompanyService {
     public void updateCompanyInfo(Company company) {
         companyMapper.updateCompanyInfo(company);
     }
+
+    public List<Company> fuzzySearchByName(String name) {
+        return companyMapper.fuzzySearchByName(name);
+    }
+
+
+    /**
+     * 根据公司所在区查询
+     *
+     * @param  area_id
+     * @return
+     */
+    public List<Company> selectByAreaID(Integer area_id){
+        return companyMapper.selectByAreaID(area_id);
+    }
+
+    /**
+     * 根据公司地址模糊查询
+     *
+     * @return
+     */
+    public List<Company> fuzzySearchByAddress(String address){
+        return  companyMapper.fuzzySearchByAddress(address);
+    }
+
+
+    /**
+     * 根据公司业务模糊查询
+     *
+     * @return
+     */
+    public List<Company> fuzzySearchByBusiness(String business){
+        return companyMapper.fuzzySearchByBusiness(business);
+    }
 }

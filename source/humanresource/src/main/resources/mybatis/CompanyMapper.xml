@@ -69,14 +69,24 @@
         WHERE id = #{id}
     </update>
 
-
-
     <select id="getCompanyIdByName" resultMap="Company">
         SELECT * FROM company WHERE name = #{name}
     </select>
 
+    <select id="fuzzySearchByName" parameterType="java.lang.String" resultMap="Company">
+        SELECT * FROM company WHERE name LIKE CONCAT(CONCAT('%', #{name}), '%')
+    </select>
 
+    <select id="selectByAreaID" resultMap="Company" parameterType="java.lang.Integer">
+        SELECT * FROM company WHERE area_id = #{area_id}
+    </select>
 
+    <select id="fuzzySearchByAddress" parameterType="java.lang.String" resultMap="Company">
+        SELECT * FROM company WHERE address LIKE CONCAT(CONCAT('%', #{address}), '%')
+    </select>
 
+    <select id="fuzzySearchByBusiness" parameterType="java.lang.String" resultMap="Company">
+        SELECT * FROM company WHERE business LIKE CONCAT(CONCAT('%', #{business}), '%')
+    </select>
 
 </mapper>

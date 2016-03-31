@@ -149,4 +149,24 @@ public class CompanyDataServiceImpl implements CompanyDataService {
     public ArrayList<CompanyData> getCompanyDataByCompanyIdLastestTime(int company_id) {
         return companyDataMapper.getCompanyDataByCompanyIdLastestTime(company_id);
     }
+
+    /**
+     * 通过公司状态获得企业上报数据
+     *
+     * @param status
+     * @return
+     */
+    public List<CompanyData> selectByStatus(Integer status){
+        return companyDataMapper.selectByStatus(status);
+    }
+
+
+    /**
+     * 根据surveyTime查询
+     *
+     * @return
+     */
+    public List<CompanyData> selectBySurveyTimeID(Integer id){
+        return companyDataMapper.selectBySurveyTimeID(id);
+    }
 }

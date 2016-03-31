@@ -1,11 +1,12 @@
 package com.shandong.human.resource.controller.sys.user;
 
+import com.shandong.human.resource.domain.Area;
+import com.shandong.human.resource.domain.Company;
+import com.shandong.human.resource.domain.CompanyData;
 import com.shandong.human.resource.domain.User;
 import com.shandong.human.resource.service.home.AreaService;
-import com.shandong.human.resource.service.sys.AuthRoleService;
-import com.shandong.human.resource.service.sys.RoleService;
-import com.shandong.human.resource.service.sys.UserRoleService;
-import com.shandong.human.resource.service.sys.UserService;
+import com.shandong.human.resource.service.home.CompanyService;
+import com.shandong.human.resource.service.sys.*;
 import com.shandong.human.resource.util.Constant;
 import com.shandong.human.resource.util.Pager;
 import com.shandong.human.resource.util.Result;
@@ -18,14 +19,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 用户控制器类
- * <p>
+ * <p/>
  * Author: syc <522560298@qq.com>
  * Date: 3/19/16 下午2:15
  */
@@ -49,6 +55,14 @@ public class UserController {
     @Autowired
     private UserRoleService userRoleService;
 
+    @Autowired
+    private CompanyService companyService;
+
+    @Autowired
+    private CompanyDataService companyDataService;
+
+    @Autowired
+    private SurveyTimeService surveyTimeService;
     /**
      * 用户列表
      *
@@ -75,9 +89,18 @@ public class UserController {
         int size = pager.getMaxSize();
         pager.setData(userService.selectByPos(offset, size));
 
+        List<Area> cityList = areaService.getAllCity();
+        List<Area> area = new ArrayList<Area>();
+        for (Area r: cityList) {
+            List area_ch = areaService.getAllAreaById(r.getId());
+            area.addAll(area_ch);
+        }
+
         model.addAttribute("pager", pager);
-        model.addAttribute("cityList", areaService.getAllCity());
+        model.addAttribute("cityList", cityList);
         model.addAttribute("roleList", roleService.selectAll());
+        model.addAttribute("areaList", area);
+        model.addAttribute("surveyTimeList", surveyTimeService.getAllSurveyTime());
 
         return STATIC_PREFIX + "/list";
     }
@@ -131,5 +154,163 @@ public class UserController {
             }
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 用户条件查询
+     *
+     * @param companyName  单位名称 模糊查询
+     * @param userName     登陆账号
+     * @param userType     用户类型
+     * @param areaID       所属地市
+     * @param address      所属市县 模糊查询
+     * @param status       数据状态
+     * @param business     单位性质 模糊查询
+     * @param surveyTimeID 起始结束日期ID
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/user/select", method = RequestMethod.POST)
+    public String selectUser(String companyName, String userName, Integer userType, Integer areaID, String address,
+                      Integer status, String business, Integer surveyTimeID, HttpServletRequest request, HttpServletResponse response) {
+        List<Set<User>> result = new ArrayList<Set<User>>();
+
+
+        if (companyName != null && !companyName.isEmpty()) {
+            List<Company> companies = companyService.fuzzySearchByName(companyName);
+            Set<User> users = new HashSet<User>();
+            for (Company r : companies) {
+                User user = userService.selectByID(r.getId());
+                if (user != null) {
+                    users.add(user);
+                }
+            }
+            if (!users.isEmpty()) {
+                result.add(users);
+            }
+        }
+
+        if (userName != null && !userName.isEmpty()) {
+            User user = userService.selectByName(userName);
+            Set<User> users = new HashSet<User>();
+            if (user != null) {
+                users.add(user);
+            }
+            if (!users.isEmpty()) {
+                result.add(users);
+            }
+        }
+
+        if (userType != null) {
+            Set<User> users = new HashSet<User>();
+            List<User> userList = userService.selectByType(userType);
+            if (userList != null) {
+                users = new HashSet<User>(userList);
+            }
+            if (!users.isEmpty()) {
+                result.add(users);
+            }
+        }
+
+        if (areaID != null) {
+            Set<User> users = new HashSet<User>();
+            List<Company> companies = companyService.selectByAreaID(areaID);
+            if (companies != null) {
+                for (Company r : companies) {
+                    User user = userService.selectByID(r.getId());
+                    if (user != null) {
+                        users.add(user);
+                    }
+                }
+            }
+            if (!users.isEmpty()) {
+                result.add(users);
+            }
+        }
+
+        if (address != null && !address.isEmpty()) {
+            Set<User> users = new HashSet<User>();
+            List<Company> companies = companyService.fuzzySearchByAddress(address);
+            if (companies != null) {
+                for (Company r : companies) {
+                    User user = userService.selectByID(r.getId());
+                    if (user != null) {
+                        users.add(user);
+                    }
+                }
+            }
+            if (!users.isEmpty()) {
+                result.add(users);
+            }
+        }
+
+        if (status != null) {
+            Set<User> users = new HashSet<User>();
+            List<CompanyData> companyDatas = companyDataService.selectByStatus(status);
+            if (companyDatas != null) {
+                for (CompanyData r : companyDatas) {
+                    User user = userService.selectByID(r.getCompany_id());
+                    if (user != null) {
+                        users.add(user);
+                    }
+                }
+            }
+            if (!users.isEmpty()) {
+                result.add(users);
+            }
+        }
+
+        if (business != null && !business.isEmpty()) {
+            Set<User> users = new HashSet<User>();
+            List<Company> companies = companyService.fuzzySearchByBusiness(business);
+            if (companies != null) {
+                for (Company r : companies) {
+                    User user = userService.selectByID(r.getId());
+                    if (user != null) {
+                        users.add(user);
+                    }
+                }
+            }
+            if (!users.isEmpty()) {
+                result.add(users);
+            }
+        }
+
+        if (surveyTimeID != null) {
+            Set<User> users = new HashSet<User>();
+            List<CompanyData> companyDatas = companyDataService.selectBySurveyTimeID(surveyTimeID);
+            if (companyDatas != null) {
+                for (CompanyData r : companyDatas) {
+                    User user = userService.selectByID(r.getCompany_id());
+                    if (user != null) {
+                        users.add(user);
+                    }
+                }
+            }
+            if (!users.isEmpty()) {
+                result.add(users);
+            }
+        }
+
+        Set<User> qualifiedUser = new HashSet<User>();
+        int size = result.size();
+        if (size >= 1) {
+            qualifiedUser = result.get(0);
+            for (int i = 1; i < size; ++i) {
+                Set<User> users = result.get(i);
+                Set<User> toDelete = new HashSet<User>();
+                for (User r : qualifiedUser) {
+                    if (users.contains(r)) {
+                        toDelete.add(r);
+                    }
+                }
+                for (User r : toDelete) {
+                    qualifiedUser.remove(r);
+                }
+            }
+        }
+        request.setAttribute("qualifiedUser",qualifiedUser);
+        return STATIC_PREFIX+"/searchres";
     }
 }

@@ -49,4 +49,36 @@ public interface CompanyService {
      * @param company
      */
     void updateCompanyInfo(Company company);
+
+    /**
+     * 根据公司名模糊查询
+     *
+     * @return
+     */
+    List<Company> fuzzySearchByName(String name);
+
+
+    /**
+     * 根据公司所在区查询
+     *
+     * @param  area_id
+     * @return
+     */
+    List<Company> selectByAreaID(Integer area_id);
+
+
+    /**
+     * 根据公司地址模糊查询
+     *
+     * @return
+     */
+    List<Company> fuzzySearchByAddress(String address);
+
+
+    /**
+     * 根据公司业务模糊查询
+     *
+     * @return
+     */
+    List<Company> fuzzySearchByBusiness(String business);
 }
