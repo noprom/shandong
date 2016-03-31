@@ -130,7 +130,7 @@
                                 </tr>
                                 </tfoot>
                             </table>
-                                <input type="submit" value="上报">
+                                <input style="width: 15%" type="submit" value="上报">
                             </form>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
