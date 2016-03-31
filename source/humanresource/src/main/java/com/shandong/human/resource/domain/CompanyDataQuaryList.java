@@ -1,6 +1,8 @@
-package com.shandong.human.resource.util;
+package com.shandong.human.resource.domain;
 
-
+/**
+ * 企业数据查询结果类
+ */
 public class CompanyDataQuaryList {
     private String start_time;       //开始时间
     private String end_time;         //结束时间

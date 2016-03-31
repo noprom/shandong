@@ -20,7 +20,7 @@ public class BeanUtil {
      * 将一个对象里面的字段进行解码处理
      *
      * @param object object
-     * @param <T> 范型
+     * @param <T>    范型
      * @throws Exception
      */
     public static <T> void decodeBean(T object) throws Exception {

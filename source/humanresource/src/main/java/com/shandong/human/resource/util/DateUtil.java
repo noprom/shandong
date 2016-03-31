@@ -18,7 +18,7 @@ public class DateUtil {
     /**
      * 字符串转为日期
      *
-     * @param dateStr 原始日期字符串
+     * @param dateStr   原始日期字符串
      * @param fromatStr 日期格式
      * @return 日期
      */

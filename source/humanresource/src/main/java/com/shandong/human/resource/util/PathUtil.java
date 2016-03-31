@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * PathUtil
  * 输出完整路径的工具类
- *
+ * <p>
  * Author: Noprom <tyee.noprom@qq.com>
  * Date: 3/29/16 2:45 PM.
  */
@@ -27,6 +27,5 @@ public class PathUtil {
         }
         return path;
     }
-
 
 }
