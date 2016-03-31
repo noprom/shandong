@@ -250,6 +250,8 @@ immediately after the control sidebar -->
 
 <%-- 消息提示小插件 --%>
 <script type='text/javascript' src='<%=basePath%>static/human/js/plugins/toastr/toastr.min.js'></script>
+<%-- js验证插件 --%>
+<script type='text/javascript' src='<%=basePath%>static/human/js/validation.js'></script>
 <script type="text/javascript">
   <%--Toastr配置--%>
 
@@ -269,6 +271,10 @@ immediately after the control sidebar -->
     "hideMethod": "fadeOut"
   };
 
-
+  function isEmpty(str) {
+    if (!str || $.trim(str).length <= 0)
+      return true;
+    return false;
+  }
 </script>
 <%--<jsp:include page="js.jsp" flush="true"></jsp:include>--%>

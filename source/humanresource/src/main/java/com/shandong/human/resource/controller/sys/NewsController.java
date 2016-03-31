@@ -63,9 +63,9 @@ public class NewsController {
         news.setUserId(10);
         Integer id = newsService.addNews(news);
         if (id >= 0) {
-            return new Result(Result.Status.SUCCESS, Constant.REG_SUCCESS);
+            return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
         } else {
-            return new Result(Result.Status.ERROR, Constant.REG_FAIL);
+            return new Result(Result.Status.ERROR, Constant.DEAL_FAIL);
         }
     }
 
