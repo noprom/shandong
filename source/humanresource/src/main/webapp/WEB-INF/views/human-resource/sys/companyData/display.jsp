@@ -207,7 +207,6 @@
 
 <!-- /.主要内容结束 -->
 <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
-<jsp:include page="../../js.jsp" flush="true"></jsp:include>
 
 <!-- page script -->
 
