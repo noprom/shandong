@@ -39,7 +39,7 @@
                     <div class="row">
                         <form id="query-form" action="<%=basePath%>sys/report/query" method="get">
                             <div class="col-xs-2">
-                            <button type="submit" id="submit-btn">查询全部</button>
+                            <button type="submit" class="btn btn-primary" id="submit-btn">查询全部</button>
                             </div>
                         </form>
                     </div>
@@ -51,7 +51,7 @@
                                 <input name="company_id">
                             </div>
                             <div class="col-xs-2" style="position:relative">
-                            <button style="position:absolute;  top:50%; margin-top:23px;" type="submit" id="submit-btn">通过公司ID查询</button>
+                            <button class="btn btn-primary" style="position:absolute;  top:50%; margin-top:23px;" type="submit" id="submit-btn">通过公司ID查询</button>
                             </div>
                         </form>
                     </div>
@@ -63,7 +63,7 @@
                                 <input name="name">
                             </div>
                             <div class="col-xs-2" style="position:relative">
-                                <button style="position:absolute;  top:50%; margin-top:23px;" type="submit" id="submit-btn">通过公司名称查询</button>
+                                <button class="btn btn-primary" style="position:absolute;  top:50%; margin-top:23px;" type="submit" id="submit-btn">通过公司名称查询</button>
                             </div>
                         </form>
                     </div>
@@ -79,7 +79,7 @@
                         </div><!-- /.box-header -->
                         <div class="box-body">
                             <form id="query-form" action="<%=basePath%>sys/report" method="post">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="dataTable" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>选&nbsp;&nbsp;择</th>
@@ -126,7 +126,7 @@
                                 </tr>
                                 </tfoot>
                             </table>
-                                <input style="width: 15%" type="submit" value="上报">
+                                <input class="btn btn-primary" style="width: 15%" type="submit" value="上报">
                             </form>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
@@ -137,15 +137,8 @@
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
     <script>
         $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false
-            });
+            // 模板自带分页功能的数据表格,不能删
+            $("#dataTable").DataTable();
         });
     </script>
 </body>
