@@ -59,7 +59,7 @@
                             </div>
 
 
-                            <button style="position:absolute;  top:50%; margin-top:0px;" type="submit" id="submit-btn">查询</button>
+                            <button class="btn btn-primary" style="margin-top:24px;" type="submit" id="submit-btn">查询</button>
                         </form>
                     </div>
                 </div><!-- /.box-body -->
@@ -102,7 +102,7 @@
                 </div><!-- /.col -->
             </div><!-- /.row -->
             <form id="excel-form" action="<%=basePath%>sys/record/export" method="post">
-                <button type="submit" id="submit-btn">导出到excel</button>
+                <button type="submit" class="btn btn-primary" id="submit-btn">导出到excel</button>
             </form>
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
