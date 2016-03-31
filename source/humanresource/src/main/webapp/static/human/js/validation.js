@@ -117,27 +117,27 @@ function isMobile(string) {
 	return reg.test(string);
 }
 
-///**
-// * 校验是否为空
-// * @param str
-// * @returns {Boolean}
-// */
-//function isEmpty(str) {
-//	if (!str || $.trim(str).length <= 0)
-//		return true;
-//	return false;
-//}
+/**
+ * 校验是否为空
+ * @param str
+ * @returns {Boolean}
+ */
+function isEmpty(str) {
+	if (!str || $.trim(str).length <= 0)
+		return true;
+	return false;
+}
 
-///**
-// * 是否是指定长度
-// * @param str
-// * @param length
-// */
-//function isSpecifyLength(str,minLen,maxLen) {
-//	if ($.trim(str).length >= minLen && $.trim(str).length <= maxLen)
-//		return true;
-//	return false;
-//}
+/**
+ * 是否是指定长度
+ * @param str
+ * @param length
+ */
+function isSpecifyLength(str,minLen,maxLen) {
+	if ($.trim(str).length >= minLen && $.trim(str).length <= maxLen)
+		return true;
+	return false;
+}
 
 /**
  * 是否含有特殊符号

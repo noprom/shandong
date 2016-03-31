@@ -31,14 +31,14 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                用户列表
+                用户管理
                 <small>系统用户</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Simple</li>
-            </ol>
+            <%--<ol class="breadcrumb">--%>
+                <%--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--%>
+                <%--<li><a href="#">Tables</a></li>--%>
+                <%--<li class="active">Simple</li>--%>
+            <%--</ol>--%>
         </section>
 
         <!-- Main content -->
@@ -129,10 +129,11 @@
                                             <c:otherwise>
                                                 <c:set var="typeflag" value="true"/>
                                                 <c:forEach items="${cityList}" var="r" varStatus="loopstatus">
-                                                    <c:if test="typeflag"></c:if>
-                                                    <c:if test="${v.type eq r.id}">
-                                                        <span class="label label-warning">${r.name}用户</span>
-                                                        <c:set var="typeflag" value="false"/>
+                                                    <c:if test="typeflag">
+                                                        <c:if test="${v.type eq r.id}">
+                                                            <span class="label label-warning">${r.name}用户</span>
+                                                            <c:set var="typeflag" value="false"/>
+                                                        </c:if>
                                                     </c:if>
                                                 </c:forEach>
                                             </c:otherwise>
@@ -253,23 +254,7 @@
     </div>
 
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
-    <%--<script type='text/javascript' src='<%=basePath%>static/human/js/plugins/toastr/toastr.min.js'></script>--%>
     <script>
-        //        toastr.options = {
-        //            "closeButton": true,
-        //            "debug": false,
-        //            "progressBar": true,
-        //            "positionClass": "toast-top-center",
-        //            "onclick": null,
-        //            "showDuration": "50",
-        //            "hideDuration": "100",
-        //            "timeOut": "1200",
-        //            "extendedTimeOut": "100",
-        //            "showEasing": "swing",
-        //            "hideEasing": "linear",
-        //            "showMethod": "fadeIn",
-        //            "hideMethod": "fadeOut"
-        //        };
         $(function () {
             // 新增用户
             $("#submit-btn").on('click', function () {
@@ -296,7 +281,7 @@
                                 location.reload(true);
                                 // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
                                 //window.location.href = "<%=basePath%>sys/user";
-                            }, 1000);
+                            }, 3000);
                         } else {
                             toastr.error(data.info);
                             return false;

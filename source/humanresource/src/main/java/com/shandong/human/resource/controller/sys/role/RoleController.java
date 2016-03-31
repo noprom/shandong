@@ -114,7 +114,7 @@ public class RoleController {
         }
 
         /*单页显示个数*/
-        int pageSize = 3;
+        int pageSize = 10;
         Pager<Role> pager = new Pager<Role>(pageSize);
         pager.setCount(service.getCount());
         pager.setCurrentPage(currentPage);

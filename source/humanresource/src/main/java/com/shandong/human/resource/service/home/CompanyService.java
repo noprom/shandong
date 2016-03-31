@@ -49,4 +49,11 @@ public interface CompanyService {
      * @param company
      */
     void updateCompanyInfo(Company company);
+
+    /**
+     * 获取所有Company
+     *
+     * @return
+     */
+    ArrayList<Company> getAllCompany();
 }

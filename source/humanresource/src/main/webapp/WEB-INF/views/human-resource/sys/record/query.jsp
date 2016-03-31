@@ -72,7 +72,7 @@
                             <h3 class="box-title">备案列表</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="dataTable" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
@@ -96,16 +96,6 @@
                                     </tr>
                                 </c:forEach>
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>地址</th>
-                                    <th>公司名称</th>
-                                    <th>联系人</th>
-                                    <th>电话号码</th>
-                                    <th>详情</th>
-                                </tr>
-                                </tfoot>
                             </table>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
@@ -119,15 +109,8 @@
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
     <script>
         $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false
-            });
+            // 模板自带分页功能调用,不能删
+            $("#dataTable").DataTable();
         });
     </script>
 </body>

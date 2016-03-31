@@ -111,4 +111,12 @@ public interface CompanyDataService {
      * @return
      */
     ArrayList<CompanyData> getCompanyDataByCompanyIdLastestTime(int company_id);
+
+    /**
+     * 获得待审核企业上报数据总数
+     * status为0,1的数据
+     *
+     * @return
+     */
+    Integer getToCheckCompanyDataCount();
 }
