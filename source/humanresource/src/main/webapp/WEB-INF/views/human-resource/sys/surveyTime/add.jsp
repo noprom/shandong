@@ -34,11 +34,11 @@
                 调查期管理
                 <small>添加</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Simple</li>
-            </ol>
+            <%--<ol class="breadcrumb">--%>
+                <%--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--%>
+                <%--<li><a href="#">Tables</a></li>--%>
+                <%--<li class="active">Simple</li>--%>
+            <%--</ol>--%>
         </section>
 
         <!-- Main content -->
