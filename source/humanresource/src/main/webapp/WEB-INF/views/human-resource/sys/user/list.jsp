@@ -34,11 +34,11 @@
                 用户列表
                 <small>系统用户</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Simple</li>
-            </ol>
+            <%--<ol class="breadcrumb">--%>
+                <%--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--%>
+                <%--<li><a href="#">Tables</a></li>--%>
+                <%--<li class="active">Simple</li>--%>
+            <%--</ol>--%>
         </section>
 
         <!-- Main content -->
@@ -129,10 +129,11 @@
                                             <c:otherwise>
                                                 <c:set var="typeflag" value="true"/>
                                                 <c:forEach items="${cityList}" var="r" varStatus="loopstatus">
-                                                    <c:if test="typeflag"></c:if>
-                                                    <c:if test="${v.type eq r.id}">
-                                                        <span class="label label-warning">${r.name}用户</span>
-                                                        <c:set var="typeflag" value="false"/>
+                                                    <c:if test="typeflag">
+                                                        <c:if test="${v.type eq r.id}">
+                                                            <span class="label label-warning">${r.name}用户</span>
+                                                            <c:set var="typeflag" value="false"/>
+                                                        </c:if>
                                                     </c:if>
                                                 </c:forEach>
                                             </c:otherwise>

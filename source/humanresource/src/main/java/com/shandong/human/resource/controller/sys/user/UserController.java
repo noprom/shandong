@@ -67,7 +67,7 @@ public class UserController {
         }
 
         /*单页显示个数*/
-        int pageSize = 3;
+        int pageSize = 10;
         Pager<User> pager = new Pager<User>(pageSize);
         pager.setCount(userService.getCount());
         pager.setCurrentPage(currentPage);
