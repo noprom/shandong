@@ -49,6 +49,21 @@ public class NewsController {
     }
 
     /**
+     * 新闻详情
+     *
+     * @param id
+     * @param model
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "/sys/news/{id}", method = RequestMethod.GET)
+    String newsDetail(@PathVariable("id") Integer id, Model model, HttpSession session) {
+        News news = newsService.selectNewsById(id);
+        model.addAttribute("newsDetail", news);
+        return STATIC_PREFIX + "/detail";
+    }
+
+    /**
      * 新增新闻
      *
      * @param model

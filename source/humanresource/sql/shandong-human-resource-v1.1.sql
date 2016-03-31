@@ -13,6 +13,9 @@
 
  Date: 03/31/2016 22:10:19 PM
 */
+DROP DATABASE IF EXISTS `shandong-human-resource`;
+CREATE DATABASE `shandong-human-resource`;
+USE `shandong-human-resource`;
 
 SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
