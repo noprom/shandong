@@ -28,13 +28,14 @@
 
     <div class="content-wrapper">
     <section class="content-header">
-        <h1>新增后台菜单</h1>
+        <h1>
+            新增后台菜单
+        </h1>
+
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
             <li><a href="#">系统管理</a></li>
-            <li><a href="#">权限管理</li>
             <li class="active">新增后台菜单</li>
-
         </ol>
     </section>
 

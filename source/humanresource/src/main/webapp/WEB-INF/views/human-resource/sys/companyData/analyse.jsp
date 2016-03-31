@@ -20,6 +20,16 @@
 
     <!-- 主要内容开始 -->
     <div class="content-wrapper" style="min-height: 976px;">
+
+        <section class="content-header">
+            <h1>修改权限</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
+                <li><a href="#">系统管理</a></li>
+                <li class="active">授权</li>
+            </ol>
+        </section>
+
         <section class="content">
             <!-- Info boxes -->
 
