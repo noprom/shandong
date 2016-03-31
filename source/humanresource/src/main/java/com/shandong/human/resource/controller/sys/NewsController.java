@@ -105,7 +105,7 @@ public class NewsController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "sys/news/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/sys/news/delete/{id}", method = RequestMethod.GET)
     String newsDelete(@PathVariable("id") Integer id, Model model, HttpSession httpSession, HttpServletRequest request) {
         newsService.deleteNewsById(id);
         List<News> newsList = newsService.newsList();
@@ -120,7 +120,7 @@ public class NewsController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "sys/news/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/sys/news/edit/{id}", method = RequestMethod.GET)
     String newsEditPage(@PathVariable("id") Integer id, HttpSession httpSession, HttpServletRequest request) {
         News news = newsService.selectNewsById(id);
         httpSession.setAttribute("newToEdit", news);
@@ -134,7 +134,7 @@ public class NewsController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "sys/news/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/sys/news/edit", method = RequestMethod.POST)
     String newsEdit(Model model, News news, HttpSession httpSession, HttpServletRequest request) {
         Integer id = newsService.editNewsById(news);
         System.out.println(news.getId().toString());
