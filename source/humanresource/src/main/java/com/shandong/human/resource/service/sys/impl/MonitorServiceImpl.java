@@ -14,11 +14,14 @@ import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
 /**
+ * 系统监控Service
+ * <p>
  * Author: constantine <1194479264@qq.com>
  * Date: 16/3/14 下午2:27
  */
 @Service
 public class MonitorServiceImpl implements MonitorService {
+
     private static final int CPUTIME = 5000;
 
     private static final int PERCENT = 100;
@@ -27,12 +30,15 @@ public class MonitorServiceImpl implements MonitorService {
 
     private static Logger log = Logger.getLogger("CPUUsageLog");
 
-    public MonitorInformation getMonitorInformation()
-    {
+    /**
+     * 获得系统监控信息
+     *
+     * @return
+     */
+    public MonitorInformation getMonitorInformation() {
 
 //        System.out.println(javaVersion);
 //        System.out.println(arch);
-
 
         int kb = 1024;
 
@@ -42,7 +48,6 @@ public class MonitorServiceImpl implements MonitorService {
         long freeMemory = Runtime.getRuntime().freeMemory() / kb;
         // 最大可使用内存
         long maxMemory = Runtime.getRuntime().maxMemory() / kb;
-
         OperatingSystemMXBean osmxb = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
 
         // 操作系统
@@ -58,7 +63,8 @@ public class MonitorServiceImpl implements MonitorService {
         ThreadGroup parentThread;
         for (parentThread = Thread.currentThread().getThreadGroup();
              parentThread.getParent() != null;
-             parentThread = parentThread.getParent());
+             parentThread = parentThread.getParent())
+            ;
 
         int totalThread = parentThread.activeCount();
 
@@ -74,25 +80,26 @@ public class MonitorServiceImpl implements MonitorService {
         monitorInformation.setTotalThread(totalThread);
         monitorInformation.setUsedMemory(usedMemory);
         monitorInformation.setCpuRatio(cpuRatio);
-
         return monitorInformation;
-
     }
 
-    /*
+    /**
      * 获得CPU使用率
+     * TODO: 等待添加
      *
      * @return cpu使用率
-     *
-     * 等待添加
      */
-    private double getCpuRatioForLinux()
-    {
+    private double getCpuRatioForLinux() {
         return 0.0;
     }
 
-    public MonitorInformationAddtion getMonitorInformationAddtion(HttpServletRequest request)
-    {
+    /**
+     * 获得系统监控辅助信息
+     *
+     * @param request
+     * @return
+     */
+    public MonitorInformationAddtion getMonitorInformationAddtion(HttpServletRequest request) {
         Properties props = System.getProperties();
         MonitorInformationAddtion mia = new MonitorInformationAddtion();
 
@@ -102,8 +109,6 @@ public class MonitorServiceImpl implements MonitorService {
         mia.setServerHost(request.getRemoteHost());
         mia.setServerPort(request.getServerPort());
         mia.setServerName(request.getServerName());
-
         return mia;
-
     }
 }

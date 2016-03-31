@@ -68,8 +68,7 @@ public class JsonUtil {
     /**
      * 从请求体中读取客户端发送的JSON串
      *
-     * @param stream
-     *            输入流
+     * @param stream 输入流
      * @return String 类型，接收到的JSON串
      */
     public static String readStringFromRequestBody(InputStream stream) {
@@ -96,6 +95,7 @@ public class JsonUtil {
 
     /**
      * 回写响应
+     *
      * @param json
      * @param response
      */
@@ -108,8 +108,8 @@ public class JsonUtil {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally{
-            if(null != os){
+        } finally {
+            if (null != os) {
                 try {
                     os.close();
                 } catch (IOException e) {

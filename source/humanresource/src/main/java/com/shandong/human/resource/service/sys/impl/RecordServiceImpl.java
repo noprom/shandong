@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 /**
+ * 企业上报数据service
+ * <p>
  * Author: constantine <1194479264@qq.com>
  * Date: 16/3/11 上午10:40
  */
@@ -29,10 +31,11 @@ public class RecordServiceImpl implements RecordService {
     private CompanyDataMapper companyDataMapper;
 
     /**
-     * 根据id获得公司详情
+     * 通过id获取Company对象
+     * 返回类型为一个Company类
      *
-     * @param id id
-     * @return company
+     * @param id
+     * @return
      */
     public Company getCompanyById(Integer id) {
         return companyMapper.getCompanyById(id);
@@ -43,7 +46,6 @@ public class RecordServiceImpl implements RecordService {
      *
      * @return
      */
-
     public ArrayList<SurveyTime> getAllSurveyTime() {
         return surveyTimeMapper.getAllSurveyTime();
     }
@@ -53,7 +55,6 @@ public class RecordServiceImpl implements RecordService {
      *
      * @return
      */
-
     public ArrayList<Company> getAllCompany() {
         return companyMapper.getAllCompany();
     }
@@ -61,6 +62,11 @@ public class RecordServiceImpl implements RecordService {
     /**
      * 根据条件查找Company
      *
+     * @param city_id
+     * @param area_id
+     * @param name
+     * @param code
+     * @param contact
      * @return
      */
     public ArrayList<Company> getCompanyByCondition(String city_id, String area_id, String name, String code, String contact) {
@@ -70,10 +76,10 @@ public class RecordServiceImpl implements RecordService {
     /**
      * 根据条件查找CompanyData
      *
+     * @param id
      * @return
      */
-    public ArrayList<CompanyData> getCompanyDataByCompanyId (Integer id)
-    {
+    public ArrayList<CompanyData> getCompanyDataByCompanyId(Integer id) {
         return companyDataMapper.getCompanyDataByCompanyId(id);
     }
 }

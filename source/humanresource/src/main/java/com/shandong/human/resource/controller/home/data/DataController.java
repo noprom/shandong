@@ -5,7 +5,7 @@ import com.shandong.human.resource.domain.*;
 import com.shandong.human.resource.service.home.ReduceService;
 import com.shandong.human.resource.service.sys.CompanyDataService;
 import com.shandong.human.resource.service.sys.SurveyTimeService;
-import com.shandong.human.resource.util.CompanyDataQuaryList;
+import com.shandong.human.resource.domain.CompanyDataQuaryList;
 import com.shandong.human.resource.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

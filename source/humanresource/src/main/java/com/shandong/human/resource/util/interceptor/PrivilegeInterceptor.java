@@ -17,15 +17,13 @@ import java.util.*;
  *
  * @author tyee.noprom@qq.com
  * @time 2/7/16 10:16 AM.
- * <p/>
+ * <p>
  * Modify SYC<522560298@qq.com>: Rewrite
  */
 public class PrivilegeInterceptor implements HandlerInterceptor {
 
-
     // 静态资源前缀
     private static final String STATIC_PREFIX = "human-resource";
-
 
     private static final String STATIC_RESOURCE = "/static";
 
@@ -33,7 +31,6 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
      * 默认可访问url
      */
     private static Set<String> defaultUrl;
-
 
     /**
      * 替换符数据类型
@@ -60,7 +57,6 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
         defaultUrl.add("/logout");
         defaultUrl.add("/error");
 
-
         alterSign = new HashMap<String, alterType>();
         alterSign.clear();
         alterSign.put("{id}", alterType._INTEGER);
@@ -70,9 +66,8 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
                              HttpServletResponse response, Object handler) throws Exception {
         String redirectUrl = doPreHandle(request, response, handler);
         if (!redirectUrl.equals(request.getRequestURI())) {
-//            response.sendRedirect(redirectUrl);
-//            return false;
-            //ztr
+            response.sendRedirect(redirectUrl);
+            return false;
         }
         return true;
     }
@@ -125,7 +120,6 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
         }
         return false;
     }
-
 
     private String doPreHandle(HttpServletRequest request,
                                HttpServletResponse response, Object handler) throws Exception {

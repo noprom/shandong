@@ -68,7 +68,7 @@ public class FileUploader {
     /**
      * 多文件上传
      *
-     * @param files 多个文件
+     * @param files   多个文件
      * @param destDir 目标存放路径
      * @param request request
      * @throws Exception Exception
@@ -76,7 +76,7 @@ public class FileUploader {
     public boolean uploads(MultipartFile[] files, String destDir, HttpServletRequest request) throws Exception {
         boolean success = true;
         String path = request.getContextPath();
-        String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
+        String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
         try {
             fileNames = new String[files.length];
             int index = 0;
@@ -102,7 +102,7 @@ public class FileUploader {
                 File f = new File(destFile.getAbsoluteFile() + File.separator + newFileName);
                 file.transferTo(f);
                 f.createNewFile();
-                fileNames[index ++] = newFileName;
+                fileNames[index++] = newFileName;
             }
         } catch (Exception e) {
             success = false;
@@ -114,12 +114,12 @@ public class FileUploader {
     /**
      * 上传文件
      *
-     * @param file 要上传的文件
+     * @param file    要上传的文件
      * @param destDir 目标上传地址
      * @param request request
      * @throws Exception
      */
-    public boolean upload(MultipartFile file, String destDir,HttpServletRequest request) throws Exception {
+    public boolean upload(MultipartFile file, String destDir, HttpServletRequest request) throws Exception {
         boolean success = true;
         String path = request.getContextPath();
         String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
@@ -128,11 +128,11 @@ public class FileUploader {
             String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
             int length = getAllowSuffix().indexOf(suffix);
             // 检测上传的文件的文件类型
-            if(length == -1){
+            if (length == -1) {
                 throw new Exception("请上传允许格式的文件");
             }
             // 检测上传的文件的文件大小
-            if(file.getSize() > getAllowSize()){
+            if (file.getSize() > getAllowSize()) {
                 throw new Exception("您上传的文件大小已经超出范围");
             }
 
