@@ -5,12 +5,13 @@ import com.shandong.human.resource.domain.Auth;
 import java.util.List;
 
 /**
- * Brief: auth表管理dao
+ * auth表管理dao
+ * <p>
  * <p>
  * Author: syc
  * Date: 2016/3/15
  */
-interface AuthMapper {
+public interface AuthMapper {
 
     /**
      * 向auth表中插入一个数据

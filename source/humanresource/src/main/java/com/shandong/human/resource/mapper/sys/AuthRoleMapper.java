@@ -11,7 +11,7 @@ import java.util.Map;
  * Author: syc <522560298@qq.com>
  * Date: 3/16/16 下午2:17
  */
-interface AuthRoleMapper {
+public interface AuthRoleMapper {
 
     /**
      * 插入角色权限

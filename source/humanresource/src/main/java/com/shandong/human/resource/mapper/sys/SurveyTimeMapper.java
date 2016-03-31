@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * <p>
  * Modified by SYC 3/20/16: add insert
  */
-interface SurveyTimeMapper {
+public interface SurveyTimeMapper {
 
     /**
      * 获取所有调查时间

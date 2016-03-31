@@ -11,7 +11,7 @@ import java.util.Map;
  * Author: syc <522560298@qq.com>
  * Date: 3/19/16 下午1:21
  */
-interface UserMapper {
+public interface UserMapper {
 
     /**
      * 获取用户数

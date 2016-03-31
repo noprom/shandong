@@ -12,7 +12,7 @@ import java.util.List;
  * Author: constantine <1194479264@qq.com>
  * Date: 16/3/13 下午8:34
  */
-interface CompanyDataMapper {
+public interface CompanyDataMapper {
 
     /**
      * 获得全部的公司上报数据
