@@ -97,8 +97,6 @@
         ORDER BY company_id
     </select>
 
-
-
     <update id="changeCompanyDataStatusById" parameterType="int">
         UPDATE company_data SET status = 3 WHERE id = #{id}
     </update>
@@ -111,5 +109,9 @@
     <update id="updateCompanyDataStatus">
         UPDATE company_data SET status = #{status} WHERE id = #{id}
     </update>
+
+    <select id="getCompanyDataByCompanyIdLastestTime" resultMap="CompanyData">
+        SELECT * FROM company_data WHERE company_id = #{company_id} ORDER BY create_time DESC
+    </select>
 
 </mapper>

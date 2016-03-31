@@ -6,16 +6,47 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
+ * 公司service
+ * <p>
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/20 10:29
  */
-
 public interface CompanyService {
-    //    保存输入信息
-    public void setCompanyInfo(Company company);
 
+    /**
+     * 保存输入信息
+     *
+     * @param company
+     */
+    void setCompanyInfo(Company company);
+
+    /**
+     * 通过城市获得公司数量
+     *
+     * @return
+     */
     List<Company> getCompanyNumberByCity();
-    public ArrayList<Company> isNull(int id);
-    public Company getCompanyById(int id);
-    public void updateCompanyInfo(Company company);
+
+    /**
+     * 判断是否为空
+     *
+     * @param id
+     * @return
+     */
+    ArrayList<Company> isNull(int id);
+
+    /**
+     * 通过id获得公司数据
+     *
+     * @param id
+     * @return
+     */
+    Company getCompanyById(int id);
+
+    /**
+     * 更新公司信息
+     *
+     * @param company
+     */
+    void updateCompanyInfo(Company company);
 }

@@ -36,6 +36,7 @@ public class AuthController extends CommonController {
 
     // 静态资源前缀
     public static final String STATIC_PREFIX = "human-resource/sys/auth";
+
     @Autowired
     private AuthService service;
 
@@ -49,9 +50,9 @@ public class AuthController extends CommonController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String toAddPage(String toPageNum, HttpServletRequest request, HttpServletResponse response) {
         int pageNum = 1;
-        try{
+        try {
             pageNum = Integer.parseInt(toPageNum);
-        }catch (Exception e){
+        } catch (Exception e) {
         }
 
 
@@ -72,13 +73,13 @@ public class AuthController extends CommonController {
     public
     @ResponseBody
     Result addAuth(Integer pid, String name, String url,
-            HttpServletRequest request, HttpServletResponse response) throws IOException {
+                   HttpServletRequest request, HttpServletResponse response) throws IOException {
         Auth toInsert = new Auth();
         logger.debug(name + url + pid);
 
         Pattern pattern = Pattern.compile(".{1,10}");
         Matcher matcher = pattern.matcher(name);
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             return new Result(Result.Status.ERROR, Constant.AUTHNAME_ILLEGAL);
         }
 
@@ -116,7 +117,6 @@ public class AuthController extends CommonController {
      * @param response
      * @throws IOException
      */
-
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public
     @ResponseBody

@@ -1,6 +1,8 @@
 package com.shandong.human.resource.domain;
 
 /**
+ * 公司实体类
+ *
  * Author: constantine <1194479264@qq.com>
  * Date: 16/3/11 上午9:56
  */

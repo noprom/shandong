@@ -13,43 +13,89 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * 公司数据service实现类
+ * <p>
  * Author: helin <helin199210@icloud.com>
  * Time: 16/3/15 下午3:11
  */
 @Service
 @Transactional(isolation = Isolation.DEFAULT, rollbackFor = Exception.class)
 public class CompanyDataServiceImpl implements CompanyDataService {
+
     @Autowired
     private CompanyDataMapper companyDataMapper;
 
+    /**
+     * 获得公司数据列表
+     *
+     * @return
+     */
     public List<CompanyData> companyDataList() {
         return companyDataMapper.companyDataList();
     }
 
+    /**
+     * 通过id删除新闻
+     *
+     * @param id
+     */
     public void deleteNewsById(Integer id) {
         companyDataMapper.deleteNewsById(id);
     }
 
+    /**
+     * 通过id得到公司数据
+     *
+     * @param id
+     * @return
+     */
     public CompanyData getCompanyDataById(Integer id) {
         return companyDataMapper.getCompanyDataById(id);
     }
 
+    /**
+     * 新增公司上报数据
+     *
+     * @param companyData
+     * @return
+     */
     public Integer companyDataAdd(CompanyData companyData) {
         return companyDataMapper.companyDataAdd(companyData);
     }
 
+    /**
+     * 在每个调查期获得公司总的人数
+     *
+     * @return
+     */
     public List<CompanyData> getTotalPeopleFromCompanyDataOfEverySuvryTime() {
         return companyDataMapper.getTotalPeopleFromCompanyDataOfEverySuvryTime();
     }
 
+    /**
+     * 新增公司上报数据
+     *
+     * @param companyData
+     */
     public void companyDataAddFirst(CompanyData companyData) {
         companyDataMapper.companyDataAddFirst(companyData);
     }
 
+    /**
+     * 获得公司所有的上报数据
+     *
+     * @return
+     */
     public ArrayList<CompanyData> getAllCompanyDataFromSQL() {
         return companyDataMapper.getAllCompanyDataFromSQL();
     }
 
+    /**
+     * 通过调查期id获得公司上报数据
+     *
+     * @param survey_time_id
+     * @return
+     */
     public List<CompanyData> getCompanyDataBySurveyTimeId(int survey_time_id) {
         return companyDataMapper.getCompanyDataBySurveyTimeId(survey_time_id);
     }
@@ -92,5 +138,15 @@ public class CompanyDataServiceImpl implements CompanyDataService {
      */
     public int updateCompanyDataStatus(Integer id, Integer status) {
         return companyDataMapper.updateCompanyDataStatus(id, status);
+    }
+
+    /**
+     * 按照最新时间获取公司的ID
+     *
+     * @param company_id
+     * @return
+     */
+    public ArrayList<CompanyData> getCompanyDataByCompanyIdLastestTime(int company_id) {
+        return companyDataMapper.getCompanyDataByCompanyIdLastestTime(company_id);
     }
 }

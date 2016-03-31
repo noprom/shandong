@@ -9,15 +9,24 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 /**
+ * 公司人数减少原因的service
+ * <p>
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/27 19:50
  */
 @Service
-public class ReduceServiceImpl implements ReduceService{
+public class ReduceServiceImpl implements ReduceService {
+
     @Autowired
     private ReduceMapper reduceMapper;
-    public ArrayList<Reduce> getTypeOfReason(int type)
-    {
+
+    /**
+     * 获取就业人数减少类型和理由
+     *
+     * @param type
+     * @return
+     */
+    public ArrayList<Reduce> getTypeOfReason(int type) {
         return reduceMapper.getTypeOfReason(type);
     }
 }

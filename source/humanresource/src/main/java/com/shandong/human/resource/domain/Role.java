@@ -1,6 +1,8 @@
 package com.shandong.human.resource.domain;
 
 /**
+ * 角色实体类
+ * <p>
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/14 9:31
  */

@@ -20,7 +20,7 @@ import java.util.List;
  * 通知控制器
  * 包括:
  * 增加,删除,修改,查询通知
- * <p/>
+ * <p>
  * Author: helin <helin199210@icloud.com>
  * Time: 16/3/11 下午1:45
  */
@@ -34,6 +34,8 @@ public class NewsController {
     private NewsService newsService;
 
     /**
+     * 通知列表
+     *
      * @param model
      * @param news
      * @param httpSession
@@ -41,14 +43,14 @@ public class NewsController {
      */
     @RequestMapping(value = "/sys/news", method = RequestMethod.GET)
     String newsList(Model model, News news, HttpSession httpSession) {
-
         List<News> newsList = newsService.newsList();
         model.addAttribute("newsList", newsList);
         return STATIC_PREFIX + "/list";
-
     }
 
     /**
+     * 新增新闻
+     *
      * @param model
      * @param news
      * @param httpSession
@@ -58,10 +60,8 @@ public class NewsController {
     public
     @ResponseBody
     Result newsAdd(Model model, News news, HttpSession httpSession) {
-
         news.setUserId(10);
         Integer id = newsService.addNews(news);
-
         if (id >= 0) {
             return new Result(Result.Status.SUCCESS, Constant.REG_SUCCESS);
         } else {
@@ -70,6 +70,8 @@ public class NewsController {
     }
 
     /**
+     * 显示新增新闻页面
+     *
      * @param model
      * @param news
      * @param httpSession
@@ -81,6 +83,8 @@ public class NewsController {
     }
 
     /**
+     * 删除新闻
+     *
      * @param model
      * @param httpSession
      * @param request
@@ -88,16 +92,15 @@ public class NewsController {
      */
     @RequestMapping(value = "sys/news/delete/{id}", method = RequestMethod.GET)
     String newsDelete(@PathVariable("id") Integer id, Model model, HttpSession httpSession, HttpServletRequest request) {
-
         newsService.deleteNewsById(id);
-
         List<News> newsList = newsService.newsList();
         model.addAttribute("newsList", newsList);
         return STATIC_PREFIX + "/list";
     }
 
-
     /**
+     * 编辑新闻
+     *
      * @param httpSession
      * @param request
      * @return
@@ -110,6 +113,8 @@ public class NewsController {
     }
 
     /**
+     * 编辑新闻提交页面
+     *
      * @param model
      * @param request
      * @return
@@ -123,5 +128,4 @@ public class NewsController {
         model.addAttribute("newsList", newsList);
         return STATIC_PREFIX + "/list";
     }
-
 }

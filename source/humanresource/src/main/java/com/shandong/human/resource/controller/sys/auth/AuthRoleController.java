@@ -1,7 +1,5 @@
 package com.shandong.human.resource.controller.sys.auth;
 
-import com.shandong.human.resource.common.AuthTree;
-import com.shandong.human.resource.controller.CommonController;
 import com.shandong.human.resource.domain.Auth;
 import com.shandong.human.resource.domain.AuthRole;
 import com.shandong.human.resource.service.sys.AuthRoleService;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

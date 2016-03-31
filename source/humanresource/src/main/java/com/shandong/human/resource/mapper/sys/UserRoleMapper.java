@@ -6,41 +6,49 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by syc on 3/17/16.
+ * 用户角色Mapper
+ * <p>
+ * Author: syc <522560298@qq.com>
+ * Date: 3/17/16 下午1:21
  */
 public interface UserRoleMapper {
 
     /**
-     * @brief 获取所有用户角色信息
+     * 获取所有用户角色信息
+     *
      * @return
      */
-    public List<UserRole> getAll();
+    List<UserRole> getAll();
 
     /**
-     * @brief 获取指定用户的角色信息
+     * 获取指定用户的角色信息
+     *
      * @param id 用户id
      * @return
      */
-    public List<UserRole> getRoleByUserID(Integer id);
+    List<UserRole> getRoleByUserID(Integer id);
 
     /**
-     * @brief 插入以个用户角色
+     * 插入以个用户角色
+     *
      * @param userRole 用户角色
      * @return
      */
-    public int insertUserRole(Map<Object,Object> userRole);
+    int insertUserRole(Map<Object, Object> userRole);
 
     /**
-     * @brief 删除一个用户角色
+     * 删除一个用户角色
+     *
      * @param userRole 用户角色
      * @return
      */
-    public int delectUserRole(Map<Object,Object> userRole);
+    int delectUserRole(Map<Object, Object> userRole);
 
     /**
-     * @brief 删除一个用户的所有角色
+     * 删除一个用户的所有角色
+     *
      * @param user_id
      * @return
      */
-    public int delectByUserID(Integer user_id);
+    int delectByUserID(Integer user_id);
 }

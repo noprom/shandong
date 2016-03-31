@@ -9,13 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 错误页控制器
- *
- * @author SYC 522560298@qq.com
- * Created by SYC on 3/25/16.
+ * <p>
+ * Author: syc <522560298@qq.com>
+ * Date: 3/25/16 下午2:15
  */
 @Controller
 public class ErrorController {
-
 
     // 静态资源前缀
     public static final String STATIC_PREFIX = "human-resource";
@@ -27,13 +26,12 @@ public class ErrorController {
      * @return 视图
      */
     @RequestMapping(value = "/error", method = RequestMethod.GET)
-    public String error(Model model , HttpServletRequest request) {
+    public String error(Model model, HttpServletRequest request) {
         String error = (String) request.getAttribute("error");
-        if(error==null){
-            request.setAttribute("error","未指定错误");
-        }
-        else{
-            request.setAttribute("error",error);
+        if (error == null) {
+            request.setAttribute("error", "未指定错误");
+        } else {
+            request.setAttribute("error", error);
         }
         return STATIC_PREFIX + "/error";
     }

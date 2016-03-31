@@ -6,46 +6,56 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by syc on 3/19/16.
+ * 用户Mapper
+ * <p>
+ * Author: syc <522560298@qq.com>
+ * Date: 3/19/16 下午1:21
  */
 public interface UserMapper {
 
     /**
-     * @brief 获取用户数
+     * 获取用户数
+     *
      * @return
      */
-    public int getCount();
-    /**
-     * @brief 查询所有用户
-     * @return
-     */
-    public List<User> selectAll();
+    int getCount();
 
     /**
-     * @brief 按位置查询
+     * 查询所有用户
+     *
+     * @return
+     */
+    List<User> selectAll();
+
+    /**
+     * 按位置查询
+     *
      * @param pos pos.limit：起始位置 pos.size查询个数
      * @return
      */
-    public List<User> selectByPos(Map<Object , Object> pos);
+    List<User> selectByPos(Map<Object, Object> pos);
 
     /**
-     * @brief 插入用户
+     * 插入用户
+     *
      * @param user 待插入用户
      * @return
      */
-    public int insertUser(User user);
+    int insertUser(User user);
 
     /**
-     * @brief 删除用户
+     * 删除用户
+     *
      * @param id 待删除用户ID
      * @return
      */
-    public int deleteByID(Integer id);
+    int deleteByID(Integer id);
 
     /**
-     * @brief 按用户名及密码查询用户
+     * 按用户名及密码查询用户
+     *
      * @param user
      * @return
      */
-    public User selectByNamePwd(Map<Object,Object> user);
+    User selectByNamePwd(Map<Object, Object> user);
 }

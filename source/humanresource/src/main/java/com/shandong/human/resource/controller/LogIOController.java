@@ -22,12 +22,12 @@ import java.util.Set;
 
 /**
  * 登入登出控制器
- *
- * @author syc<522560298@qq.com>
+ * <p>
+ * Author: syc <522560298@qq.com>
+ * Date: 3/25/16 下午2:17
  */
 @Controller
 public class LogIOController {
-
 
     @Autowired
     UserService userService;
@@ -41,10 +41,8 @@ public class LogIOController {
     @Autowired
     AuthService authService;
 
-
     // 静态资源前缀
     public static final String STATIC_PREFIX = "human-resource";
-
 
     /**
      * 转登录界面

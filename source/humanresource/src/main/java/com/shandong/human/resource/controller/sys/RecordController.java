@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.ArrayList;
 
 /**
+ * 企业数据查询控制器
+ * <p>
  * Author: constantine <1194479264@qq.com>
  * Date: 16/3/10 下午2:07
  */
@@ -26,23 +28,28 @@ public class RecordController {
     private RecordService recordService;
 
     /**
-     * Author: constantine <1194479264@qq.com>
-     * Date: 16/3/10 下午2:07
      * 显示查询页面
+     *
+     * @param model
+     * @return
      */
     @RequestMapping(value = "/sys/record/query", method = RequestMethod.GET)
     public String record(Model model) {
         ArrayList<Company> list = recordService.getAllCompany();
         model.addAttribute("recordResult", list);
-
         return STATIC_PREFIX + "/query";
     }
 
     /**
-     * Author: constantine <1194479264@qq.com>
-     * Date: 16/3/11 上午11:57
-     * <p/>
      * 查询功能
+     *
+     * @param city_id
+     * @param area_id
+     * @param name
+     * @param code
+     * @param contact
+     * @param model
+     * @return
      */
     @RequestMapping(value = "/sys/record/query", method = RequestMethod.POST)
     public String handleQuery(String city_id, String area_id, String name, String code, String contact, Model model) {
@@ -50,7 +57,6 @@ public class RecordController {
 //        System.out.println(area_id);
 //        System.out.println(name);
 //        System.out.println(code);
-//
 //        System.out.println(contact);
         ArrayList<Company> list = recordService.getCompanyByCondition(city_id,
                 area_id,
@@ -63,24 +69,31 @@ public class RecordController {
     }
 
     /**
-     * Author: constantine <1194479264@qq.com>
-     * Date: 16/3/13 下午7:44
      * 显示详情页面
+     *
+     * @param model
+     * @param id
+     * @return
      */
     @RequestMapping(value = "/sys/record/{id}", method = RequestMethod.GET)
     public String recordDetail(Model model, @PathVariable("id") Integer id) {
         Company detail = recordService.getCompanyById(id);
         model.addAttribute("companyDetail", detail);
         ArrayList<CompanyData> list = recordService.getCompanyDataByCompanyId(id);
-        model.addAttribute("companyDataList",list);
+        model.addAttribute("companyDataList", list);
         return STATIC_PREFIX + "/detail";
     }
 
+    /**
+     * 导出数据到excel
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/sys/record/export", method = RequestMethod.POST)
     public String export(Model model) {
         ArrayList<Company> list = recordService.getAllCompany();
         model.addAttribute("exResult", list);
-
         return STATIC_PREFIX + "/model";
     }
 }

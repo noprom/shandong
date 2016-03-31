@@ -3,6 +3,8 @@ package com.shandong.human.resource.domain;
 import java.util.Date;
 
 /**
+ * 调查时间实体类
+ * <p>
  * Author: constantine <1194479264@qq.com>
  * Date: 16/3/11 上午10:20
  */

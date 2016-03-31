@@ -1,6 +1,8 @@
 package com.shandong.human.resource.domain;
 
 /**
+ * 企业统计数据实体类
+ * <p>
  * Author: helin <helin199210@icloud.com>
  * Time: 16/3/28 下午6:01
  */

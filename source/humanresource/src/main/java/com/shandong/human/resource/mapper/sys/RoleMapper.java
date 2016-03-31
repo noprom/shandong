@@ -6,38 +6,56 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by syc on 3/17/16.
+ * 角色Mapper
+ * <p>
+ * Author: syc <522560298@qq.com>
+ * Date: 3/17/16 下午7:15
  */
 public interface RoleMapper {
 
     /**
-     * @brief 获取所有角色
+     * 获取所有角色
+     *
      * @return
      */
-    public List<Role> selectAll();
+    List<Role> selectAll();
 
     /**
-     * @brief 插入一个角色
+     * 插入一个角色
+     *
      * @param name 插入角色名
      * @return
      */
-    public int insertRole(String name);
+    int insertRole(String name);
 
     /**
-     * @brief 删除一个角色
+     * 删除一个角色
+     *
      * @param id 待删除角色ID
      * @return
      */
-    public int deleteRole(Integer id);
+    int deleteRole(Integer id);
 
     /**
-     * @brief 按照id查询角色
+     * 按照id查询角色
+     *
      * @param id 待查询角色id
      * @return
      */
-    public int selectByID(Integer id);
+    int selectByID(Integer id);
 
-    public Integer getCount();
+    /**
+     * 获得角色总数
+     *
+     * @return
+     */
+    Integer getCount();
 
-    public  List<Role> selectByPos(Map<Object,Object> pos);
+    /**
+     * 分页查询
+     *
+     * @param pos
+     * @return
+     */
+    List<Role> selectByPos(Map<Object, Object> pos);
 }

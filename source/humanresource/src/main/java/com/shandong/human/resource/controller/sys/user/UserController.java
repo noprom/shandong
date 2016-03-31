@@ -24,7 +24,10 @@ import javax.validation.Valid;
 import java.io.IOException;
 
 /**
- * Created by syc on 3/19/16.
+ * 用户控制器类
+ * <p>
+ * Author: syc <522560298@qq.com>
+ * Date: 3/19/16 下午2:15
  */
 @RequestMapping("/sys")
 @Controller
@@ -108,6 +111,13 @@ public class UserController {
         }
     }
 
+    /**
+     * 删除用户
+     *
+     * @param uid
+     * @param request
+     * @param response
+     */
     @RequestMapping(value = "/user/delete", method = RequestMethod.GET)
     public void deleteUser(Integer uid, HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -121,6 +131,5 @@ public class UserController {
             }
             e.printStackTrace();
         }
-        return;
     }
 }

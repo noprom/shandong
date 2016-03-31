@@ -1,13 +1,13 @@
 package com.shandong.human.resource.domain;
 
-//import javafx.scene.chart.PieChart;
 import java.sql.Date;
 
 /**
+ * 操作纪录类
+ * <p>
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/14 9:22
  */
-
 public class Log {
     private int id;             //主键
     private int user_id;       //用户id

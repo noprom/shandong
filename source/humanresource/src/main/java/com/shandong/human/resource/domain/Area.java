@@ -1,10 +1,11 @@
 package com.shandong.human.resource.domain;
 
 /**
+ * 区域类
+ *
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/14 9:09
  */
-
 public class Area {
     private int id;             //主键
     private int pid;            //上级id
