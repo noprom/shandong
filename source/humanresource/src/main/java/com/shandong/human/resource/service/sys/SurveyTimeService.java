@@ -5,7 +5,10 @@ import com.shandong.human.resource.domain.SurveyTime;
 import java.util.ArrayList;
 
 /**
- * Created by syc on 3/20/16.
+ * 调查期Service
+ * <p>
+ * Author: syc <522560298@qq.com>
+ * Date: 3/20/16 下午1:21
  */
 public interface SurveyTimeService {
 
@@ -14,14 +17,21 @@ public interface SurveyTimeService {
      *
      * @return
      */
-    public ArrayList<SurveyTime> getAllSurveyTime();
+    ArrayList<SurveyTime> getAllSurveyTime();
 
     /**
-     * @brief 向表中插入一个时间
+     * 向表中插入一个时间
+     *
      * @param time
      * @return
      */
-    public Integer insertSurveyTime(SurveyTime time);
+    Integer insertSurveyTime(SurveyTime time);
 
-    public SurveyTime getAllSurveyTimeById(int id);
+    /**
+     * 通过id获得所有调查期
+     *
+     * @param id
+     * @return
+     */
+    SurveyTime getAllSurveyTimeById(int id);
 }
