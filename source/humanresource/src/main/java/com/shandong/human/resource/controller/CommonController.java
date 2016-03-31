@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * CommonController
- * <p/>
+ * <p>
  * Author: constantine <1194479264@qq.com>
  * Date: 16/3/8 上午11:24
  */
@@ -39,5 +39,5 @@ public class CommonController {
     public String error_500() {
         return STATIC_PREFIX + "/500";
     }
-    
+
 }

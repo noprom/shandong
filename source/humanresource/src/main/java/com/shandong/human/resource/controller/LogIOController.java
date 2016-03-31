@@ -28,7 +28,6 @@ import java.util.Set;
 @Controller
 public class LogIOController {
 
-
     @Autowired
     UserService userService;
 
@@ -41,10 +40,8 @@ public class LogIOController {
     @Autowired
     AuthService authService;
 
-
     // 静态资源前缀
     public static final String STATIC_PREFIX = "human-resource";
-
 
     /**
      * 转登录界面

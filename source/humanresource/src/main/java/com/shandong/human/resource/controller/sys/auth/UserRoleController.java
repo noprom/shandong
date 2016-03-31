@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-
 /**
  * 用户角色控制器
  * <p>
@@ -52,7 +51,7 @@ public class UserRoleController extends CommonController {
     @RequestMapping(value = "/userRole/edit", method = RequestMethod.GET)
     public String toEditPage(@Param("uid") Integer uid, Model model,
                              HttpServletRequest request, HttpServletResponse response) {
-        if(uid == null)
+        if (uid == null)
             return "/404";
 
         List<Role> allRole = roleService.selectAll();

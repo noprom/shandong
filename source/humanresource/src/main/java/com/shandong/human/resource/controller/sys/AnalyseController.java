@@ -21,18 +21,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 数据分析的控制器类
+ * <p>
  * Author: helin <helin199210@icloud.com>
  * Time: 16/3/27 上午9:51
  */
-
 @Controller
 public class AnalyseController {
+
     public static final String STATIC_PREFIX = "human-resource/sys/companyData";
 
     @Autowired
     private CompanyDataService companyDataService;
+
     @Autowired
     private CompanyService companyService;
+
     @Autowired
     private SurveyTimeService surveyTimeService;
 
@@ -79,13 +83,12 @@ public class AnalyseController {
              * 走势
              */
             trend.add((float) 0.0);
-            for (int i=1;i<companyDataOfPeople.size();i++){
-                float temp = (companyDataOfPeople.get(i).getCur_people() - companyDataOfPeople.get(i-1).getCur_people())/(float)companyDataOfPeople.get(i-1).getCur_people();
+            for (int i = 1; i < companyDataOfPeople.size(); i++) {
+                float temp = (companyDataOfPeople.get(i).getCur_people() - companyDataOfPeople.get(i - 1).getCur_people()) / (float) companyDataOfPeople.get(i - 1).getCur_people();
                 trend.add(Float.valueOf(df.format(temp)));
-                System.out.println(trend.get(i-1));
+                System.out.println(trend.get(i - 1));
             }
-            model.addAttribute("trend",trend);
-
+            model.addAttribute("trend", trend);
 
 
         } else {
@@ -130,7 +133,6 @@ public class AnalyseController {
         model.addAttribute("surveyTimeList", surveyTimeList);
 
 
-
         return STATIC_PREFIX + "/analyse";
     }
 
@@ -143,17 +145,19 @@ public class AnalyseController {
     @RequestMapping(value = "/sys/data/duibifenxi", method = RequestMethod.POST)
     public
     @ResponseBody
-    List<String>  companyNumber(HttpServletRequest request) {
+    List<String> companyNumber(HttpServletRequest request) {
         List<CompanyData> companyDataOfPeriodOneList = companyDataService.getCompanyDataBySurveyTimeId(Integer.parseInt(String.valueOf(request.getParameter("period"))));
 
-        return analysis( companyDataOfPeriodOneList );
+        return analysis(companyDataOfPeriodOneList);
     }
 
+    /**
+     * 计算企业总数、建档期总岗位数、调查期总岗位数、岗位变化总数、岗位减少总数、岗位变化数量占比。
+     *
+     * @param companyDataList
+     * @return
+     */
     private List<String> analysis(List<CompanyData> companyDataList) {
-        /**
-         * 计算企业总数、建档期总岗位数、调查期总岗位数、岗位变化总数、岗位减少总数、岗位变化数量占比。
-         */
-
         /**
          * 计算企业总数
          */
@@ -183,19 +187,16 @@ public class AnalyseController {
         ajaxReturn.add(totalCompanyNumber.toString());
         ajaxReturn.add(totalInitPeople.toString());
         ajaxReturn.add(totalCurPeople.toString());
-        Integer temp1 =totalCurPeople - totalInitPeople;
+        Integer temp1 = totalCurPeople - totalInitPeople;
         ajaxReturn.add(temp1.toString());
         ajaxReturn.add(totalReduceOfPeople.toString());
-        Float temp2 = (totalCurPeople - totalInitPeople) / (float) totalInitPeople  * 100 ;
+        Float temp2 = (totalCurPeople - totalInitPeople) / (float) totalInitPeople * 100;
         DecimalFormat df = new DecimalFormat("######0.00");
 
         ajaxReturn.add(df.format(temp2).toString());
 
-        for (int i = 0; i<ajaxReturn.size();i++)
+        for (int i = 0; i < ajaxReturn.size(); i++)
             System.out.println(ajaxReturn.get(i));
         return ajaxReturn;
-
-
     }
-
 }

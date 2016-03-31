@@ -1,12 +1,10 @@
 package com.shandong.human.resource.controller.city;
 
-import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.domain.CompanyData;
 import com.shandong.human.resource.domain.User;
 import com.shandong.human.resource.service.city.CityService;
 import com.shandong.human.resource.service.sys.CompanyDataService;
 import com.shandong.human.resource.util.Constant;
-import com.shandong.human.resource.util.SysInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +20,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 城市用户主要的控制器类
+ * <p>
  * Author: constantine <1194479264@qq.com>
  * Date: 16/3/30 上午10:37
  */
 @Controller
 public class CityController {
+
     public static final String STATIC_PREFIX = "human-resource/city";
+
     @Autowired
     CityService cityService;
 
@@ -35,9 +37,12 @@ public class CityController {
     CompanyDataService companyDataService;
 
     /**
-     * Author: constantine <1194479264@qq.com>
-     * Date: 16/3/30 上午10:37
      * 显示查询页面
+     *
+     * @param model
+     * @param request
+     * @param response
+     * @return
      */
     @RequestMapping(value = "/city/query", method = RequestMethod.GET)
     public String query(Model model, HttpServletRequest request, HttpServletResponse response) {
@@ -48,46 +53,53 @@ public class CityController {
 
         ArrayList<CompanyData> list = new ArrayList<CompanyData>();
 
-        for (Integer i: IDS )
-        {
+        for (Integer i : IDS) {
             //System.out.println(i);
-            ArrayList<CompanyData> temp =cityService.getCompanyDataByCompanyIdStatus0(i);
-            for (CompanyData cd : temp)
-            {
+            ArrayList<CompanyData> temp = cityService.getCompanyDataByCompanyIdStatus0(i);
+            for (CompanyData cd : temp) {
                 list.add(cd);
             }
         }
         System.out.println(list.size());
-        model.addAttribute("cityQueryResult",list);
+        model.addAttribute("cityQueryResult", list);
         return STATIC_PREFIX + "/query";
     }
 
+    /**
+     * 城市用户审核
+     *
+     * @param model
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/city/check/{id}", method = RequestMethod.GET)
     public String check(Model model, @PathVariable("id") Integer id) {
-
         CompanyData cd = companyDataService.getCompanyDataById(id);
-        model.addAttribute("check",cd);
-
+        model.addAttribute("check", cd);
         return STATIC_PREFIX + "/check";
     }
 
-    @RequestMapping(value = "/city/check" , method = RequestMethod.POST)
+    /**
+     * 城市用户审核提交数据
+     *
+     * @param model
+     * @param cdid
+     * @param pass
+     * @param reason
+     * @return
+     */
+    @RequestMapping(value = "/city/check", method = RequestMethod.POST)
     @ResponseBody
-    public Map checked(Model model, String cdid, String pass, String reason)
-    {
+    public Map checked(Model model, String cdid, String pass, String reason) {
         int id = Integer.parseInt(cdid);
         int flag = Integer.parseInt(pass);
-        Map map=new HashMap();
-        if(flag==1)
-        {
+        Map map = new HashMap();
+        if (flag == 1) {
             cityService.cityCheckPass(id);
+        } else {
+            cityService.cityCheckFail(id, reason);
         }
-        else
-        {
-            cityService.cityCheckFail(id,reason);
-        }
-        map.put("success","success");
+        map.put("success", "success");
         return map;
     }
-
 }

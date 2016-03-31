@@ -11,9 +11,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 首页控制器
- *
- * @author tyee.noprom@qq.com
- *         Created by noprom on 3/6/16.
+ * <p>
+ * Author: noprom <tyee.noprom@qq.com>
+ * Date: 3/16/16 下午2:15
  */
 @Controller
 public class IndexController {

@@ -1,18 +1,12 @@
 package com.shandong.human.resource.controller.sys.role;
 
-import com.shandong.human.resource.controller.CommonController;
 import com.shandong.human.resource.domain.Role;
-import com.shandong.human.resource.domain.User;
-import com.shandong.human.resource.domain.UserRole;
 import com.shandong.human.resource.service.sys.RoleService;
-import com.shandong.human.resource.service.sys.UserRoleService;
 import com.shandong.human.resource.util.Constant;
 import com.shandong.human.resource.util.Pager;
 import com.shandong.human.resource.util.Result;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 
 /**
  * 用户角色控制器
@@ -34,7 +27,7 @@ import java.util.regex.Pattern;
  */
 @RequestMapping("/sys")
 @Controller
-public class RoleController{
+public class RoleController {
 
     // 静态资源前缀
     public static final String STATIC_PREFIX = "human-resource/sys/role";
@@ -43,7 +36,8 @@ public class RoleController{
     private RoleService service;
 
     /**
-     * @brief 添加角色
+     * 添加角色
+     *
      * @param name
      * @param request
      * @param response
@@ -52,13 +46,13 @@ public class RoleController{
     public
     @ResponseBody
     Result add(String name, HttpServletRequest request, HttpServletResponse response) {
-        if(name == null ){
+        if (name == null) {
             return new Result(Result.Status.ERROR, Constant.ROLENAME_ILLEGAL);
         }
 
         Pattern pattern = Pattern.compile(".{1,10}");
         Matcher matcher = pattern.matcher(name);
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             return new Result(Result.Status.ERROR, Constant.ROLENAME_ILLEGAL);
         }
 
@@ -67,14 +61,15 @@ public class RoleController{
     }
 
     /**
-     * @brief 删除角色
+     * 删除角色
+     *
      * @param id
      * @param request
      * @param response
      */
     @RequestMapping(value = "/role/delete", method = RequestMethod.GET)
     public void delete(String id, HttpServletRequest request, HttpServletResponse response) {
-        if(id == null ){
+        if (id == null) {
             try {
                 response.sendRedirect("/404");
             } catch (IOException e) {
@@ -84,7 +79,7 @@ public class RoleController{
         }
 
         Integer iID = Integer.parseInt(id);
-        if(iID == null){
+        if (iID == null) {
             try {
                 response.sendRedirect("/404");
             } catch (IOException e) {
@@ -102,7 +97,8 @@ public class RoleController{
     }
 
     /**
-     * @brief 显示角色
+     * 显示角色
+     *
      * @param pageNum
      * @param request
      * @param response

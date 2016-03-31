@@ -1,10 +1,6 @@
 package com.shandong.human.resource.controller.sys.surveyTime;
 
-import com.shandong.human.resource.common.AuthTree;
-import com.shandong.human.resource.controller.CommonController;
-import com.shandong.human.resource.domain.Auth;
 import com.shandong.human.resource.domain.SurveyTime;
-import com.shandong.human.resource.service.sys.AuthService;
 import com.shandong.human.resource.service.sys.SurveyTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +14,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Brief: 权限管理类
@@ -27,26 +22,29 @@ import java.util.List;
  */
 @RequestMapping("/sys")
 @Controller
-public class SurveyTimeController{
+public class SurveyTimeController {
 
     // 静态资源前缀
     public static final String STATIC_PREFIX = "human-resource/sys/surveyTime";
+
     @Autowired
     private SurveyTimeService service;
 
     /**
-     * @brief 转到surveyTime页面
+     * 转到surveyTime页面
+     *
      * @param request
      * @param response
      * @return
      */
     @RequestMapping(value = "/surveyTime", method = RequestMethod.GET)
     public String toServeyTimePage(HttpServletRequest request, HttpServletResponse response) {
-        return STATIC_PREFIX+"/add";
+        return STATIC_PREFIX + "/add";
     }
 
     /**
-     * @brief 提交surveyTime
+     * 提交surveyTime
+     *
      * @param date
      * @param response
      */
@@ -54,7 +52,7 @@ public class SurveyTimeController{
     public void add(String date, HttpServletResponse response) {
 
         String[] times = date.split("-");
-        if(times.length<2){
+        if (times.length < 2) {
             try {
                 response.sendRedirect("/sys/surveyTime");
             } catch (IOException e) {
@@ -64,9 +62,9 @@ public class SurveyTimeController{
         }
 
         SurveyTime toAdd = new SurveyTime();
-        DateFormat date_t =new SimpleDateFormat("MM-dd-yyyy");
-        String strTime_s = times[0].replace('/','-');
-        String endTime_s = times[1].replace('/','-');
+        DateFormat date_t = new SimpleDateFormat("MM-dd-yyyy");
+        String strTime_s = times[0].replace('/', '-');
+        String endTime_s = times[1].replace('/', '-');
 
         Date strDate = new Date();
         Date endDate = new Date();
