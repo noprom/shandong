@@ -1,13 +1,14 @@
 package com.shandong.human.resource.domain;
 
-/*
- * Author: chenyongpeng <chen9121@foxmail.com>
- * Date: 2016/3/14 9:34
- */
-
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+/**
+ * 用户实体类
+ * <p>
+ * Author: chenyongpeng <chen9121@foxmail.com>
+ * Date: 2016/3/14 9:34
+ */
 public class User {
 
     private int id;            //主键

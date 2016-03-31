@@ -1,10 +1,11 @@
-package com.shandong.human.resource.common;
+package com.shandong.human.resource.domain;
 
 /**
+ * 调查实体类
+ *
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/30 16:59
  */
-
 public class SurveyTimeString {
     private int id;            //主键
     private String start_time;//开始时间

@@ -3,19 +3,17 @@ package com.shandong.human.resource.domain;
 import java.sql.Date;
 
 /**
- * News class
- *
+ * 新闻实体类
+ * <p>
  * Author: helin <helin199210@icloud.com>
  * Time: 16/3/11 下午1:41
  */
-
-
 public class News {
     private Integer id;
     private Integer userId;
-    private String  title;
-    private String  content;
-    private Date    createTime;
+    private String title;
+    private String content;
+    private Date createTime;
 
     public Integer getUserId() {
         return userId;

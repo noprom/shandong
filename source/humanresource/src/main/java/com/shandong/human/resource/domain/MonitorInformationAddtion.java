@@ -1,6 +1,8 @@
 package com.shandong.human.resource.domain;
 
 /**
+ * 系统监控信息
+ *
  * Author: constantine <1194479264@qq.com>
  * Date: 16/3/29 下午10:11
  */

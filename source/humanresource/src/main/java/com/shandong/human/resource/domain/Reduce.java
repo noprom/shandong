@@ -1,10 +1,11 @@
 package com.shandong.human.resource.domain;
 
 /**
+ * 企业人数减少类型|原因
+ * <p>
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/14 9:28
  */
-
 public class Reduce {
     private int id;        //主键
     private String name;   //

@@ -1,19 +1,15 @@
 package com.shandong.human.resource.controller.home.data;
 
-import com.shandong.human.resource.common.SurveyTimeString;
+import com.shandong.human.resource.domain.SurveyTimeString;
 import com.shandong.human.resource.domain.*;
 import com.shandong.human.resource.service.home.ReduceService;
 import com.shandong.human.resource.service.sys.CompanyDataService;
 import com.shandong.human.resource.service.sys.SurveyTimeService;
 import com.shandong.human.resource.util.CompanyDataQuaryList;
 import com.shandong.human.resource.util.Constant;
-import com.shandong.human.resource.util.Result;
-import org.apache.commons.lang.ObjectUtils;
-import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
