@@ -126,6 +126,16 @@
                                             <c:when test="${v.type eq '2'}">
                                                 <span class="label label-info">企业用户</span>
                                             </c:when>
+                                            <c:otherwise>
+                                                <c:set var="typeflag" value="true"/>
+                                                <c:forEach items="${cityList}" var="r" varStatus="loopstatus">
+                                                    <c:if test="typeflag"></c:if>
+                                                    <c:if test="${v.type eq r.id}">
+                                                        <span class="label label-warning">${r.name}用户</span>
+                                                        <c:set var="typeflag" value="false"/>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </c:otherwise>
                                         </c:choose>
                                     </td>
                                     <td>
@@ -245,21 +255,21 @@
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
     <%--<script type='text/javascript' src='<%=basePath%>static/human/js/plugins/toastr/toastr.min.js'></script>--%>
     <script>
-//        toastr.options = {
-//            "closeButton": true,
-//            "debug": false,
-//            "progressBar": true,
-//            "positionClass": "toast-top-center",
-//            "onclick": null,
-//            "showDuration": "50",
-//            "hideDuration": "100",
-//            "timeOut": "1200",
-//            "extendedTimeOut": "100",
-//            "showEasing": "swing",
-//            "hideEasing": "linear",
-//            "showMethod": "fadeIn",
-//            "hideMethod": "fadeOut"
-//        };
+        //        toastr.options = {
+        //            "closeButton": true,
+        //            "debug": false,
+        //            "progressBar": true,
+        //            "positionClass": "toast-top-center",
+        //            "onclick": null,
+        //            "showDuration": "50",
+        //            "hideDuration": "100",
+        //            "timeOut": "1200",
+        //            "extendedTimeOut": "100",
+        //            "showEasing": "swing",
+        //            "hideEasing": "linear",
+        //            "showMethod": "fadeIn",
+        //            "hideMethod": "fadeOut"
+        //        };
         $(function () {
             // 新增用户
             $("#submit-btn").on('click', function () {
