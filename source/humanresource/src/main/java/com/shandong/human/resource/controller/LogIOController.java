@@ -22,8 +22,9 @@ import java.util.Set;
 
 /**
  * 登入登出控制器
- *
- * @author syc <522560298@qq.com>
+ * <p>
+ * Author: syc <522560298@qq.com>
+ * Date: 3/25/16 下午2:17
  */
 @Controller
 public class LogIOController {
