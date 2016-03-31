@@ -36,20 +36,20 @@
 
         <!-- Main content -->
         <section class="content">
-            <div class="box box-danger">
-                <div class="box-header with-border">
-                    <h3 class="box-title">查询</h3>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <form id="query-form" action="<%=basePath%>city/query" method="get">
-                            <div class="col-xs-2">
-                            <button type="submit" id="submit-btn">查询全部</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <%--<div class="box box-danger">--%>
+                <%--<div class="box-header with-border">--%>
+                    <%--<h3 class="box-title">查询</h3>--%>
+                <%--</div>--%>
+                <%--<div class="box-body">--%>
+                    <%--<div class="row">--%>
+                        <%--<form id="query-form" action="<%=basePath%>city/query" method="get">--%>
+                            <%--<div class="col-xs-2">--%>
+                            <%--<button type="submit" id="submit-btn">查询全部</button>--%>
+                            <%--</div>--%>
+                        <%--</form>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
 
             <div class="row">
                 <div class="col-xs-12">

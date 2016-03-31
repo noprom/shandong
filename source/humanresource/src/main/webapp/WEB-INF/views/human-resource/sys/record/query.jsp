@@ -26,11 +26,6 @@
                 企业备案
                 <small>备案列表</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
-                <li><a href="#">企业备案</a></li>
-                <li class="active">备案列表</li>
-            </ol>
         </section>
 
         <!-- Main content -->
@@ -40,47 +35,31 @@
                     <h3 class="box-title">条件查询</h3>
                 </div>
                 <div class="box-body">
-                    <div class="row">
+                    <div class="row" style="position:relative">
                         <form id="query-form" action="<%=basePath%>sys/record/query" method="post">
                             <div class="col-xs-1">
-                                <p>市id</p>
+                                <label>市id</label>
                                 <input type="text" class="form-control" name="city_id">
                             </div>
                             <div class="col-xs-1">
-                                <p>区id</p>
+                                <label>区id</label>
                                 <input type="text" class="form-control" name="area_id">
                             </div>
                             <div class="col-xs-2">
-                                <p>企业名称</p>
+                                <label>企业名称</label>
                                 <input type="text" class="form-control" name="name">
                             </div>
                             <div class="col-xs-2">
-                                <p>企业代码</p>
+                                <label>企业代</label>
                                 <input type="text" class="form-control" name="code">
                             </div>
                             <div class="col-xs-2">
-                                <p>联系人</p>
+                                <label>联系人</label>
                                 <input type="text" class="form-control" name="contact">
                             </div>
-                            <%--<div class="col-xs-2">--%>
-                            <%--<p>起始时间</p>--%>
-                            <%--<select class="form-control" name="start_time">--%>
-                            <%--<option></option>--%>
-                            <%--<c:forEach items="${allSurveyTime}" var="v">--%>
-                            <%--<option>${v.start_time}</option>--%>
-                            <%--</c:forEach>--%>
-                            <%--</select>--%>
-                            <%--</div>--%>
-                            <%--<div class="col-xs-2">--%>
-                            <%--<p>结束时间</p>--%>
-                            <%--<select class="form-control" name="end_time">--%>
-                            <%--<option></option>--%>
-                            <%--<c:forEach items="${allSurveyTime}" var="v">--%>
-                            <%--<option>${v.end_time}</option>--%>
-                            <%--</c:forEach>--%>
-                            <%--</select>--%>
-                            <%--</div>--%>
-                            <button type="submit" id="submit-btn">查询</button>
+
+
+                            <button style="position:absolute;  top:50%; margin-top:0px;" type="submit" id="submit-btn">查询</button>
                         </form>
                     </div>
                 </div><!-- /.box-body -->
