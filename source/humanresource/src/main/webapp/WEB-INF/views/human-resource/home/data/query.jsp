@@ -27,159 +27,95 @@
 
     <jsp:include page="../../left.jsp" flush="true"></jsp:include>
 
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                数据查询
-                <%--<small>table</small>--%>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
-                <li>企业</li>
-                <li class="active">数据查询</li>
-            </ol>
-        </section>
-
-        <section class="content">
-            <div class="row">
-                <div class="col-md-12">
-        <div class="box-body">
-            <div class="dataTables_wrapper form-inline dt-bootstrap" id="example1_wrapper">
-
-                <div class="row">
-                    <div class="col-sm-12">
-                        <table aria-describedby="example1_info" role="grid" id="example1" class="table table-bordered table-striped dataTable">
-                <thead>
-                <tr role="row">
-                    <th aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 181px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">调查开始时间</th>
-                    <th aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 181px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">调查结束时间</th>
-                    <th aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 181px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">建档期就业人数</th>
-                    <th aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 181px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">调查期就业人数</th>
-                    <th aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 181px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" class="sorting_asc">其他原因</th>
-                </thead>
-                <tbody>
-                <c:forEach items="${companyDataQuaryLists}" var="v">
-                    <tr class="odd" role="row">
-                        <td class="sorting_1">${v.start_time}</td>
-                        <td>${v.end_time}</td>
-                        <td>${v.init_people}</td>
-                        <td>${v.cur_people}</td>
-                        <td>${v.other_reason}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-                <tfoot>
-                <tr><th colspan="1" rowspan="1">调查开始时间</th>
-                    <th colspan="1" rowspan="1">调查结束时间</th>
-                    <th colspan="1" rowspan="1">建档期就业人数</th>
-                    <th colspan="1" rowspan="1">调查期就业人数</th>
-                    <th colspan="1" rowspan="1">其它原因</th>
-                </tr>
-                </tfoot>
-            </table>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-                    </div>
-                </div>
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    数据查询
+                    <small>查询列表</small>
+                </h1>
             </section>
 
+            <!-- Main content -->
+            <section class="content">
+                <%--<div class="box box-danger">--%>
+                    <%--<div class="box-header with-border">--%>
+                        <%--<h3 class="box-title">条件查询</h3>--%>
+                    <%--</div>--%>
+                    <%--<div class="box-body">--%>
+                        <%--<div class="row" style="position:relative">--%>
+                            <%--<form id="query-form" action="<%=basePath%>sys/record/query" method="post">--%>
+                                <%--<div class="col-xs-1">--%>
+                                    <%--<label>市id</label>--%>
+                                    <%--<input type="text" class="form-control" name="city_id">--%>
+                                <%--</div>--%>
+                                <%--<div class="col-xs-1">--%>
+                                    <%--<label>区id</label>--%>
+                                    <%--<input type="text" class="form-control" name="area_id">--%>
+                                <%--</div>--%>
+                                <%--<div class="col-xs-2">--%>
+                                    <%--<label>企业名称</label>--%>
+                                    <%--<input type="text" class="form-control" name="name">--%>
+                                <%--</div>--%>
+                                <%--<div class="col-xs-2">--%>
+                                    <%--<label>企业代</label>--%>
+                                    <%--<input type="text" class="form-control" name="code">--%>
+                                <%--</div>--%>
+                                <%--<div class="col-xs-2">--%>
+                                    <%--<label>联系人</label>--%>
+                                    <%--<input type="text" class="form-control" name="contact">--%>
+                                <%--</div>--%>
+
+
+                                <%--<button class="btn btn-primary" style="margin-top:24px;" type="submit" id="submit-btn">查询</button>--%>
+                            <%--</form>--%>
+                        <%--</div>--%>
+                    <%--</div><!-- /.box-body -->--%>
+                <%--</div><!-- /.box -->--%>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">备案列表</h3>
+                            </div><!-- /.box-header -->
+                            <div class="box-body">
+                                <table id="dataTable" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>调查开始时间</th>
+                                        <th>调查结束时间</th>
+                                        <th>建档期就业人数</th>
+                                        <th>调查期就业人数</th>
+                                        <th>其它原因</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${companyDataQuaryLists}" var="v">
+                                        <tr class="odd" role="row">
+                                            <td>
+                                                <fmt:formatDate value="${v.start_time}" type="both"
+                                                                pattern="yyyy-MM-dd HH:mm"/></td>
+                                            <td><fmt:formatDate value="${v.end_time}" type="both"
+                                                                pattern="yyyy-MM-dd HH:mm"/></td>
+                                            <td>${v.init_people}</td>
+                                            <td>${v.cur_people}</td>
+                                            <td>${v.other_reason}</td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+            </div><!-- /.col -->
+                 </div><!-- /.row -->
     </div>
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
     <script>
         $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false
-            });
+            // 模板自带分页功能调用,不能删
+            $("#dataTable").DataTable();
         });
-        function  onSubmit()
-        {
-            //标题
-//            var title = $("#addNews-form input[name = title]").val();
-            //正文
-//            var content = $("#addNews-form textarea[name = content]").val();
-
-            //数据校验
-//            if (isEmpty(title)) {
-//                alert("标题不能为空");
-//                return false;
-//            } else if (isEmpty(content)) {
-//                alert("正文不能为空");
-//                return false;
-//            } else {
-            //var str=$("#add-form").serialize();
-            alert("提交成功");
-            var postUrl = "<%=basePath%>home/company/add/submit";
-            $.ajax({
-                url: postUrl,
-                data: $("#add-form").serialize(),
-                async:false,
-                type: 'POST',
-                dataType: "json",
-                success: function (data) {
-                    if(data.success=="success")
-                    {
-                        alert("提交成功");
-//                            提交成功时返回到主页
-                        window.location.href = "<%=basePath%>index";
-                    }
-                    else
-                    {
-                        alert("提交失败");
-                        window.location.href = "<%=basePath%>home/company/add";
-                    }
-
-                }});
-
-        }
-
-        function isEmpty(str) {
-            if (!str || $.trim(str).length <= 0)
-                return true;
-            return false;
-        }
-
-
-        function cityChange()
-        {
-            var areaBox = document.getElementById("area_id");
-            var obj=document.getElementById("city_id");
-            var index=obj.selectedIndex; //序号，取当前选中选项的序号
-            var str = obj.options[index].value;
-            var str1="<%=basePath%>home/company/add/"+str;
-
-            $.ajax({
-                type: 'get',
-
-                url: str1 ,
-                async:false,
-                data: {} ,
-                dataType: 'json',
-
-                success:function(data) {
-                    //alert(data[0].id);
-                    areaBox.options.length=0;
-                    for (var i = 0; i < data.length; i++)
-                    {
-                        areaBox.add(new Option(data[i].name,data[i].id));
-                    }
-                    //window.location.href = "<%=basePath%>home/company/add";
-                },
-                error:function(boj,info){
-                    alert(info);}
-            });
-
-        }
-
     </script>
 </body>
 </html>
