@@ -22,7 +22,10 @@
         limit #{offset},#{size}
     </select>
 
-    <insert id="insertUser" parameterType="com.shandong.human.resource.domain.User">
+    <insert id="insertUser"  parameterType="com.shandong.human.resource.domain.User" >
+        <selectKey keyProperty="id" resultType="java.lang.Integer">
+            select LAST_INSERT_ID()
+        </selectKey>
         INSERT INTO user (id , username , password ,type)
         VALUES (#{id} , #{username} , #{password} , #{type})
     </insert>

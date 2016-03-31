@@ -1,7 +1,10 @@
 package com.shandong.human.resource.controller.sys.user;
 
 import com.shandong.human.resource.domain.User;
+import com.shandong.human.resource.service.home.AreaService;
+import com.shandong.human.resource.service.sys.AuthRoleService;
 import com.shandong.human.resource.service.sys.RoleService;
+import com.shandong.human.resource.service.sys.UserRoleService;
 import com.shandong.human.resource.service.sys.UserService;
 import com.shandong.human.resource.util.Constant;
 import com.shandong.human.resource.util.Pager;
@@ -35,10 +38,16 @@ public class UserController {
     protected Logger logger = Logger.getLogger(getClass());
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    RoleService roleService;
+    private RoleService roleService;
+
+    @Autowired
+    private AreaService areaService;
+
+    @Autowired
+    private UserRoleService userRoleService;
 
     /**
      * 用户列表
@@ -65,8 +74,11 @@ public class UserController {
         int offset = pager.getMaxSize() * (currentPage - 1);
         int size = pager.getMaxSize();
         pager.setData(userService.selectByPos(offset, size));
-        request.setAttribute("pager", pager);
+
+        model.addAttribute("pager", pager);
+        model.addAttribute("cityList", areaService.getAllCity());
         model.addAttribute("roleList", roleService.selectAll());
+
         return STATIC_PREFIX + "/list";
     }
 
@@ -80,15 +92,20 @@ public class UserController {
     @RequestMapping(value = "/user/add", method = RequestMethod.POST)
     public
     @ResponseBody
-    Result addUser(@Valid User user, BindingResult result,
+    Result addUser(@Valid User user, Integer role, BindingResult result,
                    HttpServletRequest request, HttpServletResponse response) {
-        if (result.hasErrors()) {
+        if (result.hasErrors() || role == null) {
             return new Result(Result.Status.ERROR, Constant.USERNAME_ILLEGAL);
         }
 
         Integer uid = userService.insertUser(user);
         if (uid > 0) {
-            return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
+            Integer check = userRoleService.insertUserRole(user.getId(), role);
+            if (check > 0) {
+                return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
+            } else {
+                return new Result(Result.Status.ERROR, Constant.DEAL_FAIL);
+            }
         } else {
             return new Result(Result.Status.ERROR, Constant.DEAL_FAIL);
         }
