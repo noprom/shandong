@@ -114,4 +114,7 @@
         SELECT * FROM company_data WHERE company_id = #{company_id} ORDER BY create_time DESC
     </select>
 
+    <select id="getToCheckCompanyDataCount" resultType="int">
+        SELECT count(1) FROM company_data WHERE status IN (0, 1)
+    </select>
 </mapper>

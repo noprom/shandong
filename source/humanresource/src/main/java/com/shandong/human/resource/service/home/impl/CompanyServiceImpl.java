@@ -67,4 +67,13 @@ public class CompanyServiceImpl implements CompanyService {
     public void updateCompanyInfo(Company company) {
         companyMapper.updateCompanyInfo(company);
     }
+
+    /**
+     * 获取所有Company
+     *
+     * @return
+     */
+    public ArrayList<Company> getAllCompany() {
+        return companyMapper.getAllCompany();
+    }
 }
