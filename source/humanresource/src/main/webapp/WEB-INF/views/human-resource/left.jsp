@@ -167,6 +167,7 @@
                 boolean sys_auth_delete = PermissionUtil.find("sys/auth/delete", auths);
                 boolean sys_role = PermissionUtil.find("sys/role", auths);
                 boolean sys_user = PermissionUtil.find("sys/user", auths);
+                boolean sys_user_search = PermissionUtil.find("sys/user/search", auths);
                 boolean sys_monitor = PermissionUtil.find("sys/monitor", auths);
                 if (sys_surveyTime || sys_auth_add || sys_auth_delete || sys_role || sys_user || sys_monitor) {%>
             <li class="treeview">
@@ -202,6 +203,9 @@
                     <%}%>
                     <% if (sys_user) {%>
                     <li><a href="<%=basePath%>sys/user"><i class="fa fa-circle-o"></i> 用户管理</a></li>
+                    <%}%>
+                    <% if (sys_user_search) {%>
+                    <li><a href="<%=basePath%>sys/user/search"><i class="fa fa-circle-o"></i> 用户查询</a></li>
                     <%}%>
                     <% if (sys_monitor) {%>
                     <li><a href="<%=basePath%>sys/monitor"><i class="fa fa-circle-o"></i> 系统监控</a></li>

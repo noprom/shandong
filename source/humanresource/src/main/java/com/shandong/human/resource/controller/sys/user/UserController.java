@@ -63,6 +63,7 @@ public class UserController {
 
     @Autowired
     private SurveyTimeService surveyTimeService;
+
     /**
      * 用户列表
      *
@@ -91,7 +92,7 @@ public class UserController {
 
         List<Area> cityList = areaService.getAllCity();
         List<Area> area = new ArrayList<Area>();
-        for (Area r: cityList) {
+        for (Area r : cityList) {
             List area_ch = areaService.getAllAreaById(r.getId());
             area.addAll(area_ch);
         }
@@ -157,6 +158,31 @@ public class UserController {
     }
 
     /**
+     *
+     * @param model
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/user/search", method = RequestMethod.GET)
+    public String toSelectUserPage(Model model, HttpServletRequest request, HttpServletResponse response) {
+        List<Area> cityList = areaService.getAllCity();
+        List<Area> area = new ArrayList<Area>();
+        for (Area r : cityList) {
+            List area_ch = areaService.getAllAreaById(r.getId());
+            area.addAll(area_ch);
+        }
+        model.addAttribute("cityList", cityList);
+        model.addAttribute("roleList", roleService.selectAll());
+        model.addAttribute("areaList", area);
+        model.addAttribute("surveyTimeList", surveyTimeService.getAllSurveyTime());
+        Set<User> qualifiedUser= new HashSet<User>();
+        request.setAttribute("qualifiedUser", qualifiedUser);
+
+        return STATIC_PREFIX + "/search";
+    }
+
+    /**
      * 用户条件查询
      *
      * @param companyName  单位名称 模糊查询
@@ -167,15 +193,55 @@ public class UserController {
      * @param status       数据状态
      * @param business     单位性质 模糊查询
      * @param surveyTimeID 起始结束日期ID
+     * @param model
      * @param request
      * @param response
      * @return
      */
-    @RequestMapping(value = "/user/select", method = RequestMethod.POST)
-    public String selectUser(String companyName, String userName, Integer userType, Integer areaID, String address,
-                      Integer status, String business, Integer surveyTimeID, HttpServletRequest request, HttpServletResponse response) {
-        List<Set<User>> result = new ArrayList<Set<User>>();
+    @RequestMapping(value = "/user/search", method = RequestMethod.POST)
+    public String selectUser(Model model, HttpServletRequest request, HttpServletResponse response) {
+        String companyName = request.getParameter("companyName");
+        String userName = request.getParameter("userName");
+        String userType_s = request.getParameter("userType");
+        Integer userType = null;
+        if(userType_s!=null) {
+            try {
+                userType = Integer.parseInt(userType_s);
+            }catch (Exception e){
+                userType = null;
+            }
+        }
+        String areaID_s = request.getParameter("areaID");
+        Integer areaID = null;
+        if(areaID_s!=null) {
+            try {
+                areaID = Integer.parseInt(areaID_s);
+            }catch (Exception e){
+                areaID = null;
+            }
+        }
+        String address = request.getParameter("address");
+        String status_s = request.getParameter("status");
+        Integer status = null;
+        if(status_s!=null) {
+            try {
+                status= Integer.parseInt(status_s);
+            }catch (Exception e){
+                status = null;
+            }
+        }
+        String business = request.getParameter("business");
+        String surveyTimeID_s = request.getParameter("surveyTimeID");
+        Integer surveyTimeID = null;
+        if(surveyTimeID_s!=null) {
+            try {
+                surveyTimeID= Integer.parseInt(surveyTimeID_s);
+            }catch (Exception e){
+                surveyTimeID = null;
+            }
+        }
 
+        List<Set<User>> result = new ArrayList<Set<User>>();
 
         if (companyName != null && !companyName.isEmpty()) {
             List<Company> companies = companyService.fuzzySearchByName(companyName);
@@ -295,13 +361,21 @@ public class UserController {
 
         Set<User> qualifiedUser = new HashSet<User>();
         int size = result.size();
+        System.out.println(size);
         if (size >= 1) {
             qualifiedUser = result.get(0);
             for (int i = 1; i < size; ++i) {
                 Set<User> users = result.get(i);
                 Set<User> toDelete = new HashSet<User>();
                 for (User r : qualifiedUser) {
-                    if (users.contains(r)) {
+                    boolean find = false;
+                    for(User c:users){
+                        if (c.getId() == r.getId()){
+                            find = true;
+                            break;
+                        }
+                    }
+                    if(!find) {
                         toDelete.add(r);
                     }
                 }
@@ -310,7 +384,25 @@ public class UserController {
                 }
             }
         }
-        request.setAttribute("qualifiedUser",qualifiedUser);
-        return STATIC_PREFIX+"/searchres";
+
+        List<Area> cityList = areaService.getAllCity();
+        List<Area> area = new ArrayList<Area>();
+        for (Area r : cityList) {
+            List area_ch = areaService.getAllAreaById(r.getId());
+            area.addAll(area_ch);
+        }
+
+        Map<User,Company> data = new HashMap<User, Company>();
+        for(User r:qualifiedUser){
+            Company company = companyService.getCompanyById(r.getId());
+            data.put(r,company);
+        }
+
+        model.addAttribute("data", data);
+        model.addAttribute("cityList", cityList);
+        model.addAttribute("roleList", roleService.selectAll());
+        model.addAttribute("areaList", area);
+        model.addAttribute("surveyTimeList", surveyTimeService.getAllSurveyTime());
+        return STATIC_PREFIX + "/search";
     }
 }
