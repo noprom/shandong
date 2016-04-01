@@ -1,5 +1,7 @@
 package com.shandong.human.resource.domain;
 
+import javax.validation.constraints.Pattern;
+
 /**
  * 公司实体类
  *
@@ -15,10 +17,15 @@ public class Company {
     private String code;                //组织机构代码,只可输入字母、数字，不超过9位
     private String name;                //企业名称
     private String business;            //主要经营业务
+    //@Pattern(regexp = "[u4e00-u9fa5]|")
     private String contact;             //联系人,中文、英文
+    //@Pattern(regexp = "[1-9]\\d{5}(?!\\d)")
     private String zipcode;             //邮政编码,只可填写6位数字
+    //Pattern(regexp = "^1\\d{10}$|^(0\\d{2,3}-?|\\(0\\d{2,3}\\))?[1-9]\\d{4,7}(-\\d{1,8})?$")
     private String phone;               //联系电话,格式必须符合（区号）+电话号码或者为手机号码
+    //@Pattern(regexp = "^((\\d{3,4})|\\d{3,4}-)?\\d{7,8}$")
     private String fax;                 //传真,格式必须符合（区号）+电话
+    //@Pattern(regexp = "\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}")
     private String email;                //EMAIL,格式必须符合xxx@xxx.xxx
     private int industry_involved;    //所属行业
     private int industry_type;        //企业性质
