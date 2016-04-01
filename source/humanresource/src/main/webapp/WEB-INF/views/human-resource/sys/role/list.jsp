@@ -99,7 +99,7 @@
                                         </c:choose>
                                     </td>
                                     <td>
-                                        <a href="<%=basePath%>sys/role/delete?id=${v.id}">删除</a>
+                                        <%--<a href="<%=basePath%>sys/role/delete?id=${v.id}">删除</a>--%>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="<%=basePath%>sys/authRole/edit?role_id=${v.id}">更改权限</a>
                                     </td>
