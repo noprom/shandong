@@ -241,6 +241,9 @@ public class UserController {
             }
         }
 
+        /*记录各个条件的查询结果
+         * pair<用户信息,pair<公司信息，报表信息>>
+         **/
         List<Set<Pair<User, Pair<Company, CompanyData>>>> data = new ArrayList<Set<Pair<User, Pair<Company, CompanyData>>>>();
 
         if (companyName != null && !companyName.isEmpty()) {
@@ -366,8 +369,10 @@ public class UserController {
             }
         }
 
+        /*最终结果*/
         Set<Pair<User, Pair<Company, CompanyData>>> finaldata = new HashSet<Pair<User, Pair<Company, CompanyData>>>();
 
+        /*除去各条件查询的相等部分和包含部分*/
         int data_size = data.size();
         if (data_size >= 1) {
             finaldata.addAll(data.get(0));
@@ -386,28 +391,6 @@ public class UserController {
             }
         }
 
-//        ArrayList<Pair<User, Pair<Company, CompanyData>>> dataArray = new ArrayList<Pair<User, Pair<Company, CompanyData>>>(data);
-//        int size = dataArray.size();
-//        for (int iter = 0; iter < size; iter++) {
-//            int i;
-//            for (i = 0; i < size; ++i) {
-//                if (i == iter) {
-//                    continue;
-//                }
-//                boolean userfit = (dataArray.get(iter).first.equals(dataArray.get(i).first));
-//                boolean companyfit = (dataArray.get(iter).second.first == null) ||
-//                        (dataArray.get(iter).second.first.equals(dataArray.get(i).second.first));
-//                boolean companyDatafit = (dataArray.get(iter).second.second == null) ||
-//                        (dataArray.get(iter).second.second.equals(dataArray.get(i).second.second));
-//                if (userfit && companyfit && companyDatafit) {
-//                    break;
-//                }
-//            }
-//            if (i == size) {
-//                finaldata.add(dataArray.get(iter));
-//            }
-//        }
-
         List<Area> cityList = areaService.getAllCity();
         List<Area> area = new ArrayList<Area>();
         for (Area r : cityList) {
@@ -422,6 +405,13 @@ public class UserController {
         return STATIC_PREFIX + "/search";
     }
 
+    /**
+     * 判断左元是否包含右元
+     *
+     * @param lhs
+     * @param rhs
+     * @return
+     */
     private boolean contain(Pair<User, Pair<Company, CompanyData>> lhs, Pair<User, Pair<Company, CompanyData>> rhs) {
         boolean userfit = (rhs.first.equals(rhs.first));
         boolean companyfit = (rhs.second.first == null) ||
