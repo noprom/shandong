@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * 公司service
- * <p>
+ * <p/>
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/20 10:29
  */
@@ -51,6 +51,7 @@ public interface CompanyService {
     void updateCompanyInfo(Company company);
 
     /**
+     * <<<<<<< HEAD
      * 根据公司名模糊查询
      *
      * @return
@@ -61,7 +62,7 @@ public interface CompanyService {
     /**
      * 根据公司所在区查询
      *
-     * @param  area_id
+     * @param area_id
      * @return
      */
     List<Company> selectByAreaID(Integer area_id);
@@ -81,4 +82,11 @@ public interface CompanyService {
      * @return
      */
     List<Company> fuzzySearchByBusiness(String business);
+
+    /**
+     * 获取所有Company
+     *
+     * @return
+     */
+    ArrayList<Company> getAllCompany();
 }

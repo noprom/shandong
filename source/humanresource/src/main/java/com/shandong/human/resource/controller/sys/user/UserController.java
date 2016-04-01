@@ -82,7 +82,7 @@ public class UserController {
         }
 
         /*单页显示个数*/
-        int pageSize = 3;
+        int pageSize = 10;
         Pager<User> pager = new Pager<User>(pageSize);
         pager.setCount(userService.getCount());
         pager.setCurrentPage(currentPage);
@@ -158,7 +158,6 @@ public class UserController {
     }
 
     /**
-     *
      * @param model
      * @param request
      * @param response
@@ -176,7 +175,7 @@ public class UserController {
         model.addAttribute("roleList", roleService.selectAll());
         model.addAttribute("areaList", area);
         model.addAttribute("surveyTimeList", surveyTimeService.getAllSurveyTime());
-        Set<User> qualifiedUser= new HashSet<User>();
+        Set<User> qualifiedUser = new HashSet<User>();
         request.setAttribute("qualifiedUser", qualifiedUser);
 
         return STATIC_PREFIX + "/search";
@@ -185,14 +184,6 @@ public class UserController {
     /**
      * 用户条件查询
      *
-     * @param companyName  单位名称 模糊查询
-     * @param userName     登陆账号
-     * @param userType     用户类型
-     * @param areaID       所属地市
-     * @param address      所属市县 模糊查询
-     * @param status       数据状态
-     * @param business     单位性质 模糊查询
-     * @param surveyTimeID 起始结束日期ID
      * @param model
      * @param request
      * @param response
@@ -200,43 +191,54 @@ public class UserController {
      */
     @RequestMapping(value = "/user/search", method = RequestMethod.POST)
     public String selectUser(Model model, HttpServletRequest request, HttpServletResponse response) {
+
+        /**
+         * @param companyName  单位名称 模糊查询
+         * @param userName     登陆账号
+         * @param userType     用户类型
+         * @param areaID       所属地市
+         * @param address      所属市县 模糊查询
+         * @param status       数据状态
+         * @param business     单位性质 模糊查询
+         * @param surveyTimeID 起始结束日期ID
+         */
         String companyName = request.getParameter("companyName");
         String userName = request.getParameter("userName");
         String userType_s = request.getParameter("userType");
         Integer userType = null;
-        if(userType_s!=null) {
+        if (userType_s != null) {
             try {
                 userType = Integer.parseInt(userType_s);
-            }catch (Exception e){
+            } catch (Exception e) {
                 userType = null;
             }
         }
         String areaID_s = request.getParameter("areaID");
         Integer areaID = null;
-        if(areaID_s!=null) {
+        if (areaID_s != null) {
             try {
                 areaID = Integer.parseInt(areaID_s);
-            }catch (Exception e){
+            } catch (Exception e) {
                 areaID = null;
             }
         }
         String address = request.getParameter("address");
         String status_s = request.getParameter("status");
         Integer status = null;
-        if(status_s!=null) {
+        if (status_s != null) {
             try {
-                status= Integer.parseInt(status_s);
-            }catch (Exception e){
+                status = Integer.parseInt(status_s);
+            } catch (Exception e) {
                 status = null;
             }
         }
         String business = request.getParameter("business");
         String surveyTimeID_s = request.getParameter("surveyTimeID");
         Integer surveyTimeID = null;
-        if(surveyTimeID_s!=null) {
+        if (surveyTimeID_s != null) {
             try {
-                surveyTimeID= Integer.parseInt(surveyTimeID_s);
-            }catch (Exception e){
+                surveyTimeID = Integer.parseInt(surveyTimeID_s);
+            } catch (Exception e) {
                 surveyTimeID = null;
             }
         }
@@ -369,13 +371,13 @@ public class UserController {
                 Set<User> toDelete = new HashSet<User>();
                 for (User r : qualifiedUser) {
                     boolean find = false;
-                    for(User c:users){
-                        if (c.getId() == r.getId()){
+                    for (User c : users) {
+                        if (c.getId() == r.getId()) {
                             find = true;
                             break;
                         }
                     }
-                    if(!find) {
+                    if (!find) {
                         toDelete.add(r);
                     }
                 }
@@ -392,10 +394,10 @@ public class UserController {
             area.addAll(area_ch);
         }
 
-        Map<User,Company> data = new HashMap<User, Company>();
-        for(User r:qualifiedUser){
+        Map<User, Company> data = new HashMap<User, Company>();
+        for (User r : qualifiedUser) {
             Company company = companyService.getCompanyById(r.getId());
-            data.put(r,company);
+            data.put(r, company);
         }
 
         model.addAttribute("data", data);

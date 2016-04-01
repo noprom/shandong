@@ -16,6 +16,8 @@
         <result column="phone" property="phone"/>
         <result column="fax" property="fax"/>
         <result column="email" property="email"/>
+        <result column="industry_involved" property="industry_involved"/>
+        <result column="industry_type" property="industry_type"/>
     </resultMap>
 
 
@@ -48,10 +50,10 @@
     <!--保存输入信息-->
     <insert id="setCompanyInfo" parameterType="Company">
         INSERT INTO company
-        (id,province_id, city_id, area_id, address, code, name, business, contact, zipcode, phone, fax, email)
+        (id,province_id, city_id, area_id, address, code, name, business, contact, zipcode, phone, fax, email,industry_involved,industry_type)
 
         VALUES
-        (#{id},16, #{city_id}, #{area_id}, #{address}, #{code}, #{name}, #{business}, #{contact}, #{zipcode}, #{phone}, #{fax}, #{email})
+        (#{id},16, #{city_id}, #{area_id}, #{address}, #{code}, #{name}, #{business}, #{contact}, #{zipcode}, #{phone}, #{fax}, #{email},#{industry_involved},#{industry_type})
 
     </insert>
 
@@ -65,7 +67,7 @@
     </select>
     <update id="updateCompanyInfo" parameterType="Company">
         UPDATE company
-        SET city_id = #{city_id} , area_id = #{area_id} , address = #{address}, code = #{code}, name = #{name}, business = #{business}, contact = #{contact}, zipcode = #{zipcode}, phone = #{phone}, fax = #{fax}, email = #{email}
+        SET city_id = #{city_id} , area_id = #{area_id} , address = #{address}, code = #{code}, name = #{name}, business = #{business}, contact = #{contact}, zipcode = #{zipcode}, phone = #{phone}, fax = #{fax}, email = #{email}, industry_involved = #{industry_involved}, industry_type = #{industry_type}
         WHERE id = #{id}
     </update>
 

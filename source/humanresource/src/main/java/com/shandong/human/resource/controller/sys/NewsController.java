@@ -49,6 +49,21 @@ public class NewsController {
     }
 
     /**
+     * 新闻详情
+     *
+     * @param id
+     * @param model
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "/sys/news/{id}", method = RequestMethod.GET)
+    String newsDetail(@PathVariable("id") Integer id, Model model, HttpSession session) {
+        News news = newsService.selectNewsById(id);
+        model.addAttribute("newsDetail", news);
+        return STATIC_PREFIX + "/detail";
+    }
+
+    /**
      * 新增新闻
      *
      * @param model
@@ -63,9 +78,9 @@ public class NewsController {
         news.setUserId(10);
         Integer id = newsService.addNews(news);
         if (id >= 0) {
-            return new Result(Result.Status.SUCCESS, Constant.REG_SUCCESS);
+            return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
         } else {
-            return new Result(Result.Status.ERROR, Constant.REG_FAIL);
+            return new Result(Result.Status.ERROR, Constant.DEAL_FAIL);
         }
     }
 
@@ -90,7 +105,7 @@ public class NewsController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "sys/news/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/sys/news/delete/{id}", method = RequestMethod.GET)
     String newsDelete(@PathVariable("id") Integer id, Model model, HttpSession httpSession, HttpServletRequest request) {
         newsService.deleteNewsById(id);
         List<News> newsList = newsService.newsList();
@@ -105,7 +120,7 @@ public class NewsController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "sys/news/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/sys/news/edit/{id}", method = RequestMethod.GET)
     String newsEditPage(@PathVariable("id") Integer id, HttpSession httpSession, HttpServletRequest request) {
         News news = newsService.selectNewsById(id);
         httpSession.setAttribute("newToEdit", news);
@@ -119,7 +134,7 @@ public class NewsController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "sys/news/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/sys/news/edit", method = RequestMethod.POST)
     String newsEdit(Model model, News news, HttpSession httpSession, HttpServletRequest request) {
         Integer id = newsService.editNewsById(news);
         System.out.println(news.getId().toString());

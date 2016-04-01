@@ -36,6 +36,13 @@ public interface SurveyTimeMapper {
      * @return
      */
     SurveyTime getAllSurveyTimeById(int id);
+
+    /**
+     * 获得调查期的总数
+     *
+     * @return
+     */
+    Integer getSurveyTimeCount();
 }
 
 

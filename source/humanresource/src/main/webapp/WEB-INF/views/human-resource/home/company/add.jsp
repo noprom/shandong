@@ -70,7 +70,7 @@
                                                     </c:forEach>
                                                 </select>
 
-                                            </div><!-- /.form-group -->
+                                            </div>
                                             <div class="form-group">
                                                 <label>区域</label>
                                                 <select aria-hidden="true" tabindex="-1" class="form-control" style="width: 100%;" id="area_id" name="area_id">
@@ -79,26 +79,32 @@
                                                         <option value="${v.id}">${v.name}</option>
                                                     </c:forEach>
                                                 </select>
-                                            </div><!-- /.form-group -->
-                                            <div class="form-group">
-                                                <label>联系地址</label>
-                                                <input class="form-control" placeholder="请输入联系地址"  type="text" name="address">
-                                                <%--<%  ArrayList<Area> areaList=(ArrayList<Area>)request.getAttribute("editResultCity"); %>--%>
-                                                <%--<select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="address">--%>
-
-                                                <%--<c:forEach items="${editResultCity}" var="v">--%>
-                                                <%--<option value="${v.id}">${v.name}</option>--%>
-                                                <%--</c:forEach>--%>
-                                                <%--</select>--%>
-                                            </div><!-- /.form-group -->
-
-                                            <div class="form-group">
-                                                <label>组织机构代码</label>
-                                                <input class="form-control" placeholder="只可输入字母、数字，不超过9位" type="text" id="code" name="code">
                                             </div>
                                             <div class="form-group">
                                                 <label>企业名称</label>
                                                 <input class="form-control" placeholder="中文、英文" type="text" name="name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>主要经营业务</label>
+                                                <input class="form-control" placeholder="按实际情况填写企业主要经营的业务" type="text" name="business">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>企业性质</label>
+                                                <select class="form-control" style="width: 100%;" name="industry_type">
+                                                    <c:forEach items="${listIndustryType}" var="v">
+                                                        <option value="${v.id}">${v.name}</option>
+                                                    </c:forEach>
+                                                </select>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>所属行业</label>
+                                                <select class="form-control" style="width: 100%;" name="industry_involved">
+                                                    <c:forEach items="${listIndustryInvolve}" var="v">
+                                                        <option value="${v.id}">${v.name}</option>
+                                                    </c:forEach>
+                                                </select>
+
                                             </div>
                                             <div class="box-footer">
                                                 <button type="button" onclick="onSubmit()" class="btn btn-primary">提交</button>
@@ -116,16 +122,17 @@
                                         <!-- form start -->
                                         <div class="box-body">
                                             <div class="form-group">
-                                                <label>主要经营业务</label>
-                                                <input class="form-control" placeholder="按实际情况填写企业主要经营的业务" type="text" name="business">
+                                                <label>组织机构代码</label>
+                                                <input class="form-control" placeholder="只可输入字母、数字，不超过9位" type="text" id="code" name="code">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>邮政编码</label>
+                                                <input class="form-control" placeholder="只可填写6位数字" type="text" name="zipcode">
                                             </div>
                                             <div class="form-group">
                                                 <label>联系人</label>
                                                 <input class="form-control" placeholder="中文、英文" type="text" name="contact">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>邮政编码</label>
-                                                <input class="form-control" placeholder="只可填写6位数字" type="text" name="zipcode">
                                             </div>
                                             <div class="form-group">
                                                 <label>联系电话</label>
@@ -139,6 +146,17 @@
                                                 <label for="exampleInputEmail1">EMAIL</label>
                                                 <input class="form-control" name="email" placeholder="格式必须符合xxx@xxx.xxx" type="email">
                                             </div>
+                                            <div class="form-group">
+                                                <label>联系地址</label>
+                                                <input class="form-control" placeholder="请输入联系地址"  type="text" name="address">
+                                                <%--<%  ArrayList<Area> areaList=(ArrayList<Area>)request.getAttribute("editResultCity"); %>--%>
+                                                <%--<select aria-hidden="true" tabindex="-1" class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="address">--%>
+
+                                                <%--<c:forEach items="${editResultCity}" var="v">--%>
+                                                <%--<option value="${v.id}">${v.name}</option>--%>
+                                                <%--</c:forEach>--%>
+                                                <%--</select>--%>
+                                            </div><!-- /.form-group -->
 
                                         </div><!-- /.box-body -->
                                     </div><!-- /.content -->
@@ -167,21 +185,6 @@
         });
         function  onSubmit()
         {
-            //标题
-//            var title = $("#addNews-form input[name = title]").val();
-            //正文
-//            var content = $("#addNews-form textarea[name = content]").val();
-
-            //数据校验
-//            if (isEmpty(title)) {
-//                alert("标题不能为空");
-//                return false;
-//            } else if (isEmpty(content)) {
-//                alert("正文不能为空");
-//                return false;
-//            } else {
-            //var str=$("#add-form").serialize();
-//            alert("提交成功");
                 var postUrl = "<%=basePath%>home/company/add/submit";
                 $.ajax({
                     url: postUrl,
@@ -192,27 +195,20 @@
                     success: function (data) {
                         if(data.success=="success")
                         {
-                            alert("提交成功");
-//                            提交成功时返回到主页
+                            toastr.success("提交成功");
                             window.location.href = "<%=basePath%>";
                         }
                         else if(data.success=="exit")
                         {
-                            alert("已经提交完毕，请勿重复提交！");
+                            toastr.error("已经提交完毕，请勿重复提交！");
                             window.location.href = "<%=basePath%>";
                         }
                     },
                     error: function(){
-                        alert("服务器无法连接！");
+                        toastr.error("服务器无法连接！");
                     }
                 });
 
-        }
-
-        function isEmpty(str) {
-            if (!str || $.trim(str).length <= 0)
-                return true;
-            return false;
         }
 
 
@@ -226,23 +222,19 @@
 
             $.ajax({
                 type: 'get',
-
                 url: str1 ,
                 async:false,
                 data: {} ,
                 dataType: 'json',
-
                 success:function(data) {
-                   //alert(data[0].id);
                     areaBox.options.length=0;
                     for (var i = 0; i < data.length; i++)
                         {
                             areaBox.add(new Option(data[i].name,data[i].id));
                         }
-                    //window.location.href = "<%=basePath%>home/company/add";
                 },
                 error:function(){
-                    alert("服务器无法连接！");}
+                    toastr.erroralert("服务器无法连接！");}
             });
 
         }

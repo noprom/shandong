@@ -89,6 +89,18 @@
             </li>
             <%}%>
 
+            <!-- 市用户功能-->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-folder"></i> <span>市用户功能</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<%=basePath%>city/query"><i class="fa fa-circle-o"></i>报表查询</a></li>
+                </ul>
+
+            </li>
+
 
             <!-- 企业备案管理 -->
             <% boolean sys_record_query = PermissionUtil.find("sys/record/query", auths);
@@ -137,6 +149,18 @@
                 </ul>
             </li>
             <%}%>
+
+            <!-- 报表上报-->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-folder"></i> <span>报表上报</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<%=basePath%>sys/report/query"><i class="fa fa-circle-o"></i>报表查询</a></li>
+                </ul>
+
+            </li>
 
 
             <!-- 通知管理 -->

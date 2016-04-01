@@ -24,38 +24,38 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Data Tables
-                <small>advanced tables</small>
+                市审核
+                <small>查询</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Data tables</li>
+                <li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
+                <li><a href="#">市审核</a></li>
+                <li class="active">查询</li>
             </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-            <div class="box box-danger">
-                <div class="box-header with-border">
-                    <h3 class="box-title">查询</h3>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <form id="query-form" action="<%=basePath%>city/query" method="get">
-                            <div class="col-xs-2">
-                            <button type="submit" id="submit-btn">查询全部</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <%--<div class="box box-danger">--%>
+                <%--<div class="box-header with-border">--%>
+                    <%--<h3 class="box-title">查询</h3>--%>
+                <%--</div>--%>
+                <%--<div class="box-body">--%>
+                    <%--<div class="row">--%>
+                        <%--<form id="query-form" action="<%=basePath%>city/query" method="get">--%>
+                            <%--<div class="col-xs-2">--%>
+                            <%--<button type="submit" id="submit-btn">查询全部</button>--%>
+                            <%--</div>--%>
+                        <%--</form>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
 
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Data Table With Full Features</h3>
+                            <h3 class="box-title">查询结果</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
                             <table id="example1" class="table table-bordered table-striped">

@@ -24,14 +24,9 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Data Tables
-                <small>advanced tables</small>
+                报表上报
+                <small>报表查询</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Data tables</li>
-            </ol>
         </section>
 
         <!-- Main content -->
@@ -44,30 +39,31 @@
                     <div class="row">
                         <form id="query-form" action="<%=basePath%>sys/report/query" method="get">
                             <div class="col-xs-2">
-                            <button type="submit" id="submit-btn">查询全部</button>
+                            <button type="submit" class="btn btn-primary" id="submit-btn">查询全部</button>
                             </div>
                         </form>
                     </div>
-                    <div class="row">
-                        <br>
-                        </div>
+                    <hr>
                     <div class="row">
                         <form id="query-form" action="<%=basePath%>sys/report/query" method="post">
                             <div class="col-xs-2">
-                                请输入公司ID<input name="company_id">
+                                <label>请输入公司ID</label>
+                                <input name="company_id">
                             </div>
-                            <div class="col-xs-2">
-                            <button type="submit" id="submit-btn">通过公司ID查询</button>
+                            <div class="col-xs-2" style="position:relative">
+                            <button class="btn btn-primary" style="position:absolute;  top:50%; margin-top:23px;" type="submit" id="submit-btn">通过公司ID查询</button>
                             </div>
                         </form>
                     </div>
+                    <hr>
                     <div class="row">
                         <form id="query-form" action="<%=basePath%>sys/report/queryByName" method="post">
                             <div class="col-xs-2">
-                                请输入公司名称<input name="name">
+                                <label>请输入公司名称</label>
+                                <input name="name">
                             </div>
-                            <div class="col-xs-2">
-                                <button type="submit" id="submit-btn">通过公司名称查询</button>
+                            <div class="col-xs-2" style="position:relative">
+                                <button class="btn btn-primary" style="position:absolute;  top:50%; margin-top:23px;" type="submit" id="submit-btn">通过公司名称查询</button>
                             </div>
                         </form>
                     </div>
@@ -79,20 +75,20 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Data Table With Full Features</h3>
+                            <h3 class="box-title">报表查询</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
                             <form id="query-form" action="<%=basePath%>sys/report" method="post">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="dataTable" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>选择</th>
+                                    <th>选&nbsp;&nbsp;择</th>
                                     <th>ID</th>
                                     <th>公司ID</th>
                                     <th>初始人数</th>
                                     <th>现在人数</th>
                                     <th>其他原因</th>
-                                    <th>状态</th>
+                                    <th>状&nbsp;&nbsp;态</th>
                                     <th>创建时间</th>
                                     <th>更新时间</th>
                                     <th>查看详情</th>
@@ -117,20 +113,20 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>选择</th>
+                                    <th>选&nbsp;&nbsp;择</th>
                                     <th>ID</th>
                                     <th>公司ID</th>
                                     <th>初始人数</th>
                                     <th>现在人数</th>
                                     <th>其他原因</th>
-                                    <th>状态</th>
+                                    <th>状&nbsp;&nbsp;态</th>
                                     <th>创建时间</th>
                                     <th>更新时间</th>
                                     <th>查看详情</th>
                                 </tr>
                                 </tfoot>
                             </table>
-                                <input type="submit" value="上报">
+                                <input class="btn btn-primary" style="width: 15%" type="submit" value="上报">
                             </form>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
@@ -141,15 +137,8 @@
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
     <script>
         $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false
-            });
+            // 模板自带分页功能的数据表格,不能删
+            $("#dataTable").DataTable();
         });
     </script>
 </body>

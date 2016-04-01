@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class SurveyTimeServiceImpl implements SurveyTimeService {
 
     @Autowired
-    SurveyTimeMapper service;
+    SurveyTimeMapper surveyTimeMapper;
 
     /**
      * 获取所有调查时间
@@ -26,7 +26,7 @@ public class SurveyTimeServiceImpl implements SurveyTimeService {
      * @return
      */
     public ArrayList<SurveyTime> getAllSurveyTime() {
-        return service.getAllSurveyTime();
+        return surveyTimeMapper.getAllSurveyTime();
     }
 
     /**
@@ -36,7 +36,7 @@ public class SurveyTimeServiceImpl implements SurveyTimeService {
      * @return
      */
     public Integer insertSurveyTime(SurveyTime time) {
-        return service.insertSurveyTime(time);
+        return surveyTimeMapper.insertSurveyTime(time);
     }
 
     /**
@@ -46,6 +46,15 @@ public class SurveyTimeServiceImpl implements SurveyTimeService {
      * @return
      */
     public SurveyTime getAllSurveyTimeById(int id) {
-        return service.getAllSurveyTimeById(id);
+        return surveyTimeMapper.getAllSurveyTimeById(id);
+    }
+
+    /**
+     * 获得调查期的总数
+     *
+     * @return
+     */
+    public Integer getSurveyTimeCount() {
+        return surveyTimeMapper.getSurveyTimeCount();
     }
 }

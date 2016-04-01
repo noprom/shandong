@@ -175,8 +175,8 @@ public class DataController {
         for (CompanyData companyData : companyDatas) {
             SurveyTime surveyTime = surveyTimeService.getAllSurveyTimeById(companyData.getSurvey_time_id());
             CompanyDataQuaryList companyDataQuaryList = new CompanyDataQuaryList();
-            companyDataQuaryList.setStart_time(mediumDateFormat.format(surveyTime.getStart_time()));
-            companyDataQuaryList.setEnd_time(mediumDateFormat.format(surveyTime.getEnd_time()));
+            companyDataQuaryList.setStart_time(surveyTime.getStart_time());
+            companyDataQuaryList.setEnd_time(surveyTime.getEnd_time());
             companyDataQuaryList.setCur_people(companyData.getCur_people());
             companyDataQuaryList.setInit_people(companyData.getInit_people());
             companyDataQuaryList.setOther_reason(companyData.getOther_reason());
