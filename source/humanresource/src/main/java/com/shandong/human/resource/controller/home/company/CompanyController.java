@@ -5,9 +5,11 @@ import com.shandong.human.resource.service.home.AreaService;
 import com.shandong.human.resource.service.home.CompanyService;
 import com.shandong.human.resource.service.home.IndustryTypeService;
 import com.shandong.human.resource.util.Constant;
+import com.shandong.human.resource.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,10 +19,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.plaf.nimbus.NimbusStyle;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 公司备案主要的控制类
@@ -93,7 +98,7 @@ public class CompanyController {
      */
     @RequestMapping(value = "/home/company/add/submit", method = RequestMethod.POST)
     @ResponseBody
-    public Map saveMessage(Company company, HttpSession session) {
+    public Map saveMessage(Company company, BindingResult result, HttpSession session) {
         Map map = new HashMap();
         User user = (User) session.getAttribute(Constant.LOGIN_USER);
         int id = user.getId();
@@ -103,6 +108,27 @@ public class CompanyController {
             map.put("success", "exit");
             return map;
         }
+        Matcher matcher = Pattern.compile("[1-9]\\d{5}(?!\\d)").matcher(company.getZipcode());
+        if (!matcher.matches()) {
+            map.put("success", "error1");
+            return map;
+        }
+        matcher = Pattern.compile("^1\\d{10}$|^(0\\d{2,3}-?|\\(0\\d{2,3}\\))?[1-9]\\d{4,7}(-\\d{1,8})?$").matcher(company.getPhone());
+        if (!matcher.matches()) {
+            map.put("success", "error2");
+            return map;
+        }
+        matcher = Pattern.compile("^((\\d{3,4})|\\d{3,4}-)?\\d{7,8}$").matcher(company.getFax());
+        if (!matcher.matches()) {
+            map.put("success", "error3");
+            return map;
+        }
+        matcher = Pattern.compile("\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}").matcher(company.getEmail());
+        if (!matcher.matches()) {
+            map.put("success", "error4");
+            return map;
+        }
+
         company.setId(id);
         companyService.setCompanyInfo(company);
         map.put("success", "success");
@@ -169,6 +195,26 @@ public class CompanyController {
         ArrayList<Company> companies = companyService.isNull(id);
         if (companies.size() == 0) {
             map.put("success", "noInfo");
+            return map;
+        }
+        Matcher matcher = Pattern.compile("[1-9]\\d{5}(?!\\d)").matcher(company.getZipcode());
+        if (!matcher.matches()) {
+            map.put("success", "error1");
+            return map;
+        }
+        matcher = Pattern.compile("^1\\d{10}$|^(0\\d{2,3}-?|\\(0\\d{2,3}\\))?[1-9]\\d{4,7}(-\\d{1,8})?$").matcher(company.getPhone());
+        if (!matcher.matches()) {
+            map.put("success", "error2");
+            return map;
+        }
+        matcher = Pattern.compile("^((\\d{3,4})|\\d{3,4}-)?\\d{7,8}$").matcher(company.getFax());
+        if (!matcher.matches()) {
+            map.put("success", "error3");
+            return map;
+        }
+        matcher = Pattern.compile("\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}").matcher(company.getEmail());
+        if (!matcher.matches()) {
+            map.put("success", "error4");
             return map;
         }
         company.setId(id);

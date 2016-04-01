@@ -203,6 +203,22 @@
                             toastr.error("已经提交完毕，请勿重复提交！");
                             window.location.href = "<%=basePath%>";
                         }
+                        else if(data.success=="error1")
+                        {
+                            toastr.error("邮政编码格式有误！");
+                        }
+                        else if(data.success=="error2")
+                        {
+                            toastr.error("联系电话格式有误！");
+                        }
+                        else if(data.success=="error3")
+                        {
+                            toastr.error("传真格式有误！");
+                        }
+                        else if(data.success=="error4")
+                        {
+                            toastr.error("EMAIL格式有误！");
+                        }
                     },
                     error: function(){
                         toastr.error("服务器无法连接！");
