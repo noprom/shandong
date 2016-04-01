@@ -185,21 +185,6 @@
         });
         function  onSubmit()
         {
-            //标题
-//            var title = $("#addNews-form input[name = title]").val();
-            //正文
-//            var content = $("#addNews-form textarea[name = content]").val();
-
-            //数据校验
-//            if (isEmpty(title)) {
-//                alert("标题不能为空");
-//                return false;
-//            } else if (isEmpty(content)) {
-//                alert("正文不能为空");
-//                return false;
-//            } else {
-            //var str=$("#add-form").serialize();
-//            alert("提交成功");
                 var postUrl = "<%=basePath%>home/company/add/submit";
                 $.ajax({
                     url: postUrl,
@@ -210,18 +195,17 @@
                     success: function (data) {
                         if(data.success=="success")
                         {
-                            alert("提交成功");
-//                            提交成功时返回到主页
+                            toastr.success("提交成功");
                             window.location.href = "<%=basePath%>";
                         }
                         else if(data.success=="exit")
                         {
-                            alert("已经提交完毕，请勿重复提交！");
+                            toastr.error("已经提交完毕，请勿重复提交！");
                             window.location.href = "<%=basePath%>";
                         }
                     },
                     error: function(){
-                        alert("服务器无法连接！");
+                        toastr.error("服务器无法连接！");
                     }
                 });
 
@@ -238,23 +222,19 @@
 
             $.ajax({
                 type: 'get',
-
                 url: str1 ,
                 async:false,
                 data: {} ,
                 dataType: 'json',
-
                 success:function(data) {
-                   //alert(data[0].id);
                     areaBox.options.length=0;
                     for (var i = 0; i < data.length; i++)
                         {
                             areaBox.add(new Option(data[i].name,data[i].id));
                         }
-                    //window.location.href = "<%=basePath%>home/company/add";
                 },
                 error:function(){
-                    alert("服务器无法连接！");}
+                    toastr.erroralert("服务器无法连接！");}
             });
 
         }
