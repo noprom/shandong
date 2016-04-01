@@ -51,7 +51,7 @@
                                 <div class="col-md-12">
                                     <div class="chart">
                                         <!-- Sales Chart Canvas -->
-                                        <div id="main" style="height: 360px; width: 700px;"></div>
+                                        <div id="main" style="height: 360px; width: 1000px;"></div>
                                     </div><!-- /.chart-responsive -->
                                 </div><!-- /.col -->
                                 <%--<div class="col-md-4">--%>
@@ -140,7 +140,7 @@
                         <div class="col-md-9 col-sm-8">
                             <div class="pad">
                                 <!-- Map will be created here -->
-                                <div id="shandong" style="height: 325px;">
+                                <div id="shandong" style="height: 400px;width: 1000px;">
                                 </div>
                             </div>
                         </div><!-- /.col -->
@@ -242,7 +242,7 @@
                         <div class="col-md-9 col-sm-8">
                             <div class="pad">
                                 <!-- Map will be created here -->
-                                <div id="duibifenxi" style="height: 325px;">
+                                <div id="duibifenxi" style="height: 400px;width: 950px;">
                                 </div>
                             </div>
                         </div><!-- /.col -->
@@ -267,7 +267,7 @@
                         <div class="col-md-9 col-sm-8">
                             <div class="pad">
                                 <!-- Map will be created here -->
-                                <div id="trend" style="height: 325px;">
+                                <div id="trend" style="height: 400px;width: 1000px;">
                                 </div>
                             </div>
                         </div><!-- /.col -->
