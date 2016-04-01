@@ -16,6 +16,8 @@
         <result column="phone" property="phone"/>
         <result column="fax" property="fax"/>
         <result column="email" property="email"/>
+        <result column="industry_involved" property="industry_involved"/>
+        <result column="industry_type" property="industry_type"/>
     </resultMap>
 
 

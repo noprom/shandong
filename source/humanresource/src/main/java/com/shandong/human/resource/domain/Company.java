@@ -20,6 +20,8 @@ public class Company {
     private String phone;               //联系电话,格式必须符合（区号）+电话号码或者为手机号码
     private String fax;                 //传真,格式必须符合（区号）+电话
     private String email;                //EMAIL,格式必须符合xxx@xxx.xxx
+    private int industry_involved;    //所属行业
+    private int industry_type;        //企业性质
 
     public int getId() {
         return id;
@@ -125,6 +127,22 @@ public class Company {
         this.email = email;
     }
 
+    public int getIndustry_involved() {
+        return industry_involved;
+    }
+
+    public void setIndustry_involved(int industry_involved) {
+        this.industry_involved = industry_involved;
+    }
+
+    public int getIndustry_type() {
+        return industry_type;
+    }
+
+    public void setIndustry_type(int industry_type) {
+        this.industry_type = industry_type;
+    }
+
     @Override
     public String toString() {
         return "Company{" +
@@ -141,6 +159,8 @@ public class Company {
                 ", phone='" + phone + '\'' +
                 ", fax='" + fax + '\'' +
                 ", email='" + email + '\'' +
+                ", industry_involved='" + industry_involved + '\'' +
+                ", industry_type='" + industry_type + '\'' +
                 '}';
     }
 }

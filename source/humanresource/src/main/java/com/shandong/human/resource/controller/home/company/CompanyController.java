@@ -1,11 +1,9 @@
 package com.shandong.human.resource.controller.home.company;
 
-import com.shandong.human.resource.domain.Area;
-import com.shandong.human.resource.domain.Company;
-import com.shandong.human.resource.domain.CompanyData;
-import com.shandong.human.resource.domain.User;
+import com.shandong.human.resource.domain.*;
 import com.shandong.human.resource.service.home.AreaService;
 import com.shandong.human.resource.service.home.CompanyService;
+import com.shandong.human.resource.service.home.IndustryTypeService;
 import com.shandong.human.resource.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,6 +41,9 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
+    @Autowired
+    private IndustryTypeService industryTypeService;
+
     /**
      * 获取所有的城市
      * 获取数据显示页面
@@ -55,8 +56,14 @@ public class CompanyController {
         ArrayList<Area> list = areaService.getAllCity();
         //刚开始打开页面时显示济南市的所有县
         ArrayList<Area> listCity = areaService.getAllAreaById(170);
+        //获取所有的企业性质
+        ArrayList<IndustryType> listIndustryType=industryTypeService.getIndustryByType(1);
+        //获取所有的所属行业
+        ArrayList<IndustryType> listIndustryInvolve=industryTypeService.getIndustryByType(2);
         model.addAttribute("editResult", list);
         model.addAttribute("editResultCity", listCity);
+        model.addAttribute("listIndustryType", listIndustryType);
+        model.addAttribute("listIndustryInvolve", listIndustryInvolve);
         return STATIC_PREFIX + "/add";
     }
 
