@@ -241,119 +241,172 @@ public class UserController {
             }
         }
 
-        Set<Pair<User, Pair<Company, CompanyData>>> data = new HashSet<Pair<User, Pair<Company, CompanyData>>>();
+        List<Set<Pair<User, Pair<Company, CompanyData>>>> data = new ArrayList<Set<Pair<User, Pair<Company, CompanyData>>>>();
 
         if (companyName != null && !companyName.isEmpty()) {
             List<Company> companies = companyService.fuzzySearchByName(companyName);
+            Set<Pair<User, Pair<Company, CompanyData>>> data_t = new HashSet<Pair<User, Pair<Company, CompanyData>>>();
             for (Company r : companies) {
                 User user = userService.selectByID(r.getId());
                 if (user != null) {
-                    data.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(r, null)));
+                    data_t.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(r, null)));
                 }
+            }
+            if (data_t.size() != 0) {
+                data.add(data_t);
             }
         }
 
         if (userName != null && !userName.isEmpty()) {
             User user = userService.selectByName(userName);
+            Set<Pair<User, Pair<Company, CompanyData>>> data_t = new HashSet<Pair<User, Pair<Company, CompanyData>>>();
             if (user != null) {
-                data.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(null, null)));
+                data_t.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(null, null)));
+            }
+            if (data_t.size() != 0) {
+                data.add(data_t);
             }
         }
 
         if (userType != null) {
             Set<User> users = new HashSet<User>();
             List<User> userList = userService.selectByType(userType);
+            Set<Pair<User, Pair<Company, CompanyData>>> data_t = new HashSet<Pair<User, Pair<Company, CompanyData>>>();
             if (userList != null) {
                 for (User r : userList) {
-                    data.add(new Pair<User, Pair<Company, CompanyData>>(r, new Pair<Company, CompanyData>(null, null)));
+                    data_t.add(new Pair<User, Pair<Company, CompanyData>>(r, new Pair<Company, CompanyData>(null, null)));
                 }
+            }
+            if (data_t.size() != 0) {
+                data.add(data_t);
             }
         }
 
         if (areaID != null) {
             List<Company> companies = companyService.selectByAreaID(areaID);
+            Set<Pair<User, Pair<Company, CompanyData>>> data_t = new HashSet<Pair<User, Pair<Company, CompanyData>>>();
             if (companies != null) {
                 for (Company r : companies) {
                     User user = userService.selectByID(r.getId());
                     if (user != null) {
-                        data.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(r, null)));
+                        data_t.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(r, null)));
                     }
                 }
+            }
+            if (data_t.size() != 0) {
+                data.add(data_t);
             }
         }
 
         if (address != null && !address.isEmpty()) {
             List<Company> companies = companyService.fuzzySearchByAddress(address);
+            Set<Pair<User, Pair<Company, CompanyData>>> data_t = new HashSet<Pair<User, Pair<Company, CompanyData>>>();
             if (companies != null) {
                 for (Company r : companies) {
                     User user = userService.selectByID(r.getId());
                     if (user != null) {
-                        data.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(r, null)));
+                        data_t.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(r, null)));
                     }
                 }
+            }
+            if (data_t.size() != 0) {
+                data.add(data_t);
             }
         }
 
         if (status != null) {
             List<CompanyData> companyDatas = companyDataService.selectByStatus(status);
+            Set<Pair<User, Pair<Company, CompanyData>>> data_t = new HashSet<Pair<User, Pair<Company, CompanyData>>>();
             if (companyDatas != null) {
                 for (CompanyData r : companyDatas) {
                     Company company = companyService.getCompanyById(r.getCompany_id());
                     User user = userService.selectByID(r.getCompany_id());
                     if (user != null) {
-                        data.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(company, r)));
+                        data_t.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(company, r)));
                     }
                 }
+            }
+            if (data_t.size() != 0) {
+                data.add(data_t);
             }
         }
 
         if (business != null && !business.isEmpty()) {
             List<Company> companies = companyService.fuzzySearchByBusiness(business);
+            Set<Pair<User, Pair<Company, CompanyData>>> data_t = new HashSet<Pair<User, Pair<Company, CompanyData>>>();
             if (companies != null) {
                 for (Company r : companies) {
                     User user = userService.selectByID(r.getId());
                     if (user != null) {
-                        data.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(r, null)));
+                        data_t.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(r, null)));
                     }
                 }
+            }
+            if (data_t.size() != 0) {
+                data.add(data_t);
             }
         }
 
         if (surveyTimeID != null) {
             List<CompanyData> companyDatas = companyDataService.selectBySurveyTimeID(surveyTimeID);
+            Set<Pair<User, Pair<Company, CompanyData>>> data_t = new HashSet<Pair<User, Pair<Company, CompanyData>>>();
             if (companyDatas != null) {
                 for (CompanyData r : companyDatas) {
                     Company company = companyService.getCompanyById(r.getCompany_id());
                     User user = userService.selectByID(r.getCompany_id());
                     if (user != null) {
-                        data.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(company, r)));
+                        data_t.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(company, r)));
                     }
+                }
+            }
+            if (data_t.size() != 0) {
+                if (data_t.size() != 0) {
+                    data.add(data_t);
                 }
             }
         }
 
         Set<Pair<User, Pair<Company, CompanyData>>> finaldata = new HashSet<Pair<User, Pair<Company, CompanyData>>>();
-        ArrayList<Pair<User, Pair<Company, CompanyData>>> dataArray= new ArrayList<Pair<User, Pair<Company, CompanyData>>>(data);
-        int size = dataArray.size();
-        for (int iter = 0; iter < size; iter++) {
-            int i;
-            for (i = 0; i < size; ++i) {
-                if (i == iter) {
-                    continue;
+
+        int data_size = data.size();
+        if (data_size >= 1) {
+            finaldata.addAll(data.get(0));
+            for (int i = 1; i < data_size; ++i) {
+                Set<Pair<User, Pair<Company, CompanyData>>> finaldata_t = new HashSet<Pair<User, Pair<Company, CompanyData>>>();
+                for (Pair<User, Pair<Company, CompanyData>> r : data.get(i)) {
+                    for (Pair<User, Pair<Company, CompanyData>> c : finaldata) {
+                        if (contain(c, r)) {
+                            finaldata_t.add(c);
+                        } else if (contain(r, c)) {
+                            finaldata_t.add(r);
+                        }
+                    }
                 }
-                boolean userfit = (dataArray.get(iter).first.equals(dataArray.get(i).first));
-                boolean companyfit = (dataArray.get(iter).second.first == null)||
-                        (dataArray.get(iter).second.first.equals(dataArray.get(i).second.first));
-                boolean companyDatafit = (dataArray.get(iter).second.second == null)||
-                        (dataArray.get(iter).second.second.equals(dataArray.get(i).second.second));
-                if(userfit&&companyfit&&companyDatafit){
-                    break;
-                }
-            }
-            if(i == size){
-                finaldata.add(dataArray.get(iter));
+                finaldata = finaldata_t;
             }
         }
+
+//        ArrayList<Pair<User, Pair<Company, CompanyData>>> dataArray = new ArrayList<Pair<User, Pair<Company, CompanyData>>>(data);
+//        int size = dataArray.size();
+//        for (int iter = 0; iter < size; iter++) {
+//            int i;
+//            for (i = 0; i < size; ++i) {
+//                if (i == iter) {
+//                    continue;
+//                }
+//                boolean userfit = (dataArray.get(iter).first.equals(dataArray.get(i).first));
+//                boolean companyfit = (dataArray.get(iter).second.first == null) ||
+//                        (dataArray.get(iter).second.first.equals(dataArray.get(i).second.first));
+//                boolean companyDatafit = (dataArray.get(iter).second.second == null) ||
+//                        (dataArray.get(iter).second.second.equals(dataArray.get(i).second.second));
+//                if (userfit && companyfit && companyDatafit) {
+//                    break;
+//                }
+//            }
+//            if (i == size) {
+//                finaldata.add(dataArray.get(iter));
+//            }
+//        }
 
         List<Area> cityList = areaService.getAllCity();
         List<Area> area = new ArrayList<Area>();
@@ -367,5 +420,18 @@ public class UserController {
         model.addAttribute("areaList", area);
         model.addAttribute("surveyTimeList", surveyTimeService.getAllSurveyTime());
         return STATIC_PREFIX + "/search";
+    }
+
+    private boolean contain(Pair<User, Pair<Company, CompanyData>> lhs, Pair<User, Pair<Company, CompanyData>> rhs) {
+        boolean userfit = (rhs.first.equals(rhs.first));
+        boolean companyfit = (rhs.second.first == null) ||
+                (lhs.second.first.equals(rhs.second.first));
+        boolean companyDatafit = (rhs.second.second == null) ||
+                (lhs.second.second.equals(rhs.second.second));
+        if (userfit && companyDatafit && companyfit) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
