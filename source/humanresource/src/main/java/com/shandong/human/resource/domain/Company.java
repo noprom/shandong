@@ -163,4 +163,49 @@ public class Company {
                 ", industry_type='" + industry_type + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Company company = (Company) o;
+
+        if (id != company.id) return false;
+        if (province_id != company.province_id) return false;
+        if (city_id != company.city_id) return false;
+        if (area_id != company.area_id) return false;
+        if (industry_involved != company.industry_involved) return false;
+        if (industry_type != company.industry_type) return false;
+        if (!address.equals(company.address)) return false;
+        if (!code.equals(company.code)) return false;
+        if (!name.equals(company.name)) return false;
+        if (!business.equals(company.business)) return false;
+        if (!contact.equals(company.contact)) return false;
+        if (!zipcode.equals(company.zipcode)) return false;
+        if (!phone.equals(company.phone)) return false;
+        if (!fax.equals(company.fax)) return false;
+        return email.equals(company.email);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + province_id;
+        result = 31 * result + city_id;
+        result = 31 * result + area_id;
+        result = 31 * result + address.hashCode();
+        result = 31 * result + code.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + business.hashCode();
+        result = 31 * result + contact.hashCode();
+        result = 31 * result + zipcode.hashCode();
+        result = 31 * result + phone.hashCode();
+        result = 31 * result + fax.hashCode();
+        result = 31 * result + email.hashCode();
+        result = 31 * result + industry_involved;
+        result = 31 * result + industry_type;
+        return result;
+    }
 }

@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 用户实体类
- * <p>
+ * <p/>
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/14 9:34
  */
@@ -52,4 +52,26 @@ public class User {
         this.type = type;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != user.id) return false;
+        if (type != user.type) return false;
+        if (!username.equals(user.username)) return false;
+        return password.equals(user.password);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + username.hashCode();
+        result = 31 * result + password.hashCode();
+        result = 31 * result + type;
+        return result;
+    }
 }

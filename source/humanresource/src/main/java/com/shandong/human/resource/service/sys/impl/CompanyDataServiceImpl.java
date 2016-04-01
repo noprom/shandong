@@ -168,12 +168,14 @@ public class CompanyDataServiceImpl implements CompanyDataService {
      */
     public List<CompanyData> selectBySurveyTimeID(Integer id) {
         return companyDataMapper.selectBySurveyTimeID(id);
-        /**获得待审核企业上报数据总数
-         * status为0, 1 的数据
-         *
-         *@return
-         */
+    }
 
+    /**
+     * 获得待审核企业上报数据总数
+     * status为0, 1 的数据
+     *
+     * @return
+     */
     public Integer getToCheckCompanyDataCount() {
         return companyDataMapper.getToCheckCompanyDataCount();
     }

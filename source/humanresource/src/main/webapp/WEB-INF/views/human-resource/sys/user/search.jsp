@@ -104,7 +104,18 @@
                                 </div>
 
                                 <div class="row form-group">
-                                    数据状态暂时不做
+                                    <lable class="col-lg-4 control-label" for="role">申报状态</lable>
+                                    <div class="col-lg-8">
+                                        <select id="status" name="status" class="form-control">
+                                            <option name="status" value="null">所有状态</option>
+                                            <option name="status" value="-2">省审核不通过</option>
+                                            <optiosn name="status" value="-1">市审核不通过</optiosn>
+                                            <option name="status" value="0">待审核</option>
+                                            <option name="status" value="1">市审核通过，待省审核</option>
+                                            <option name="status" value="2">省审核通过，待申报</option>
+                                            <option name="status" value="3">已上报</option>
+                                        </select>
+                                    </div>
                                 </div>
 
 
@@ -157,24 +168,25 @@
                                     <th>用户名</th>
                                     <th>类型</th>
                                     <th>公司名</th>
+                                    <th>报表</th>
                                 </tr>
                                 <c:forEach items="${data}" var="v">
                                 <tr>
-                                    <td>${v.key.id}</td>
-                                    <td>${v.key.username}</td>
+                                    <td>${v.first.id}</td>
+                                    <td>${v.first.username}</td>
                                     <td>
                                         <c:choose>
-                                            <c:when test="${v.key.type eq '1'}">
+                                            <c:when test="${v.first.type eq '1'}">
                                                 <span class="label label-success">省用户</span>
                                             </c:when>
-                                            <c:when test="${v.key.type eq '2'}">
+                                            <c:when test="${v.first.type eq '2'}">
                                                 <span class="label label-info">企业用户</span>
                                             </c:when>
                                             <c:otherwise>
                                                 <c:set var="typeflag" value="true"/>
                                                 <c:forEach items="${cityList}" var="r" varStatus="loopstatus">
                                                     <c:if test="typeflag"></c:if>
-                                                    <c:if test="${v.key.type eq r.id}">
+                                                    <c:if test="${v.first.type eq r.id}">
                                                         <span class="label label-warning">${r.name}用户</span>
                                                         <c:set var="typeflag" value="false"/>
                                                     </c:if>
@@ -184,8 +196,16 @@
                                     </td>
                                     <td>
                                         <c:choose>
-                                            <c:when test="${v.value ne null}">
-                                                ${v.value.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <c:when test="${v.second.first ne null}">
+                                                ${v.second.first.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <a class="btn btn-info" href="#" >详情</a>
+                                            </c:when>
+                                        </c:choose>
+                                    </td>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${v.second.second ne null}">
+                                                调查期就业人数:${v.second.second.cur_people}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <a class="btn btn-info" href="#" >详情</a>
                                             </c:when>
                                         </c:choose>

@@ -10,6 +10,7 @@ import com.shandong.human.resource.service.sys.*;
 import com.shandong.human.resource.util.Constant;
 import com.shandong.human.resource.util.Pager;
 import com.shandong.human.resource.util.Result;
+import com.shandong.human.resource.util.Pair;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,14 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -243,30 +241,22 @@ public class UserController {
             }
         }
 
-        List<Set<User>> result = new ArrayList<Set<User>>();
+        Set<Pair<User, Pair<Company, CompanyData>>> data = new HashSet<Pair<User, Pair<Company, CompanyData>>>();
 
         if (companyName != null && !companyName.isEmpty()) {
             List<Company> companies = companyService.fuzzySearchByName(companyName);
-            Set<User> users = new HashSet<User>();
             for (Company r : companies) {
                 User user = userService.selectByID(r.getId());
                 if (user != null) {
-                    users.add(user);
+                    data.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(r, null)));
                 }
-            }
-            if (!users.isEmpty()) {
-                result.add(users);
             }
         }
 
         if (userName != null && !userName.isEmpty()) {
             User user = userService.selectByName(userName);
-            Set<User> users = new HashSet<User>();
             if (user != null) {
-                users.add(user);
-            }
-            if (!users.isEmpty()) {
-                result.add(users);
+                data.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(null, null)));
             }
         }
 
@@ -274,116 +264,94 @@ public class UserController {
             Set<User> users = new HashSet<User>();
             List<User> userList = userService.selectByType(userType);
             if (userList != null) {
-                users = new HashSet<User>(userList);
-            }
-            if (!users.isEmpty()) {
-                result.add(users);
+                for (User r : userList) {
+                    data.add(new Pair<User, Pair<Company, CompanyData>>(r, new Pair<Company, CompanyData>(null, null)));
+                }
             }
         }
 
         if (areaID != null) {
-            Set<User> users = new HashSet<User>();
             List<Company> companies = companyService.selectByAreaID(areaID);
             if (companies != null) {
                 for (Company r : companies) {
                     User user = userService.selectByID(r.getId());
                     if (user != null) {
-                        users.add(user);
+                        data.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(r, null)));
                     }
                 }
-            }
-            if (!users.isEmpty()) {
-                result.add(users);
             }
         }
 
         if (address != null && !address.isEmpty()) {
-            Set<User> users = new HashSet<User>();
             List<Company> companies = companyService.fuzzySearchByAddress(address);
             if (companies != null) {
                 for (Company r : companies) {
                     User user = userService.selectByID(r.getId());
                     if (user != null) {
-                        users.add(user);
+                        data.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(r, null)));
                     }
                 }
-            }
-            if (!users.isEmpty()) {
-                result.add(users);
             }
         }
 
         if (status != null) {
-            Set<User> users = new HashSet<User>();
             List<CompanyData> companyDatas = companyDataService.selectByStatus(status);
             if (companyDatas != null) {
                 for (CompanyData r : companyDatas) {
+                    Company company = companyService.getCompanyById(r.getCompany_id());
                     User user = userService.selectByID(r.getCompany_id());
                     if (user != null) {
-                        users.add(user);
+                        data.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(company, r)));
                     }
                 }
-            }
-            if (!users.isEmpty()) {
-                result.add(users);
             }
         }
 
         if (business != null && !business.isEmpty()) {
-            Set<User> users = new HashSet<User>();
             List<Company> companies = companyService.fuzzySearchByBusiness(business);
             if (companies != null) {
                 for (Company r : companies) {
                     User user = userService.selectByID(r.getId());
                     if (user != null) {
-                        users.add(user);
+                        data.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(r, null)));
                     }
                 }
-            }
-            if (!users.isEmpty()) {
-                result.add(users);
             }
         }
 
         if (surveyTimeID != null) {
-            Set<User> users = new HashSet<User>();
             List<CompanyData> companyDatas = companyDataService.selectBySurveyTimeID(surveyTimeID);
             if (companyDatas != null) {
                 for (CompanyData r : companyDatas) {
+                    Company company = companyService.getCompanyById(r.getCompany_id());
                     User user = userService.selectByID(r.getCompany_id());
                     if (user != null) {
-                        users.add(user);
+                        data.add(new Pair<User, Pair<Company, CompanyData>>(user, new Pair<Company, CompanyData>(company, r)));
                     }
                 }
-            }
-            if (!users.isEmpty()) {
-                result.add(users);
             }
         }
 
-        Set<User> qualifiedUser = new HashSet<User>();
-        int size = result.size();
-        System.out.println(size);
-        if (size >= 1) {
-            qualifiedUser = result.get(0);
-            for (int i = 1; i < size; ++i) {
-                Set<User> users = result.get(i);
-                Set<User> toDelete = new HashSet<User>();
-                for (User r : qualifiedUser) {
-                    boolean find = false;
-                    for (User c : users) {
-                        if (c.getId() == r.getId()) {
-                            find = true;
-                            break;
-                        }
-                    }
-                    if (!find) {
-                        toDelete.add(r);
-                    }
+        Set<Pair<User, Pair<Company, CompanyData>>> finaldata = new HashSet<Pair<User, Pair<Company, CompanyData>>>();
+        ArrayList<Pair<User, Pair<Company, CompanyData>>> dataArray= new ArrayList<Pair<User, Pair<Company, CompanyData>>>(data);
+        int size = dataArray.size();
+        for (int iter = 0; iter < size; iter++) {
+            int i;
+            for (i = 0; i < size; ++i) {
+                if (i == iter) {
+                    continue;
                 }
-                for (User r : toDelete) {
-                    qualifiedUser.remove(r);
+                boolean userfit = (dataArray.get(iter).first.equals(dataArray.get(i).first));
+                boolean companyfit = (dataArray.get(iter).second.first == null)||
+                        (dataArray.get(iter).second.first.equals(dataArray.get(i).second.first));
+                boolean companyDatafit = (dataArray.get(iter).second.second == null)||
+                        (dataArray.get(iter).second.second.equals(dataArray.get(i).second.second));
+                if(userfit&&companyfit&&companyDatafit){
+                    break;
                 }
+            }
+            if(i == size){
+                finaldata.add(dataArray.get(iter));
             }
         }
 
@@ -393,14 +361,7 @@ public class UserController {
             List area_ch = areaService.getAllAreaById(r.getId());
             area.addAll(area_ch);
         }
-
-        Map<User, Company> data = new HashMap<User, Company>();
-        for (User r : qualifiedUser) {
-            Company company = companyService.getCompanyById(r.getId());
-            data.put(r, company);
-        }
-
-        model.addAttribute("data", data);
+        model.addAttribute("data", finaldata);
         model.addAttribute("cityList", cityList);
         model.addAttribute("roleList", roleService.selectAll());
         model.addAttribute("areaList", area);
