@@ -134,11 +134,21 @@ public class CompanyController {
         Area areaArea = areaService.getById(company.getArea_id());
         ArrayList<Area> listCity = areaService.getAllCity();
         ArrayList<Area> listArea = areaService.getAllAreaById(company.getCity_id());
+        //获取所有的企业性质
+        ArrayList<IndustryType> listIndustryType=industryTypeService.getIndustryByType(1);
+        IndustryType industryType=industryTypeService.getIndustryById(company.getIndustry_type());
+        //获取所有的所属行业
+        ArrayList<IndustryType> listIndustryInvolve=industryTypeService.getIndustryByType(2);
+        IndustryType industryType1=industryTypeService.getIndustryById(company.getIndustry_involved());
         model.addAttribute("listCity", listCity);
         model.addAttribute("listArea", listArea);
         model.addAttribute("company", company);
         model.addAttribute("cityArea", cityArea);
         model.addAttribute("areaArea", areaArea);
+        model.addAttribute("listIndustryType", listIndustryType);
+        model.addAttribute("listIndustryInvolve", listIndustryInvolve);
+        model.addAttribute("industryType", industryType);
+        model.addAttribute("industryType1", industryType1);
         return STATIC_PREFIX + "/edit";
     }
 

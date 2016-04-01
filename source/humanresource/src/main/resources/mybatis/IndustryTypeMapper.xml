@@ -12,4 +12,7 @@
         SELECT * FROM industry_type WHERE type=#{type}
     </select>
 
+    <select id="getIndustryById" resultMap="IndustryType">
+        SELECT * FROM industry_type WHERE id=#{id}
+    </select>
 </mapper>

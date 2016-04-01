@@ -26,6 +26,14 @@ public class IndustryTypeServiceImpl implements IndustryTypeService {
         return industryTypeMapper.getIndustryByType(type);
     }
 
+    /**
+     * 根据id获取企业性质
+     * @return
+     */
+    public IndustryType getIndustryById(int id)
+    {
+        return industryTypeMapper.getIndustryById(id);
+    }
 
 
 }

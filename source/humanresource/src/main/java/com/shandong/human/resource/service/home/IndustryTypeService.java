@@ -17,4 +17,10 @@ public interface IndustryTypeService {
      * @return
      */
     ArrayList<IndustryType> getIndustryByType(int type);
+
+    /**
+     * 根据id获取企业性质
+     * @return
+     */
+    IndustryType getIndustryById(int id);
 }
