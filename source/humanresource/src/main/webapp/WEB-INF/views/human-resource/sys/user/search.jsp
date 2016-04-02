@@ -218,7 +218,7 @@
                         <div class="box-footer">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h3>共${qualifiedUser.size()}条记录</h3>
+                                    <h3>共${data.size()}条记录</h3>
                                 </div>
                             </div>
                         </div>

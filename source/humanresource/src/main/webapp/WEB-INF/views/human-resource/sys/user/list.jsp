@@ -35,9 +35,9 @@
                 <small>系统用户</small>
             </h1>
             <%--<ol class="breadcrumb">--%>
-                <%--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--%>
-                <%--<li><a href="#">Tables</a></li>--%>
-                <%--<li class="active">Simple</li>--%>
+            <%--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--%>
+            <%--<li><a href="#">Tables</a></li>--%>
+            <%--<li class="active">Simple</li>--%>
             <%--</ol>--%>
         </section>
 
@@ -129,11 +129,11 @@
                                             <c:otherwise>
                                                 <c:set var="typeflag" value="true"/>
                                                 <c:forEach items="${cityList}" var="r" varStatus="loopstatus">
-                                                    <c:if test="typeflag">
-                                                        <c:if test="${v.type eq r.id}">
-                                                            <span class="label label-warning">${r.name}用户</span>
-                                                            <c:set var="typeflag" value="false"/>
-                                                        </c:if>
+                                                    <c:if test="${typeflag eq 'true'}">
+                                                    </c:if>
+                                                    <c:if test="${v.type eq r.id}">
+                                                        <span class="label label-warning">${r.name}用户</span>
+                                                        <c:set var="typeflag" value="false"/>
                                                     </c:if>
                                                 </c:forEach>
                                             </c:otherwise>
@@ -250,93 +250,6 @@
                     </div><!-- /.box -->
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">用户查询</h3>
-                        </div>
-                        <div class="box-body">
-                            <form class="form-horizontal" role="form" id="select-user-form">
-                                <div class="row form-group">
-                                    <lable class="col-lg-5 control-label" for="name">用户名</lable>
-                                    <div class="col-lg-7">
-                                        <input id="userName" class="form-control" type="text" name="userName"
-                                               placeholder="用户名">
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <lable class="col-lg-5 control-label" for="name">单位名称</lable>
-                                    <div class="col-lg-7">
-                                        <input id="companyName" class="form-control" type="text" name="companyName"
-                                               placeholder="单位名称">
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <lable class="col-lg-4 control-label" for="type">类型</lable>
-                                    <div class="col-lg-8">
-                                        <select name="userType" class="form-control">
-                                            <option name="userType" value="1">省用户</option>
-                                            <option name="userType" value="2">企业用户</option>
-                                            <c:forEach items="${cityList}" var="v">
-                                                <option name="userType" value="${v.id}">${v.name}用户</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <lable class="col-lg-4 control-label" for="role">所属地市</lable>
-                                    <div class="col-lg-8">
-                                        <select id="areaID" name="areaID" class="form-control">
-                                            <c:forEach items="${areaList}" var="v">
-                                                <option name="areaID" value="${v.id}">${v.name}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <lable class="col-lg-5 control-label" for="name">地址</lable>
-                                    <div class="col-lg-7">
-                                        <input id="address" class="form-control" type="text" name="address"
-                                               placeholder="地址">
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    数据状态暂时不做
-                                </div>
-
-
-                                <div class="row form-group">
-                                    <lable class="col-lg-5 control-label" for="name">单位性质</lable>
-                                    <div class="col-lg-7">
-                                        <input id="business" class="form-control" type="text" name="business"
-                                               placeholder="单位性质">
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <lable class="col-lg-4 control-label" for="role">查询时间段</lable>
-                                    <div class="col-lg-8">
-                                        <select id="surveyTimeID" name="surveyTimeID" class="form-control">
-                                            <c:forEach items="${surveyTimeList}" var="v">
-                                                <option name="surveyTimeID" value="${v.id}">${v.start_time}&nbsp;-&nbsp;${v.end_time}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
 
         </section><!-- /.content -->
     </div>
