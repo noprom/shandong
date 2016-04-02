@@ -19,7 +19,7 @@ public class Company {
     private String business;            //主要经营业务
     //@Pattern(regexp = "[u4e00-u9fa5]|")
     private String contact;             //联系人,中文、英文
-    //@Pattern(regexp = "[1-9]\\d{5}(?!\\d)")
+    //@Pattern(regexp = "\\b\\d{6}\\b")
     private String zipcode;             //邮政编码,只可填写6位数字
     //Pattern(regexp = "^1\\d{10}$|^(0\\d{2,3}-?|\\(0\\d{2,3}\\))?[1-9]\\d{4,7}(-\\d{1,8})?$")
     private String phone;               //联系电话,格式必须符合（区号）+电话号码或者为手机号码

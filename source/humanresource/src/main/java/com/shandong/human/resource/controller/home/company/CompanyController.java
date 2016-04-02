@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -57,7 +58,8 @@ public class CompanyController {
      * @return
      */
     @RequestMapping(value = "/home/company/add", method = RequestMethod.GET)
-    public String getProvince(Model model) {
+    public String getProvince(Model model, HttpServletRequest request, HttpSession session) {
+
         ArrayList<Area> list = areaService.getAllCity();
         //刚开始打开页面时显示济南市的所有县
         ArrayList<Area> listCity = areaService.getAllAreaById(170);
@@ -69,6 +71,15 @@ public class CompanyController {
         model.addAttribute("editResultCity", listCity);
         model.addAttribute("listIndustryType", listIndustryType);
         model.addAttribute("listIndustryInvolve", listIndustryInvolve);
+        User user = (User) session.getAttribute(Constant.LOGIN_USER);
+        int id = user.getId();
+        //检查数据是否已经插入到数据库中
+        ArrayList<Company> companies = companyService.isNull(id);
+        if (companies.size() > 0) {
+            request.setAttribute("info","exit");
+        }
+        else
+            request.setAttribute("info","");
         return STATIC_PREFIX + "/add";
     }
 
@@ -108,12 +119,83 @@ public class CompanyController {
             map.put("success", "exit");
             return map;
         }
-        Matcher matcher = Pattern.compile("[1-9]\\d{5}(?!\\d)").matcher(company.getZipcode());
+        //判断企业名称格式
+        Matcher matcher = Pattern.compile("^[\\u4e00-\\u9fa5]*$").matcher(company.getName());
+        int flag=0;
+        if (!matcher.matches()) {
+            flag++;
+        }
+        matcher = Pattern.compile("^[a-zA-Z]+$").matcher(company.getName());
+        if (!matcher.matches()) {
+            flag++;
+        }
+        if(flag==2)
+        {
+            map.put("success", "error0");
+            return map;
+        }
+        matcher = Pattern.compile("^.{0,60}$").matcher(company.getName());
+        if (!matcher.matches()) {
+            map.put("success", "error01");
+            return map;
+        }
+        if(company.getName()=="")
+        {
+            map.put("success", "error02");
+            return map;
+        }
+        matcher = Pattern.compile("^.{0,255}$").matcher(company.getBusiness());
+        if (!matcher.matches()) {
+            map.put("success", "error5");
+            return map;
+        }
+        if(company.getBusiness()=="")
+        {
+            map.put("success", "error51");
+            return map;
+        }
+        matcher = Pattern.compile("^[0-9a-zA-Z]{0,9}$").matcher(company.getCode());
+        if (!matcher.matches()) {
+            map.put("success", "error6");
+            return map;
+        }
+        if(company.getCode()=="")
+        {
+            map.put("success", "error61");
+            return map;
+        }
+        matcher = Pattern.compile("\\b\\d{6}\\b").matcher(company.getZipcode());
         if (!matcher.matches()) {
             map.put("success", "error1");
             return map;
         }
-        matcher = Pattern.compile("^1\\d{10}$|^(0\\d{2,3}-?|\\(0\\d{2,3}\\))?[1-9]\\d{4,7}(-\\d{1,8})?$").matcher(company.getPhone());
+        //联系人格式判断
+        matcher = Pattern.compile("^[\\u4e00-\\u9fa5]*$").matcher(company.getContact());
+        flag=0;
+        if (!matcher.matches()) {
+            flag++;
+        }
+        matcher = Pattern.compile("^[a-zA-Z]+$").matcher(company.getContact());
+        if (!matcher.matches()) {
+            flag++;
+        }
+        if(flag==2)
+        {
+            map.put("success", "error7");
+            return map;
+        }
+        matcher = Pattern.compile("^.{0,20}$").matcher(company.getContact());
+        if (!matcher.matches()) {
+            map.put("success", "error71");
+            return map;
+        }
+
+        if(company.getContact()=="")
+        {
+            map.put("success", "error72");
+            return map;
+        }
+        matcher = Pattern.compile("^1\\d{10}$|^(0\\d{2,3}-?)?[1-9]\\d{4,7}(-\\d{1,8})?$").matcher(company.getPhone());
         if (!matcher.matches()) {
             map.put("success", "error2");
             return map;
@@ -129,6 +211,17 @@ public class CompanyController {
             return map;
         }
 
+        //联系地址的长度
+        matcher = Pattern.compile("^.{0,100}$").matcher(company.getAddress());
+        if (!matcher.matches()) {
+            map.put("success", "error8");
+            return map;
+        }
+        if(company.getAddress()=="")
+        {
+            map.put("success", "error81");
+            return map;
+        }
         company.setId(id);
         companyService.setCompanyInfo(company);
         map.put("success", "success");
@@ -197,12 +290,83 @@ public class CompanyController {
             map.put("success", "noInfo");
             return map;
         }
-        Matcher matcher = Pattern.compile("[1-9]\\d{5}(?!\\d)").matcher(company.getZipcode());
+        //判断企业名称格式
+        Matcher matcher = Pattern.compile("^[\\u4e00-\\u9fa5]*$").matcher(company.getName());
+        int flag=0;
+        if (!matcher.matches()) {
+            flag++;
+        }
+        matcher = Pattern.compile("^[a-zA-Z]+$").matcher(company.getName());
+        if (!matcher.matches()) {
+            flag++;
+        }
+        if(flag==2)
+        {
+            map.put("success", "error0");
+            return map;
+        }
+        matcher = Pattern.compile("^.{0,60}$").matcher(company.getName());
+        if (!matcher.matches()) {
+            map.put("success", "error01");
+            return map;
+        }
+        if(company.getName()=="")
+        {
+            map.put("success", "error02");
+            return map;
+        }
+        matcher = Pattern.compile("^.{0,255}$").matcher(company.getBusiness());
+        if (!matcher.matches()) {
+            map.put("success", "error5");
+            return map;
+        }
+        if(company.getBusiness()=="")
+        {
+            map.put("success", "error51");
+            return map;
+        }
+        matcher = Pattern.compile("^[0-9a-zA-Z]{0,9}$").matcher(company.getCode());
+        if (!matcher.matches()) {
+            map.put("success", "error6");
+            return map;
+        }
+        if(company.getCode()=="")
+        {
+            map.put("success", "error61");
+            return map;
+        }
+        matcher = Pattern.compile("\\b\\d{6}\\b").matcher(company.getZipcode());
         if (!matcher.matches()) {
             map.put("success", "error1");
             return map;
         }
-        matcher = Pattern.compile("^1\\d{10}$|^(0\\d{2,3}-?|\\(0\\d{2,3}\\))?[1-9]\\d{4,7}(-\\d{1,8})?$").matcher(company.getPhone());
+        //联系人格式判断
+        matcher = Pattern.compile("^[\\u4e00-\\u9fa5]*$").matcher(company.getContact());
+        flag=0;
+        if (!matcher.matches()) {
+            flag++;
+        }
+        matcher = Pattern.compile("^[a-zA-Z]+$").matcher(company.getContact());
+        if (!matcher.matches()) {
+            flag++;
+        }
+        if(flag==2)
+        {
+            map.put("success", "error7");
+            return map;
+        }
+        matcher = Pattern.compile("^.{0,20}$").matcher(company.getContact());
+        if (!matcher.matches()) {
+            map.put("success", "error71");
+            return map;
+        }
+
+        if(company.getContact()=="")
+        {
+            map.put("success", "error72");
+            return map;
+        }
+        matcher = Pattern.compile("^1\\d{10}$|^(0\\d{2,3}-?)?[1-9]\\d{4,7}(-\\d{1,8})?$").matcher(company.getPhone());
         if (!matcher.matches()) {
             map.put("success", "error2");
             return map;
@@ -215,6 +379,18 @@ public class CompanyController {
         matcher = Pattern.compile("\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}").matcher(company.getEmail());
         if (!matcher.matches()) {
             map.put("success", "error4");
+            return map;
+        }
+
+        //联系地址的长度
+        matcher = Pattern.compile("^.{0,100}$").matcher(company.getAddress());
+        if (!matcher.matches()) {
+            map.put("success", "error8");
+            return map;
+        }
+        if(company.getAddress()=="")
+        {
+            map.put("success", "error81");
             return map;
         }
         company.setId(id);
