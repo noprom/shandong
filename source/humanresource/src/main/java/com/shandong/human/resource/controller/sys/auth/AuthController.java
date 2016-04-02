@@ -7,6 +7,7 @@ import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.service.sys.AuthService;
 import com.shandong.human.resource.service.sys.RecordService;
 import com.shandong.human.resource.util.Constant;
+import com.shandong.human.resource.util.RegExUtil;
 import com.shandong.human.resource.util.Result;
 import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,21 @@ import java.util.regex.Pattern;
  */
 @RequestMapping("/sys/auth")
 @Controller
-public class AuthController extends CommonController {
+public class AuthController {
 
     // 静态资源前缀
     public static final String STATIC_PREFIX = "human-resource/sys/auth";
+
+    /**
+     * 权限名正则约束
+     **/
+    private static final String NAME_RESTRICT = "(" + RegExUtil.zh_CN+"|"+ RegExUtil.NUM_CHAR+"){1,10}";
+
+    //正则表达式需要替换的字符 '$', '(', ')', '*', '+', '.', '[', ']', '?', '\\', '^', '{', '}', '|'
+    /**
+     * 权限链接正则约束
+     **/
+    private static final String URL_RESTRICT = "[/]([/|;|:|<|>|%]|" + RegExUtil.zh_CN + "|" + RegExUtil.NUM_CHAR + "|" + RegExUtil.SPECIFIC + ")*";
 
     @Autowired
     private AuthService service;
@@ -75,12 +87,17 @@ public class AuthController extends CommonController {
     Result addAuth(Integer pid, String name, String url,
                    HttpServletRequest request, HttpServletResponse response) throws IOException {
         Auth toInsert = new Auth();
-        logger.debug(name + url + pid);
 
-        Pattern pattern = Pattern.compile(".{1,10}");
+        Pattern pattern = Pattern.compile(NAME_RESTRICT);
         Matcher matcher = pattern.matcher(name);
         if (!matcher.matches()) {
             return new Result(Result.Status.ERROR, Constant.AUTHNAME_ILLEGAL);
+        }
+
+        Pattern pattern_2 = Pattern.compile(URL_RESTRICT);
+        Matcher matcher_2 = pattern_2.matcher(url);
+        if (!matcher_2.matches()) {
+            return new Result(Result.Status.ERROR, Constant.AUTHURL_ILLEGAL);
         }
 
         int level = service.selectByID(pid).getLevel() + 1;

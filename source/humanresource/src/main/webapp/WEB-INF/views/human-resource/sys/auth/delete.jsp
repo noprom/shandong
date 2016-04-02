@@ -67,25 +67,8 @@
 
 
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
-    <%--<script type='text/javascript' src='<%=basePath%>static/human/js/plugins/toastr/toastr.min.js'></script>--%>
     <script>
-        //        toastr.options = {
-        //            "closeButton": true,
-        //            "debug": false,
-        //            "progressBar": true,
-        //            "positionClass": "toast-top-center",
-        //            "onclick": null,
-        //            "showDuration": "50",
-        //            "hideDuration": "100",
-        //            "timeOut": "1200",
-        //            "extendedTimeOut": "100",
-        //            "showEasing": "swing",
-        //            "hideEasing": "linear",
-        //            "showMethod": "fadeIn",
-        //            "hideMethod": "fadeOut"
-        //        };
         $(function () {
-            // 新增角色
             $("#delete-auth-btn").on('click', function () {
                 // ajax 方式提交数据到某个url
                 var postUrl = "<%=basePath%>sys/auth/delete";
@@ -103,7 +86,7 @@
                     success: function (data) {
 
                         if (data.status == 'SUCCESS') {
-                            alert(data.info);
+                            toastr.success(data.info);
 //                            toastr.success(data.info);
                             // 1000ms之后执行的操作
                             setTimeout(function () {
@@ -113,7 +96,7 @@
                                 //window.location.href = "<%=basePath%>sys/user";
                             }, 1000);
                         } else {
-                            alert(data.info);
+                            toastr.error(data.info);
 //                            toastr.error(data.info);
                             return false;
                         }

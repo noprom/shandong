@@ -108,15 +108,16 @@ public class UserController {
      * 新增用户
      *
      * @param user
+     * @param role
      * @param request
      * @param response
      */
     @RequestMapping(value = "/user/add", method = RequestMethod.POST)
     public
     @ResponseBody
-    Result addUser(@Valid User user, Integer role, BindingResult result,
+    Result addUser(@Valid User user, BindingResult result, Integer role,
                    HttpServletRequest request, HttpServletResponse response) {
-        if (result.hasErrors() || role == null) {
+        if (result.hasErrors()) {
             return new Result(Result.Status.ERROR, Constant.USERNAME_ILLEGAL);
         }
 

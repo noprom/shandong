@@ -204,14 +204,30 @@ public class Constant {
     public static final String ROLENAME_ILLEGAL = "ROLENAME_ILLEGAL";
 
     /**
-     * 权限名长度不合法
+     * 权限名不合法
      **/
     public static final String AUTHNAME_ILLEGAL = "AUTHNAME_ILLEGAL";
+
+    /**
+     * 权限链接不合法
+     **/
+    public static final String AUTHURL_ILLEGAL = "AUTHURL_ILLEGAL";
 
     /**
      * 拒绝删除基本权限或不存在的权限
      **/
     public static final String AUTHDELETE_REFUSE = "AUTHDELETE_REFUSE";
+
+    /**
+     * 上报时间段格式不正确(MM/dd/yyyy-MM/dd/yyyy)
+     **/
+    public static final String SURVERYTIME_REFUSE = "SURVERYTIME_REFUSE";
+
+
+    /**
+     * 无法删除该角色
+     **/
+    public static final String ROLEDELETE_REFUSE = "ROLEDELETE_REFUSE";
 
     /**
      * 上报成功

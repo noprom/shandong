@@ -31,7 +31,7 @@
 
         <section class="content">
             <div class="row">
-                <form role="form" action="<%=basePath%>sys/authRole/edit" method="post">
+                <form id="submit-form" role="form" >
                     <%--防止什么都不选择的时候无法参数绑定--%>
                     <input type="hidden" name="authIds" value="0">
                     <input type="hidden" name="roleId" value="${roleId}">
@@ -77,7 +77,7 @@
                         </c:choose>
                     </c:forEach>
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary">提 交</button>
+                        <input id="submit-btn" type="button" class="btn btn-primary" value="提交">
                     </div>
                 </form>
             </div>
@@ -122,6 +122,39 @@
 
 //                    console.log(index);//循环的下标值，从0开始
 //                    console.log(this.value);
+                });
+            });
+
+            $("#submit-btn").on('click', function () {
+                // ajax 方式提交数据到某个url
+                var postUrl = "<%=basePath%>sys/authRole/edit";
+                $.ajax({
+                    url: postUrl,//提交的地址
+                    data: $("#submit-form").serialize(),
+                    // 提交的数据,此处将整个表单的字段全部提交
+                    // 也可以单独提交某个字段
+//                data: {
+//                    "username": username,
+//                    "password": password
+//                },
+                    method: "post",
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data.status == 'SUCCESS') {
+                            toastr.success(data.info);
+                            // 1000ms之后执行的操作
+                            setTimeout(function () {
+                                // 刷新页面
+                                //location.reload(true);
+                                // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                                window.location.href = "<%=basePath%>sys/role";
+                            }, 3000);
+                        } else {
+                            toastr.error(data.info);
+                            return false;
+                        }
+                    }
                 });
             });
         });
