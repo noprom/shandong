@@ -195,6 +195,18 @@
                             toastr.error("请填写信息！");
                             window.location.href = "<%=basePath%>home/company/add";
                         }
+                        else if(data.success=="error0")
+                        {
+                            toastr.error("企业名称格式有误！");
+                        }
+                        else if(data.success=="error01")
+                        {
+                            toastr.error("企业名称输入过长！");
+                        }
+                        else if(data.success=="error02")
+                        {
+                            toastr.error("企业名称不能为空！");
+                        }
                         else if(data.success=="error1")
                         {
                             toastr.error("邮政编码格式有误！");
@@ -210,6 +222,42 @@
                         else if(data.success=="error4")
                         {
                             toastr.error("EMAIL格式有误！");
+                        }
+                        else if(data.success=="error5")
+                        {
+                            toastr.error("主要经营业务输入过长！");
+                        }
+                        else if(data.success=="error51")
+                        {
+                            toastr.error("主要经营业务不能为空！");
+                        }
+                        else if(data.success=="error6")
+                        {
+                            toastr.error("组织机构代码格式有误！");
+                        }
+                        else if(data.success=="error61")
+                        {
+                            toastr.error("组织机构代码不能为空！");
+                        }
+                        else if(data.success=="error7")
+                        {
+                            toastr.error("联系人格式格式有误！！");
+                        }
+                        else if(data.success=="error71")
+                        {
+                            toastr.error("联系人输入过长！");
+                        }
+                        else if(data.success=="error72")
+                        {
+                            toastr.error("联系人不能为空！");
+                        }
+                        else if(data.success=="error8")
+                        {
+                            toastr.error("联系地址输入过长！");
+                        }
+                        else if(data.success=="error81")
+                        {
+                            toastr.error("联系地址不能为空！");
                         }
                         else
                         {
