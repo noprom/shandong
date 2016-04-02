@@ -35,9 +35,9 @@
                 <small>系统角色</small>
             </h1>
             <%--<ol class="breadcrumb">--%>
-                <%--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--%>
-                <%--<li><a href="#">Tables</a></li>--%>
-                <%--<li class="active">Simple</li>--%>
+            <%--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--%>
+            <%--<li><a href="#">Tables</a></li>--%>
+            <%--<li class="active">Simple</li>--%>
             <%--</ol>--%>
         </section>
 
@@ -56,7 +56,8 @@
                                         <div class="col-lg-4 form-group">
                                             <lable class="col-lg-4 control-label" for="name">角色名</lable>
                                             <div class="col-sm-8">
-                                                <input id="name" class="form-control" type="text" name="name" placeholder="角色名">
+                                                <input id="name" class="form-control" type="text" name="name"
+                                                       placeholder="角色名">
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +100,7 @@
                                         </c:choose>
                                     </td>
                                     <td>
-                                        <%--<a href="<%=basePath%>sys/role/delete?id=${v.id}">删除</a>--%>
+                                        <a href="javascript:void(0);" class="del-role-btn" roleid="${v.id}">删除</a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="<%=basePath%>sys/authRole/edit?role_id=${v.id}">更改权限</a>
                                     </td>
@@ -228,6 +229,39 @@
 //                    "username": username,
 //                    "password": password
 //                },
+                    method: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == 'SUCCESS') {
+                            toastr.success(data.info);
+                            // 1000ms之后执行的操作
+                            setTimeout(function () {
+                                // 刷新页面
+                                location.reload(true);
+                                // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                                //window.location.href = "<%=basePath%>sys/user";
+                            }, 3000);
+                        } else {
+                            toastr.error(data.info);
+                            return false;
+                        }
+                    }
+                });
+            });
+
+            // 删除角色
+            $(".del-role-btn").on('click', function () {
+                var role_id = $(this).attr('roleid');
+                console.log(role_id);
+
+                var postUrl = "<%= basePath%>sys/role/delete";
+                $.ajax({
+                    url: postUrl,//提交的地址
+                    // 提交的数据,此处将整个表单的字段全部提交
+                    // 也可以单独提交某个字段
+                    data: {
+                        "id": role_id
+                    },
                     method: "post",
                     dataType: "json",
                     success: function (data) {

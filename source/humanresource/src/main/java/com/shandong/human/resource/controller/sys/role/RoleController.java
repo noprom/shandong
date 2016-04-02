@@ -36,7 +36,7 @@ public class RoleController {
     /**
      * 角色名正则约束
      **/
-    private static final String NAME_RESTRICT = "("+ RegExUtil.zh_CN+"|"+RegExUtil.NUM_CHAR + "){1,10}";
+    private static final String NAME_RESTRICT = "(" + RegExUtil.zh_CN + "|" + RegExUtil.NUM_CHAR + "){1,10}";
 
     @Autowired
     private RoleService service;
@@ -77,19 +77,17 @@ public class RoleController {
 
     public
     @ResponseBody
-    Result delete(String id, HttpServletRequest request, HttpServletResponse response) {
+    Result delete(Integer id, HttpServletRequest request, HttpServletResponse response) {
         if (id == null) {
-            return new Result(Result.Status.ERROR,Constant.ROLEDELETE_REFUSE);
+            return new Result(Result.Status.ERROR, Constant.ROLEDELETE_REFUSE);
         }
 
-        Integer iID = Integer.parseInt(id);
-        if (iID == null) {
-            return new Result(Result.Status.ERROR,Constant.ROLEDELETE_REFUSE);
+        int status = service.deleteRole(id);
+        if (status > 0) {
+            return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
+        } else {
+            return new Result(Result.Status.ERROR, Constant.ROLEDELETE_REFUSE);
         }
-
-        service.deleteRole(iID);
-
-        return new Result(Result.Status.SUCCESS,Constant.DEAL_SUCCESS);
     }
 
     /**
