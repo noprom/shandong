@@ -182,7 +182,7 @@
 //            } else {
             //var str=$("#add-form").serialize();
 //            alert("提交成功");
-            var postUrl = "<%=basePath%>city/check";
+            var postUrl = "<%=basePath%>sys/city/check";
             $.ajax({
                 url: postUrl,
                 data: $("#check-form").serialize(),
@@ -190,17 +190,19 @@
                 type: 'POST',
                 dataType: "json",
                 success: function (data) {
-                    if(data.success=="success")
-                    {
-                        alert("提交成功");
+                    if (data.status == 'SUCCESS') {
+                        toastr.success(data.info);
+                        // 3000ms之后执行的操作
+                        setTimeout(function () {
+                            // 刷新页面
+                            // location.reload(true);
+                            // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                            window.location.href = "<%=basePath%>sys/city/query";
+                        }, 3000);
+                    } else {
+                        toastr.error(data.info);
+                        return false;
                     }
-                    else if(data.success=="exit")
-                    {
-                        alert("已经提交完毕，请勿重复提交！");
-                    }
-                },
-                error: function(){
-                    alert("服务器无法连接！");
                 }
             });
         }
