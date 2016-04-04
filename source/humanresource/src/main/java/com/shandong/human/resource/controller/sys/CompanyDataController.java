@@ -8,11 +8,15 @@ import com.shandong.human.resource.service.home.CompanyService;
 import com.shandong.human.resource.service.sys.CompanyDataService;
 import com.shandong.human.resource.service.sys.SurveyTimeService;
 import com.shandong.human.resource.util.Constant;
+import com.shandong.human.resource.util.Pair;
+import com.shandong.human.resource.util.RegExpUtil;
 import com.shandong.human.resource.util.Result;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,9 +24,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * 企业上报数据控制器
@@ -45,6 +51,22 @@ public class CompanyDataController {
 
     @Autowired
     private CompanyService companyService;
+
+    private static final List<Pair<String, String>> companyDataErrMsg;
+
+    static {
+        companyDataErrMsg = new ArrayList<Pair<String, String>>();
+        companyDataErrMsg.add(new Pair<String, String>("init_people", Constant.INITPEOPLE_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("cur_people", Constant.CURPEOPLE_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("reduce_type", Constant.REDUCE_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("reason1", Constant.REASON1_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("reason2", Constant.REASON2_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("reason3", Constant.REASON3_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("reason1_explain", Constant.REASON1EXP_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("reason2_explain", Constant.REASON2EXP_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("reason3_explain", Constant.REASON3EXP_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("other_reason", Constant.OTHERREASONEXP_ERROR));
+    }
 
     /**
      * 显示companyData界面
@@ -123,7 +145,20 @@ public class CompanyDataController {
      */
     @RequestMapping(value = "/sys/data/edit", method = RequestMethod.POST)
     @ResponseBody
-    Result companyDataEdit(CompanyData companyData, Model model, HttpSession httpSession) {
+    Result companyDataEdit(@Valid CompanyData companyData, BindingResult result,
+                           Model model, HttpSession httpSession) {
+        if (result.hasErrors()) {
+            List<FieldError> errors = result.getFieldErrors();
+            return new Result(Result.Status.ERROR, getFirstErrMsg(errors));
+        }
+
+        Pattern integerReg = Pattern.compile(RegExpUtil.UNSIGNED_INT);
+        if (companyData.getInit_people() == null || !integerReg.matcher(companyData.getInit_people().toString()).matches()) {
+            return new Result(Result.Status.ERROR, Constant.INITPEOPLE_ERROR);
+        }
+        if (companyData.getCur_people() == null || !integerReg.matcher(companyData.getCur_people().toString()).matches()) {
+            return new Result(Result.Status.ERROR, Constant.CURPEOPLE_ERROR);
+        }
         companyData.setCreate_time((Date) httpSession.getAttribute("create_time"));
         Integer id = companyDataService.companyDataAdd(companyData);
         // TODO:新增纪录之后要向log表中插入一条日志
@@ -168,5 +203,18 @@ public class CompanyDataController {
 
         companyDataService.provinceCheck(companyData.getId(), status, notPassReason);
         return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
+    }
+
+    private String getFirstErrMsg(List<FieldError> errors) {
+        List<String> errorStr = new ArrayList<String>();
+        for (FieldError r : errors) {
+            errorStr.add(r.getField());
+        }
+        for (Pair<String, String> r : companyDataErrMsg) {
+            if (errorStr.contains(r.first)) {
+                return r.second;
+            }
+        }
+        return "未知错误";
     }
 }
