@@ -125,4 +125,8 @@
     <select id="getToCheckCompanyDataCount" resultType="int">
         SELECT count(1) FROM company_data WHERE status IN (0, 1)
     </select>
+
+    <update id="provinceCheck" >
+        UPDATE company_data SET status = #{status},not_pass_reason=#{npr} WHERE id=#{id}
+    </update>
 </mapper>

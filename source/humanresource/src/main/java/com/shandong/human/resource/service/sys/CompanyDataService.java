@@ -136,4 +136,13 @@ public interface CompanyDataService {
      * @return
      */
     Integer getToCheckCompanyDataCount();
+
+    /**
+     * 更新企业上报数据的状态(包括not_pass_reason)
+     * 省审核
+     * @param id
+     * @param status
+     * @return
+     */
+    void provinceCheck(Integer id,Integer status,String npr);
 }
