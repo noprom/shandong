@@ -34,13 +34,13 @@
         </div>
         <!-- search form -->
         <%--<form action="#" method="get" class="sidebar-form">--%>
-            <%--<div class="input-group">--%>
-                <%--<input type="text" name="q" class="form-control" placeholder="Search...">--%>
-              <%--<span class="input-group-btn">--%>
-                <%--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--%>
-                <%--</button>--%>
-              <%--</span>--%>
-            <%--</div>--%>
+        <%--<div class="input-group">--%>
+        <%--<input type="text" name="q" class="form-control" placeholder="Search...">--%>
+        <%--<span class="input-group-btn">--%>
+        <%--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--%>
+        <%--</button>--%>
+        <%--</span>--%>
+        <%--</div>--%>
         <%--</form>--%>
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -50,13 +50,13 @@
             <% /*用户权限*/
                 Set<Auth> auths = (Set<Auth>) request.getSession().getAttribute("auth"); %>
 
-            <!-- 企业用户管理 -->
+            <!-- 企业用户备案 -->
             <% boolean home_company_add = PermissionUtil.find("home/company/add", auths);
                 boolean home_company_edit = PermissionUtil.find("home/company/edit", auths);
                 if (home_company_add || home_company_edit) {%>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>企业用户</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-dashboard"></i> <span>企业备案</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <% if (home_company_add) { %>
@@ -69,13 +69,13 @@
             </li>
             <% } %>
 
-            <!-- 企业管理 -->
+            <!-- 企业用户数据上报 -->
             <% boolean home_data_add = PermissionUtil.find("home/data/add", auths);
                 boolean home_data_query = PermissionUtil.find("home/data/query", auths);
                 if (home_data_add || home_data_query) {%>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-folder"></i> <span>企业</span>
+                    <i class="fa fa-folder"></i> <span>数据上报</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
@@ -90,6 +90,8 @@
             <%}%>
 
             <!-- 市用户功能-->
+            <% boolean sys_city_query = PermissionUtil.find("sys/city/query", auths);
+                if (sys_city_query) {%>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-folder"></i> <span>市用户功能</span>
@@ -98,8 +100,8 @@
                 <ul class="treeview-menu">
                     <li><a href="<%=basePath%>city/query"><i class="fa fa-circle-o"></i>报表查询</a></li>
                 </ul>
-
             </li>
+            <%}%>
 
 
             <!-- 企业备案管理 -->
@@ -109,7 +111,7 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
-                    <span>企业备案</span>
+                    <span>企业备案管理</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
@@ -151,6 +153,8 @@
             <%}%>
 
             <!-- 报表上报-->
+            <% boolean sys_report_query = PermissionUtil.find("sys/report/query", auths);
+                if (sys_report_query) {%>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-folder"></i> <span>报表上报</span>
@@ -159,9 +163,8 @@
                 <ul class="treeview-menu">
                     <li><a href="<%=basePath%>sys/report/query"><i class="fa fa-circle-o"></i>报表查询</a></li>
                 </ul>
-
             </li>
-
+            <%}%>
 
             <!-- 通知管理 -->
             <% boolean sys_news_add = PermissionUtil.find("sys/news/add", auths);

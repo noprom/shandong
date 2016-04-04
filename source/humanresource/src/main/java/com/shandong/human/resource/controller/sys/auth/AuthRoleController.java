@@ -97,7 +97,7 @@ public class AuthRoleController {
             if (!r.equals("0"))
                 authRoleService.insertAuthRole(Integer.parseInt(r), roleId);
         }
-        return new Result(Result.Status.SUCCESS,Constant.SUBMIT_SUCCESS);
+        return new Result(Result.Status.SUCCESS,Constant.DEAL_SUCCESS);
     }
 
     /**

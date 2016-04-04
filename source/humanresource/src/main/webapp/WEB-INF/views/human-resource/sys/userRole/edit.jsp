@@ -37,7 +37,7 @@
                 <div class="col-lg-8">
                     <div class="box box-info">
                         <div class="box-body">
-                            <form action="<%= basePath%>sys/userRole/edit" role="form" method="post">
+                            <form role="form" method="post" id="user-role-form">
                                 <%--<% String user_id = (String)request.getAttribute("user_id"); %>--%>
                                 <%--<input name="user_id" value="<%= user_id%>" type="hidden">--%>
                                 <input name="user_id" value=${user_id} type="hidden">
@@ -54,7 +54,7 @@
                                     </c:forEach>
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="btn-sm btn-info" value="提交">
+                                    <input type="button" class="btn btn-primary" id="submit-btn" value="提交">
                                 </div>
                             </form>
                         </div>
@@ -64,11 +64,35 @@
         </section>
     </div>
 
-
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
     <script>
         $(function () {
-
+            // 用户授权
+            $("#submit-btn").on('click', function () {
+                // ajax 方式提交数据到某个url
+                var postUrl = "<%=basePath%>sys/userRole/edit";
+                $.ajax({
+                    url: postUrl,//提交的地址
+                    data: $("#user-role-form").serialize(),
+                    method: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == 'SUCCESS') {
+                            toastr.success(data.info);
+                            // 3000ms之后执行的操作
+                            setTimeout(function () {
+                                // 刷新页面
+                                // location.reload(true);
+                                // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                                window.location.href = "<%=basePath%>sys/user";
+                            }, 3000);
+                        } else {
+                            toastr.error(data.info);
+                            return false;
+                        }
+                    }
+                });
+            });
         });
     </script>
 </div>

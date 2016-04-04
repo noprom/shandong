@@ -1,4 +1,4 @@
-package com.shandong.human.resource.controller.sys.auth;
+package com.shandong.human.resource.controller.sys.user;
 
 import com.shandong.human.resource.controller.CommonController;
 import com.shandong.human.resource.domain.Role;
@@ -7,12 +7,16 @@ import com.shandong.human.resource.service.sys.AuthRoleService;
 import com.shandong.human.resource.service.sys.AuthService;
 import com.shandong.human.resource.service.sys.RoleService;
 import com.shandong.human.resource.service.sys.UserRoleService;
+import com.shandong.human.resource.util.Constant;
+import com.shandong.human.resource.util.Result;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,8 +52,8 @@ public class UserRoleController extends CommonController {
      * @param response
      * @return
      */
-    @RequestMapping(value = "/userRole/edit", method = RequestMethod.GET)
-    public String toEditPage(@Param("uid") Integer uid, Model model,
+    @RequestMapping(value = "/userRole/edit/{id}", method = RequestMethod.GET)
+    public String toEditPage(@PathVariable("id") Integer uid, Model model,
                              HttpServletRequest request, HttpServletResponse response) {
         if (uid == null)
             return "/404";
@@ -79,28 +83,28 @@ public class UserRoleController extends CommonController {
      * @param response
      */
     @RequestMapping(value = "/userRole/edit", method = RequestMethod.POST)
-    public void submitHandle(String[] roles, String user_id, HttpServletRequest request, HttpServletResponse response) {
+    public
+    @ResponseBody
+    Result submitHandle(String[] roles, String user_id) {
         if (user_id == null) {
             logger.debug("invalid user_id");
         }
         Integer user_id_i = Integer.parseInt(user_id);
-
         userRoleService.delectByUserID(user_id_i);
+        boolean success = true;
         for (int i = 0; i < roles.length; ++i) {
             if (roles[i] != null) {
                 Integer role_id = Integer.parseInt(roles[i]);
-                userRoleService.insertUserRole(user_id_i, role_id);
+                int status = userRoleService.insertUserRole(user_id_i, role_id);
+                if (status <= 0) {
+                    success = false;
+                }
             }
         }
-        try {
-            response.sendRedirect("/sys/user");
-        } catch (IOException e) {
-            e.printStackTrace();
-            try {
-                response.sendRedirect("/404");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+        if (success) {
+            return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
+        } else {
+            return new Result(Result.Status.ERROR, Constant.DEAL_FAIL);
         }
     }
 
