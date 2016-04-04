@@ -64,9 +64,9 @@ public class CompanyController {
         //刚开始打开页面时显示济南市的所有县
         ArrayList<Area> listCity = areaService.getAllAreaById(170);
         //获取所有的企业性质
-        ArrayList<IndustryType> listIndustryType=industryTypeService.getIndustryByType(1);
+        ArrayList<IndustryType> listIndustryType = industryTypeService.getIndustryByType(1);
         //获取所有的所属行业
-        ArrayList<IndustryType> listIndustryInvolve=industryTypeService.getIndustryByType(2);
+        ArrayList<IndustryType> listIndustryInvolve = industryTypeService.getIndustryByType(2);
         model.addAttribute("editResult", list);
         model.addAttribute("editResultCity", listCity);
         model.addAttribute("listIndustryType", listIndustryType);
@@ -76,10 +76,9 @@ public class CompanyController {
         //检查数据是否已经插入到数据库中
         ArrayList<Company> companies = companyService.isNull(id);
         if (companies.size() > 0) {
-            request.setAttribute("info","exit");
-        }
-        else
-            request.setAttribute("info","");
+            request.setAttribute("info", "exit");
+        } else
+            request.setAttribute("info", "");
         return STATIC_PREFIX + "/add";
     }
 
@@ -120,105 +119,98 @@ public class CompanyController {
             return map;
         }
         //判断企业名称格式
-        Matcher matcher = Pattern.compile("^[\\u4e00-\\u9fa5]*$").matcher(company.getName());
-        int flag=0;
+        Matcher matcher = Pattern.compile("^[\\u4e00-\\u9fa5]*$").matcher(company.getName().trim());
+        int flag = 0;
         if (!matcher.matches()) {
             flag++;
         }
-        matcher = Pattern.compile("^[a-zA-Z]+$").matcher(company.getName());
+        matcher = Pattern.compile("^[a-zA-Z]+$").matcher(company.getName().trim());
         if (!matcher.matches()) {
             flag++;
         }
-        if(flag==2)
-        {
+        if (flag == 2) {
             map.put("success", "error0");
             return map;
         }
-        matcher = Pattern.compile("^.{0,60}$").matcher(company.getName());
+        matcher = Pattern.compile("^.{0,60}$").matcher(company.getName().trim());
         if (!matcher.matches()) {
             map.put("success", "error01");
             return map;
         }
-        if(company.getName()=="")
-        {
+        if (company.getName().equals("")) {
             map.put("success", "error02");
             return map;
         }
-        matcher = Pattern.compile("^.{0,255}$").matcher(company.getBusiness());
+        matcher = Pattern.compile("^.{0,255}$").matcher(company.getBusiness().trim());
         if (!matcher.matches()) {
             map.put("success", "error5");
             return map;
         }
-        if(company.getBusiness()=="")
-        {
+        if (company.getBusiness().equals("")) {
             map.put("success", "error51");
             return map;
         }
-        matcher = Pattern.compile("^[0-9a-zA-Z]{0,9}$").matcher(company.getCode());
+        matcher = Pattern.compile("^[0-9a-zA-Z]{0,9}$").matcher(company.getCode().trim());
         if (!matcher.matches()) {
             map.put("success", "error6");
             return map;
         }
-        if(company.getCode()=="")
-        {
+        if (company.getCode() == "") {
             map.put("success", "error61");
             return map;
         }
-        matcher = Pattern.compile("\\b\\d{6}\\b").matcher(company.getZipcode());
+        matcher = Pattern.compile("\\b\\d{6}\\b").matcher(company.getZipcode().trim());
         if (!matcher.matches()) {
             map.put("success", "error1");
             return map;
         }
         //联系人格式判断
-        matcher = Pattern.compile("^[\\u4e00-\\u9fa5]*$").matcher(company.getContact());
-        flag=0;
+        matcher = Pattern.compile("^[\\u4e00-\\u9fa5]*$").matcher(company.getContact().trim());
+        flag = 0;
         if (!matcher.matches()) {
             flag++;
         }
-        matcher = Pattern.compile("^[a-zA-Z]+$").matcher(company.getContact());
+        matcher = Pattern.compile("^[a-zA-Z]+$").matcher(company.getContact().trim());
         if (!matcher.matches()) {
             flag++;
         }
-        if(flag==2)
-        {
+        if (flag == 2) {
             map.put("success", "error7");
             return map;
         }
-        matcher = Pattern.compile("^.{0,20}$").matcher(company.getContact());
+        matcher = Pattern.compile("^.{0,20}$").matcher(company.getContact().trim());
         if (!matcher.matches()) {
             map.put("success", "error71");
             return map;
         }
 
-        if(company.getContact()=="")
-        {
+        if (company.getContact().equals("")) {
             map.put("success", "error72");
             return map;
         }
-        matcher = Pattern.compile("^1\\d{10}$|^(0\\d{2,3}-?)?[1-9]\\d{4,7}(-\\d{1,8})?$").matcher(company.getPhone());
+        matcher = Pattern.compile("^1\\d{10}$|^(0\\d{2,3}-?)?[1-9]\\d{4,7}(-\\d{1,8})?$").matcher(company.getPhone().trim());
         if (!matcher.matches()) {
             map.put("success", "error2");
             return map;
         }
-        matcher = Pattern.compile("^((\\d{3,4})|\\d{3,4}-)?\\d{7,8}$").matcher(company.getFax());
+        matcher = Pattern.compile("^((\\d{3,4})|\\d{3,4}-)?\\d{7,8}$").matcher(company.getFax().trim());
         if (!matcher.matches()) {
             map.put("success", "error3");
             return map;
         }
-        matcher = Pattern.compile("\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}").matcher(company.getEmail());
+        matcher = Pattern.compile("\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}").matcher(company.getEmail().trim());
         if (!matcher.matches()) {
             map.put("success", "error4");
             return map;
         }
 
         //联系地址的长度
-        matcher = Pattern.compile("^.{0,100}$").matcher(company.getAddress());
+        matcher = Pattern.compile("^.{0,100}$").matcher(company.getAddress().trim());
         if (!matcher.matches()) {
             map.put("success", "error8");
             return map;
         }
-        if(company.getAddress()=="")
-        {
+        if (company.getAddress().equals("")) {
             map.put("success", "error81");
             return map;
         }
@@ -254,11 +246,11 @@ public class CompanyController {
         ArrayList<Area> listCity = areaService.getAllCity();
         ArrayList<Area> listArea = areaService.getAllAreaById(company.getCity_id());
         //获取所有的企业性质
-        ArrayList<IndustryType> listIndustryType=industryTypeService.getIndustryByType(1);
-        IndustryType industryType=industryTypeService.getIndustryById(company.getIndustry_type());
+        ArrayList<IndustryType> listIndustryType = industryTypeService.getIndustryByType(1);
+        IndustryType industryType = industryTypeService.getIndustryById(company.getIndustry_type());
         //获取所有的所属行业
-        ArrayList<IndustryType> listIndustryInvolve=industryTypeService.getIndustryByType(2);
-        IndustryType industryType1=industryTypeService.getIndustryById(company.getIndustry_involved());
+        ArrayList<IndustryType> listIndustryInvolve = industryTypeService.getIndustryByType(2);
+        IndustryType industryType1 = industryTypeService.getIndustryById(company.getIndustry_involved());
         model.addAttribute("listCity", listCity);
         model.addAttribute("listArea", listArea);
         model.addAttribute("company", company);
@@ -292,7 +284,7 @@ public class CompanyController {
         }
         //判断企业名称格式
         Matcher matcher = Pattern.compile("^[\\u4e00-\\u9fa5]*$").matcher(company.getName());
-        int flag=0;
+        int flag = 0;
         if (!matcher.matches()) {
             flag++;
         }
@@ -300,8 +292,7 @@ public class CompanyController {
         if (!matcher.matches()) {
             flag++;
         }
-        if(flag==2)
-        {
+        if (flag == 2) {
             map.put("success", "error0");
             return map;
         }
@@ -310,8 +301,7 @@ public class CompanyController {
             map.put("success", "error01");
             return map;
         }
-        if(company.getName()=="")
-        {
+        if (company.getName() == "") {
             map.put("success", "error02");
             return map;
         }
@@ -320,8 +310,7 @@ public class CompanyController {
             map.put("success", "error5");
             return map;
         }
-        if(company.getBusiness()=="")
-        {
+        if (company.getBusiness() == "") {
             map.put("success", "error51");
             return map;
         }
@@ -330,8 +319,7 @@ public class CompanyController {
             map.put("success", "error6");
             return map;
         }
-        if(company.getCode()=="")
-        {
+        if (company.getCode() == "") {
             map.put("success", "error61");
             return map;
         }
@@ -342,7 +330,7 @@ public class CompanyController {
         }
         //联系人格式判断
         matcher = Pattern.compile("^[\\u4e00-\\u9fa5]*$").matcher(company.getContact());
-        flag=0;
+        flag = 0;
         if (!matcher.matches()) {
             flag++;
         }
@@ -350,8 +338,7 @@ public class CompanyController {
         if (!matcher.matches()) {
             flag++;
         }
-        if(flag==2)
-        {
+        if (flag == 2) {
             map.put("success", "error7");
             return map;
         }
@@ -361,8 +348,7 @@ public class CompanyController {
             return map;
         }
 
-        if(company.getContact()=="")
-        {
+        if (company.getContact() == "") {
             map.put("success", "error72");
             return map;
         }
@@ -388,8 +374,7 @@ public class CompanyController {
             map.put("success", "error8");
             return map;
         }
-        if(company.getAddress()=="")
-        {
+        if (company.getAddress() == "") {
             map.put("success", "error81");
             return map;
         }
