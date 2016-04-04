@@ -27,42 +27,53 @@
     <jsp:include page="../../left.jsp" flush="true"></jsp:include>
 
     <div class="content-wrapper">
-    <section class="content-header"><h1>删除后台菜单</h1></section>
+        <section class="content-header">
+            <h1>删除后台菜单</h1>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>系统管理</li>
+                <li>权限管理</li>
+                <li class="active">删除权限</li>
+            </ol>
+        </section>
 
-    <section class="content">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="box box-info">
-                    <div class="box-body">
-                        <form  role="form" id = "delete-auth-form">
-                            <% AuthTree _Auths=(AuthTree)request.getAttribute("existAuth"); %>
-                            <div class="form-group">
-                                <label>选择权限</label>
-                                <select name="id" class="form-control">
-                                    <% List<Auth> authList= AuthTree.toList(_Auths);
-                                        for (Auth r:authList) {
-                                            StringBuilder s = new StringBuilder();
-                                            for(int i=0;i<r.getLevel();++i)
-                                                s.append("&nbsp&nbsp&nbsp&nbsp");
-                                            s.append('└').append(r.getName());
-                                            int id = r.getId();
-                                            %><option name="pid" value="<%= id%>"><%= s.toString()%></option><%
-                                        }
-                                    %>
+        <section class="content">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <form role="form" id="delete-auth-form">
+                                <% AuthTree _Auths = (AuthTree) request.getAttribute("existAuth"); %>
+                                <div class="form-group">
+                                    <label>选择权限</label>
+                                    <select name="id" class="form-control">
+                                        <% List<Auth> authList = AuthTree.toList(_Auths);
+                                            for (Auth r : authList) {
+                                                StringBuilder s = new StringBuilder();
+                                                for (int i = 0; i < r.getLevel(); ++i)
+                                                    s.append("&nbsp&nbsp&nbsp&nbsp");
+                                                s.append('└').append(r.getName());
+                                                int id = r.getId();
+                                        %>
+                                        <option name="pid" value="<%= id%>"><%= s.toString()%>
+                                        </option>
+                                        <%
+                                            }
+                                        %>
 
-                                </select>
-                            </div>
+                                    </select>
+                                </div>
 
-                            <div class="form-group">
-                                <input type="button" class="btn btn-warning" value="确认删除" id="delete-auth-btn">
-                            </div>
+                                <div class="form-group">
+                                    <input type="button" class="btn btn-warning" value="确认删除" id="delete-auth-btn">
+                                </div>
 
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </div>
 
 
