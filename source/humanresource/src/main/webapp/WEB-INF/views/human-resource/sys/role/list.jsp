@@ -102,7 +102,7 @@
                                     <td>
                                         <a href="javascript:void(0);" class="del-role-btn" roleid="${v.id}">删除</a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="<%=basePath%>sys/authRole/edit?role_id=${v.id}">更改权限</a>
+                                        <a href="<%=basePath%>sys/authRole/edit/${v.id}">更改权限</a>
                                     </td>
                                     </c:forEach>
                                 </tr>
