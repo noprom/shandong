@@ -59,6 +59,13 @@ public class UserController {
     @Autowired
     private SurveyTimeService surveyTimeService;
 
+    /**
+     * companyData详情
+     * @param model
+     * @param id
+     * @return
+     */
+
     @RequestMapping(value="/user/detail/{id}",method = RequestMethod.GET)
     public String detail(Model model , @PathVariable("id") Integer id)
     {

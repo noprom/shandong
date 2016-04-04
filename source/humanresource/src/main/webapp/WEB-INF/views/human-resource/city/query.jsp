@@ -58,7 +58,7 @@
                             <h3 class="box-title">查询结果</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="dataTable" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
@@ -88,19 +88,6 @@
                                     </tr>
                                 </c:forEach>
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>公司ID</th>
-                                    <th>初始人数</th>
-                                    <th>现在人数</th>
-                                    <th>其他原因</th>
-                                    <th>状态</th>
-                                    <th>创建时间</th>
-                                    <th>更新时间</th>
-                                    <th>查看详情</th>
-                                </tr>
-                                </tfoot>
                             </table>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
@@ -111,15 +98,7 @@
     <jsp:include page="../footer.jsp" flush="true"></jsp:include>
     <script>
         $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false
-            });
+            $("#dataTable").DataTable();
         });
     </script>
 </body>
