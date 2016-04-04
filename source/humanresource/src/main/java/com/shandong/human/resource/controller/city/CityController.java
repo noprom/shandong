@@ -26,6 +26,7 @@ import java.util.Map;
  * Date: 16/3/30 上午10:37
  */
 @Controller
+@RequestMapping("/sys")
 public class CityController {
 
     public static final String STATIC_PREFIX = "human-resource/city";

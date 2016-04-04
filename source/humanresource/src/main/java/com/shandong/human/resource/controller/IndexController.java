@@ -28,10 +28,10 @@ import java.util.List;
 @Controller
 public class IndexController {
 
+    Logger logger = Logger.getLogger(getClass());
+
     // 静态资源前缀
     public static final String STATIC_PREFIX = "human-resource";
-
-    Logger logger = Logger.getLogger(getClass());
 
     @Autowired
     private CompanyService companyService;
@@ -60,30 +60,35 @@ public class IndexController {
         if (loginUser == null) {// 用户没有登陆
             return STATIC_PREFIX + "/login";
         } else {
-
-            // 已备案企业数量
-            Integer totalCompanyCount = companyService.getAllCompany().size();
-            // 总系统用户数
-            Integer totalUserCount = userService.getCount();
-            // 总调查期
-            Integer totalSurveyTimeCount = surveyTimeService.getSurveyTimeCount();
-            // 待审核企业上报数据总数
-            Integer totalCompanyDataCount = companyDataService.getToCheckCompanyDataCount();
-            // 通知列表
+            // 通知列表所有用户都可以查看
             List<News> newsList = newsService.newsList();
-            // 查看当前登陆企业用户是否已经备案
-            Company company = companyService.getCompanyById(loginUser.getId());
-            if (company == null) {//企业还没备案
-                model.addAttribute("authorize", false);
-            } else {
-                model.addAttribute("authorize", true);
-            }
             model.addAttribute("newsList", newsList);
-            model.addAttribute("totalUserCount", totalUserCount);
-            model.addAttribute("totalCompanyCount", totalCompanyCount);
-            model.addAttribute("totalSurveyTimeCount", totalSurveyTimeCount);
-            model.addAttribute("totalCompanyDataCount", totalCompanyDataCount);
-            return STATIC_PREFIX + "/index";
+
+            if (loginUser.getType() == 2) {//企业用户
+                // 查看当前登陆企业用户是否已经备案
+                Company company = companyService.getCompanyById(loginUser.getId());
+                if (company == null) {//企业还没备案
+                    model.addAttribute("authorize", false);
+                } else {
+                    model.addAttribute("authorize", true);
+                }
+                return STATIC_PREFIX + "/index";
+            } else {
+                // 已备案企业数量
+                Integer totalCompanyCount = companyService.getAllCompany().size();
+                // 总系统用户数
+                Integer totalUserCount = userService.getCount();
+                // 总调查期
+                Integer totalSurveyTimeCount = surveyTimeService.getSurveyTimeCount();
+                // 待审核企业上报数据总数
+                Integer totalCompanyDataCount = companyDataService.getToCheckCompanyDataCount();
+
+                model.addAttribute("totalUserCount", totalUserCount);
+                model.addAttribute("totalCompanyCount", totalCompanyCount);
+                model.addAttribute("totalSurveyTimeCount", totalSurveyTimeCount);
+                model.addAttribute("totalCompanyDataCount", totalCompanyDataCount);
+                return STATIC_PREFIX + "/index";
+            }
         }
     }
 }

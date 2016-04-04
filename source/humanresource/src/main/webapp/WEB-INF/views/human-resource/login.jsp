@@ -72,8 +72,8 @@
     $(function () {
         // 用户登陆按钮
         $("#login-btn").on('click', function () {
-            var username = $("#username").val();
-            var password = $("#password").val();
+            var username = $("#username").val().trim();
+            var password = $("#password").val().trim();
             if (isEmpty(username) || isEmpty(password)) {
                 toastr.error("用户名密码不能为空");
                 return false;

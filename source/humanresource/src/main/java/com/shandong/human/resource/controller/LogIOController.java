@@ -69,6 +69,8 @@ public class LogIOController {
     public
     @ResponseBody
     Result login(String username, String password, HttpSession session) {
+        username = username.trim();
+        password = password.trim();
         if (username.equals("") || password.equals("")) {
             return new Result(Result.Status.ERROR, Constant.USERNAME_PASSWORD_CANNOT_BE_EMPTY);
         }

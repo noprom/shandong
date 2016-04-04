@@ -51,8 +51,8 @@
                 Set<Auth> auths = (Set<Auth>) request.getSession().getAttribute("auth"); %>
 
             <!-- 企业用户备案 -->
-            <% boolean home_company_add = PermissionUtil.find("home/company/add", auths);
-                boolean home_company_edit = PermissionUtil.find("home/company/edit", auths);
+            <% boolean home_company_add = PermissionUtil.find("/home/company/add", auths);
+                boolean home_company_edit = PermissionUtil.find("/home/company/edit", auths);
                 if (home_company_add || home_company_edit) {%>
             <li class="treeview">
                 <a href="#">
@@ -70,8 +70,8 @@
             <% } %>
 
             <!-- 企业用户数据上报 -->
-            <% boolean home_data_add = PermissionUtil.find("home/data/add", auths);
-                boolean home_data_query = PermissionUtil.find("home/data/query", auths);
+            <% boolean home_data_add = PermissionUtil.find("/home/data/add", auths);
+                boolean home_data_query = PermissionUtil.find("/home/data/query", auths);
                 if (home_data_add || home_data_query) {%>
             <li class="treeview">
                 <a href="#">
@@ -90,7 +90,7 @@
             <%}%>
 
             <!-- 市用户功能-->
-            <% boolean sys_city_query = PermissionUtil.find("sys/city/query", auths);
+            <% boolean sys_city_query = PermissionUtil.find("/sys/city/query", auths);
                 if (sys_city_query) {%>
             <li class="treeview">
                 <a href="#">
@@ -98,15 +98,14 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<%=basePath%>city/query"><i class="fa fa-circle-o"></i>报表查询</a></li>
+                    <li><a href="<%=basePath%>sys/city/query"><i class="fa fa-circle-o"></i>报表查询</a></li>
                 </ul>
             </li>
             <%}%>
 
-
             <!-- 企业备案管理 -->
-            <% boolean sys_record_query = PermissionUtil.find("sys/record/query", auths);
-                boolean sys_data_list = PermissionUtil.find("sys/data/list", auths);
+            <% boolean sys_record_query = PermissionUtil.find("/sys/record/query", auths);
+                boolean sys_data_list = PermissionUtil.find("/sys/data/list", auths);
                 if (sys_record_query || sys_data_list) {%>
             <li class="treeview">
                 <a href="#">
@@ -115,7 +114,9 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
+                    <% if (sys_record_query) { %>
                     <li><a href="<%=basePath%>sys/record/query"><i class="fa fa-circle-o"></i> 备案列表</a></li>
+                    <%}%>
                     <% if (sys_data_list) { %>
                     <li><a href="<%=basePath%>sys/data/list"><i class="fa fa-circle-o"></i> 数据列表</a></li>
                     <%}%>
@@ -123,7 +124,7 @@
             </li>
             <%}%>
 
-            <%--<% boolean sys_data_list = PermissionUtil.find("sys/data/list", auths);--%>
+            <%--<% boolean sys_data_list = PermissionUtil.find("/sys/data/list", auths);--%>
             <%--if (sys_data_list) {%>--%>
             <%--<li>--%>
             <%--<a href="<%=basePath%>sys/data/list">--%>
@@ -135,7 +136,7 @@
 
             <!-- 报表管理 -->
             <%
-                boolean sys_data_display = PermissionUtil.find("sys/data/display", auths);
+                boolean sys_data_display = PermissionUtil.find("/sys/data/display", auths);
                 if (sys_data_display) {%>
             <li class="treeview">
                 <a href="#">
@@ -153,7 +154,7 @@
             <%}%>
 
             <!-- 报表上报-->
-            <% boolean sys_report_query = PermissionUtil.find("sys/report/query", auths);
+            <% boolean sys_report_query = PermissionUtil.find("/sys/report/query", auths);
                 if (sys_report_query) {%>
             <li class="treeview">
                 <a href="#">
@@ -167,8 +168,8 @@
             <%}%>
 
             <!-- 通知管理 -->
-            <% boolean sys_news_add = PermissionUtil.find("sys/news/add", auths);
-                boolean sys_news = PermissionUtil.find("sys/news", auths);
+            <% boolean sys_news_add = PermissionUtil.find("/sys/news/add", auths);
+                boolean sys_news = PermissionUtil.find("/sys/news", auths);
                 if (sys_news || sys_news_add) {%>
             <li class="treeview">
                 <a href="#">
@@ -187,15 +188,14 @@
             </li>
             <%}%>
 
-
             <!-- 系统管理 -->
-            <% boolean sys_surveyTime = PermissionUtil.find("sys/surveyTime", auths);
-                boolean sys_auth_add = PermissionUtil.find("sys/auth/add", auths);
-                boolean sys_auth_delete = PermissionUtil.find("sys/auth/delete", auths);
-                boolean sys_role = PermissionUtil.find("sys/role", auths);
-                boolean sys_user = PermissionUtil.find("sys/user", auths);
-                boolean sys_user_search = PermissionUtil.find("sys/user/search", auths);
-                boolean sys_monitor = PermissionUtil.find("sys/monitor", auths);
+            <% boolean sys_surveyTime = PermissionUtil.find("/sys/surveyTime", auths);
+                boolean sys_auth_add = PermissionUtil.find("/sys/auth/add", auths);
+                boolean sys_auth_delete = PermissionUtil.find("/sys/auth/delete", auths);
+                boolean sys_role = PermissionUtil.find("/sys/role", auths);
+                boolean sys_user = PermissionUtil.find("/sys/user", auths);
+                boolean sys_user_search = PermissionUtil.find("/sys/user/search", auths);
+                boolean sys_monitor = PermissionUtil.find("/sys/monitor", auths);
                 if (sys_surveyTime || sys_auth_add || sys_auth_delete || sys_role || sys_user || sys_monitor) {%>
             <li class="treeview">
                 <a href="#">
