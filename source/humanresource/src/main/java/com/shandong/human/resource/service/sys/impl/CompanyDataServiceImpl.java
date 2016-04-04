@@ -179,4 +179,14 @@ public class CompanyDataServiceImpl implements CompanyDataService {
     public Integer getToCheckCompanyDataCount() {
         return companyDataMapper.getToCheckCompanyDataCount();
     }
+
+    /**
+     * 更新上报数据
+     *
+     * @param companyData
+     * @return
+     */
+    public Integer updateCompanyData(CompanyData companyData){
+        return  companyDataMapper.updateCompanyData(companyData);
+    };
 }

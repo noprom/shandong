@@ -136,4 +136,12 @@ public interface CompanyDataService {
      * @return
      */
     Integer getToCheckCompanyDataCount();
+
+    /**
+     * 更新上报数据
+     *
+     * @param companyData
+     * @return
+     */
+    Integer updateCompanyData(CompanyData companyData);
 }

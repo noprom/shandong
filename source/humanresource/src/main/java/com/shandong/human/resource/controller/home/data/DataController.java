@@ -6,11 +6,15 @@ import com.shandong.human.resource.service.sys.CompanyDataService;
 import com.shandong.human.resource.service.sys.SurveyTimeService;
 import com.shandong.human.resource.domain.CompanyDataQuaryList;
 import com.shandong.human.resource.util.Constant;
+import com.shandong.human.resource.util.Pair;
+import com.shandong.human.resource.util.RegExpUtil;
 import com.shandong.human.resource.util.Result;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,11 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,6 +48,20 @@ public class DataController {
 
     @Autowired
     public CompanyDataService companyDataService;
+
+
+    private static final List<Pair<String,String>> companyDataErrMsg;
+    static {
+        companyDataErrMsg = new ArrayList<Pair<String, String>>();
+        companyDataErrMsg.add(new Pair<String, String>("reduce_type",Constant.REDUCE_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("reason1",Constant.REASON1_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("reason2",Constant.REASON2_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("reason3",Constant.REASON3_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("reason1_explain",Constant.REASON1EXP_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("reason2_explain",Constant.REASON2EXP_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("reason3_explain",Constant.REASON3EXP_ERROR));
+        companyDataErrMsg.add(new Pair<String, String>("other_reason",Constant.OTHERREASONEXP_ERROR));
+    }
 
     /**
      * 添加原因和类型
@@ -280,83 +296,38 @@ public class DataController {
      */
     @RequestMapping(value = "/home/data/edit", method = RequestMethod.POST)
     @ResponseBody
-    public Result editData(Integer survey_time_id,
-                           String init_people,
-                           String cur_people,
-                           String reduce_type,
-                           String reason1,
-                           String reason1_explain,
-                           String reason2,
-                           String reason2_explain,
-                           String reason3,
-                           String reason3_explain,
-                           String other_reason,
+    public Result editData(@Valid CompanyData companyData ,BindingResult result,
                            HttpSession session) throws IOException {
-        //建档期就业人数验证
-        Matcher matcher = Pattern.compile("^[1-9][0-9]{0,10}$|^0$").matcher(init_people);
-        if (!matcher.matches()) {
+        Pattern integerReg = Pattern.compile(RegExpUtil.UNSIGNED_INT);
+        if(!integerReg.matcher(companyData.getInit_people().toString()).matches()){
             return new Result(Result.Status.ERROR,Constant.INITPEOPLE_ERROR);
         }
-        //调查期就业人数验证
-        matcher = Pattern.compile("^[1-9][0-9]{0,9}$|^0$").matcher(cur_people);
-        if (!matcher.matches()) {
+
+        if(!integerReg.matcher(companyData.getCur_people().toString()).matches()){
             return new Result(Result.Status.ERROR,Constant.CURPEOPLE_ERROR);
         }
-        //主要原因说明验证
-        matcher = Pattern.compile("^.{0,255}$").matcher(reason1_explain);
-        if (!matcher.matches()) {
-            return new Result(Result.Status.ERROR,Constant.REASON1EXP_ERROR);
-        }
-        //次要原因说明验证
-        matcher = Pattern.compile("^.{0,255}$").matcher(reason2_explain);
-        if (!matcher.matches()) {
-            return new Result(Result.Status.ERROR,Constant.REASON2EXP_ERROR);
-        }
-        //第三原因说明验证
-        matcher = Pattern.compile("^.{0,255}$").matcher(reason3_explain);
-        if (!matcher.matches()) {
-            return new Result(Result.Status.ERROR,Constant.REASON3EXP_ERROR);
-        }
-        //其它原因说明验证
-        matcher = Pattern.compile("^.{0,255}$").matcher(other_reason);
-        if (!matcher.matches()) {
-            return new Result(Result.Status.ERROR,Constant.REASON3EXP_ERROR);
-        }
-        if (other_reason == "") {
-            map.put("success", "error51");
-            return map;
+
+        User user = (User) session.getAttribute(Constant.LOGIN_USER);
+        if(result.hasErrors()){
+            List<FieldError> errors = result.getFieldErrors();
+            return new Result(Result.Status.ERROR, getFirstErrMsg(errors));
         }
 
-        CompanyData companyData = new CompanyData();
-        companyData.setSurvey_time_id(survey_time_id.intValue());
-        companyData.setInit_people(Integer.parseInt(init_people));
-        companyData.setCur_people(Integer.parseInt(cur_people));
-        companyData.setReduce_type(reduce_type);
-        companyData.setReason1(reason1);
-        companyData.setReason1_explain(reason1_explain);
-        companyData.setReason2(reason2);
-        companyData.setReason2_explain(reason2_explain);
-        companyData.setReason3(reason3);
-        companyData.setReason3_explain(reason3_explain);
-        companyData.setOther_reason(other_reason);
-        User user = (User) session.getAttribute(Constant.LOGIN_USER);
-        int id = user.getId();
-        ArrayList<CompanyData> companyDatas = companyDataService.getCompanyDataByCompanyIdLastestTime(id);
-        companyData.setStatus(0);
-        if (companyDatas.size() == 0) {
-            companyData.setPid(0);
-            companyData.setCompany_id(id);
-            companyData.setCreate_time(new Date());
-            companyDataService.companyDataAddFirst(companyData);
-            map.put("success", "success");
-            return map;
+        companyDataService.updateCompanyData(companyData);
+
+        return new Result(Result.Status.SUCCESS,Constant.DEAL_SUCCESS);
+    }
+
+    private String getFirstErrMsg(List<FieldError> errors){
+        List<String> errorStr = new ArrayList<String>();
+        for(FieldError r:errors){
+            errorStr.add(r.getField());
         }
-        companyData.setCompany_id(id);
-        CompanyData companyData1 = companyDatas.remove(0);
-        companyData.setPid(companyData1.getId());
-        companyData.setCreate_time(companyData1.getCreate_time());
-        companyDataService.companyDataAddFirst(companyData);
-        map.put("success", "success");
-        return map;
+        for(Pair<String,String> r:companyDataErrMsg){
+            if(errorStr.contains(r.first)){
+                return r.second;
+            }
+        }
+        return "未知错误";
     }
 }

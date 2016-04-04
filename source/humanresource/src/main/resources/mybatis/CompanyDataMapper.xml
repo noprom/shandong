@@ -125,4 +125,14 @@
     <select id="getToCheckCompanyDataCount" resultType="int">
         SELECT count(1) FROM company_data WHERE status IN (0, 1)
     </select>
+
+    <update id="updateCompanyData" parameterType="CompanyData">
+        SET @TIME = now();
+        UPDATE company_data
+        SET init_people = #{init_people} , cur_people = #{cur_people} , reduce_type = #{reduce_type} ,
+         reason1 = #{reason1} , reason1_explain = #{reason1_explain} ,
+          reason2 = #{reason2} , reason2_explain = #{reason2_explain} ,
+           reason3 = #{reason3} , reason3_explain = #{reason3_explain} , other_reason = #{other_reason} ,
+           status = 0 , update_time = @TIME WHERE id = #{id}
+    </update>
 </mapper>

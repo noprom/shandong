@@ -1,6 +1,6 @@
 package com.shandong.human.resource.domain;
 
-import com.shandong.human.resource.util.RegExUtil;
+import com.shandong.human.resource.util.RegExpUtil;
 
 import javax.validation.constraints.Pattern;
 
@@ -19,19 +19,19 @@ public class Company {
     private String address;             //地址,5~100个字符
     @Pattern(regexp = "[0-9a-zA-Z]{2,9}")
     private String code;                //组织机构代码,只可输入字母、数字，2~9位
-    @Pattern(regexp = RegExUtil.CH_EN + "{5,30}")//^[a-zA-Z]+$  ,^.{0,60}$
+    @Pattern(regexp = RegExpUtil.CH_EN + "{5,30}")//^[a-zA-Z]+$  ,^.{0,60}$
     private String name;                //企业名称
     @Pattern(regexp = ".{2,255}")       //主要经营业务2到255位
     private String business;            //主要经营业务
-    @Pattern(regexp = RegExUtil.CH_EN + "{2,20}")
+    @Pattern(regexp = RegExpUtil.CH_EN + "{2,20}")
     private String contact;             //联系人,中文、英文
     @Pattern(regexp = "\\b\\d{6}\\b")
     private String zipcode;             //邮政编码,只可填写6位数字
-    @Pattern(regexp = RegExUtil.PHONE_ZUOJI)
+    @Pattern(regexp = RegExpUtil.PHONE_ZUOJI)
     private String phone;               //联系电话,格式必须符合（区号）+电话号码或者为手机号码
-    @Pattern(regexp = RegExUtil.FAX)
+    @Pattern(regexp = RegExpUtil.FAX)
     private String fax;                 //传真,格式必须符合（区号）+电话
-    @Pattern(regexp = RegExUtil.EMAIL)
+    @Pattern(regexp = RegExpUtil.EMAIL)
     private String email;                //EMAIL,格式必须符合xxx@xxx.xxx
     private int industry_involved;    //所属行业
     private int industry_type;        //企业性质

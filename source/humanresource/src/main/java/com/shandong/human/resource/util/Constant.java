@@ -313,6 +313,27 @@ public class Constant {
      */
     public static final String CURPEOPLE_ERROR = "CURPEOPLE_ERROR";
 
+
+    /**
+     * 主要原因为空或过长
+     */
+    public static final String REDUCE_ERROR = "REDUCE_ERROR";
+
+    /**
+     * 主要原因为空或过长
+     */
+    public static final String REASON1_ERROR = "REASON1_ERROR";
+
+    /**
+     * 次要原因为空或过长
+     */
+    public static final String REASON2_ERROR = "REASON2_ERROR";
+
+    /**
+     * 第三原因为空或过长
+     */
+    public static final String REASON3_ERROR = "REASON3_ERROR";
+
     /**
      * 主要原因说明为空或过长
      */
@@ -327,4 +348,14 @@ public class Constant {
      * 第三原因说明为空或过长
      */
     public static final String REASON3EXP_ERROR = "REASON3EXP_ERROR";
+
+    /**
+     * 其他原因说明为空或过长
+     */
+    public static final String OTHERREASONEXP_ERROR = "OTHERREASONEXP_ERROR";
+
+    /**
+     * 数据更新失败
+     */
+    public static final String DATAUPDATE_FAILED = "DATAUPDATE_FAILED";
 }

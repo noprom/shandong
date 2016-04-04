@@ -32,12 +32,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                数据填报
+                数据修改
             </h1>
             <ol class="breadcrumb">
                 <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
                 <li>企业</li>
-                <li class="active">数据填报</li>
+                <li class="active">数据修改</li>
             </ol>
         </section>
 
@@ -46,7 +46,8 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <form role="form" id="add-form">
+                    <form role="form" id="edit-form">
+                        <input type="hidden" value="${companyData.id}" name="id">
                         <div class="row">
                             <!-- left column -->
                             <div class="col-md-6">
@@ -108,7 +109,7 @@
                                                       id="reason1_explain">${companyData.reason1_explain}</textarea>
                                         </div>
                                         <div class="box-footer">
-                                            <button type="button" onclick="onSubmit()" class="btn btn-primary">上报
+                                            <button id="edit-btn" type="button" class="btn btn-primary">上报
                                             </button>
                                         </div>
                                     </div><!-- /.box-body -->
@@ -179,74 +180,57 @@
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
     <script>
         $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false
-            });
+            $("#edit-btn").on('click', function () {
+                // ajax 方式提交数据到某个url
+//                alert("fs");
+                var postUrl = "<%= basePath%>home/data/edit";
+                $.ajax({
+                    url: postUrl,//提交的地址
+                    data: $("#edit-form").serialize(),
+                    // 提交的数据,此处将整个表单的字段全部提交
+                    // 也可以单独提交某个字段
+//                data: {
+//                    "username": username,
+//                    "password": password
+//                },
+                    method: "post",
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data.status == 'SUCCESS') {
+                            toastr.success(data.info);
+                            // 1000ms之后执行的操作
+                            setTimeout(function () {
+                                // 刷新页面
+//                                location.reload(true);
+                                // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                                window.location.href = "<%=basePath%>home/data/add";
+                            }, 3000);
+                        } else {
+                            toastr.error(data.info);
+                            return false;
+                        }
+                    }
+                });
+            })
         });
 
-        $(document).ready(function () {
-            <%Integer status=(Integer) request.getAttribute("status");%>
-            var status = "<%=status.intValue()%>";
-            <%String infoStr=(String)request.getAttribute("Info");%>
-            var info = "<%=infoStr%>";
-            if (status == -2 || status == -1) {
-                toastr.error(info);
-            }
-            else if (status >= 0) {
-                toastr.error(info);
-                setTimeout(function () {
-                    window.location.href = "<%=basePath%>";
-                }, 3500);
-            }
-        });
+        <%--$(document).ready(function () {--%>
+            <%--<%Integer status=(Integer) request.getAttribute("status");%>--%>
+            <%--var status = "<%=status.intValue()%>";--%>
+            <%--<%String infoStr=(String)request.getAttribute("Info");%>--%>
+            <%--var info = "<%=infoStr%>";--%>
+            <%--if (status == -2 || status == -1) {--%>
+                <%--toastr.error(info);--%>
+            <%--}--%>
+            <%--else if (status >= 0) {--%>
+                <%--toastr.error(info);--%>
+                <%--setTimeout(function () {--%>
+                    <%--window.location.href = "<%=basePath%>";--%>
+                <%--}, 3500);--%>
+            <%--}--%>
+        <%--});--%>
 
-        function onSubmit() {
-            var postUrl = "<%=basePath%>home/data/add/submit";
-            $.ajax({
-                url: postUrl,
-                data: $("#add-form").serialize(),
-                async: false,
-                type: 'POST',
-                dataType: "json",
-                success: function (data) {
-                    if (data.success == "success") {
-                        toastr.success("上报成功");
-                        window.location.href = "<%=basePath%>";
-                    }
-                    else if (data.success == "error0") {
-                        toastr.error("建档期就业人数格式有误！");
-                    }
-                    else if (data.success == "error1") {
-                        toastr.error("调查期就业人数格式有误！");
-                    }
-                    else if (data.success == "error2") {
-                        toastr.error("主要原因说明过长！");
-                    }
-                    else if (data.success == "error3") {
-                        toastr.error("次要原因过长！");
-                    }
-                    else if (data.success == "error4") {
-                        toastr.error("第三原因说明过长！");
-                    }
-                    else if (data.success == "error5") {
-                        toastr.error("其它原因说明过长！");
-                    }
-                    else if (data.success == "error51") {
-                        toastr.error("其它原因不能为空！");
-                    }
-                },
-                error: function () {
-                    toastr.error("上报失败");
-                }
-            });
-
-        }
 
     </script>
 </body>
