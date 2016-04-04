@@ -18,7 +18,7 @@ public interface CompanyService {
      *
      * @param company
      */
-    void setCompanyInfo(Company company);
+    int setCompanyInfo(Company company);
 
     /**
      * 通过城市获得公司数量
