@@ -6,11 +6,14 @@ import com.shandong.human.resource.service.sys.AuthService;
 import com.shandong.human.resource.service.sys.UserRoleService;
 import com.shandong.human.resource.service.sys.UserService;
 import com.shandong.human.resource.util.Constant;
+import com.shandong.human.resource.util.MD5;
+import com.shandong.human.resource.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,37 +61,27 @@ public class LogIOController {
     /**
      * 登录
      *
-     * @param userName
+     * @param username
      * @param password
-     * @param model
-     * @param request
-     * @param response
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public void login(String userName, String password, HttpSession session,
-                      Model model, HttpServletRequest request, HttpServletResponse response) {
-        if (userName == null || password == null) {
-            try {
-                response.sendRedirect("/404");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return;
+    public
+    @ResponseBody
+    Result login(String username, String password, HttpSession session) {
+        if (username.equals("") || password.equals("")) {
+            return new Result(Result.Status.ERROR, Constant.USERNAME_PASSWORD_CANNOT_BE_EMPTY);
         }
-
-        User localUser = userService.selectByNamePwd(userName, password);
+        // 用户密码MD5加盐加密
+        String encStr = password + username + Constant.MD5_HASH;
+        encStr = MD5.digest(encStr);
+        User localUser = userService.selectByNamePwd(username, encStr);
         if (localUser == null) {
-            try {
-                response.sendRedirect("/404");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return;
+            return new Result(Result.Status.ERROR, Constant.USERNAME_PASSWORD_ERROR);
         }
 
+        // 查找用户所有的权限
         List<UserRole> roles = userRoleService.getRoleByUserID(localUser.getId());
-
         Set<Auth> auth = new HashSet<Auth>();
         for (UserRole r : roles) {
             List<AuthRole> roleAuth = authRoleService.selectByRoleID(r.getRole_id());
@@ -104,11 +97,7 @@ public class LogIOController {
 
         session.setAttribute(Constant.LOGIN_USER, localUser);
         session.setAttribute("auth", auth);
-        try {
-            response.sendRedirect("/");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return new Result(Result.Status.SUCCESS, Constant.LOGIN_SUCCESS);
     }
 
     /**

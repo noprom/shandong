@@ -7,10 +7,7 @@ import com.shandong.human.resource.domain.User;
 import com.shandong.human.resource.service.home.AreaService;
 import com.shandong.human.resource.service.home.CompanyService;
 import com.shandong.human.resource.service.sys.*;
-import com.shandong.human.resource.util.Constant;
-import com.shandong.human.resource.util.Pager;
-import com.shandong.human.resource.util.Result;
-import com.shandong.human.resource.util.Pair;
+import com.shandong.human.resource.util.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +31,7 @@ import java.util.*;
 @RequestMapping("/sys")
 @Controller
 public class UserController {
+
     // 静态资源前缀
     public static final String STATIC_PREFIX = "human-resource/sys/user";
 
@@ -107,18 +105,21 @@ public class UserController {
      *
      * @param user
      * @param role
-     * @param request
-     * @param response
      */
     @RequestMapping(value = "/user/add", method = RequestMethod.POST)
     public
     @ResponseBody
-    Result addUser(@Valid User user, BindingResult result, Integer role,
-                   HttpServletRequest request, HttpServletResponse response) {
+    Result addUser(@Valid User user, BindingResult result, Integer role) {
         if (result.hasErrors()) {
             return new Result(Result.Status.ERROR, Constant.USERNAME_ILLEGAL);
         }
-
+        // 用户密码MD5加盐加密
+        String encStr = user.getPassword() + user.getUsername() + Constant.MD5_HASH;
+        encStr = MD5.digest(encStr);
+        user.setPassword(encStr);
+        String adminPwd = "adminadmin" + Constant.MD5_HASH;
+        adminPwd = MD5.digest(adminPwd);
+        logger.debug("md5->" + adminPwd);
         Integer uid = userService.insertUser(user);
         if (uid > 0) {
             Integer check = userRoleService.insertUserRole(user.getId(), role);

@@ -234,11 +234,13 @@ public class Constant {
      **/
     public static final String SUBMIT_SUCCESS = "SUBMIT_SUCCESS";
 
-    public static final String HOST_URL = "http://localhost:8080/bigdatatalentpool";
+    /**
+     * 用户名密码不能为空
+     */
+    public static final String USERNAME_PASSWORD_CANNOT_BE_EMPTY = "USERNAME_PASSWORD_CANNOT_BE_EMPTY";
 
-    public static void main(String[] args) {
-        String str = new String("ef6606b75e04d972715278be7ff9bbf7");
-        System.out.println("len = " + str.length());
-        return;
-    }
+    /**
+     * 用户名或者密码错误
+     */
+    public static final String USERNAME_PASSWORD_ERROR = "USERNAME_PASSWORD_ERROR";
 }
