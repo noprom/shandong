@@ -1,5 +1,6 @@
 package com.shandong.human.resource.service.sys;
 
+import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.domain.CompanyData;
 
 import java.util.ArrayList;
@@ -152,4 +153,13 @@ public interface CompanyDataService {
      * @return
      */
     void provinceCheck(Integer id, Integer status, String npr);
+
+    /**
+     * 根据公司和时间查询上报数据
+     *
+     * @param company_id
+     * @param survey_time_id
+     * @return
+     */
+    List<CompanyData> selectByCompanyandSurveyTime(Integer company_id, Integer survey_time_id);
 }

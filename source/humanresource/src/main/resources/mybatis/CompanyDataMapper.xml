@@ -144,4 +144,8 @@
     <update id="provinceCheck" >
         UPDATE company_data SET status = #{status},not_pass_reason=#{npr} WHERE id=#{id}
     </update>
+
+    <select id="selectByCompanyandSurveyTime" resultMap="CompanyData">
+          SELECT * FROM company_data WHERE survey_time_id = #{survey_time_id} AND company_id = #{company_id}
+    </select>
 </mapper>

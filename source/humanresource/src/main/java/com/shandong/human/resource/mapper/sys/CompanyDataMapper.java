@@ -190,4 +190,13 @@ public interface CompanyDataMapper {
      * @return
      */
     void provinceCheck(@Param("id")Integer id,@Param("status")Integer status,@Param("npr")String npr);
+
+    /**
+     * 根据公司和时间查询上报数据
+     *
+     * @param company_id
+     * @param survey_time_id
+     * @return
+     */
+    List<CompanyData> selectByCompanyandSurveyTime(@Param("company_id") Integer company_id,@Param("survey_time_id") Integer survey_time_id);
 }

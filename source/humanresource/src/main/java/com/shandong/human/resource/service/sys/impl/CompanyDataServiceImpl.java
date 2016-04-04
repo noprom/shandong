@@ -1,5 +1,6 @@
 package com.shandong.human.resource.service.sys.impl;
 
+import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.domain.CompanyData;
 import com.shandong.human.resource.mapper.sys.CompanyDataMapper;
 import com.shandong.human.resource.service.sys.CompanyDataService;
@@ -186,9 +187,9 @@ public class CompanyDataServiceImpl implements CompanyDataService {
      * @param companyData
      * @return
      */
-    public Integer updateCompanyData(CompanyData companyData){
-        return  companyDataMapper.updateCompanyData(companyData);
-    };
+    public Integer updateCompanyData(CompanyData companyData) {
+        return companyDataMapper.updateCompanyData(companyData);
+    }
 
     /**
      * 更新数据的状态
@@ -198,8 +199,18 @@ public class CompanyDataServiceImpl implements CompanyDataService {
      * @param npr
      * @return
      */
-    public void provinceCheck(Integer id, Integer status,String npr)
-    {
-        companyDataMapper.provinceCheck(id,status,npr);
+    public void provinceCheck(Integer id, Integer status, String npr) {
+        companyDataMapper.provinceCheck(id, status, npr);
+    }
+
+    /**
+     * 根据公司和时间查询上报数据
+     *
+     * @param company_id
+     * @param survey_time_id
+     * @return
+     */
+    public List<CompanyData> selectByCompanyandSurveyTime(Integer company_id, Integer survey_time_id) {
+        return companyDataMapper.selectByCompanyandSurveyTime(company_id, survey_time_id);
     }
 }

@@ -166,7 +166,6 @@ public class DataController {
             return new Result(Result.Status.ERROR, Constant.SEASSON_TIMEOUT);
         }
 
-
         Pattern integerReg = Pattern.compile(RegExpUtil.UNSIGNED_INT);
         if (companyData.getInit_people() == null || !integerReg.matcher(companyData.getInit_people().toString()).matches()) {
             return new Result(Result.Status.ERROR, Constant.INITPEOPLE_ERROR);
@@ -178,6 +177,11 @@ public class DataController {
         companyData.setCompany_id(user.getId());
         companyData.setPid(0);
         companyData.setCreate_time(new Date());
+        List<CompanyData> temp = companyDataService.selectByCompanyandSurveyTime(companyData.getCompany_id(),companyData.getSurvey_time_id());
+        if(temp!=null&&temp.size()!=0){
+            return new Result(Result.Status.ERROR, Constant.DATE_DUPLICATE);
+        }
+
         companyDataService.companyDataAddFirst(companyData);
 
         return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);

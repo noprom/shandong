@@ -55,6 +55,7 @@
                                 <thead>
                                 <tr>
                                     <th>建档期就业人数</th>
+                                    <th>建档期就业人数</th>
                                     <th>调查期就业人数</th>
                                     <th>状态</th>
                                 </tr>
@@ -62,6 +63,23 @@
                                 <tbody>
                                 <c:forEach items="${companyDataList}" var="v">
                                     <tr>
+                                        <td>
+                                            <c:set var="typeflag" value="true"/>
+                                            <c:forEach items="${listSurverTime}" var="r" varStatus="loopstatus">
+                                                <c:if test="${typeflag eq 'true'}">
+                                                </c:if>
+                                                <c:if test="${v.survey_time_id eq r.id}">
+                                                    <fmt:formatDate
+                                                            value="${r.start_time}"
+                                                            type="both"
+                                                            pattern="yyyy-MM-dd HH:mm"/>
+                                                        到 <fmt:formatDate value="${r.end_time}" type="both"
+                                                                          pattern="yyyy-MM-dd HH:mm"/>
+                                                    <c:set var="typeflag" value="false"/>
+                                                </c:if>
+                                            </c:forEach>
+                                            <c:if test="${typeflag eq 'true'}">未知时间</c:if>
+                                        </td>
                                         <td>${v.init_people}</td>
                                         <td>${v.cur_people}</td>
                                         <td>
