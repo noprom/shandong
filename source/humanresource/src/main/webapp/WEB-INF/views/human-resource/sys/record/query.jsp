@@ -55,14 +55,13 @@
                                 <input type="text" class="form-control" name="name">
                             </div>
                             <div class="col-xs-2">
-                                <label>企业代</label>
+                                <label>企业代码</label>
                                 <input type="text" class="form-control" name="code">
                             </div>
                             <div class="col-xs-2">
                                 <label>联系人</label>
                                 <input type="text" class="form-control" name="contact">
                             </div>
-
 
                             <button class="btn btn-primary" style="margin-top:24px;" type="submit" id="submit-btn">查询</button>
                         </form>
@@ -81,9 +80,9 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>地址</th>
                                     <th>公司名称</th>
                                     <th>联系人</th>
+                                    <th>地址</th>
                                     <th>电话号码</th>
                                     <th>详情</th>
                                 </tr>
@@ -92,9 +91,9 @@
                                 <c:forEach items="${recordResult}" var="v">
                                     <tr>
                                         <td>${v.id}</td>
-                                        <td>${v.address}</td>
                                         <td>${v.name}</td>
                                         <td>${v.contact}</td>
+                                        <td>${v.address}</td>
                                         <td>${v.phone}</td>
                                         <td><a href="<%=basePath%>sys/record/${v.id}" class="btn btn-primary">详情</a>
                                         </td>

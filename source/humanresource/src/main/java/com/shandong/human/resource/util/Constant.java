@@ -304,6 +304,11 @@ public class Constant {
     public static final String COMPANY_EMAIL_ILLEGAL = "COMPANY_EMAIL_ILLEGAL";
 
     /**
+     * 审核不通过必须填写不通过原因
+     */
+    public static final String COMPANY_DATA_NOT_PASS_MUST_HAVE_A_REASON = "COMPANY_DATA_NOT_PASS_MUST_HAVE_A_REASON";
+
+    /**
      * 建档期就业人数格式有误
      */
     public static final String INITPEOPLE_ERROR = "INITPEOPLE_ERROR";

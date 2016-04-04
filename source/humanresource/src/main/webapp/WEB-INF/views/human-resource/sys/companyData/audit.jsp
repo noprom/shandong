@@ -36,14 +36,14 @@
 
         <section class="content">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <!-- Horizontal Form -->
                     <div class="box box-warning">
                         <div class="box-header with-border">
                             <h3 class="box-title">上报数据详情</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <form role="form" action="<%=basePath%>sys/data/audit" method="post">
+                            <form role="form" method="post" id="company-data-form">
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label for="company_id">公司名</label>
@@ -129,7 +129,7 @@
                                 <!-- select -->
                                 <div class="form-group">
                                     <label>审核</label>
-                                    <select class="form-control" name="status">
+                                    <select class="form-control" name="status" id="status">
                                         <c:choose>
                                             <c:when test="${localUser.type eq 1}">
                                                 <%--省用户--%>
@@ -150,12 +150,12 @@
 
                                 <div class="form-group">
                                     <label for="not_pass_reason">审核不通过原因</label>
-                                    <input type="text" value=${companyData.not_pass_reason} class="form-control"
+                                    <input type="text" value="${companyData.not_pass_reason}" class="form-control"
                                            name="not_pass_reason" id="not_pass_reason"
                                            placeholder="${companyData.not_pass_reason}">
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">提交修改</button>
+                                    <button type="button" id="submit-btn" class="btn btn-primary">提交修改</button>
                                 </div>
                             </form>
                         </div><!-- /.box-body -->
@@ -166,8 +166,44 @@
     </div>
 </div>
 
-
 <!-- /.主要内容结束 -->
 <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
+<script>
+    $(function () {
+        // 提交按钮
+        $("#submit-btn").on('click', function () {
+            var status = $("#status").val().trim();
+            var not_pass_reason = $("#not_pass_reason").val();
+
+            if ((status == -2 || status == -1) && not_pass_reason == "") {
+                toastr.error("审核不通过必须填写不通过原因");
+                return false;
+            }
+
+            var postUrl = "<%= basePath%>sys/data/audit";
+            $.ajax({
+                url: postUrl,//提交的地址
+                data: $("#company-data-form").serialize(),
+                method: "post",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 'SUCCESS') {
+                        toastr.success(data.info);
+                        // 1000ms之后执行的操作
+                        setTimeout(function () {
+                            // 刷新页面
+                            // location.reload(true);
+                            // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                            window.location.href = "<%=basePath%>sys/data/list";
+                        }, 1000);
+                    } else {
+                        toastr.error(data.info);
+                        return false;
+                    }
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

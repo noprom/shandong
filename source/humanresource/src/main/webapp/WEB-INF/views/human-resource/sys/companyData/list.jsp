@@ -83,7 +83,15 @@
                                         </td>
                                         <td>
                                             <c:choose>
-                                                <c:when test="${(v.status eq 1) or (v.status eq 0)}">
+                                                <%--市用户只允许在待审核的情况下编辑或者审核--%>
+                                                <c:when test="${(localUser.type >= 170) and (v.status eq 0)}">
+                                                    <a href="<%=basePath%>sys/data/edit/${v.id}"
+                                                       class="btn btn-primary">编辑</a>
+                                                    <a href="<%=basePath%>sys/data/audit/${v.id}"
+                                                       class="btn btn-primary">审核</a>
+                                                </c:when>
+                                                <%--省用户查看市用户已经审核通过的--%>
+                                                <c:when test="${(localUser.type eq 1) and (v.status eq 1)}">
                                                     <a href="<%=basePath%>sys/data/edit/${v.id}"
                                                        class="btn btn-primary">编辑</a>
                                                     <a href="<%=basePath%>sys/data/audit/${v.id}"
@@ -97,8 +105,6 @@
                                     </tr>
                                 </c:forEach>
                                 </tbody>
-                                <tfoot>
-                                </tfoot>
                             </table>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
