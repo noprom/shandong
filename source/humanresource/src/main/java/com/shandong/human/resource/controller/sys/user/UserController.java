@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -57,6 +58,23 @@ public class UserController {
 
     @Autowired
     private SurveyTimeService surveyTimeService;
+
+    @RequestMapping(value="/user/detail/{id}",method = RequestMethod.GET)
+    public String detail(Model model , @PathVariable("id") Integer id)
+    {
+        System.out.println("+++++++++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++");
+
+        CompanyData cd = companyDataService.getCompanyDataById(id);
+        model.addAttribute("check", cd);
+        System.out.println(cd.getCompany_id());
+
+        return STATIC_PREFIX + "/detail";
+    }
 
     /**
      * 用户列表
