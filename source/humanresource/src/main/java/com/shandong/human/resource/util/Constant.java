@@ -368,4 +368,9 @@ public class Constant {
      * 您已提交过该时间段申报
      */
     public static final String DATAUPDATE_FAILED = "DATAUPDATE_FAILED";
+
+    /**
+     * 您必须选择上报的数据
+     */
+    public static final String YOU_MUST_CHOOSE_THA_DATA_TO_REPORT = "YOU_MUST_CHOOSE_THA_DATA_TO_REPORT";
 }
