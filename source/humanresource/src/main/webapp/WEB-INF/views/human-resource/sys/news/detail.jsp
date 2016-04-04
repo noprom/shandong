@@ -27,6 +27,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>通知管理</li>
                 <li class="active">通知详情</li>
             </ol>
         </section>

@@ -25,6 +25,11 @@
             <h1>
                 企业备案详情
             </h1>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>企业备案管理</li>
+                <li class="active">企业备案详情</li>
+            </ol>
         </section>
 
 

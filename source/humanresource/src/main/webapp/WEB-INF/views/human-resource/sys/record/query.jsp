@@ -26,6 +26,11 @@
                 企业备案
                 <small>备案列表</small>
             </h1>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>企业备案管理</li>
+                <li class="active">备案列表</li>
+            </ol>
         </section>
 
         <!-- Main content -->

@@ -34,11 +34,11 @@
                 角色管理
                 <small>系统角色</small>
             </h1>
-            <%--<ol class="breadcrumb">--%>
-            <%--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--%>
-            <%--<li><a href="#">Tables</a></li>--%>
-            <%--<li class="active">Simple</li>--%>
-            <%--</ol>--%>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>系统管理</li>
+                <li class="active">角色管理</li>
+            </ol>
         </section>
 
         <!-- Main content -->
