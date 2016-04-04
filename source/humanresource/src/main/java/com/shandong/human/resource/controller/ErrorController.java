@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * 错误页控制器
@@ -26,9 +27,10 @@ public class ErrorController {
      * @return 视图
      */
     @RequestMapping(value = "/error", method = RequestMethod.GET)
-    public String error(Model model, HttpServletRequest request) {
-        String error = (String) request.getAttribute("error");
+    public String error(Model model, HttpSession session, HttpServletRequest request) {
+        String error = (String) session.getAttribute("error");
         if (error == null) {
+            session.removeAttribute("error");
             request.setAttribute("error", "未指定错误");
         } else {
             request.setAttribute("error", error);
