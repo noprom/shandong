@@ -26,8 +26,8 @@ public class CompanyServiceImpl implements CompanyService {
      *
      * @param company
      */
-    public void setCompanyInfo(Company company) {
-        companyMapper.setCompanyInfo(company);
+    public int setCompanyInfo(Company company) {
+        return companyMapper.setCompanyInfo(company);
     }
 
     /**

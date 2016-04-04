@@ -190,6 +190,36 @@
             <%}%>
         });
 
+
+        /**
+         * 下拉框选择城市的时候响应事件
+         */
+        function cityChange() {
+            var areaBox = document.getElementById("area_id");
+            var obj = document.getElementById("city_id");
+            var index = obj.selectedIndex; //序号，取当前选中选项的序号
+            var str = obj.options[index].value;
+            var str1 = "<%=basePath%>home/company/add/" + str;
+
+            $.ajax({
+                type: 'get',
+                url: str1,
+                async: false,
+                data: {},
+                dataType: 'json',
+                success: function (data) {
+                    areaBox.options.length = 0;
+                    for (var i = 0; i < data.length; i++) {
+                        areaBox.add(new Option(data[i].name, data[i].id));
+                    }
+                },
+                error: function () {
+                    toastr.erroralert("服务器无法连接！");
+                }
+            });
+
+        }
+
         $(function () {
             // 提交备案数据
             $("#submit-btn").on('click', function () {
@@ -265,35 +295,6 @@
                     }
                 });
             });
-
-            /**
-             * 下拉框选择城市的时候响应事件
-             */
-            function cityChange() {
-                var areaBox = document.getElementById("area_id");
-                var obj = document.getElementById("city_id");
-                var index = obj.selectedIndex; //序号，取当前选中选项的序号
-                var str = obj.options[index].value;
-                var str1 = "<%=basePath%>home/company/add/" + str;
-
-                $.ajax({
-                    type: 'get',
-                    url: str1,
-                    async: false,
-                    data: {},
-                    dataType: 'json',
-                    success: function (data) {
-                        areaBox.options.length = 0;
-                        for (var i = 0; i < data.length; i++) {
-                            areaBox.add(new Option(data[i].name, data[i].id));
-                        }
-                    },
-                    error: function () {
-                        toastr.erroralert("服务器无法连接！");
-                    }
-                });
-
-            }
         });
 
     </script>
