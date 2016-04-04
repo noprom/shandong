@@ -71,7 +71,7 @@ public class ReportServiceImpl implements ReportService {
      * @param name
      * @return
      */
-    public int getCompanyIdByName(String name) {
+    public Integer getCompanyIdByName(String name) {
         return companyMapper.getCompanyIdByName(name).getId();
     }
 

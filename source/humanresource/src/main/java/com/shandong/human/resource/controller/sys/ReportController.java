@@ -102,9 +102,21 @@ public class ReportController {
      */
     @RequestMapping(value = "/sys/report/queryByName", method = RequestMethod.POST)
     public String getAllCompanyDataByName(Model model, String name) {
-        int company_id = 0;
-        company_id = reportService.getCompanyIdByName(name);
-        ArrayList<CompanyData> list = reportService.getCompanyDataByCompanyIdS2(company_id);
+        Integer company_id = 0;
+        System.out.println(name);
+        ArrayList<CompanyData> list = null;
+
+        try
+        {
+            company_id = reportService.getCompanyIdByName(name);
+        }
+        catch (Exception e)
+        {
+            model.addAttribute("reportResult", list);
+            return STATIC_PREFIX + "/query";
+        }
+
+        list = reportService.getCompanyDataByCompanyIdS2(company_id);
         model.addAttribute("reportResult", list);
         return STATIC_PREFIX + "/query";
     }
