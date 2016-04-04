@@ -53,93 +53,122 @@
                         <div class="box-body">
                             <form class="form-horizontal" role="form" id="select-user-form"
                                   action="<%=basePath%>sys/user/search" method="post">
-                                <div class="row form-group">
-                                    <lable class="col-lg-5 control-label" for="name">用户名</lable>
-                                    <div class="col-lg-7">
-                                        <input id="userName" class="form-control" type="text" name="userName"
-                                               placeholder="用户名">
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-4 ">
+                                            <lable class="control-label" for="name">用户名</lable>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <input id="userName" class="form-control" type="text" name="userName"
+                                                   placeholder="用户名">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-4 ">
+                                            <lable class="control-label" for="name">单位名称</lable>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <input id="companyName" class="form-control" type="text" name="companyName"
+                                                   placeholder="单位名称">
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="row form-group">
-                                    <lable class="col-lg-5 control-label" for="name">单位名称</lable>
-                                    <div class="col-lg-7">
-                                        <input id="companyName" class="form-control" type="text" name="companyName"
-                                               placeholder="单位名称">
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-4">
+                                            <lable class="control-label" for="type">类型</lable>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <select name="userType" class="form-control">
+                                                <option name="userType" value="null">所有用户</option>
+                                                <option name="userType" value="1">省用户</option>
+                                                <option name="userType" value="2">企业用户</option>
+                                                <c:forEach items="${cityList}" var="v">
+                                                    <option name="userType" value="${v.id}">${v.name}用户</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-4">
+                                            <lable class="control-label" for="role">所属地市</lable>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <select id="areaID" name="areaID" class="form-control">
+                                                <option name="areaID" value="null">所有地市</option>
+                                                <c:forEach items="${areaList}" var="v">
+                                                    <option name="areaID" value="${v.id}">${v.name}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="row form-group">
-                                    <lable class="col-lg-4 control-label" for="type">类型</lable>
-                                    <div class="col-lg-8">
-                                        <select name="userType" class="form-control">
-                                            <option name="userType" value="null">所有用户</option>
-                                            <option name="userType" value="1">省用户</option>
-                                            <option name="userType" value="2">企业用户</option>
-                                            <c:forEach items="${cityList}" var="v">
-                                                <option name="userType" value="${v.id}">${v.name}用户</option>
-                                            </c:forEach>
-                                        </select>
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-4 ">
+                                            <lable class="control-label" for="name">地址</lable>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <input id="address" class="form-control" type="text" name="address"
+                                                   placeholder="地址">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-4 ">
+                                            <lable class="control-label" for="role">申报状态</lable>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <select id="status" name="status" class="form-control">
+                                                <option name="status" value="null">所有状态</option>
+                                                <option name="status" value="-2">省审核不通过</option>
+                                                <optiosn name="status" value="-1">市审核不通过</optiosn>
+                                                <option name="status" value="0">待审核</option>
+                                                <option name="status" value="1">市审核通过，待省审核</option>
+                                                <option name="status" value="2">省审核通过，待申报</option>
+                                                <option name="status" value="3">已上报</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="row form-group">
-                                    <lable class="col-lg-4 control-label" for="role">所属地市</lable>
-                                    <div class="col-lg-8">
-                                        <select id="areaID" name="areaID" class="form-control">
-                                            <option name="areaID" value="null">所有地市</option>
-                                            <c:forEach items="${areaList}" var="v">
-                                                <option name="areaID" value="${v.id}">${v.name}</option>
-                                            </c:forEach>
-                                        </select>
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-4">
+                                            <lable class="control-label" for="name">单位性质</lable>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <input id="business" class="form-control" type="text" name="business"
+                                                   placeholder="单位性质">
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="row form-group">
-                                    <lable class="col-lg-5 control-label" for="name">地址</lable>
-                                    <div class="col-lg-7">
-                                        <input id="address" class="form-control" type="text" name="address"
-                                               placeholder="地址">
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <lable class="col-lg-4 control-label" for="role">申报状态</lable>
-                                    <div class="col-lg-8">
-                                        <select id="status" name="status" class="form-control">
-                                            <option name="status" value="null">所有状态</option>
-                                            <option name="status" value="-2">省审核不通过</option>
-                                            <optiosn name="status" value="-1">市审核不通过</optiosn>
-                                            <option name="status" value="0">待审核</option>
-                                            <option name="status" value="1">市审核通过，待省审核</option>
-                                            <option name="status" value="2">省审核通过，待申报</option>
-                                            <option name="status" value="3">已上报</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-
-                                <div class="row form-group">
-                                    <lable class="col-lg-5 control-label" for="name">单位性质</lable>
-                                    <div class="col-lg-7">
-                                        <input id="business" class="form-control" type="text" name="business"
-                                               placeholder="单位性质">
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <lable class="col-lg-4 control-label" for="role">查询时间段</lable>
-                                    <div class="col-lg-8">
-                                        <select id="surveyTimeID" name="surveyTimeID" class="form-control">
-                                            <option name="surveyTimeID"
-                                                    value="null">所有时间段</option>
-                                            <c:forEach items="${surveyTimeList}" var="v">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-4">
+                                            <lable class="control-label" for="role">查询时间段</lable>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <select id="surveyTimeID" name="surveyTimeID" class="form-control">
                                                 <option name="surveyTimeID"
-                                                        value="${v.id}">${v.start_time}&nbsp;-&nbsp;${v.end_time}</option>
-                                            </c:forEach>
-                                        </select>
+                                                        value="null">所有时间段
+                                                </option>
+                                                <c:forEach items="${surveyTimeList}" var="v">
+                                                    <option name="surveyTimeID"
+                                                            value="${v.id}"><fmt:formatDate value="${v.start_time}"
+                                                                                            type="both"
+                                                                                            pattern="yyyy-MM-dd"/>&nbsp;到&nbsp;<fmt:formatDate
+                                                            value="${v.end_time}" type="both"
+                                                            pattern="yyyy-MM-dd"/></option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
+
                                 <div class="row form-group">
                                     <div class="col-xs-6">
                                         <input id="select-user-btn" type="submit" class="btn btn-info" value="查询">
@@ -198,7 +227,7 @@
                                         <c:choose>
                                             <c:when test="${v.second.first ne null}">
                                                 ${v.second.first.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a class="btn btn-info" href="#" >详情</a>
+                                                <a class="btn btn-info" href="#">详情</a>
                                             </c:when>
                                         </c:choose>
                                     </td>
@@ -206,7 +235,7 @@
                                         <c:choose>
                                             <c:when test="${v.second.second ne null}">
                                                 调查期就业人数:${v.second.second.cur_people}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a class="btn btn-info" href="#" >详情</a>
+                                                <a class="btn btn-info" href="#">详情</a>
                                             </c:when>
                                         </c:choose>
                                     </td>
