@@ -27,11 +27,27 @@
     <jsp:include page="../../left.jsp" flush="true"></jsp:include>
 
     <div class="content-wrapper">
-        <section class="content-header"><h1>修改权限</h1></section>
+        <section class="content-header">
+<<<<<<< HEAD
+            <h1>修改权限</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
+                <li><a href="#">系统管理</a></li>
+                <li class="active">授权</li>
+=======
+            <h1>修改角色权限</h1>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>系统管理</li>
+                <li>角色管理</li>
+                <li class="active">角色权限修改</li>
+>>>>>>> 6dc5d33d1c9383f248e30e4a0818da566f9f9d5b
+            </ol>
+        </section>
 
         <section class="content">
             <div class="row">
-                <form id="submit-form" role="form" >
+                <form id="submit-form" role="form">
                     <%--防止什么都不选择的时候无法参数绑定--%>
                     <input type="hidden" name="authIds" value="0">
                     <input type="hidden" name="roleId" value="${roleId}">

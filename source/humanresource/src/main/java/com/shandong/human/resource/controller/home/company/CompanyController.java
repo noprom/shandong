@@ -1,29 +1,35 @@
 package com.shandong.human.resource.controller.home.company;
 
-import com.shandong.human.resource.domain.*;
+import com.shandong.human.resource.domain.Area;
+import com.shandong.human.resource.domain.Company;
+import com.shandong.human.resource.domain.IndustryType;
+import com.shandong.human.resource.domain.User;
 import com.shandong.human.resource.service.home.AreaService;
 import com.shandong.human.resource.service.home.CompanyService;
 import com.shandong.human.resource.service.home.IndustryTypeService;
 import com.shandong.human.resource.util.Constant;
+import com.shandong.human.resource.util.Pair;
 import com.shandong.human.resource.util.Result;
+import com.shandong.human.resource.util.config.CompositeFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.plaf.nimbus.NimbusStyle;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,6 +44,8 @@ import java.util.regex.Pattern;
 @Controller
 public class CompanyController {
 
+    Logger logger = Logger.getLogger(getClass());
+
     // 静态资源前缀
     public static final String STATIC_PREFIX = "human-resource/home/company";
 
@@ -49,6 +57,21 @@ public class CompanyController {
 
     @Autowired
     private IndustryTypeService industryTypeService;
+
+    private static ArrayList<Pair<String, String>> companyErrorMsg;
+
+    static {
+        companyErrorMsg = new ArrayList<Pair<String, String>>();
+        companyErrorMsg.add(new Pair<String, String>("name", setErrorMessage(Constant.COMPANY_NAME_5_30_CHAR)));
+        companyErrorMsg.add(new Pair<String, String>("business", setErrorMessage(Constant.COMPANY_BUSINESS_5_255)));
+        companyErrorMsg.add(new Pair<String, String>("code", setErrorMessage(Constant.COMPANY_CODE_2_9_CHAR)));
+        companyErrorMsg.add(new Pair<String, String>("zipcode", setErrorMessage(Constant.COMPANY_ZIP_CODE_6_NUM)));
+        companyErrorMsg.add(new Pair<String, String>("contact", setErrorMessage(Constant.COMPANY_CONTACT_2_20)));
+        companyErrorMsg.add(new Pair<String, String>("phone", setErrorMessage(Constant.COMPANY_PHONE_ILLEGAL)));
+        companyErrorMsg.add(new Pair<String, String>("fax", setErrorMessage(Constant.COMPANY_FAX_ILLEGAL)));
+        companyErrorMsg.add(new Pair<String, String>("email", setErrorMessage(Constant.COMPANY_EMAIL_ILLEGAL)));
+        companyErrorMsg.add(new Pair<String, String>("address", setErrorMessage(Constant.COMPANY_ADDRESS_5_100_CHAR)));
+    }
 
     /**
      * 获取所有的城市
@@ -74,11 +97,11 @@ public class CompanyController {
         User user = (User) session.getAttribute(Constant.LOGIN_USER);
         int id = user.getId();
         //检查数据是否已经插入到数据库中
-        ArrayList<Company> companies = companyService.isNull(id);
-        if (companies.size() > 0) {
-            request.setAttribute("info", "exit");
+        int count = companyService.isNull(id);
+        if (count > 0) {
+            model.addAttribute("info", "exit");
         } else
-            request.setAttribute("info", "");
+            model.addAttribute("info", "");
         return STATIC_PREFIX + "/add";
     }
 
@@ -98,126 +121,158 @@ public class CompanyController {
         return list;
     }
 
+//    Modified by noprom <tyee.noprom@qq.com>
+//    /**
+//     * 保存企业信息
+//     * 处理修改请求
+//     *
+//     * @param company
+//     * @param session
+//     * @return
+//     */
+//    @RequestMapping(value = "/home/company/add/submit", method = RequestMethod.POST)
+//    @ResponseBody
+//    public Map saveMessage(Company company, BindingResult result, HttpSession session) {
+//        Map map = new HashMap();
+//        User user = (User) session.getAttribute(Constant.LOGIN_USER);
+//        int id = user.getId();
+//        //检查数据是否已经插入到数据库中
+//        ArrayList<Company> companies = companyService.isNull(id);
+//        if (companies.size() > 0) {
+//            map.put("success", "exit");
+//            return map;
+//        }
+//        //判断企业名称格式
+//        Matcher matcher = Pattern.compile("^[\\u4e00-\\u9fa5]*$").matcher(company.getName().trim());
+//        int flag = 0;
+//        if (!matcher.matches()) {
+//            flag++;
+//        }
+//        matcher = Pattern.compile("^[a-zA-Z]+$").matcher(company.getName().trim());
+//        if (!matcher.matches()) {
+//            flag++;
+//        }
+//        if (flag == 2) {
+//            map.put("success", "error0");
+//            return map;
+//        }
+//        matcher = Pattern.compile("^.{0,60}$").matcher(company.getName().trim());
+//        if (!matcher.matches()) {
+//            map.put("success", "error01");
+//            return map;
+//        }
+//        if (company.getName().equals("")) {
+//            map.put("success", "error02");
+//            return map;
+//        }
+//        matcher = Pattern.compile("^.{0,255}$").matcher(company.getBusiness().trim());
+//        if (!matcher.matches()) {
+//            map.put("success", "error5");
+//            return map;
+//        }
+//        if (company.getBusiness().equals("")) {
+//            map.put("success", "error51");
+//            return map;
+//        }
+//        matcher = Pattern.compile("^[0-9a-zA-Z]{0,9}$").matcher(company.getCode().trim());
+//        if (!matcher.matches()) {
+//            map.put("success", "error6");
+//            return map;
+//        }
+//        if (company.getCode() == "") {
+//            map.put("success", "error61");
+//            return map;
+//        }
+//        matcher = Pattern.compile("\\b\\d{6}\\b").matcher(company.getZipcode().trim());
+//        if (!matcher.matches()) {
+//            map.put("success", "error1");
+//            return map;
+//        }
+//        //联系人格式判断
+//        matcher = Pattern.compile("^[\\u4e00-\\u9fa5]*$").matcher(company.getContact().trim());
+//        flag = 0;
+//        if (!matcher.matches()) {
+//            flag++;
+//        }
+//        matcher = Pattern.compile("^[a-zA-Z]+$").matcher(company.getContact().trim());
+//        if (!matcher.matches()) {
+//            flag++;
+//        }
+//        if (flag == 2) {
+//            map.put("success", "error7");
+//            return map;
+//        }
+//        matcher = Pattern.compile("^.{0,20}$").matcher(company.getContact().trim());
+//        if (!matcher.matches()) {
+//            map.put("success", "error71");
+//            return map;
+//        }
+//
+//        if (company.getContact().equals("")) {
+//            map.put("success", "error72");
+//            return map;
+//        }
+//        matcher = Pattern.compile("^1\\d{10}$|^(0\\d{2,3}-?)?[1-9]\\d{4,7}(-\\d{1,8})?$").matcher(company.getPhone().trim());
+//        if (!matcher.matches()) {
+//            map.put("success", "error2");
+//            return map;
+//        }
+//        matcher = Pattern.compile("^((\\d{3,4})|\\d{3,4}-)?\\d{7,8}$").matcher(company.getFax().trim());
+//        if (!matcher.matches()) {
+//            map.put("success", "error3");
+//            return map;
+//        }
+//        matcher = Pattern.compile("\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}").matcher(company.getEmail().trim());
+//        if (!matcher.matches()) {
+//            map.put("success", "error4");
+//            return map;
+//        }
+//
+//        //联系地址的长度
+//        matcher = Pattern.compile("^.{0,100}$").matcher(company.getAddress().trim());
+//        if (!matcher.matches()) {
+//            map.put("success", "error8");
+//            return map;
+//        }
+//        if (company.getAddress().equals("")) {
+//            map.put("success", "error81");
+//            return map;
+//        }
+//        company.setId(id);
+//        companyService.setCompanyInfo(company);
+//        map.put("success", "success");
+//        return map;
+//    }
+
     /**
-     * 保存企业信息
-     * 处理修改请求
+     * 保存企业备案信息
      *
      * @param company
+     * @param result
      * @param session
      * @return
      */
     @RequestMapping(value = "/home/company/add/submit", method = RequestMethod.POST)
     @ResponseBody
-    public Map saveMessage(Company company, BindingResult result, HttpSession session) {
-        Map map = new HashMap();
+    public Result saveCompany(@Valid Company company, BindingResult result, HttpSession session) {
         User user = (User) session.getAttribute(Constant.LOGIN_USER);
-        int id = user.getId();
-        //检查数据是否已经插入到数据库中
-        ArrayList<Company> companies = companyService.isNull(id);
-        if (companies.size() > 0) {
-            map.put("success", "exit");
-            return map;
+        int userId = user.getId();
+        // 检查是否已经上报数据
+        int count = companyService.isNull(userId);
+        if (count > 0) {
+            return new Result(Result.Status.ERROR, Constant.COMPANY_ALREADY_EXISTS, false);
         }
-        //判断企业名称格式
-        Matcher matcher = Pattern.compile("^[\\u4e00-\\u9fa5]*$").matcher(company.getName().trim());
-        int flag = 0;
-        if (!matcher.matches()) {
-            flag++;
-        }
-        matcher = Pattern.compile("^[a-zA-Z]+$").matcher(company.getName().trim());
-        if (!matcher.matches()) {
-            flag++;
-        }
-        if (flag == 2) {
-            map.put("success", "error0");
-            return map;
-        }
-        matcher = Pattern.compile("^.{0,60}$").matcher(company.getName().trim());
-        if (!matcher.matches()) {
-            map.put("success", "error01");
-            return map;
-        }
-        if (company.getName().equals("")) {
-            map.put("success", "error02");
-            return map;
-        }
-        matcher = Pattern.compile("^.{0,255}$").matcher(company.getBusiness().trim());
-        if (!matcher.matches()) {
-            map.put("success", "error5");
-            return map;
-        }
-        if (company.getBusiness().equals("")) {
-            map.put("success", "error51");
-            return map;
-        }
-        matcher = Pattern.compile("^[0-9a-zA-Z]{0,9}$").matcher(company.getCode().trim());
-        if (!matcher.matches()) {
-            map.put("success", "error6");
-            return map;
-        }
-        if (company.getCode() == "") {
-            map.put("success", "error61");
-            return map;
-        }
-        matcher = Pattern.compile("\\b\\d{6}\\b").matcher(company.getZipcode().trim());
-        if (!matcher.matches()) {
-            map.put("success", "error1");
-            return map;
-        }
-        //联系人格式判断
-        matcher = Pattern.compile("^[\\u4e00-\\u9fa5]*$").matcher(company.getContact().trim());
-        flag = 0;
-        if (!matcher.matches()) {
-            flag++;
-        }
-        matcher = Pattern.compile("^[a-zA-Z]+$").matcher(company.getContact().trim());
-        if (!matcher.matches()) {
-            flag++;
-        }
-        if (flag == 2) {
-            map.put("success", "error7");
-            return map;
-        }
-        matcher = Pattern.compile("^.{0,20}$").matcher(company.getContact().trim());
-        if (!matcher.matches()) {
-            map.put("success", "error71");
-            return map;
-        }
+        // 校验数据格式,并返回错误信息
+        if (result.hasErrors()) {
+            List<FieldError> errors = result.getFieldErrors();
 
-        if (company.getContact().equals("")) {
-            map.put("success", "error72");
-            return map;
+            // 返回第一条错误即可
+            String firstFieldError = getFirstFieldErrorMessage(errors);
+            return new Result(Result.Status.ERROR, Constant.DEAL_FAIL, firstFieldError);
         }
-        matcher = Pattern.compile("^1\\d{10}$|^(0\\d{2,3}-?)?[1-9]\\d{4,7}(-\\d{1,8})?$").matcher(company.getPhone().trim());
-        if (!matcher.matches()) {
-            map.put("success", "error2");
-            return map;
-        }
-        matcher = Pattern.compile("^((\\d{3,4})|\\d{3,4}-)?\\d{7,8}$").matcher(company.getFax().trim());
-        if (!matcher.matches()) {
-            map.put("success", "error3");
-            return map;
-        }
-        matcher = Pattern.compile("\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}").matcher(company.getEmail().trim());
-        if (!matcher.matches()) {
-            map.put("success", "error4");
-            return map;
-        }
-
-        //联系地址的长度
-        matcher = Pattern.compile("^.{0,100}$").matcher(company.getAddress().trim());
-        if (!matcher.matches()) {
-            map.put("success", "error8");
-            return map;
-        }
-        if (company.getAddress().equals("")) {
-            map.put("success", "error81");
-            return map;
-        }
-        company.setId(id);
+        company.setId(userId);
         companyService.setCompanyInfo(company);
-        map.put("success", "success");
-        return map;
+        return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
     }
 
     /**
@@ -234,8 +289,8 @@ public class CompanyController {
     public String getProvinceEdit(Model model, HttpSession session, HttpServletResponse response) throws IOException {
         User user = (User) session.getAttribute(Constant.LOGIN_USER);
         int id = user.getId();
-        ArrayList<Company> companies = companyService.isNull(id);
-        if (companies.size() == 0) {
+        int count = companyService.isNull(id);
+        if (count == 0) {
             response.sendRedirect("/home/company/add");
             return null;
         }
@@ -277,8 +332,8 @@ public class CompanyController {
         User user = (User) session.getAttribute(Constant.LOGIN_USER);
         int id = user.getId();
         //检查数据是否已经插入到数据库中
-        ArrayList<Company> companies = companyService.isNull(id);
-        if (companies.size() == 0) {
+        int count = companyService.isNull(id);
+        if (count == 0) {
             map.put("success", "noInfo");
             return map;
         }
@@ -382,5 +437,52 @@ public class CompanyController {
         companyService.updateCompanyInfo(company);
         map.put("success", "success");
         return map;
+    }
+
+    /**
+     * 获得字段验证的错误信息
+     *
+     * @param key
+     * @return
+     */
+    private String getErrorMessage(String key) {
+        for (Pair<String, String> pair : companyErrorMsg) {
+            if (pair.first.equals(key)) {
+                return pair.second;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 设置模板消息
+     *
+     * @param message
+     * @return
+     */
+    private static String setErrorMessage(String message) {
+        return CompositeFactory.getInstance().getString(message);
+    }
+
+    /**
+     * 获得第一条错误信息
+     *
+     * @param errors
+     * @return
+     */
+    private String getFirstFieldErrorMessage(List<FieldError> errors) {
+        List<String> fields = new ArrayList<String>();
+        for (FieldError error : errors) {
+            fields.add(error.getField());
+        }
+        // 按照制定的顺序查找
+        String firstField = "";
+        for (Pair<String, String> pair : companyErrorMsg) {
+            if (fields.contains(pair.first)) {
+                firstField = pair.first;
+                break;
+            }
+        }
+        return getErrorMessage(firstField);
     }
 }

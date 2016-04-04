@@ -27,11 +27,11 @@
                 企业上报数据
                 <small>详情</small>
             </h1>
-            <%--<ol class="breadcrumb">--%>
-                <%--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--%>
-                <%--<li><a href="#">Forms</a></li>--%>
-                <%--<li class="active">General Elements</li>--%>
-            <%--</ol>--%>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>数据管理</li>
+                <li class="active">编辑企业数据</li>
+            </ol>
         </section>
 
         <section class="content">
@@ -48,16 +48,20 @@
                                 <div class="form-group">
                                     <label for="company_id">公司名</label>
                                     <p>${company.name}</p>
-                                    <input type="hidden" type="text" value=${companyData.id} class="form-control" name="id" id="id" placeholder="Enter ...">
-                                    <input type="hidden" type="text" value=${companyData.pid} class="form-control" name="pid" id="pid" placeholder="Enter ...">
-                                    <input type="hidden" value=${companyData.company_id} class="form-control" name="company_id" id="company_id">
+                                    <input type="hidden" type="text" value=${companyData.id} class="form-control"
+                                           name="id" id="id" placeholder="Enter ...">
+                                    <input type="hidden" type="text" value=${companyData.pid} class="form-control"
+                                           name="pid" id="pid" placeholder="Enter ...">
+                                    <input type="hidden" value=${companyData.company_id} class="form-control"
+                                           name="company_id" id="company_id">
                                 </div>
                                 <div class="form-group">
                                     <label for="survey_time_id">调查期</label>
                                     <p>
-                                        <fmt:formatDate value="${surveyTime.start_time}" pattern="yyyy年MM月dd日HH点mm分ss秒" />
+                                        <fmt:formatDate value="${surveyTime.start_time}"
+                                                        pattern="yyyy年MM月dd日HH点mm分ss秒"/>
                                         至
-                                        <fmt:formatDate value="${surveyTime.end_time}" pattern="yyyy年MM月dd日HH点mm分ss秒" />
+                                        <fmt:formatDate value="${surveyTime.end_time}" pattern="yyyy年MM月dd日HH点mm分ss秒"/>
                                     </p>
                                     <input type="hidden" value=${companyData.survey_time_id} class="form-control"
                                            name="survey_time_id" id="survey_time_id"

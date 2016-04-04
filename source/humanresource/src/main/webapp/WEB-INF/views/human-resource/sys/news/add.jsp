@@ -21,7 +21,14 @@
     <!-- Content Header (Page header) -->
 
     <div class="content-wrapper">
-        <section class="content-header"><h1>通知管理</h1></section>
+        <section class="content-header">
+            <h1>通知管理</h1>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>通知管理</li>
+                <li class="active">添加通知</li>
+            </ol>
+        </section>
 
         <section class="content">
             <div class="row">

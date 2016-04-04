@@ -25,11 +25,11 @@
                 上报数据列表
                 <small>上报数据</small>
             </h1>
-            <%--<ol class="breadcrumb">--%>
-            <%--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--%>
-            <%--<li><a href="#">Tables</a></li>--%>
-            <%--<li class="active">Data tables</li>--%>
-            <%--</ol>--%>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>数据管理</li>
+                <li class="active">企业数据列表</li>
+            </ol>
         </section>
 
         <!-- Main content -->
@@ -110,7 +110,7 @@
                                         <td>${v.init_people}</td>
                                         <td>${v.cur_people}</td>
                                         <td>
-                                            <%--company data的状态--%>
+                                                <%--company data的状态--%>
                                             <c:choose>
                                                 <c:when test="${v.status eq -2}">
                                                     <span class="label label-danger">省审核不通过</span>
@@ -135,13 +135,15 @@
                                         <td>
                                             <c:choose>
                                                 <c:when test="${(v.status eq 1) or (v.status eq 0)}">
-                                                    <a href="<%=basePath%>sys/data/edit/${v.id}" class="btn btn-primary">编辑</a>
-                                                    <a href="<%=basePath%>sys/data/audit/${v.id}" class="btn btn-primary">审核</a>
+                                                    <a href="<%=basePath%>sys/data/edit/${v.id}"
+                                                       class="btn btn-primary">编辑</a>
+                                                    <a href="<%=basePath%>sys/data/audit/${v.id}"
+                                                       class="btn btn-primary">审核</a>
                                                 </c:when>
                                             </c:choose>
-                                            <%--貌似没有删除的需求--%>
-                                            <%--<a href="<%=basePath%>sys/data/delete/${v.id}"--%>
-                                               <%--class="btn btn-primary">删除</a>--%>
+                                                <%--貌似没有删除的需求--%>
+                                                <%--<a href="<%=basePath%>sys/data/delete/${v.id}"--%>
+                                                <%--class="btn btn-primary">删除</a>--%>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -154,7 +156,7 @@
                 </div><!-- /.col -->
             </div><!-- /.row -->
             <%--<form id="excel-form" action="<%=basePath%>sys/record/export" method="post">--%>
-                <%--<button type="submit" id="submit-btn">导出到excel</button>--%>
+            <%--<button type="submit" id="submit-btn">导出到excel</button>--%>
             <%--</form>--%>
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->

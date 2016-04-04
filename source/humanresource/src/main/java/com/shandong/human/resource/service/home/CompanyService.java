@@ -18,7 +18,7 @@ public interface CompanyService {
      *
      * @param company
      */
-    void setCompanyInfo(Company company);
+    int setCompanyInfo(Company company);
 
     /**
      * 通过城市获得公司数量
@@ -33,7 +33,7 @@ public interface CompanyService {
      * @param id
      * @return
      */
-    ArrayList<Company> isNull(int id);
+    int isNull(int id);
 
     /**
      * 通过id获得公司数据

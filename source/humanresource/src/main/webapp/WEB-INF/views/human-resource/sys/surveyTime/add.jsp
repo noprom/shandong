@@ -34,11 +34,10 @@
                 调查期管理
                 <small>添加</small>
             </h1>
-            <%--<ol class="breadcrumb">--%>
-                <%--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--%>
-                <%--<li><a href="#">Tables</a></li>--%>
-                <%--<li class="active">Simple</li>--%>
-            <%--</ol>--%>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li class="active">添加上报时间</li>
+            </ol>
         </section>
 
         <!-- Main content -->
@@ -50,7 +49,7 @@
                             <h3 class="box-title">添加调查期</h3>
                         </div>
                         <div class="box-body">
-                            <form id="add-form" class="form" role="form" >
+                            <form id="add-form" class="form" role="form">
                                 <div class="row">
                                     <div class="col-md-10">
                                         <div class="box box-primary">

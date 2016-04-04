@@ -27,6 +27,11 @@
                 报表上报
                 <small>报表查询</small>
             </h1>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>报表上报</li>
+                <li class="active">报表查询</li>
+            </ol>
         </section>
 
         <!-- Main content -->
@@ -39,7 +44,7 @@
                     <div class="row">
                         <form id="query-form" action="<%=basePath%>sys/report/query" method="get">
                             <div class="col-xs-2">
-                            <button type="submit" class="btn btn-primary" id="submit-btn">查询全部</button>
+                                <button type="submit" class="btn btn-primary" id="submit-btn">查询全部</button>
                             </div>
                         </form>
                     </div>
@@ -51,7 +56,9 @@
                                 <input name="company_id">
                             </div>
                             <div class="col-xs-2" style="position:relative">
-                            <button class="btn btn-primary" style="position:absolute;  top:50%; margin-top:23px;" type="submit" id="submit-btn">通过公司ID查询</button>
+                                <button class="btn btn-primary" style="position:absolute;  top:50%; margin-top:23px;"
+                                        type="submit" id="submit-btn">通过公司ID查询
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -63,7 +70,9 @@
                                 <input name="name">
                             </div>
                             <div class="col-xs-2" style="position:relative">
-                                <button class="btn btn-primary" style="position:absolute;  top:50%; margin-top:23px;" type="submit" id="submit-btn">通过公司名称查询</button>
+                                <button class="btn btn-primary" style="position:absolute;  top:50%; margin-top:23px;"
+                                        type="submit" id="submit-btn">通过公司名称查询
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -79,53 +88,54 @@
                         </div><!-- /.box-header -->
                         <div class="box-body">
                             <form id="query-form" action="<%=basePath%>sys/report" method="post">
-                            <table id="dataTable" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th>选&nbsp;&nbsp;择</th>
-                                    <th>ID</th>
-                                    <th>公司ID</th>
-                                    <th>初始人数</th>
-                                    <th>现在人数</th>
-                                    <th>其他原因</th>
-                                    <th>状&nbsp;&nbsp;态</th>
-                                    <th>创建时间</th>
-                                    <th>更新时间</th>
-                                    <th>查看详情</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach items="${reportResult}" var="v">
+                                <table id="dataTable" class="table table-bordered table-striped">
+                                    <thead>
                                     <tr>
-                                        <td><input type="checkbox" name="choose" value="${v.id}"></td>
-                                        <td>${v.id}</td>
-                                        <td>${v.company_id}</td>
-                                        <td>${v.init_people}</td>
-                                        <td>${v.cur_people}</td>
-                                        <td>${v.other_reason}</td>
-                                        <td>${v.status}</td>
-                                        <td>${v.create_time}</td>
-                                        <td>${v.update_time}</td>
-                                        <td><a href="<%=basePath%>sys/report/${v.company_id}" class="btn btn-primary">详情</a>
-                                        </td>
+                                        <th>选&nbsp;&nbsp;择</th>
+                                        <th>ID</th>
+                                        <th>公司ID</th>
+                                        <th>初始人数</th>
+                                        <th>现在人数</th>
+                                        <th>其他原因</th>
+                                        <th>状&nbsp;&nbsp;态</th>
+                                        <th>创建时间</th>
+                                        <th>更新时间</th>
+                                        <th>查看详情</th>
                                     </tr>
-                                </c:forEach>
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>选&nbsp;&nbsp;择</th>
-                                    <th>ID</th>
-                                    <th>公司ID</th>
-                                    <th>初始人数</th>
-                                    <th>现在人数</th>
-                                    <th>其他原因</th>
-                                    <th>状&nbsp;&nbsp;态</th>
-                                    <th>创建时间</th>
-                                    <th>更新时间</th>
-                                    <th>查看详情</th>
-                                </tr>
-                                </tfoot>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${reportResult}" var="v">
+                                        <tr>
+                                            <td><input type="checkbox" name="choose" value="${v.id}"></td>
+                                            <td>${v.id}</td>
+                                            <td>${v.company_id}</td>
+                                            <td>${v.init_people}</td>
+                                            <td>${v.cur_people}</td>
+                                            <td>${v.other_reason}</td>
+                                            <td>${v.status}</td>
+                                            <td>${v.create_time}</td>
+                                            <td>${v.update_time}</td>
+                                            <td><a href="<%=basePath%>sys/report/${v.company_id}"
+                                                   class="btn btn-primary">详情</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>选&nbsp;&nbsp;择</th>
+                                        <th>ID</th>
+                                        <th>公司ID</th>
+                                        <th>初始人数</th>
+                                        <th>现在人数</th>
+                                        <th>其他原因</th>
+                                        <th>状&nbsp;&nbsp;态</th>
+                                        <th>创建时间</th>
+                                        <th>更新时间</th>
+                                        <th>查看详情</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
                                 <input class="btn btn-primary" style="width: 15%" type="submit" value="上报">
                             </form>
                         </div><!-- /.box-body -->

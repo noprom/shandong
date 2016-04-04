@@ -27,11 +27,11 @@
                 企业上报数据
                 <small>详情</small>
             </h1>
-            <%--<ol class="breadcrumb">--%>
-                <%--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--%>
-                <%--<li><a href="#">Forms</a></li>--%>
-                <%--<li class="active">General Elements</li>--%>
-            <%--</ol>--%>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>企业管理</li>
+                <li class="active">企业数据上报</li>
+            </ol>
         </section>
 
         <section class="content">

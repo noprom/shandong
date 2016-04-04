@@ -179,18 +179,43 @@
     </div><!-- /.content-wrapper -->
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
     <script>
+        /**
+         * 下拉框选择城市的时候响应事件
+         */
+        function cityChange() {
+            var areaBox = document.getElementById("area_id");
+            var obj = document.getElementById("city_id");
+            var index = obj.selectedIndex; //序号，取当前选中选项的序号
+            var str = obj.options[index].value;
+            var str1 = "<%=basePath%>home/company/add/" + str;
 
-        $(document).ready(function () {
-            <%String info=(String) request.getAttribute("info");%>
-            <%if(info.equals("exit")){%>
+            $.ajax({
+                type: 'get',
+                url: str1,
+                async: false,
+                data: {},
+                dataType: 'json',
+                success: function (data) {
+                    areaBox.options.length = 0;
+                    for (var i = 0; i < data.length; i++) {
+                        areaBox.add(new Option(data[i].name, data[i].id));
+                    }
+                },
+                error: function () {
+                    toastr.erroralert("服务器无法连接！");
+                }
+            });
+
+        }
+
+        $(function () {
+            <c:if test="${info eq 'exit'}">
             toastr.error("已经提交完毕，请勿重复提交！");
             setTimeout(function () {
                 window.location.href = "<%=basePath%>";
             }, 3500);
-            <%}%>
-        });
+            </c:if>
 
-        $(function () {
             // 提交备案数据
             $("#submit-btn").on('click', function () {
                 var postUrl = "<%=basePath%>home/company/add/submit";
@@ -201,63 +226,19 @@
                     type: 'POST',
                     dataType: "json",
                     success: function (data) {
-                        if (data.success == "success") {
-                            toastr.success("提交成功");
-                            window.location.href = "<%=basePath%>";
-                        }
-                        else if (data.success == "exit") {
-                            toastr.error("已经提交完毕，请勿重复提交！");
-                            window.location.href = "<%=basePath%>";
-                        }
-                        else if (data.success == "error0") {
-                            toastr.error("企业名称格式有误！");
-                        }
-                        else if (data.success == "error01") {
-                            toastr.error("企业名称输入过长！");
-                        }
-                        else if (data.success == "error02") {
-                            toastr.error("企业名称不能为空！");
-                        }
-                        else if (data.success == "error1") {
-                            toastr.error("邮政编码格式有误！");
-                        }
-                        else if (data.success == "error2") {
-                            toastr.error("联系电话格式有误！");
-                        }
-                        else if (data.success == "error3") {
-                            toastr.error("传真格式有误！");
-                        }
-                        else if (data.success == "error4") {
-                            toastr.error("EMAIL格式有误！");
-                        }
-                        else if (data.success == "error5") {
-                            toastr.error("主要经营业务输入过长！");
-                        }
-                        else if (data.success == "error51") {
-                            toastr.error("主要经营业务不能为空！");
-                        }
-                        else if (data.success == "error6") {
-                            toastr.error("组织机构代码格式有误！！");
-                        }
-                        else if (data.success == "error61") {
-                            toastr.error("组织机构代码不能为空！");
-                        }
-                        else if (data.success == "error7") {
-                            toastr.error("联系人格式格式有误！！");
-                        }
-                        else if (data.success == "error71") {
-                            toastr.error("联系人输入过长！");
-                        }
-                        else if (data.success == "error72") {
-                            toastr.error("联系人不能为空！");
-                        }
-                        else if (data.success == "error8") {
-                            toastr.error("联系地址输入过长！");
-                        }
-                        else if (data.success == "error81") {
-                            toastr.error("联系地址不能为空！");
+                        if (data.status == "ERROR") {
+                            if (data.status == false) {
+                                toastr.error(data.info);
+                                setTimeout(function () {
+                                    window.location.href = "<%=basePath%>";
+                                }, 3000);
+                                return false;
+                            } else {
+                                toastr.error(data.object);
+                                return false;
+                            }
                         } else {
-                            toastr.success("提交成功");
+                            toastr.success(data.info);
                         }
                     },
                     error: function () {
@@ -265,37 +246,7 @@
                     }
                 });
             });
-
-            /**
-             * 下拉框选择城市的时候响应事件
-             */
-            function cityChange() {
-                var areaBox = document.getElementById("area_id");
-                var obj = document.getElementById("city_id");
-                var index = obj.selectedIndex; //序号，取当前选中选项的序号
-                var str = obj.options[index].value;
-                var str1 = "<%=basePath%>home/company/add/" + str;
-
-                $.ajax({
-                    type: 'get',
-                    url: str1,
-                    async: false,
-                    data: {},
-                    dataType: 'json',
-                    success: function (data) {
-                        areaBox.options.length = 0;
-                        for (var i = 0; i < data.length; i++) {
-                            areaBox.add(new Option(data[i].name, data[i].id));
-                        }
-                    },
-                    error: function () {
-                        toastr.erroralert("服务器无法连接！");
-                    }
-                });
-
-            }
         });
-
     </script>
 </div>
 </body>

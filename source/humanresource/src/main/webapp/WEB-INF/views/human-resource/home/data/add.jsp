@@ -33,7 +33,6 @@
         <section class="content-header">
             <h1>
                 数据填报
-                <%--<small>table</small>--%>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>

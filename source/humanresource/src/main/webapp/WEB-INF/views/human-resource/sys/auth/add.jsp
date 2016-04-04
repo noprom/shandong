@@ -27,53 +27,78 @@
     <jsp:include page="../../left.jsp" flush="true"></jsp:include>
 
     <div class="content-wrapper">
-    <section class="content-header"><h1>新增后台菜单</h1></section>
+<<<<<<< HEAD
+    <section class="content-header">
+        <h1>
+            新增后台菜单
+        </h1>
 
-    <section class="content">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="box box-info">
-                    <div class="box-body">
-                        <form action="<%=basePath%>sys/auth/add" role="form" id = "add-auth-form">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
+            <li><a href="#">系统管理</a></li>
+            <li class="active">新增后台菜单</li>
+        </ol>
+    </section>
+=======
+        <section class="content-header">
+            <h1>新增权限</h1>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>系统管理</li>
+                <li>权限管理</li>
+                <li class="active">添加权限</li>
+            </ol>
+        </section>
+>>>>>>> 6dc5d33d1c9383f248e30e4a0818da566f9f9d5b
 
-                            <div class="form-group">
-                                <label>权限名称</label>
-                                <input name="name" class="form-control" type="text" placeholder="请输入权限名称">
-                            </div>
+        <section class="content">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <form action="<%=basePath%>sys/auth/add" role="form" id="add-auth-form">
 
-                            <div class="form-group">
-                                <label>权限链接</label>
-                                <input name="url" class="form-control" type="text" placeholder="请输入权限链接">
-                            </div>
+                                <div class="form-group">
+                                    <label>权限名称</label>
+                                    <input name="name" class="form-control" type="text" placeholder="请输入权限名称">
+                                </div>
 
-                            <% AuthTree _Auths=(AuthTree)request.getAttribute("existAuth"); %>
-                            <div class="form-group">
-                                <label>上级权限</label>
-                                <select name="pid" class="form-control">
-                                    <% List<Auth> authList= AuthTree.toList(_Auths);
-                                        for (Auth r:authList) {
-                                            StringBuilder s = new StringBuilder();
-                                            for(int i=0;i<r.getLevel();++i)
-                                                s.append("&nbsp&nbsp&nbsp&nbsp");
-                                            s.append('└').append(r.getName());
-                                            int id = r.getId();
-                                            %><option name="pid" value="<%= id%>"><%= s.toString()%></option><%
-                                        }
-                                    %>
+                                <div class="form-group">
+                                    <label>权限链接</label>
+                                    <input name="url" class="form-control" type="text" placeholder="请输入权限链接">
+                                </div>
 
-                                </select>
-                            </div>
+                                <% AuthTree _Auths = (AuthTree) request.getAttribute("existAuth"); %>
+                                <div class="form-group">
+                                    <label>上级权限</label>
+                                    <select name="pid" class="form-control">
+                                        <% List<Auth> authList = AuthTree.toList(_Auths);
+                                            for (Auth r : authList) {
+                                                StringBuilder s = new StringBuilder();
+                                                for (int i = 0; i < r.getLevel(); ++i)
+                                                    s.append("&nbsp&nbsp&nbsp&nbsp");
+                                                s.append('└').append(r.getName());
+                                                int id = r.getId();
+                                        %>
+                                        <option name="pid" value="<%= id%>"><%= s.toString()%>
+                                        </option>
+                                        <%
+                                            }
+                                        %>
 
-                            <div class="form-group">
-                                <input type="button" class="btn btn-info" value="提交" id = "add-auth-btn">
-                            </div>
+                                    </select>
+                                </div>
 
-                        </form>
+                                <div class="form-group">
+                                    <input type="button" class="btn btn-info" value="提交" id="add-auth-btn">
+                                </div>
+
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </div>
 
 

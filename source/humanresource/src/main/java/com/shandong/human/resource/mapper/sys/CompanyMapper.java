@@ -44,7 +44,7 @@ public interface CompanyMapper {
      *
      * @param company
      */
-    void setCompanyInfo(Company company);
+    int setCompanyInfo(Company company);
 
     /**
      * 城市用户获得公司数据总数
@@ -59,7 +59,7 @@ public interface CompanyMapper {
      * @param id
      * @return
      */
-    ArrayList<Company> isNull(int id);
+    int isNull(@Param("id") int id);
 
     /**
      * 按条件查找Company

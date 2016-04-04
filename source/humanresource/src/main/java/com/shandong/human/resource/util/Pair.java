@@ -30,4 +30,12 @@ public class Pair<A, B> {
         if (!first.equals(pair.first)) return false;
         return second.equals(pair.second);
     }
+
+    @Override
+    public String toString() {
+        return "Pair{" +
+                "first=" + first +
+                ", second=" + second +
+                '}';
+    }
 }
