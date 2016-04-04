@@ -239,6 +239,16 @@ public class Constant {
     public static final String USERNAME_PASSWORD_CANNOT_BE_EMPTY = "USERNAME_PASSWORD_CANNOT_BE_EMPTY";
 
     /**
+     * 不合法的理由
+     */
+    public static final String REASON_INVALID = "REASON_INVALID";
+
+    /**
+     * 登录过期
+     */
+    public static final String SEASSON_TIMEOUT = "SEASSON_TIMEOUT";
+
+    /**
      * 用户名或者密码错误
      */
     public static final String USERNAME_PASSWORD_ERROR = "USERNAME_PASSWORD_ERROR";
