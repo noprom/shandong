@@ -48,6 +48,7 @@
                 <div class="col-md-12">
                     <form role="form" id="edit-form">
                         <input type="hidden" value="${companyData.id}" name="id">
+                        <input type="hidden" value="${companyData.company_id}" name="company_id">
                         <div class="row">
                             <!-- left column -->
                             <div class="col-md-6">

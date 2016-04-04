@@ -1,6 +1,7 @@
 package com.shandong.human.resource.domain;
 
 import com.shandong.human.resource.util.RegExpUtil;
+import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.Pattern;
 import java.util.Date;
@@ -16,10 +17,10 @@ public class CompanyData {
     private int company_id;         //company中的id
     private int survey_time_id;     //调查时间id
 
-   // @Pattern(regexp = RegExpUtil.UNSIGNED_INT)
+    //@Range( min = 0 ,max = 214783647)
     private Integer init_people;        //建档期就业人数,填写初次将档时监测点就业人数
 
-  //  @Pattern(regexp = RegExpUtil.UNSIGNED_INT)
+   // @Range( min = 0 ,max = 214783647)
     private Integer cur_people;         //调查期就业人数,填写本次调查期当时的监测点就业人数
 
     @Pattern(regexp = "(.){1,255}")
