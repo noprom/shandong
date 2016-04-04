@@ -17,5 +17,5 @@ public class RegExpUtil {
     public static final String PHONE_ZUOJI = "1\\d{10}$|^(0\\d{2,3}-?|\\(0\\d{2,3}\\))?[1-9]\\d{4,7}(-\\d{1,8})?";
     public static final String FAX = "((\\d{3,4})|\\d{3,4}-)?\\d{7,8}";
     public static final String EMAIL = "\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}";
-    public static final String UNSIGNED_INT = "([1-9][0-9]*)";
+    public static final String UNSIGNED_INT = "(([1-9][0-9]{0,9})|[0-9])";
 }
