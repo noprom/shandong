@@ -51,7 +51,7 @@ public interface ReportService {
      * @param name
      * @return
      */
-    int getCompanyIdByName(String name);
+    Integer getCompanyIdByName(String name);
 
     /**
      * 通过ids获得公司上报数据
