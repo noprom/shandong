@@ -173,4 +173,13 @@ public interface CompanyDataMapper {
      * @return
      */
     Integer getToCheckCompanyDataCount();
+
+    /**
+     * 更新企业上报数据的状态
+     *
+     * @param id
+     * @param status
+     * @return
+     */
+    void provinceCheck(@Param("id")Integer id,@Param("status")Integer status,@Param("npr")String npr);
 }

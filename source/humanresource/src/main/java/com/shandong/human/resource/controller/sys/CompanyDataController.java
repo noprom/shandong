@@ -160,8 +160,11 @@ public class CompanyDataController {
      */
     @RequestMapping(value = "/sys/data/audit", method = RequestMethod.POST)
     String companyDataAudit(CompanyData companyData, Model model, HttpSession httpSession) {
-        Integer id = companyDataService.updateCompanyDataStatus(companyData.getId(),
-                companyData.getStatus());
+
+//        System.out.println(companyData.getNot_pass_reason());
+//        Integer id = companyDataService.updateCompanyDataStatus(companyData.getId(),
+//                companyData.getStatus());
+        companyDataService.provinceCheck(companyData.getId(),companyData.getStatus(),companyData.getNot_pass_reason());
 
         return STATIC_PREFIX + "/audit";
     }
