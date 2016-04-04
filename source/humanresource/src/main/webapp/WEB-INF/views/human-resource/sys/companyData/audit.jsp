@@ -138,7 +138,7 @@
                                                 <option value="2">省审核通过,待上报到部</option>
                                                 <option value="3">已上报到部</option>
                                             </c:when>
-                                            <c:when test="${localUser.type eq 2}">
+                                            <c:when test="${localUser.type gt 2}">
                                                 <%--市用户--%>
                                                 <option value="-1">市审核不通过</option>
                                                 <option value="0">待市审核</option>
