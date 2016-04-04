@@ -42,7 +42,7 @@
                 </div>
                 <div class="box-body">
                     <div class="row">
-                        <form id="query-form" action="<%=basePath%>sys/report/query" method="get">
+                        <form class="form-horizontal" id="query-form" action="<%=basePath%>sys/report/query" method="get">
                             <div class="col-xs-2">
                                 <button type="submit" class="btn btn-primary" id="submit-btn">查询全部已通过市审核报表</button>
                             </div>
@@ -50,29 +50,33 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <form id="query-form" action="<%=basePath%>sys/report/query" method="post">
-                            <div class="col-xs-2">
-                                <label>请输入公司ID</label>
-                                <input name="company_id">
-                            </div>
-                            <div class="col-xs-2" style="position:relative">
-                                <button class="btn btn-primary" style="position:absolute;  top:50%; margin-top:23px;"
-                                        type="submit" id="submit-btn">通过公司ID查询
-                                </button>
+                        <form class="form-horizontal" id="query-form" action="<%=basePath%>sys/report/query" method="post">
+                            <div class="col-xs-12 form-group">
+                                <div class="col-xs-2 ">
+                                    <label class="control-label">请输入公司ID</label>
+                                </div>
+                                <div class="col-xs-2 ">
+                                    <input class="form-control" name="company_id">
+                                </div>
+                                <div class="col-xs-4 ">
+                                    <button class="btn btn-primary" type="submit" id="submit-btn">通过公司ID查询</button>
+                                </div>
                             </div>
                         </form>
                     </div>
                     <hr>
                     <div class="row">
-                        <form id="query-form" action="<%=basePath%>sys/report/queryByName" method="post">
-                            <div class="col-xs-2">
-                                <label>请输入公司名称</label>
-                                <input name="name">
-                            </div>
-                            <div class="col-xs-2" style="position:relative">
-                                <button class="btn btn-primary" style="position:absolute;  top:50%; margin-top:23px;"
-                                        type="submit" id="submit-btn">通过公司名称查询
-                                </button>
+                        <form class="form-horizontal" id="query-form" action="<%=basePath%>sys/report/queryByName" method="post">
+                            <div class="col-xs-12 form-group">
+                                <div class="col-xs-2 ">
+                                    <label class="control-label">请输入公司名称</label>
+                                </div>
+                                <div class="col-xs-2 ">
+                                    <input class="form-control" name="name">
+                                </div>
+                                <div class="col-xs-4 ">
+                                    <button class="btn btn-primary" type="submit" id="submit-btn">通过公司名称查询</button>
+                                </div>
                             </div>
                         </form>
                     </div>

@@ -3,7 +3,7 @@
 <%@ page contentType="application/msexcel" %>
 <%
     //response.setHeader("Content-disposition","inline; filename=videos.xls");
-    response.setHeader("Content-disposition","attachment; filename=test.xls");
+    response.setHeader("Content-disposition","attachment; filename=CompanyRecord.xls");
     //以上这行设定传送到前端浏览器时的档名为test.xls
     //就是靠这一行，让前端浏览器以为接收到一个excel档
 %>
