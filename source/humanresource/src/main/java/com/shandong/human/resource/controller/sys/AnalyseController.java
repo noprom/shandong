@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * 数据分析的控制器类
- * <p>
+ * <p/>
  * Author: helin <helin199210@icloud.com>
  * Time: 16/3/27 上午9:51
  */
@@ -92,9 +92,9 @@ public class AnalyseController {
 
 
         } else {
-            for (int i = 0; i < 12; i++) {
-                companyDataOfPeople.get(i).setInit_people(0);
-            }
+//            for (int i = 0; i < 12; i++) {
+//                companyDataOfPeople.get(i).setInit_people(0);
+//            }
             model.addAttribute("peopleOfEverySurveyTime", companyDataOfPeople);
         }
         /**
@@ -148,7 +148,18 @@ public class AnalyseController {
     List<String> companyNumber(HttpServletRequest request) {
         List<CompanyData> companyDataOfPeriodOneList = companyDataService.getCompanyDataBySurveyTimeId(Integer.parseInt(String.valueOf(request.getParameter("period"))));
 
-        return analysis(companyDataOfPeriodOneList);
+        if (companyDataOfPeriodOneList.size() == 0) {
+            System.out.println("hello 0000");
+            List<String> ajaxReturn = new ArrayList<String>();
+            for(int i=0;i<6;i++){
+                ajaxReturn.add("0");
+            }
+
+            for (int i = 0; i < ajaxReturn.size(); i++)
+                System.out.println(ajaxReturn.get(i));
+            return ajaxReturn;
+        } else
+            return analysis(companyDataOfPeriodOneList);
     }
 
     /**
