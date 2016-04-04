@@ -302,4 +302,29 @@ public class Constant {
      * 邮箱格式不合法
      */
     public static final String COMPANY_EMAIL_ILLEGAL = "COMPANY_EMAIL_ILLEGAL";
+
+    /**
+     * 建档期就业人数格式有误
+     */
+    public static final String INITPEOPLE_ERROR = "INITPEOPLE_ERROR";
+
+    /**
+     * 调查期就业人数格式有误
+     */
+    public static final String CURPEOPLE_ERROR = "CURPEOPLE_ERROR";
+
+    /**
+     * 主要原因说明为空或过长
+     */
+    public static final String REASON1EXP_ERROR = "REASON1EXP_ERROR";
+
+    /**
+     * 次要原因说明为空或过长
+     */
+    public static final String REASON2EXP_ERROR = "REASON2EXP_ERROR";
+
+    /**
+     * 第三原因说明为空或过长
+     */
+    public static final String REASON3EXP_ERROR = "REASON3EXP_ERROR";
 }

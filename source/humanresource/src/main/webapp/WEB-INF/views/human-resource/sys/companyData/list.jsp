@@ -34,57 +34,6 @@
 
         <!-- Main content -->
         <section class="content">
-            <%--查询框--%>
-            <%--<div class="box box-danger">--%>
-            <%--<div class="box-header with-border">--%>
-            <%--<h3 class="box-title">Different Width</h3>--%>
-            <%--</div>--%>
-            <%--<div class="box-body">--%>
-            <%--<div class="row">--%>
-            <%--<form id="query-form" action="<%=basePath%>sys/record/query" method="post">--%>
-            <%--<div class="col-xs-1">--%>
-            <%--<p>市id</p>--%>
-            <%--<input type="text" class="form-control" name="city_id">--%>
-            <%--</div>--%>
-            <%--<div class="col-xs-1">--%>
-            <%--<p>区id</p>--%>
-            <%--<input type="text" class="form-control" name="area_id">--%>
-            <%--</div>--%>
-            <%--<div class="col-xs-2">--%>
-            <%--<p>企业名称</p>--%>
-            <%--<input type="text" class="form-control" name="name">--%>
-            <%--</div>--%>
-            <%--<div class="col-xs-2">--%>
-            <%--<p>企业代码</p>--%>
-            <%--<input type="text" class="form-control" name="code">--%>
-            <%--</div>--%>
-            <%--<div class="col-xs-2">--%>
-            <%--<p>联系人</p>--%>
-            <%--<input type="text" class="form-control" name="contact">--%>
-            <%--</div>--%>
-            <%--&lt;%&ndash;<div class="col-xs-2">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<p>起始时间</p>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<select class="form-control" name="start_time">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<option></option>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<c:forEach items="${allSurveyTime}" var="v">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<option>${v.start_time}</option>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</c:forEach>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</select>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<div class="col-xs-2">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<p>结束时间</p>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<select class="form-control" name="end_time">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<option></option>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<c:forEach items="${allSurveyTime}" var="v">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<option>${v.end_time}</option>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</c:forEach>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</select>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-            <%--<button type="submit" id="submit-btn">查询</button>--%>
-            <%--</form>--%>
-            <%--</div>--%>
-            <%--</div><!-- /.box-body -->--%>
-            <%--</div><!-- /.box -->--%>
 
             <div class="row">
                 <div class="col-xs-12">
