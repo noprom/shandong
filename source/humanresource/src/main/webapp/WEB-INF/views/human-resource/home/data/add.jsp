@@ -84,6 +84,9 @@
                                         <td>${v.cur_people}</td>
                                         <td>
                                                 <%--company data的状态--%>
+                                            <c:if test="${v.pid ne 0}">
+                                                <span class="label label-info">审核员更改变动</span>
+                                            </c:if>
                                             <c:choose>
                                                 <c:when test="${v.status eq -2}">
                                                     <span class="label label-danger">省审核不通过</span>
