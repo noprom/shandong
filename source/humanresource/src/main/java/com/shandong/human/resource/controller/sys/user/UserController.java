@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,13 +23,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
  * 用户控制器类
- * <p/>
+ * <p>
  * Author: syc <522560298@qq.com>
  * Date: 3/19/16 下午2:15
  */
@@ -138,22 +135,17 @@ public class UserController {
     /**
      * 删除用户
      *
-     * @param uid
-     * @param request
-     * @param response
+     * @param id
      */
-    @RequestMapping(value = "/user/delete/{id}", method = RequestMethod.GET)
-    public void deleteUser(@PathVariable("id") Integer uid, HttpServletRequest request, HttpServletResponse response) {
-        try {
-            userService.deleteByID(uid);
-            response.sendRedirect("/sys/user");
-        } catch (IOException e) {
-            try {
-                response.sendRedirect("/404");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            e.printStackTrace();
+    @RequestMapping(value = "/user/delete", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    Result deleteUser(Integer id) {
+        int status = userService.deleteByID(id);
+        if (status > 0) {
+            return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
+        } else {
+            return new Result(Result.Status.ERROR, Constant.DEAL_FAIL);
         }
     }
 

@@ -142,7 +142,7 @@
                                     <td>
                                         <a href="<%=basePath%>sys/userRole/edit/${v.id}">授权</a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="<%=basePath%>sys/user/delete/${v.id}">删除</a>
+                                        <a href="javascript:void(0);" class="del-user-btn" user_id="${v.id}">删除</a>
                                     </td>
                                     </c:forEach>
                                 </tr>
@@ -277,6 +277,35 @@
                         if (data.status == 'SUCCESS') {
                             toastr.success(data.info);
                             // 1000ms之后执行的操作
+                            setTimeout(function () {
+                                // 刷新页面
+                                location.reload(true);
+                                // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                                //window.location.href = "<%=basePath%>sys/user";
+                            }, 3000);
+                        } else {
+                            toastr.error(data.info);
+                            return false;
+                        }
+                    }
+                });
+            });
+
+            // 删除用户
+            $(".del-user-btn").on('click', function () {
+                var user_id = $(this).attr('user_id');
+                var postUrl = "<%= basePath%>sys/user/delete";
+                $.ajax({
+                    url: postUrl,//提交的地址
+                    data: {
+                        "id": user_id
+                    },
+                    method: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == 'SUCCESS') {
+                            toastr.success(data.info);
+                            // 3000ms之后执行的操作
                             setTimeout(function () {
                                 // 刷新页面
                                 location.reload(true);

@@ -74,7 +74,6 @@ public class RoleController {
      * @param response
      */
     @RequestMapping(value = "/role/delete", method = RequestMethod.POST)
-
     public
     @ResponseBody
     Result delete(Integer id, HttpServletRequest request, HttpServletResponse response) {

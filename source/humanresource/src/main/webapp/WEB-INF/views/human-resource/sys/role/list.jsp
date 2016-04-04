@@ -100,9 +100,9 @@
                                         </c:choose>
                                     </td>
                                     <td>
-                                        <a href="javascript:void(0);" class="del-role-btn" roleid="${v.id}">删除</a>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="<%=basePath%>sys/authRole/edit/${v.id}">更改权限</a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="javascript:void(0);" class="del-role-btn" role_id="${v.id}">删除</a>
                                     </td>
                                     </c:forEach>
                                 </tr>
@@ -251,9 +251,7 @@
 
             // 删除角色
             $(".del-role-btn").on('click', function () {
-                var role_id = $(this).attr('roleid');
-                console.log(role_id);
-
+                var role_id = $(this).attr('role_id');
                 var postUrl = "<%= basePath%>sys/role/delete";
                 $.ajax({
                     url: postUrl,//提交的地址
