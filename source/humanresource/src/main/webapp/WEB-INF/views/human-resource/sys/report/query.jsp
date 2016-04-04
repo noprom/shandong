@@ -91,7 +91,7 @@
                             <h3 class="box-title">报表查询</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <form id="report-form" action="<%=basePath%>sys/report" method="post">
+                            <form id="report-form" method="post">
                                 <table id="dataTable" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
@@ -126,7 +126,7 @@
                                     </c:forEach>
                                     </tbody>
                                 </table>
-                                <input class="btn btn-primary" style="width: 15%" type="submit" value="上报">
+                                <button type="button" class="btn btn-primary" id="submit-btn">上 报</button>
                             </form>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
@@ -139,6 +139,32 @@
         $(function () {
             // 模板自带分页功能的数据表格,不能删
             $("#dataTable").DataTable();
+
+            // 数据上报
+            $("#submit-btn").on('click', function () {
+                var postUrl = "<%= basePath%>sys/report";
+                $.ajax({
+                    url: postUrl,//提交的地址
+                    data: $("#report-form").serialize(),
+                    method: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == 'SUCCESS') {
+                            toastr.success(data.info);
+                            // 1000ms之后执行的操作
+                            setTimeout(function () {
+                                // 刷新页面
+                                location.reload(true);
+                                // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                                // window.location.href = "<%=basePath%>";
+                            }, 1000);
+                        } else {
+                            toastr.error(data.info);
+                            return false;
+                        }
+                    }
+                });
+            });
         });
     </script>
 </body>
