@@ -127,7 +127,7 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
 
         if (url == null) {
-            request.setAttribute("error", "无效的链接");
+            session.setAttribute("error", "无效的链接");
             return "/error";
         }
 
@@ -141,13 +141,13 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
         }
 
         if (session == null) {
-            request.setAttribute("error", "您尚未登录");
+            session.setAttribute("error", "您尚未登录");
             return "/error";
         }
 
         Set<Auth> auths = (Set<Auth>) session.getAttribute("auth");
         if (auths == null) {
-            request.setAttribute("error", "您尚未登录");
+            session.setAttribute("error", "您尚未登录");
             return "/error";
         }
 
@@ -192,7 +192,7 @@ public class PrivilegeInterceptor implements HandlerInterceptor {
                 }
             }
         }
-        request.setAttribute("error", "无效的访问请求");
+        session.setAttribute("error", "无效的访问请求");
         return "/error";
     }
 }
