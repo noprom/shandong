@@ -362,5 +362,10 @@ public class Constant {
     /**
      * 数据更新失败
      */
+    public static final String DATE_DUPLICATE= "DATE_DUPLICATE";
+
+    /**
+     * 您已提交过该时间段申报
+     */
     public static final String DATAUPDATE_FAILED = "DATAUPDATE_FAILED";
 }

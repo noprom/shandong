@@ -42,15 +42,15 @@
                 </div>
                 <div class="box-body">
                     <div class="row">
-                        <form class="form-horizontal" id="query-form" action="<%=basePath%>sys/report/query" method="get">
+                        <form class="form-horizontal" action="<%=basePath%>sys/report/query" method="get">
                             <div class="col-xs-2">
-                                <button type="submit" class="btn btn-primary" id="submit-btn">查询全部已通过市审核报表</button>
+                                <button type="submit" class="btn btn-primary">查询全部已通过市审核报表</button>
                             </div>
                         </form>
                     </div>
                     <hr>
                     <div class="row">
-                        <form class="form-horizontal" id="query-form" action="<%=basePath%>sys/report/query" method="post">
+                        <form class="form-horizontal" action="<%=basePath%>sys/report/query" method="post">
                             <div class="col-xs-12 form-group">
                                 <div class="col-xs-2 ">
                                     <label class="control-label">请输入公司ID</label>
@@ -59,7 +59,7 @@
                                     <input class="form-control" name="company_id">
                                 </div>
                                 <div class="col-xs-4 ">
-                                    <button class="btn btn-primary" type="submit" id="submit-btn">通过公司ID查询</button>
+                                    <button class="btn btn-primary" type="submit">通过公司ID查询</button>
                                 </div>
                             </div>
                         </form>
@@ -75,7 +75,7 @@
                                     <input class="form-control" name="name">
                                 </div>
                                 <div class="col-xs-4 ">
-                                    <button class="btn btn-primary" type="submit" id="submit-btn">通过公司名称查询</button>
+                                    <button class="btn btn-primary" type="submit">通过公司名称查询</button>
                                 </div>
                             </div>
                         </form>
@@ -91,7 +91,7 @@
                             <h3 class="box-title">报表查询</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <form id="query-form" action="<%=basePath%>sys/report" method="post">
+                            <form id="report-form" action="<%=basePath%>sys/report" method="post">
                                 <table id="dataTable" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
@@ -125,20 +125,6 @@
                                         </tr>
                                     </c:forEach>
                                     </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th>选&nbsp;&nbsp;择</th>
-                                        <th>ID</th>
-                                        <th>公司ID</th>
-                                        <th>初始人数</th>
-                                        <th>现在人数</th>
-                                        <th>其他原因</th>
-                                        <th>状&nbsp;&nbsp;态</th>
-                                        <th>创建时间</th>
-                                        <th>更新时间</th>
-                                        <th>查看详情</th>
-                                    </tr>
-                                    </tfoot>
                                 </table>
                                 <input class="btn btn-primary" style="width: 15%" type="submit" value="上报">
                             </form>
