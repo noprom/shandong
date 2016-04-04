@@ -66,7 +66,7 @@ public interface CompanyDataMapper {
      * @param companyData
      * @return
      */
-    Integer companyDataAdd(CompanyData companyData);
+    int companyDataAdd(CompanyData companyData);
 
     /**
      * 在每个调查期获得公司总的人数

@@ -8,20 +8,21 @@ import com.shandong.human.resource.service.home.CompanyService;
 import com.shandong.human.resource.service.sys.CompanyDataService;
 import com.shandong.human.resource.service.sys.SurveyTimeService;
 import com.shandong.human.resource.util.Constant;
-import com.shandong.human.resource.util.Pager;
+import com.shandong.human.resource.util.Result;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * 企业上报数据控制器
@@ -34,7 +35,7 @@ public class CompanyDataController {
 
     public static final String STATIC_PREFIX = "human-resource/sys/companyData";
 
-    private Logger logger = Logger.getLogger(String.valueOf(getClass()));
+    private Logger logger = Logger.getLogger(getClass());
 
     @Autowired
     private CompanyDataService companyDataService;
@@ -121,12 +122,12 @@ public class CompanyDataController {
      * @return
      */
     @RequestMapping(value = "/sys/data/edit", method = RequestMethod.POST)
-    String companyDataEdit(CompanyData companyData, Model model, HttpSession httpSession) {
+    @ResponseBody
+    Result companyDataEdit(CompanyData companyData, Model model, HttpSession httpSession) {
         companyData.setCreate_time((Date) httpSession.getAttribute("create_time"));
         Integer id = companyDataService.companyDataAdd(companyData);
-        List<CompanyData> companyDataList = companyDataService.companyDataList();
-        model.addAttribute("companyDataList", companyDataList);
-        return STATIC_PREFIX + "/list";
+        // TODO:新增纪录之后要向log表中插入一条日志
+        return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
     }
 
     /**
@@ -154,18 +155,18 @@ public class CompanyDataController {
      * 审核页面提交
      *
      * @param companyData
-     * @param model
-     * @param httpSession
      * @return
      */
     @RequestMapping(value = "/sys/data/audit", method = RequestMethod.POST)
-    String companyDataAudit(CompanyData companyData, Model model, HttpSession httpSession) {
+    @ResponseBody
+    Result companyDataAudit(CompanyData companyData) {
+        int status = companyData.getStatus();
+        String notPassReason = companyData.getNot_pass_reason().trim();
+        if ((status == -1 || status == -2) && notPassReason.equals("")) {
+            return new Result(Result.Status.ERROR, Constant.COMPANY_DATA_NOT_PASS_MUST_HAVE_A_REASON);
+        }
 
-//        System.out.println(companyData.getNot_pass_reason());
-//        Integer id = companyDataService.updateCompanyDataStatus(companyData.getId(),
-//                companyData.getStatus());
-        companyDataService.provinceCheck(companyData.getId(),companyData.getStatus(),companyData.getNot_pass_reason());
-
-        return STATIC_PREFIX + "/audit";
+        companyDataService.provinceCheck(companyData.getId(), status, notPassReason);
+        return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
     }
 }

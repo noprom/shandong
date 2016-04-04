@@ -43,7 +43,7 @@
                             <h3 class="box-title">上报数据详情</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <form role="form" action="<%=basePath%>sys/data/edit" method="post">
+                            <form role="form" method="post" id="company-data-form">
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label for="company_id">公司名</label>
@@ -122,42 +122,43 @@
                                            placeholder="第三原因说明">
                                 </div>
                                 <div class="form-group">
-                                    <label for="other_reason">审核不通过原因</label>
-                                    <input type="text" value="${companyData.not_pass_reason}" class="form-control"
+                                    <label for="other_reason">其他原因</label>
+                                    <input type="text" value="${companyData.other_reason}" class="form-control"
                                            name="other_reason" id="other_reason"
-                                           placeholder="审核不通过原因">
+                                           placeholder="其他原因">
                                 </div>
 
                                 <!-- select -->
-                                <div class="form-group">
-                                    <label>状态</label>
-                                    <select class="form-control" name="status">
-                                        <c:choose>
-                                            <c:when test="${localUser.type eq 1}">
-                                                <%--省用户--%>
-                                                <option value="-2">省审核不通过</option>
-                                                <option value="1">市审核通过,待省审核</option>
-                                                <option value="2">省审核通过,待上报到部</option>
-                                                <option value="3">已上报到部</option>
-                                            </c:when>
-                                            <c:when test="${localUser.type eq 2}">
-                                                <%--市用户--%>
-                                                <option value="-1">市审核不通过</option>
-                                                <option value="0">待市审核</option>
-                                                <option value="1">市审核通过,待省审核</option>
-                                            </c:when>
-                                        </c:choose>
-                                    </select>
-                                </div>
+                                <input type="hidden" name="status" value="${companyData.status}">
+                                <%--<div class="form-group">--%>
+                                    <%--<label>状态</label>--%>
+                                    <%--<select class="form-control" name="status">--%>
+                                        <%--<c:choose>--%>
+                                            <%--<c:when test="${localUser.type eq 1}">--%>
+                                                <%--&lt;%&ndash;省用户&ndash;%&gt;--%>
+                                                <%--<option value="-2">省审核不通过</option>--%>
+                                                <%--<option value="1">市审核通过,待省审核</option>--%>
+                                                <%--<option value="2">省审核通过,待上报到部</option>--%>
+                                                <%--<option value="3">已上报到部</option>--%>
+                                            <%--</c:when>--%>
+                                            <%--<c:when test="${localUser.type eq 2}">--%>
+                                                <%--&lt;%&ndash;市用户&ndash;%&gt;--%>
+                                                <%--<option value="-1">市审核不通过</option>--%>
+                                                <%--<option value="0">待市审核</option>--%>
+                                                <%--<option value="1">市审核通过,待省审核</option>--%>
+                                            <%--</c:when>--%>
+                                        <%--</c:choose>--%>
+                                    <%--</select>--%>
+                                <%--</div>--%>
 
-                                <div class="form-group">
-                                    <label for="not_pass_reason">审核不通过原因</label>
-                                    <input type="text" value="${companyData.not_pass_reason}" class="form-control"
+                                <%--<div class="form-group">--%>
+                                    <%--<label for="not_pass_reason">审核不通过原因</label>--%>
+                                    <input type="hidden" value="${companyData.not_pass_reason}" class="form-control"
                                            name="not_pass_reason" id="not_pass_reason"
                                            placeholder="审核不通过原因">
-                                </div>
+                                <%--</div>--%>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">提交修改</button>
+                                    <button type="button" id="submit-btn" class="btn btn-primary">提交修改</button>
                                 </div>
                             </form>
                         </div><!-- /.box-body -->
@@ -166,12 +167,37 @@
             </div>   <!-- /.row -->
         </section>
     </div>
-
-
 </div>
-
-
 <!-- /.主要内容结束 -->
 <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
+<script>
+    $(function () {
+        // 修改按钮
+        $("#submit-btn").on('click', function () {
+            var postUrl = "<%= basePath%>sys/data/edit";
+            $.ajax({
+                url: postUrl,//提交的地址
+                data: $("#company-data-form").serialize(),
+                method: "post",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 'SUCCESS') {
+                        toastr.success(data.info);
+                        // 1000ms之后执行的操作
+                        setTimeout(function () {
+                            // 刷新页面
+                            // location.reload(true);
+                            // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                            window.location.href = "<%=basePath%>sys/data/list";
+                        }, 1000);
+                    } else {
+                        toastr.error(data.info);
+                        return false;
+                    }
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

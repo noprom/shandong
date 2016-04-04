@@ -47,15 +47,20 @@
         SELECT * FROM company_data WHERE id = #{id}
     </select>
 
-    <!--TODO:新增纪录之后要向log表中插入一条日志-->
     <insert id="companyDataAdd" parameterType="CompanyData">
         SET @TIME = now();
         INSERT INTO company_data
-        (pid, company_id, survey_time_id, init_people, cur_people, reduce_type, reason1, reason1_explain, reason2, reason2_explain, reason3, reason3_explain, other_reason, status, not_pass_reason, create_time, update_time)
-
+        (pid, company_id, survey_time_id, init_people, cur_people, reduce_type, reason1, reason1_explain, reason2,
+        reason2_explain, reason3, reason3_explain, other_reason, status, not_pass_reason, create_time, update_time)
         VALUES
-        (#{id}, #{company_id}, #{survey_time_id}, #{init_people}, #{cur_people}, #{reduce_type}, #{reason1}, #{reason1_explain}, #{reason2}, #{reason2_explain}, #{reason3}, #{reason3_explain}, #{other_reason}, #{status}, #{not_pass_reason}, @TIME, @TIME )
-
+        (#{id}, #{company_id}, #{survey_time_id}, #{init_people}, #{cur_people}, #{reduce_type}, #{reason1},
+        #{reason1_explain}, #{reason2}, #{reason2_explain}, #{reason3}, #{reason3_explain}, #{other_reason}, #{status},
+        #{not_pass_reason}, @TIME, @TIME )
+        <selectKey resultType="int" keyProperty="id">
+            <![CDATA[
+			SELECT LAST_INSERT_ID() as id
+			]]>
+        </selectKey>
     </insert>
 
     <select id="getTotalPeopleFromCompanyDataOfEverySuvryTime" resultType="CompanyData">
@@ -126,7 +131,7 @@
         SELECT count(1) FROM company_data WHERE status IN (0, 1)
     </select>
 
-    <update id="provinceCheck" >
+    <update id="provinceCheck">
         UPDATE company_data SET status = #{status},not_pass_reason=#{npr} WHERE id=#{id}
     </update>
 </mapper>

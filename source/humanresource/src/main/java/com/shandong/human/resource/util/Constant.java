@@ -302,4 +302,9 @@ public class Constant {
      * 邮箱格式不合法
      */
     public static final String COMPANY_EMAIL_ILLEGAL = "COMPANY_EMAIL_ILLEGAL";
+
+    /**
+     * 审核不通过必须填写不通过原因
+     */
+    public static final String COMPANY_DATA_NOT_PASS_MUST_HAVE_A_REASON = "COMPANY_DATA_NOT_PASS_MUST_HAVE_A_REASON";
 }

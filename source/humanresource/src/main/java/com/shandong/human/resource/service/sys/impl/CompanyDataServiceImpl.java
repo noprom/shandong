@@ -59,7 +59,7 @@ public class CompanyDataServiceImpl implements CompanyDataService {
      * @param companyData
      * @return
      */
-    public Integer companyDataAdd(CompanyData companyData) {
+    public int companyDataAdd(CompanyData companyData) {
         return companyDataMapper.companyDataAdd(companyData);
     }
 

@@ -1,8 +1,6 @@
 package com.shandong.human.resource.service.sys;
 
-import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.domain.CompanyData;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +41,7 @@ public interface CompanyDataService {
      * @param companyData
      * @return
      */
-    Integer companyDataAdd(CompanyData companyData);
+    int companyDataAdd(CompanyData companyData);
 
     /**
      * 在每个调查期获得公司总的人数
@@ -140,9 +138,10 @@ public interface CompanyDataService {
     /**
      * 更新企业上报数据的状态(包括not_pass_reason)
      * 省审核
+     *
      * @param id
      * @param status
      * @return
      */
-    void provinceCheck(Integer id,Integer status,String npr);
+    void provinceCheck(Integer id, Integer status, String npr);
 }
