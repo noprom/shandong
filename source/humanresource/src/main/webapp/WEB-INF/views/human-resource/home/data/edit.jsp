@@ -166,6 +166,12 @@
                                             <textarea class="form-control" rows="3" placeholder="" id="other_reason"
                                                       name="other_reason">${companyData.other_reason}</textarea>
                                         </div>
+                                        <c:if test="${companyData.not_pass_reason != null and companyData.not_pass_reason !=''}">
+                                        <div class="form-group">
+                                            <label>审核不通过原因</label>
+                                            <p>${companyData.not_pass_reason}</p>
+                                        </div>
+                                        </c:if>
 
                                     </div><!-- /.box-body -->
 
