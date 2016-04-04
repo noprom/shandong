@@ -62,16 +62,16 @@ public class UserController {
     @RequestMapping(value="/user/detail/{id}",method = RequestMethod.GET)
     public String detail(Model model , @PathVariable("id") Integer id)
     {
-        System.out.println("+++++++++++++++++++++++");
-        System.out.println("+++++++++++++++++++++++");
-        System.out.println("+++++++++++++++++++++++");
-        System.out.println("+++++++++++++++++++++++");
-        System.out.println("+++++++++++++++++++++++");
-        System.out.println("+++++++++++++++++++++++");
+//        System.out.println("+++++++++++++++++++++++");
+//        System.out.println("+++++++++++++++++++++++");
+//        System.out.println("+++++++++++++++++++++++");
+//        System.out.println("+++++++++++++++++++++++");
+//        System.out.println("+++++++++++++++++++++++");
+//        System.out.println("+++++++++++++++++++++++");
 
         CompanyData cd = companyDataService.getCompanyDataById(id);
         model.addAttribute("check", cd);
-        System.out.println(cd.getCompany_id());
+//        System.out.println(cd.getCompany_id());
 
         return STATIC_PREFIX + "/detail";
     }
