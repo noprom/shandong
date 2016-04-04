@@ -27,16 +27,6 @@
     <jsp:include page="../../left.jsp" flush="true"></jsp:include>
 
     <div class="content-wrapper">
-<<<<<<< HEAD
-    <section class="content-header">
-        <h1>删除后台菜单</h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
-            <li><a href="#">系统管理</a></li>
-            <li class="active">删除权限</li>
-        </ol>
-    </section>
-=======
         <section class="content-header">
             <h1>删除后台菜单</h1>
             <ol class="breadcrumb">
@@ -46,7 +36,6 @@
                 <li class="active">删除权限</li>
             </ol>
         </section>
->>>>>>> 6dc5d33d1c9383f248e30e4a0818da566f9f9d5b
 
         <section class="content">
             <div class="row">

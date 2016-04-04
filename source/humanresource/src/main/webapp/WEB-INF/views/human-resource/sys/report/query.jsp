@@ -44,7 +44,7 @@
                     <div class="row">
                         <form id="query-form" action="<%=basePath%>sys/report/query" method="get">
                             <div class="col-xs-2">
-                                <button type="submit" class="btn btn-primary" id="submit-btn">查询全部</button>
+                                <button type="submit" class="btn btn-primary" id="submit-btn">查询全部已通过市审核报表</button>
                             </div>
                         </form>
                     </div>
