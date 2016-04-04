@@ -134,5 +134,7 @@
           reason2 = #{reason2} , reason2_explain = #{reason2_explain} ,
            reason3 = #{reason3} , reason3_explain = #{reason3_explain} , other_reason = #{other_reason} ,
            status = 0 , update_time = @TIME WHERE id = #{id}
+    <update id="provinceCheck" >
+        UPDATE company_data SET status = #{status},not_pass_reason=#{npr} WHERE id=#{id}
     </update>
 </mapper>

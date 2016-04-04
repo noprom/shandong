@@ -476,13 +476,11 @@ public class CompanyController {
             fields.add(error.getField());
         }
         // 按照制定的顺序查找
-        String firstField = "";
         for (Pair<String, String> pair : companyErrorMsg) {
             if (fields.contains(pair.first)) {
-                firstField = pair.first;
-                break;
+                return pair.second;
             }
         }
-        return getErrorMessage(firstField);
+        return null;
     }
 }

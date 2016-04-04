@@ -10,6 +10,7 @@
 
     <select id="selectAll" resultMap="Role">
         SELECT id , name ,status FROM role
+        ORDER BY id DESC
     </select>
 
     <insert id="insertRole" parameterType="java.lang.String">

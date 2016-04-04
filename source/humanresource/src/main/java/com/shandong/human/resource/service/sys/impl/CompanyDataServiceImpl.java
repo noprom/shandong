@@ -189,4 +189,17 @@ public class CompanyDataServiceImpl implements CompanyDataService {
     public Integer updateCompanyData(CompanyData companyData){
         return  companyDataMapper.updateCompanyData(companyData);
     };
+
+    /**
+     * 更新数据的状态
+     *
+     * @param id
+     * @param status
+     * @param npr
+     * @return
+     */
+    public void provinceCheck(Integer id, Integer status,String npr)
+    {
+        companyDataMapper.provinceCheck(id,status,npr);
+    }
 }
