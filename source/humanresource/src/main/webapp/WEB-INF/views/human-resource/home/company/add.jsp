@@ -231,7 +231,7 @@
                                 toastr.error(data.info);
                                 setTimeout(function () {
                                     window.location.href = "<%=basePath%>";
-                                }, 3000);
+                                }, 1000);
                                 return false;
                             } else {
                                 toastr.error(data.object);

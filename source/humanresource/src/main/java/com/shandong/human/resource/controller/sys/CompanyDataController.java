@@ -61,7 +61,7 @@ public class CompanyDataController {
             status.add(1L);
             status.add(2L);
             status.add(3L);
-        } else if (loginUser.getType() == 2) { // 市用户
+        } else if (loginUser.getType() >= 170) { // 市用户
             status.add(-1L);
             status.add(0L);
             status.add(1L);
