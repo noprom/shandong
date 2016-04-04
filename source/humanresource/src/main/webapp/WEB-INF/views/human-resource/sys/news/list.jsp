@@ -26,7 +26,7 @@
                 <small>所有通知</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
                 <li><a href="#">通知管理</a></li>
                 <li class="active">所有通知</li>
             </ol>
@@ -46,7 +46,6 @@
                                 <tr>
                                     <th>编号</th>
                                     <th>标题</th>
-                                    <th>主要内容</th>
                                     <th>创建时间</th>
                                     <th>操作</th>
                                 </tr>
@@ -56,10 +55,11 @@
                                     <tr>
                                         <td>${v.id}</td>
                                         <td>${v.title}</td>
-                                        <td>${v.content}</td>
                                         <td><fmt:formatDate value="${v.createTime}" type="both"
                                                             pattern="yyyy-MM-dd HH:mm"/></td>
                                         <td>
+                                            <a href="<%=basePath%>sys/news/${v.id}"
+                                               class="btn btn-primary">详情</a>
                                             <a href="<%=basePath%>sys/news/edit/${v.id}"
                                                class="btn btn-primary">修改</a>
                                             <a href="<%=basePath%>sys/news/delete/${v.id}"
