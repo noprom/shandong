@@ -31,11 +31,11 @@
                 系统监控
                 <small>图表分析</small>
             </h1>
-            <%--<ol class="breadcrumb">--%>
-                <%--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--%>
-                <%--<li><a href="#">Charts</a></li>--%>
-                <%--<li class="active">ChartJS</li>--%>
-            <%--</ol>--%>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>系统管理</li>
+                <li class="active">系统监控</li>
+            </ol>
         </section>
 
         <!-- Main content -->

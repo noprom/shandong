@@ -35,13 +35,13 @@
         <section class="content">
 
             <%--企业还没有备案的消息提示--%>
-            <c:if test="${authorize eq false}">
+            <c:if test="${authorize eq false && localUser.type eq 2}">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="alert alert-danger alert-dismissable">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                             <h4><i class="icon fa fa-ban"></i> 系统提示</h4>
-                            您还未完善企业备案信息,请尽快备案
+                            您还未完善企业备案信息,请尽快备案 <a href="<%=basePath%>home/company/add">立即备案</a>
                         </div>
                     </div>
                 </div>

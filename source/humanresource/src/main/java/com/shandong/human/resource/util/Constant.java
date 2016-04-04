@@ -204,9 +204,14 @@ public class Constant {
     public static final String ROLENAME_ILLEGAL = "ROLENAME_ILLEGAL";
 
     /**
-     * 权限名长度不合法
+     * 权限名不合法
      **/
     public static final String AUTHNAME_ILLEGAL = "AUTHNAME_ILLEGAL";
+
+    /**
+     * 权限链接不合法
+     **/
+    public static final String AUTHURL_ILLEGAL = "AUTHURL_ILLEGAL";
 
     /**
      * 拒绝删除基本权限或不存在的权限
@@ -214,15 +219,87 @@ public class Constant {
     public static final String AUTHDELETE_REFUSE = "AUTHDELETE_REFUSE";
 
     /**
+     * 上报时间段格式不正确(MM/dd/yyyy-MM/dd/yyyy)
+     **/
+    public static final String SURVERYTIME_REFUSE = "SURVERYTIME_REFUSE";
+
+    /**
+     * 无法删除该角色
+     **/
+    public static final String ROLEDELETE_REFUSE = "ROLEDELETE_REFUSE";
+
+    /**
      * 上报成功
      **/
     public static final String SUBMIT_SUCCESS = "SUBMIT_SUCCESS";
 
-    public static final String HOST_URL = "http://localhost:8080/bigdatatalentpool";
+    /**
+     * 用户名密码不能为空
+     */
+    public static final String USERNAME_PASSWORD_CANNOT_BE_EMPTY = "USERNAME_PASSWORD_CANNOT_BE_EMPTY";
 
-    public static void main(String[] args) {
-        String str = new String("ef6606b75e04d972715278be7ff9bbf7");
-        System.out.println("len = " + str.length());
-        return;
-    }
+    /**
+     * 不合法的理由
+     */
+    public static final String REASON_INVALID = "REASON_INVALID";
+
+    /**
+     * 登录过期
+     */
+    public static final String SEASSON_TIMEOUT = "SEASSON_TIMEOUT";
+
+    /**
+     * 用户名或者密码错误
+     */
+    public static final String USERNAME_PASSWORD_ERROR = "USERNAME_PASSWORD_ERROR";
+
+    /**
+     * 已经填写过备案信息
+     */
+    public static final String COMPANY_ALREADY_EXISTS = "COMPANY_ALREADY_EXISTS";
+
+    /**
+     * 公司地址不能超过100个字符
+     */
+    public static final String COMPANY_ADDRESS_5_100_CHAR = "COMPANY_ADDRESS_5_100_CHAR";
+
+    /**
+     * 组织机构代码只可输入2到9位的字母或者数字
+     */
+    public static final String COMPANY_CODE_2_9_CHAR = "COMPANY_CODE_2_9_CHAR";
+
+    /**
+     * 企业名称必须为5到30位的中文或英文
+     */
+    public static final String COMPANY_NAME_5_30_CHAR = "COMPANY_NAME_5_30_CHAR";
+
+    /**
+     * 公司经营业务必须为5到255位
+     */
+    public static final String COMPANY_BUSINESS_5_255 = "COMPANY_BUSINESS_5_255";
+
+    /**
+     * 企业联系人必须为2到20位的中文或英文
+     */
+    public static final String COMPANY_CONTACT_2_20 = "COMPANY_CONTACT_2_20";
+
+    /**
+     * 邮政编码必须为6位数字
+     */
+    public static final String COMPANY_ZIP_CODE_6_NUM = "COMPANY_ZIP_CODE_6_NUM";
+
+    /**
+     * 电话号码格式不合法
+     */
+    public static final String COMPANY_PHONE_ILLEGAL = "COMPANY_PHONE_ILLEGAL";
+
+    /**
+     * 传真格式不合法
+     */
+    public static final String COMPANY_FAX_ILLEGAL = "COMPANY_FAX_ILLEGAL";
+
+    /**
+     * 邮箱格式不合法
+     */
+    public static final String COMPANY_EMAIL_ILLEGAL = "COMPANY_EMAIL_ILLEGAL";
 }

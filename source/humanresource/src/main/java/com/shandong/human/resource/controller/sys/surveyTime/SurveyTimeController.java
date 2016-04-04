@@ -2,10 +2,13 @@ package com.shandong.human.resource.controller.sys.surveyTime;
 
 import com.shandong.human.resource.domain.SurveyTime;
 import com.shandong.human.resource.service.sys.SurveyTimeService;
+import com.shandong.human.resource.util.Constant;
+import com.shandong.human.resource.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,22 +52,21 @@ public class SurveyTimeController {
      * @param response
      */
     @RequestMapping(value = "/surveyTime/add", method = RequestMethod.POST)
-    public void add(String date, HttpServletResponse response) {
+    public @ResponseBody
+    Result add(String date, HttpServletResponse response) {
 
         String[] times = date.split("-");
         if (times.length < 2) {
-            try {
-                response.sendRedirect("/sys/surveyTime");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return;
+            return new Result(Result.Status.ERROR, Constant.SURVERYTIME_REFUSE);
         }
 
         SurveyTime toAdd = new SurveyTime();
-        DateFormat date_t = new SimpleDateFormat("MM-dd-yyyy");
-        String strTime_s = times[0].replace('/', '-');
-        String endTime_s = times[1].replace('/', '-');
+//        DateFormat date_t = new SimpleDateFormat("MM-dd-yyyy");
+//        String strTime_s = times[0].replace('/', '-');
+//        String endTime_s = times[1].replace('/', '-');
+        DateFormat date_t = new SimpleDateFormat("MM/dd/yyyy");
+        String strTime_s = times[0];
+        String endTime_s = times[1];
 
         Date strDate = new Date();
         Date endDate = new Date();
@@ -76,13 +78,8 @@ public class SurveyTimeController {
             toAdd.setEnd_time(endDate);
             service.insertSurveyTime(toAdd);
         } catch (ParseException e) {
-            e.printStackTrace();
+            return new Result(Result.Status.ERROR, Constant.SURVERYTIME_REFUSE);
         }
-
-        try {
-            response.sendRedirect("/sys/surveyTime");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return new Result(Result.Status.SUCCESS, Constant.SUBMIT_SUCCESS);
     }
 }

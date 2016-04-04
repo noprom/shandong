@@ -1,8 +1,12 @@
 package com.shandong.human.resource.domain;
 
+import com.shandong.human.resource.util.RegExUtil;
+
+import javax.validation.constraints.Pattern;
+
 /**
  * 公司实体类
- *
+ * <p>
  * Author: constantine <1194479264@qq.com>
  * Date: 16/3/11 上午9:56
  */
@@ -11,15 +15,26 @@ public class Company {
     private int province_id;             //省id
     private int city_id;                //市id
     private int area_id;                //区id
-    private String address;             //地址
-    private String code;                //组织机构代码,只可输入字母、数字，不超过9位
+    @Pattern(regexp = ".{5,100}")
+    private String address;             //地址,5~100个字符
+    @Pattern(regexp = "[0-9a-zA-Z]{2,9}")
+    private String code;                //组织机构代码,只可输入字母、数字，2~9位
+    @Pattern(regexp = RegExUtil.CH_EN + "{5,30}")//^[a-zA-Z]+$  ,^.{0,60}$
     private String name;                //企业名称
+    @Pattern(regexp = ".{2,255}")       //主要经营业务2到255位
     private String business;            //主要经营业务
+    @Pattern(regexp = RegExUtil.CH_EN + "{2,20}")
     private String contact;             //联系人,中文、英文
+    @Pattern(regexp = "\\b\\d{6}\\b")
     private String zipcode;             //邮政编码,只可填写6位数字
+    @Pattern(regexp = RegExUtil.PHONE_ZUOJI)
     private String phone;               //联系电话,格式必须符合（区号）+电话号码或者为手机号码
+    @Pattern(regexp = RegExUtil.FAX)
     private String fax;                 //传真,格式必须符合（区号）+电话
+    @Pattern(regexp = RegExUtil.EMAIL)
     private String email;                //EMAIL,格式必须符合xxx@xxx.xxx
+    private int industry_involved;    //所属行业
+    private int industry_type;        //企业性质
 
     public int getId() {
         return id;
@@ -125,6 +140,22 @@ public class Company {
         this.email = email;
     }
 
+    public int getIndustry_involved() {
+        return industry_involved;
+    }
+
+    public void setIndustry_involved(int industry_involved) {
+        this.industry_involved = industry_involved;
+    }
+
+    public int getIndustry_type() {
+        return industry_type;
+    }
+
+    public void setIndustry_type(int industry_type) {
+        this.industry_type = industry_type;
+    }
+
     @Override
     public String toString() {
         return "Company{" +
@@ -141,6 +172,53 @@ public class Company {
                 ", phone='" + phone + '\'' +
                 ", fax='" + fax + '\'' +
                 ", email='" + email + '\'' +
+                ", industry_involved='" + industry_involved + '\'' +
+                ", industry_type='" + industry_type + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Company company = (Company) o;
+
+        if (id != company.id) return false;
+        if (province_id != company.province_id) return false;
+        if (city_id != company.city_id) return false;
+        if (area_id != company.area_id) return false;
+        if (industry_involved != company.industry_involved) return false;
+        if (industry_type != company.industry_type) return false;
+        if (!address.equals(company.address)) return false;
+        if (!code.equals(company.code)) return false;
+        if (!name.equals(company.name)) return false;
+        if (!business.equals(company.business)) return false;
+        if (!contact.equals(company.contact)) return false;
+        if (!zipcode.equals(company.zipcode)) return false;
+        if (!phone.equals(company.phone)) return false;
+        if (!fax.equals(company.fax)) return false;
+        return email.equals(company.email);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + province_id;
+        result = 31 * result + city_id;
+        result = 31 * result + area_id;
+        result = 31 * result + address.hashCode();
+        result = 31 * result + code.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + business.hashCode();
+        result = 31 * result + contact.hashCode();
+        result = 31 * result + zipcode.hashCode();
+        result = 31 * result + phone.hashCode();
+        result = 31 * result + fax.hashCode();
+        result = 31 * result + email.hashCode();
+        result = 31 * result + industry_involved;
+        result = 31 * result + industry_type;
+        return result;
     }
 }

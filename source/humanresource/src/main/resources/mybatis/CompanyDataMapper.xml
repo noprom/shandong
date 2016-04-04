@@ -111,7 +111,15 @@
     </update>
 
     <select id="getCompanyDataByCompanyIdLastestTime" resultMap="CompanyData">
-        SELECT * FROM company_data WHERE company_id = #{company_id} ORDER BY create_time DESC
+        SELECT * FROM company_data WHERE company_id = #{company_id} ORDER BY update_time DESC
+    </select>
+
+    <select id="selectByStatus" resultMap="CompanyData" parameterType="java.lang.Integer">
+        SELECT * FROM company_data WHERE status = #{status}
+    </select>
+
+    <select id="selectBySurveyTimeID" resultMap="CompanyData" parameterType="java.lang.Integer">
+        SELECT * FROM company_data WHERE survey_time_id = #{id}
     </select>
 
     <select id="getToCheckCompanyDataCount" resultType="int">

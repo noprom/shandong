@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * 公司service
- * <p>
+ * <p/>
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/20 10:29
  */
@@ -18,7 +18,7 @@ public interface CompanyService {
      *
      * @param company
      */
-    void setCompanyInfo(Company company);
+    int setCompanyInfo(Company company);
 
     /**
      * 通过城市获得公司数量
@@ -49,6 +49,39 @@ public interface CompanyService {
      * @param company
      */
     void updateCompanyInfo(Company company);
+
+    /**
+     * <<<<<<< HEAD
+     * 根据公司名模糊查询
+     *
+     * @return
+     */
+    List<Company> fuzzySearchByName(String name);
+
+
+    /**
+     * 根据公司所在区查询
+     *
+     * @param area_id
+     * @return
+     */
+    List<Company> selectByAreaID(Integer area_id);
+
+
+    /**
+     * 根据公司地址模糊查询
+     *
+     * @return
+     */
+    List<Company> fuzzySearchByAddress(String address);
+
+
+    /**
+     * 根据公司业务模糊查询
+     *
+     * @return
+     */
+    List<Company> fuzzySearchByBusiness(String business);
 
     /**
      * 获取所有Company

@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 公司数据service实现类
- * <p>
+ * <p/>
  * Author: helin <helin199210@icloud.com>
  * Time: 16/3/15 下午3:11
  */
@@ -151,8 +151,28 @@ public class CompanyDataServiceImpl implements CompanyDataService {
     }
 
     /**
+     * 通过公司状态获得企业上报数据
+     *
+     * @param status
+     * @return
+     */
+    public List<CompanyData> selectByStatus(Integer status) {
+        return companyDataMapper.selectByStatus(status);
+    }
+
+
+    /**
+     * 根据surveyTime查询
+     *
+     * @return
+     */
+    public List<CompanyData> selectBySurveyTimeID(Integer id) {
+        return companyDataMapper.selectBySurveyTimeID(id);
+    }
+
+    /**
      * 获得待审核企业上报数据总数
-     * status为0,1的数据
+     * status为0, 1 的数据
      *
      * @return
      */

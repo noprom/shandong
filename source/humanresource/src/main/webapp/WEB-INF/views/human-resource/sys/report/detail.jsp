@@ -25,6 +25,11 @@
             <h1>
                 报表详情
             </h1>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>报表管理</li>
+                <li class="active">报表列表</li>
+            </ol>
         </section>
 
         <section class="content">

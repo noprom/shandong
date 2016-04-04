@@ -171,4 +171,55 @@ public class CompanyData {
     public void setCreate_time(Date create_time) {
         this.create_time = create_time;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CompanyData that = (CompanyData) o;
+
+        if (id != that.id) return false;
+        if (pid != that.pid) return false;
+        if (company_id != that.company_id) return false;
+        if (survey_time_id != that.survey_time_id) return false;
+        if (init_people != that.init_people) return false;
+        if (cur_people != that.cur_people) return false;
+        if (status != that.status) return false;
+        if (!other_reason.equals(that.other_reason)) return false;
+        if (!reduce_type.equals(that.reduce_type)) return false;
+        if (!reason1.equals(that.reason1)) return false;
+        if (!reason1_explain.equals(that.reason1_explain)) return false;
+        if (!reason2.equals(that.reason2)) return false;
+        if (!reason2_explain.equals(that.reason2_explain)) return false;
+        if (!reason3.equals(that.reason3)) return false;
+        if (!reason3_explain.equals(that.reason3_explain)) return false;
+        if (!not_pass_reason.equals(that.not_pass_reason)) return false;
+        if (!create_time.equals(that.create_time)) return false;
+        return update_time.equals(that.update_time);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + pid;
+        result = 31 * result + company_id;
+        result = 31 * result + survey_time_id;
+        result = 31 * result + init_people;
+        result = 31 * result + cur_people;
+        result = 31 * result + other_reason.hashCode();
+        result = 31 * result + reduce_type.hashCode();
+        result = 31 * result + reason1.hashCode();
+        result = 31 * result + reason1_explain.hashCode();
+        result = 31 * result + reason2.hashCode();
+        result = 31 * result + reason2_explain.hashCode();
+        result = 31 * result + reason3.hashCode();
+        result = 31 * result + reason3_explain.hashCode();
+        result = 31 * result + status;
+        result = 31 * result + not_pass_reason.hashCode();
+        result = 31 * result + create_time.hashCode();
+        result = 31 * result + update_time.hashCode();
+        return result;
+    }
 }

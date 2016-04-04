@@ -87,4 +87,36 @@ public class UserServiceImpl implements UserService {
         info.put("password", password);
         return service.selectByNamePwd(info);
     }
+
+    /**
+     * 按id查询用户
+     *
+     * @param id
+     * @return
+     */
+    public User selectByID(Integer id){
+        return  service.selectByID(id);
+    }
+
+
+    /**
+     * 按用户名查询用户
+     *
+     * @param username
+     * @return
+     */
+    public User selectByName(String username){
+        return service.selectByName(username);
+    }
+
+
+    /**
+     * 按用户名查询用户
+     *
+     * @param type
+     * @return
+     */
+    public List<User> selectByType(Integer type){
+        return service.selectByType(type);
+    }
 }

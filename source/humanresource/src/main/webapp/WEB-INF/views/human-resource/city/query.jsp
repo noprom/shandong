@@ -83,7 +83,7 @@
                                         <td>${v.status}</td>
                                         <td>${v.create_time}</td>
                                         <td>${v.update_time}</td>
-                                        <td><a href="<%=basePath%>city/check/${v.id}" class="btn btn-primary">审核</a>
+                                        <td><a href="<%=basePath%>sys/city/check/${v.id}" class="btn btn-primary">审核</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

@@ -58,4 +58,29 @@ public interface UserMapper {
      * @return
      */
     User selectByNamePwd(Map<Object, Object> user);
+
+    /**
+     * 按id查询用户
+     *
+     * @param id
+     * @return
+     */
+    User selectByID(Integer id);
+
+    /**
+     * 按用户名查询用户
+     *
+     * @param username
+     * @return
+     */
+    User selectByName(String username);
+
+    /**
+     * 按用户名查询用户
+     *
+     * @param type
+     * @return
+     */
+    List<User> selectByType(Integer type);
+
 }

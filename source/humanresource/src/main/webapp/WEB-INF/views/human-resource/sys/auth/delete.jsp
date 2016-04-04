@@ -27,6 +27,7 @@
     <jsp:include page="../../left.jsp" flush="true"></jsp:include>
 
     <div class="content-wrapper">
+<<<<<<< HEAD
     <section class="content-header">
         <h1>删除后台菜单</h1>
         <ol class="breadcrumb">
@@ -35,64 +36,61 @@
             <li class="active">删除权限</li>
         </ol>
     </section>
+=======
+        <section class="content-header">
+            <h1>删除后台菜单</h1>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>系统管理</li>
+                <li>权限管理</li>
+                <li class="active">删除权限</li>
+            </ol>
+        </section>
+>>>>>>> 6dc5d33d1c9383f248e30e4a0818da566f9f9d5b
 
-    <section class="content">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="box box-info">
-                    <div class="box-body">
-                        <form  role="form" id = "delete-auth-form">
-                            <% AuthTree _Auths=(AuthTree)request.getAttribute("existAuth"); %>
-                            <div class="form-group">
-                                <label>选择权限</label>
-                                <select name="id" class="form-control">
-                                    <% List<Auth> authList= AuthTree.toList(_Auths);
-                                        for (Auth r:authList) {
-                                            StringBuilder s = new StringBuilder();
-                                            for(int i=0;i<r.getLevel();++i)
-                                                s.append("&nbsp&nbsp&nbsp&nbsp");
-                                            s.append('└').append(r.getName());
-                                            int id = r.getId();
-                                            %><option name="pid" value="<%= id%>"><%= s.toString()%></option><%
-                                        }
-                                    %>
+        <section class="content">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <form role="form" id="delete-auth-form">
+                                <% AuthTree _Auths = (AuthTree) request.getAttribute("existAuth"); %>
+                                <div class="form-group">
+                                    <label>选择权限</label>
+                                    <select name="id" class="form-control">
+                                        <% List<Auth> authList = AuthTree.toList(_Auths);
+                                            for (Auth r : authList) {
+                                                StringBuilder s = new StringBuilder();
+                                                for (int i = 0; i < r.getLevel(); ++i)
+                                                    s.append("&nbsp&nbsp&nbsp&nbsp");
+                                                s.append('└').append(r.getName());
+                                                int id = r.getId();
+                                        %>
+                                        <option name="pid" value="<%= id%>"><%= s.toString()%>
+                                        </option>
+                                        <%
+                                            }
+                                        %>
 
-                                </select>
-                            </div>
+                                    </select>
+                                </div>
 
-                            <div class="form-group">
-                                <input type="button" class="btn btn-warning" value="确认删除" id="delete-auth-btn">
-                            </div>
+                                <div class="form-group">
+                                    <input type="button" class="btn btn-warning" value="确认删除" id="delete-auth-btn">
+                                </div>
 
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </div>
 
 
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
-    <%--<script type='text/javascript' src='<%=basePath%>static/human/js/plugins/toastr/toastr.min.js'></script>--%>
     <script>
-        //        toastr.options = {
-        //            "closeButton": true,
-        //            "debug": false,
-        //            "progressBar": true,
-        //            "positionClass": "toast-top-center",
-        //            "onclick": null,
-        //            "showDuration": "50",
-        //            "hideDuration": "100",
-        //            "timeOut": "1200",
-        //            "extendedTimeOut": "100",
-        //            "showEasing": "swing",
-        //            "hideEasing": "linear",
-        //            "showMethod": "fadeIn",
-        //            "hideMethod": "fadeOut"
-        //        };
         $(function () {
-            // 新增角色
             $("#delete-auth-btn").on('click', function () {
                 // ajax 方式提交数据到某个url
                 var postUrl = "<%=basePath%>sys/auth/delete";
@@ -110,7 +108,7 @@
                     success: function (data) {
 
                         if (data.status == 'SUCCESS') {
-                            alert(data.info);
+                            toastr.success(data.info);
 //                            toastr.success(data.info);
                             // 1000ms之后执行的操作
                             setTimeout(function () {
@@ -120,7 +118,7 @@
                                 //window.location.href = "<%=basePath%>sys/user";
                             }, 1000);
                         } else {
-                            alert(data.info);
+                            toastr.error(data.info);
 //                            toastr.error(data.info);
                             return false;
                         }

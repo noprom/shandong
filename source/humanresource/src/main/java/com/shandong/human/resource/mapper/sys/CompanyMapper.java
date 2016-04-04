@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 公司数据mapper
- * <p>
+ * <p/>
  * Author: constantine <1194479264@qq.com>
  * Date: 16/3/11 下午2:08
  */
@@ -44,7 +44,7 @@ public interface CompanyMapper {
      *
      * @param company
      */
-    void setCompanyInfo(Company company);
+    int setCompanyInfo(Company company);
 
     /**
      * 城市用户获得公司数据总数
@@ -75,6 +75,36 @@ public interface CompanyMapper {
      * @param company
      */
     void updateCompanyInfo(Company company);
+
+    /**
+     * 根据公司名模糊查询
+     *
+     * @return
+     */
+    List<Company> fuzzySearchByName(String name);
+
+    /**
+     * 根据公司所在区查询
+     *
+     * @param area_id
+     * @return
+     */
+    List<Company> selectByAreaID(Integer area_id);
+
+    /**
+     * 根据公司地址模糊查询
+     *
+     * @return
+     */
+    List<Company> fuzzySearchByAddress(String address);
+
+
+    /**
+     * 根据公司业务模糊查询
+     *
+     * @return
+     */
+    List<Company> fuzzySearchByBusiness(String business);
 
     /**
      * 根据name获取CompanyID

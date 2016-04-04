@@ -33,7 +33,6 @@
         <section class="content-header">
             <h1>
                 数据填报
-                <%--<small>table</small>--%>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
@@ -63,25 +62,31 @@
                                                     style="width: 100%;" id="survey_time_id" name="survey_time_id">
                                                 <%--<option selected="selected"></option>--%>
                                                 <c:forEach items="${listSurverTime}" var="v">
-                                                    <option value="${v.id}">${v.start_time} ---- ${v.end_time}</option>
+                                                    <option value="${v.id}"><fmt:formatDate value="${v.start_time}"
+                                                                                            type="both"
+                                                                                            pattern="yyyy-MM-dd HH:mm"/>
+                                                        到 <fmt:formatDate value="${v.end_time}" type="both"
+                                                                          pattern="yyyy-MM-dd HH:mm"/></option>
                                                 </c:forEach>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>建档期就业人数</label>
-                                            <input class="form-control" type="text" id="init_people" name="init_people">
+                                            <input class="form-control" value="${companyData.init_people}" type="text"
+                                                   id="init_people" name="init_people">
                                         </div>
                                         <div class="form-group">
                                             <label>调查期就业人数</label>
-                                            <input class="form-control" type="text" id="cur_people" name="cur_people">
+                                            <input class="form-control" value="${companyData.cur_people}" type="text"
+                                                   id="cur_people" name="cur_people">
                                         </div>
                                         <div class="form-group">
                                             <label>就业人数减少类型</label>
                                             <select aria-hidden="true" tabindex="-1" class="form-control"
                                                     style="width: 100%;" id="reduce_type" name="reduce_type">
-                                                <option selected="selected"></option>
+                                                <option selected="selected">${companyData.reduce_type}</option>
                                                 <c:forEach items="${listType}" var="v">
-                                                    <option value="${v.id}">${v.name}</option>
+                                                    <option value="${v.name}">${v.name}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>
@@ -89,16 +94,17 @@
                                             <label>主要原因</label>
                                             <select aria-hidden="true" tabindex="-1" class="form-control"
                                                     style="width: 100%;" id="reason1" name="reason1">
-                                                <option selected="selected"></option>
+                                                <option selected="selected">${companyData.reason1}</option>
                                                 <c:forEach items="${listReason}" var="v">
-                                                    <option value="${v.id}">${v.name}</option>
+                                                    <option value="${v.name}">${v.name}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>主要原因说明</label>
                                             <textarea style="height: 64px;" class="form-control" rows="3"
-                                                      name="reason1_explain" id="reason1_explain"></textarea>
+                                                      name="reason1_explain"
+                                                      id="reason1_explain">${companyData.reason1_explain}</textarea>
                                         </div>
                                         <div class="box-footer">
                                             <button type="button" onclick="onSubmit()" class="btn btn-primary">上报
@@ -122,9 +128,9 @@
                                             <label>次要原因</label>
                                             <select aria-hidden="true" tabindex="-1" class="form-control"
                                                     style="width: 100%;" id="reason2" name="reason2">
-                                                <option selected="selected"></option>
+                                                <option selected="selected">${companyData.reason2}</option>
                                                 <c:forEach items="${listReason}" var="v">
-                                                    <option value="${v.id}">${v.name}</option>
+                                                    <option value="${v.name}">${v.name}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>
@@ -132,15 +138,16 @@
                                         <div class="form-group">
                                             <label>次要原因说明</label>
                                             <textarea style="height: 64px;" class="form-control" rows="3"
-                                                      name="reason2_explain" id="reason2_explain"></textarea>
+                                                      name="reason2_explain"
+                                                      id="reason2_explain">${companyData.reason2_explain}</textarea>
                                         </div><!-- /.form-group -->
                                         <div class="form-group">
                                             <label>第三原因</label>
                                             <select aria-hidden="true" tabindex="-1" class="form-control"
                                                     style="width: 100%;" id="reason3" name="reason3">
-                                                <option selected="selected"></option>
+                                                <option selected="selected">${companyData.reason3}</option>
                                                 <c:forEach items="${listReason}" var="v">
-                                                    <option value="${v.id}">${v.name}</option>
+                                                    <option value="${v.name}">${v.name}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>
@@ -148,12 +155,13 @@
                                         <div class="form-group">
                                             <label>第三原因说明</label>
                                             <textarea class="form-control" rows="3" placeholder=""
-                                                      name="reason3_explain" id="reason3_explain"></textarea>
+                                                      name="reason3_explain"
+                                                      id="reason3_explain">${companyData.reason3_explain}</textarea>
                                         </div><!-- /.form-group -->
                                         <div class="form-group">
                                             <label>其它原因</label>
                                             <textarea class="form-control" rows="3" placeholder="" id="other_reason"
-                                                      name="other_reason"></textarea>
+                                                      name="other_reason">${companyData.other_reason}</textarea>
                                         </div>
 
                                     </div><!-- /.box-body -->
@@ -191,7 +199,7 @@
             }
             else if (status >= 0) {
                 toastr.error(info);
-                setTimeout(function(){
+                setTimeout(function () {
                     window.location.href = "<%=basePath%>";
                 }, 3500);
             }
@@ -209,6 +217,27 @@
                     if (data.success == "success") {
                         toastr.success("上报成功");
                         window.location.href = "<%=basePath%>";
+                    }
+                    else if (data.success == "error0") {
+                        toastr.error("建档期就业人数格式有误！");
+                    }
+                    else if (data.success == "error1") {
+                        toastr.error("调查期就业人数格式有误！");
+                    }
+                    else if (data.success == "error2") {
+                        toastr.error("主要原因说明过长！");
+                    }
+                    else if (data.success == "error3") {
+                        toastr.error("次要原因过长！");
+                    }
+                    else if (data.success == "error4") {
+                        toastr.error("第三原因说明过长！");
+                    }
+                    else if (data.success == "error5") {
+                        toastr.error("其它原因说明过长！");
+                    }
+                    else if (data.success == "error51") {
+                        toastr.error("其它原因不能为空！");
                     }
                 },
                 error: function () {

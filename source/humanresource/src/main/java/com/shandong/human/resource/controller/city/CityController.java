@@ -5,6 +5,7 @@ import com.shandong.human.resource.domain.User;
 import com.shandong.human.resource.service.city.CityService;
 import com.shandong.human.resource.service.sys.CompanyDataService;
 import com.shandong.human.resource.util.Constant;
+import com.shandong.human.resource.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,7 @@ import java.util.Map;
  * Date: 16/3/30 上午10:37
  */
 @Controller
+@RequestMapping("/sys")
 public class CityController {
 
     public static final String STATIC_PREFIX = "human-resource/city";
@@ -90,16 +92,20 @@ public class CityController {
      */
     @RequestMapping(value = "/city/check", method = RequestMethod.POST)
     @ResponseBody
-    public Map checked(Model model, String cdid, String pass, String reason) {
-        int id = Integer.parseInt(cdid);
-        int flag = Integer.parseInt(pass);
-        Map map = new HashMap();
+    public Result checked(Model model, String cdid, String pass, String reason) {
+        Integer id = Integer.parseInt(cdid);
+        Integer flag = Integer.parseInt(pass);
+        if(id == null || flag == null ){
+            return new Result(Result.Status.ERROR,Constant.SEASSON_TIMEOUT);
+        }
         if (flag == 1) {
             cityService.cityCheckPass(id);
-        } else {
-            cityService.cityCheckFail(id, reason);
+            return new Result(Result.Status.SUCCESS,Constant.DEAL_SUCCESS);
         }
-        map.put("success", "success");
-        return map;
+        else if(reason!=null && !reason.isEmpty()) {
+            cityService.cityCheckFail(id, reason);
+            return new Result(Result.Status.SUCCESS,Constant.DEAL_SUCCESS);
+        }
+        return new Result(Result.Status.ERROR,Constant.REASON_INVALID);
     }
 }
