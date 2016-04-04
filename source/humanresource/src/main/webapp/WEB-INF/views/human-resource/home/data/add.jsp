@@ -296,7 +296,7 @@
 //                                location.reload(true);
                                 // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
                                 window.location.href = "<%=basePath%>home/data/add";
-                            }, 3000);
+                            }, 1000);
                         } else {
                             toastr.error(data.info);
                             return false;

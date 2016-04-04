@@ -60,9 +60,6 @@
     </div>
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
     <script>
-        $(function () {
-            // 新增通知
-        });
     </script>
 </div>
 </div>
