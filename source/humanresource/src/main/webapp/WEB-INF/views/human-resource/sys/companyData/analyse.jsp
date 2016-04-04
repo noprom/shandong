@@ -20,6 +20,16 @@
 
     <!-- 主要内容开始 -->
     <div class="content-wrapper" style="min-height: 976px;">
+
+        <section class="content-header">
+            <h1>修改权限</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
+                <li><a href="#">系统管理</a></li>
+                <li class="active">授权</li>
+            </ol>
+        </section>
+
         <section class="content">
             <!-- Info boxes -->
 
@@ -356,6 +366,25 @@
         series: [{
             name: '统计：岗位变化数量占比',
             type: 'line',
+            smooth:true,
+            symbol: 'none',
+            sampling: 'average',
+            itemStyle: {
+                normal: {
+                    color: 'rgb(255, 70, 131)'
+                }
+            },
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgb(255, 158, 68)'
+                    }, {
+                        offset: 1,
+                        color: 'rgb(255, 70, 131)'
+                    }])
+                }
+            },
             data: seriesDataJson
         }]
     };

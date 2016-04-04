@@ -33,7 +33,7 @@ public interface CompanyService {
      * @param id
      * @return
      */
-    ArrayList<Company> isNull(int id);
+    int isNull(int id);
 
     /**
      * 通过id获得公司数据
