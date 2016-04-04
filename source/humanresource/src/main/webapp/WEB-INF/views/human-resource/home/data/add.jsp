@@ -41,8 +41,65 @@
             </ol>
         </section>
 
+
         <!-- Main content -->
         <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">我的申报</h3>
+                        </div>
+                        <div class="box-body">
+                            <table id="dataTable" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>建档期就业人数</th>
+                                    <th>调查期就业人数</th>
+                                    <th>状态</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${companyDataList}" var="v">
+                                    <tr>
+                                        <td>${v.init_people}</td>
+                                        <td>${v.cur_people}</td>
+                                        <td>
+                                                <%--company data的状态--%>
+                                            <c:choose>
+                                                <c:when test="${v.status eq -2}">
+                                                    <span class="label label-danger">省审核不通过</span>
+                                                    <a  href="<%=basePath%>home/data/edit/${v.id}">重新编辑</a>
+                                                </c:when>
+                                                <c:when test="${v.status eq -1}">
+                                                    <span class="label label-danger">市审核不通过</span>
+                                                    <a href="<%=basePath%>home/data/edit/${v.id}">重新编辑</a>
+                                                </c:when>
+                                                <c:when test="${v.status eq 0}">
+                                                    <span class="label label-warning">待市审核</span>
+                                                </c:when>
+                                                <c:when test="${v.status eq 1}">
+                                                    <span class="label label-warning">市审核通过,待省审核</span>
+                                                </c:when>
+                                                <c:when test="${v.status eq 2}">
+                                                    <span class="label label-primary">省审核通过,待上报到部</span>
+                                                </c:when>
+                                                <c:when test="${v.status eq 3}">
+                                                    <span class="label label-success">已上报到部</span>
+                                                </c:when>
+                                            </c:choose>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-12">
                     <form role="form" id="add-form">

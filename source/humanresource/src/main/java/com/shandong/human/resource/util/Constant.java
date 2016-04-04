@@ -307,4 +307,60 @@ public class Constant {
      * 审核不通过必须填写不通过原因
      */
     public static final String COMPANY_DATA_NOT_PASS_MUST_HAVE_A_REASON = "COMPANY_DATA_NOT_PASS_MUST_HAVE_A_REASON";
+
+    /**
+     * 建档期就业人数格式有误
+     */
+    public static final String INITPEOPLE_ERROR = "INITPEOPLE_ERROR";
+
+    /**
+     * 调查期就业人数格式有误
+     */
+    public static final String CURPEOPLE_ERROR = "CURPEOPLE_ERROR";
+
+
+    /**
+     * 主要原因为空或过长
+     */
+    public static final String REDUCE_ERROR = "REDUCE_ERROR";
+
+    /**
+     * 主要原因为空或过长
+     */
+    public static final String REASON1_ERROR = "REASON1_ERROR";
+
+    /**
+     * 次要原因为空或过长
+     */
+    public static final String REASON2_ERROR = "REASON2_ERROR";
+
+    /**
+     * 第三原因为空或过长
+     */
+    public static final String REASON3_ERROR = "REASON3_ERROR";
+
+    /**
+     * 主要原因说明为空或过长
+     */
+    public static final String REASON1EXP_ERROR = "REASON1EXP_ERROR";
+
+    /**
+     * 次要原因说明为空或过长
+     */
+    public static final String REASON2EXP_ERROR = "REASON2EXP_ERROR";
+
+    /**
+     * 第三原因说明为空或过长
+     */
+    public static final String REASON3EXP_ERROR = "REASON3EXP_ERROR";
+
+    /**
+     * 其他原因说明为空或过长
+     */
+    public static final String OTHERREASONEXP_ERROR = "OTHERREASONEXP_ERROR";
+
+    /**
+     * 数据更新失败
+     */
+    public static final String DATAUPDATE_FAILED = "DATAUPDATE_FAILED";
 }

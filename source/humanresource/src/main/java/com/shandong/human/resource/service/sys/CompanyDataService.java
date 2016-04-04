@@ -136,6 +136,14 @@ public interface CompanyDataService {
     Integer getToCheckCompanyDataCount();
 
     /**
+     * 更新上报数据
+     *
+     * @param companyData
+     * @return
+     */
+    Integer updateCompanyData(CompanyData companyData);
+
+    /**
      * 更新企业上报数据的状态(包括not_pass_reason)
      * 省审核
      *

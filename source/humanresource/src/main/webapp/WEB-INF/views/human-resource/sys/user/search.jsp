@@ -227,7 +227,7 @@
                                         <c:choose>
                                             <c:when test="${v.second.first ne null}">
                                                 ${v.second.first.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a class="btn btn-info" href="#">详情</a>
+                                                <a class="btn btn-info" href="<%=basePath%>sys/record/${v.second.first.id}">详情</a>
                                             </c:when>
                                         </c:choose>
                                     </td>
@@ -235,7 +235,7 @@
                                         <c:choose>
                                             <c:when test="${v.second.second ne null}">
                                                 调查期就业人数:${v.second.second.cur_people}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a class="btn btn-info" href="#">详情</a>
+                                                <a class="btn btn-info" href="<%=basePath%>sys/user/detail/${v.second.second.id}">详情</a>
                                             </c:when>
                                         </c:choose>
                                     </td>

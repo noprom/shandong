@@ -1,19 +1,13 @@
 package com.shandong.human.resource.controller.sys.auth;
 
 import com.shandong.human.resource.common.AuthTree;
-import com.shandong.human.resource.controller.CommonController;
 import com.shandong.human.resource.domain.Auth;
-import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.service.sys.AuthService;
-import com.shandong.human.resource.service.sys.RecordService;
 import com.shandong.human.resource.util.Constant;
-import com.shandong.human.resource.util.RegExUtil;
+import com.shandong.human.resource.util.RegExpUtil;
 import com.shandong.human.resource.util.Result;
-import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -41,13 +34,13 @@ public class AuthController {
     /**
      * 权限名正则约束
      **/
-    private static final String NAME_RESTRICT = "(" + RegExUtil.zh_CN+"|"+ RegExUtil.NUM_CHAR+"){1,10}";
+    private static final String NAME_RESTRICT = "(" + RegExpUtil.zh_CN+"|"+ RegExpUtil.NUM_CHAR+"){1,10}";
 
     //正则表达式需要替换的字符 '$', '(', ')', '*', '+', '.', '[', ']', '?', '\\', '^', '{', '}', '|'
     /**
      * 权限链接正则约束
      **/
-    private static final String URL_RESTRICT = "[/]([/|;|:|<|>|%]|" + RegExUtil.zh_CN + "|" + RegExUtil.NUM_CHAR + "|" + RegExUtil.SPECIFIC + ")*";
+    private static final String URL_RESTRICT = "[/]([/|;|:|<|>|%]|" + RegExpUtil.zh_CN + "|" + RegExpUtil.NUM_CHAR + "|" + RegExpUtil.SPECIFIC + ")*";
 
     @Autowired
     private AuthService service;

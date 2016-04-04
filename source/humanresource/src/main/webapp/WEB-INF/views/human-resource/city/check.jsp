@@ -43,90 +43,199 @@
                             <h3 class="box-title">审核</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <form role="form" id="check-form">
+                            <form role="form" id="check-form" class="form-horizontal">
                                 <div class="form-group" style="display: none">
-                                    <label>ID</label>
+                                    <label class="control-label">ID</label>
                                     <input name="cdid" value="${check.id}">
                                 </div>
-                                <div class="form-group">
-                                    <label>ID</label>
-                                    <input disabled="disabled" value="${check.id}">
-                                </div>
-                                <div class="form-group">
-                                    <label>PID</label>
-                                    <input disabled="disabled" value="${check.pid}">
-                                </div>
-                                <div class="form-group">
-                                    <label>公司ID</label>
-                                    <input disabled="disabled" value="${check.company_id}">
-                                </div>
-                                <div class="form-group">
-                                    <label>初始人数</label>
-                                    <input  disabled="disabled" value="${check.init_people}">
-                                </div>
-                                <div class="form-group">
-                                    <label>当前人数</label>
-                                    <input  disabled="disabled" value="${check.cur_people}">
-                                </div>
-                                <div class="form-group">
-                                    <label>其它原因</label>
-                                    <input  disabled="disabled" value="${check.other_reason}">
-                                </div>
-                                <div class="form-group">
-                                    <label>减少类型</label>
-                                    <input disabled="disabled" value="${check.reduce_type}">
-                                </div>
-                                <div class="form-group">
-                                    <label>原因1</label>
-                                    <input disabled="disabled" value="${check.reason1}">
-                                </div>
-                                <div class="form-group">
-                                    <label>原因1解释</label>
-                                    <input disabled="disabled" value="${check.reason1_explain}">
+
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">ID</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.id}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">PID</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.pid}">
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>原因2</label>
-                                    <input disabled="disabled" value="${check.reason2}">
-                                </div>
-                                <div class="form-group">
-                                    <label>原因2解释</label>
-                                    <input disabled="disabled" value="${check.reason2_explain}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>原因3</label>
-                                    <input disabled="disabled" value="${check.reason3}">
-                                </div>
-                                <div class="form-group">
-                                    <label>原因3解释</label>
-                                    <input disabled="disabled" value="${check.reason3_explain}">
-                                </div>
-                                <div class="form-group">
-                                    <label>状态</label>
-                                    <input disabled="disabled" value="${check.status}">
-                                </div>
-                                <div class="form-group">
-                                    <label>创建时间</label>
-                                    <input disabled="disabled" value="${check.create_time}">
-                                </div>
-                                <div class="form-group">
-                                    <label>更新时间</label>
-                                    <input disabled="disabled" value="${check.update_time}">
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">公司ID</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.company_id}">
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>是否通过</label>
-                                    <select onchange="passChange()" class="form-control" style="width: 80%;" id="pass" name="pass">
-                                        <option value="1">通过</option>
-                                        <option value="-1">不通过</option>
-                                    </select>
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">初始人数</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.init_people}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">当前人数</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.cur_people}">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group" id="reason" style="display: none">
-                                    <label>不通过原因</label>
-                                    <input name="reason" class="form-control" style="width: 80%;">
-                                    </select>
+
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">其它原因</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.other_reason}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">减少类型</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.reduce_type}">
+                                        </div>
+                                    </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">原因1</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.reason1}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">原因1解释</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.reason1_explain}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">原因2</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.reason2}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">原因2解释</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.reason2_explain}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">原因3</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.reason3}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">原因3解释</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.reason3_explain}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">状态</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.status}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">创建时间</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.create_time}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">更新时间</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" disabled="disabled" value="${check.update_time}">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">是否通过</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <select onchange="passChange()" class="form-control" style="width: 80%;" id="pass" name="pass">
+                                                <option value="1">通过</option>
+                                                <option value="-1">不通过</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" id="reason" style="display: none">
+                                    <div class="col-xs-6 form-group">
+                                        <div class="col-xs-3 ">
+                                            <label class="control-label">不通过原因</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input name="reason" class="form-control" style="width: 80%;">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <%--<div class="form-group" id="reason" style="display: none">--%>
+                                    <%--<label>不通过原因</label>--%>
+                                    <%--<input name="reason" class="form-control" style="width: 80%;">--%>
+                                    <%--</select>--%>
+                                <%--</div>--%>
+
                                 <div class="box-footer">
                                     <button type="button" onclick="onSubmit()" class="btn btn-primary">提交</button>
                                 </div>

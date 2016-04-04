@@ -1,5 +1,8 @@
 package com.shandong.human.resource.domain;
 
+import com.shandong.human.resource.util.RegExpUtil;
+
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 /**
  * 公司上报数据实体类
@@ -12,17 +15,38 @@ public class CompanyData {
     private int pid;                //父id，默认为0，表示该数据没有被修改，若不为0，则可以通过字段查找到原始数据
     private int company_id;         //company中的id
     private int survey_time_id;     //调查时间id
-    private int init_people;        //建档期就业人数,填写初次将档时监测点就业人数
-    private int cur_people;         //调查期就业人数,填写本次调查期当时的监测点就业人数
+
+   // @Pattern(regexp = RegExpUtil.UNSIGNED_INT)
+    private Integer init_people;        //建档期就业人数,填写初次将档时监测点就业人数
+
+  //  @Pattern(regexp = RegExpUtil.UNSIGNED_INT)
+    private Integer cur_people;         //调查期就业人数,填写本次调查期当时的监测点就业人数
+
+    @Pattern(regexp = "(.){1,255}")
     private String other_reason;    //其他原因
+
+    @Pattern(regexp = "(.){1,255}")
     private String reduce_type;     //减少原因
+
+    @Pattern(regexp = "(.){1,255}")
     private String reason1;         //原因1
+
+    @Pattern(regexp = "(.){1,255}")
     private String reason1_explain; //原因1解释
+
+    @Pattern(regexp = "(.){1,255}")
     private String reason2;         //原因2
+
+    @Pattern(regexp = "(.){1,255}")
     private String reason2_explain; //原因2解释
+
+    @Pattern(regexp = "(.){1,255}")
     private String reason3;         //原因3
+
+    @Pattern(regexp = "(.){1,255}")
     private String reason3_explain; //原因3解释
     private int status;             //状态:-1:审核不通过,0:等待审核,1:审核通过
+
     private String not_pass_reason; //审核不通过原因
     private Date create_time;       //创建时间
     private Date update_time;       //更新时间
@@ -60,20 +84,20 @@ public class CompanyData {
         this.survey_time_id = survey_time_id;
     }
 
-    public int getInit_people() {
-        return init_people;
-    }
-
-    public void setInit_people(int init_people) {
-        this.init_people = init_people;
-    }
-
-    public int getCur_people() {
+    public Integer getCur_people() {
         return cur_people;
     }
 
-    public void setCur_people(int cur_people) {
+    public Integer getInit_people() {
+        return init_people;
+    }
+
+    public void setCur_people(Integer cur_people) {
         this.cur_people = cur_people;
+    }
+
+    public void setInit_people(Integer init_people) {
+        this.init_people = init_people;
     }
 
     public String getOther_reason() {
@@ -200,26 +224,4 @@ public class CompanyData {
 
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + pid;
-        result = 31 * result + company_id;
-        result = 31 * result + survey_time_id;
-        result = 31 * result + init_people;
-        result = 31 * result + cur_people;
-        result = 31 * result + other_reason.hashCode();
-        result = 31 * result + reduce_type.hashCode();
-        result = 31 * result + reason1.hashCode();
-        result = 31 * result + reason1_explain.hashCode();
-        result = 31 * result + reason2.hashCode();
-        result = 31 * result + reason2_explain.hashCode();
-        result = 31 * result + reason3.hashCode();
-        result = 31 * result + reason3_explain.hashCode();
-        result = 31 * result + status;
-        result = 31 * result + not_pass_reason.hashCode();
-        result = 31 * result + create_time.hashCode();
-        result = 31 * result + update_time.hashCode();
-        return result;
-    }
 }

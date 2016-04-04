@@ -4,7 +4,7 @@ import com.shandong.human.resource.domain.Role;
 import com.shandong.human.resource.service.sys.RoleService;
 import com.shandong.human.resource.util.Constant;
 import com.shandong.human.resource.util.Pager;
-import com.shandong.human.resource.util.RegExUtil;
+import com.shandong.human.resource.util.RegExpUtil;
 import com.shandong.human.resource.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,7 +35,7 @@ public class RoleController {
     /**
      * 角色名正则约束
      **/
-    private static final String NAME_RESTRICT = "(" + RegExUtil.zh_CN + "|" + RegExUtil.NUM_CHAR + "){1,10}";
+    private static final String NAME_RESTRICT = "(" + RegExpUtil.zh_CN + "|" + RegExpUtil.NUM_CHAR + "){1,10}";
 
     @Autowired
     private RoleService service;

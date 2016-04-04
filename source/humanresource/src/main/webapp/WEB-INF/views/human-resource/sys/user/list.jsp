@@ -71,8 +71,8 @@
                                             <lable class="col-sm-4 control-label" for="type">类型</lable>
                                             <div class="col-sm-8">
                                                 <select id="type" name="type" class="form-control">
-                                                    <option name="type" value="1">省用户</option>
                                                     <option name="type" value="2">企业用户</option>
+                                                    <option name="type" value="1">省用户</option>
                                                     <c:forEach items="${cityList}" var="v">
                                                         <option name="type" value="${v.id}">${v.name}用户</option>
                                                     </c:forEach>
