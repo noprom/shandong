@@ -59,7 +59,7 @@ public interface CompanyMapper {
      * @param id
      * @return
      */
-    ArrayList<Company> isNull(int id);
+    int isNull(@Param("id") int id);
 
     /**
      * 按条件查找Company

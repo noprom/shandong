@@ -62,9 +62,11 @@
         WHERE area.id = company.city_id
         GROUP BY city_id
     </select>
-    <select id="isNull" resultMap="Company">
-        SELECT * FROM company WHERE id=#{id}
+
+    <select id="isNull" resultType="int">
+        SELECT COUNT(1) FROM company WHERE id = #{id}
     </select>
+
     <update id="updateCompanyInfo" parameterType="Company">
         UPDATE company
         SET city_id = #{city_id} , area_id = #{area_id} , address = #{address}, code = #{code}, name = #{name}, business = #{business}, contact = #{contact}, zipcode = #{zipcode}, phone = #{phone}, fax = #{fax}, email = #{email}, industry_involved = #{industry_involved}, industry_type = #{industry_type}

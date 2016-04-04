@@ -45,7 +45,7 @@ public class CompanyServiceImpl implements CompanyService {
      * @param id
      * @return
      */
-    public ArrayList<Company> isNull(int id) {
+    public int isNull(int id) {
         return companyMapper.isNull(id);
     }
 

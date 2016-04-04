@@ -8,7 +8,9 @@ import com.shandong.human.resource.service.home.AreaService;
 import com.shandong.human.resource.service.home.CompanyService;
 import com.shandong.human.resource.service.home.IndustryTypeService;
 import com.shandong.human.resource.util.Constant;
+import com.shandong.human.resource.util.Pair;
 import com.shandong.human.resource.util.Result;
+import com.shandong.human.resource.util.config.CompositeFactory;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,19 +58,19 @@ public class CompanyController {
     @Autowired
     private IndustryTypeService industryTypeService;
 
-    private static HashMap<String, String> companyErrorMsg;
+    private static ArrayList<Pair<String, String>> companyErrorMsg;
 
     static {
-        companyErrorMsg = new HashMap<String, String>();
-        companyErrorMsg.put("address", Constant.COMPANY_ALREADY_EXISTS);
-        companyErrorMsg.put("code", Constant.COMPANY_CODE_2_9_CHAR);
-        companyErrorMsg.put("name", Constant.COMPANY_NAME_5_30_CHAR);
-        companyErrorMsg.put("business", Constant.COMPANY_BUSINESS_5_255);
-        companyErrorMsg.put("contact", Constant.COMPANY_CONTACT_2_20);
-        companyErrorMsg.put("zipcode", Constant.COMPANY_ZIP_CODE_6_NUM);
-        companyErrorMsg.put("phone", Constant.COMPANY_PHONE_ILLEGAL);
-        companyErrorMsg.put("fax", Constant.COMPANY_FAX_ILLEGAL);
-        companyErrorMsg.put("email", Constant.COMPANY_EMAIL_ILLEGAL);
+        companyErrorMsg = new ArrayList<Pair<String, String>>();
+        companyErrorMsg.add(new Pair<String, String>("name", setErrorMessage(Constant.COMPANY_NAME_5_30_CHAR)));
+        companyErrorMsg.add(new Pair<String, String>("business", setErrorMessage(Constant.COMPANY_BUSINESS_5_255)));
+        companyErrorMsg.add(new Pair<String, String>("code", setErrorMessage(Constant.COMPANY_CODE_2_9_CHAR)));
+        companyErrorMsg.add(new Pair<String, String>("zipcode", setErrorMessage(Constant.COMPANY_ZIP_CODE_6_NUM)));
+        companyErrorMsg.add(new Pair<String, String>("contact", setErrorMessage(Constant.COMPANY_CONTACT_2_20)));
+        companyErrorMsg.add(new Pair<String, String>("phone", setErrorMessage(Constant.COMPANY_PHONE_ILLEGAL)));
+        companyErrorMsg.add(new Pair<String, String>("fax", setErrorMessage(Constant.COMPANY_FAX_ILLEGAL)));
+        companyErrorMsg.add(new Pair<String, String>("email", setErrorMessage(Constant.COMPANY_EMAIL_ILLEGAL)));
+        companyErrorMsg.add(new Pair<String, String>("address", setErrorMessage(Constant.COMPANY_ADDRESS_5_100_CHAR)));
     }
 
     /**
@@ -95,11 +97,11 @@ public class CompanyController {
         User user = (User) session.getAttribute(Constant.LOGIN_USER);
         int id = user.getId();
         //检查数据是否已经插入到数据库中
-        ArrayList<Company> companies = companyService.isNull(id);
-        if (companies.size() > 0) {
-            request.setAttribute("info", "exit");
+        int count = companyService.isNull(id);
+        if (count > 0) {
+            model.addAttribute("info", "exit");
         } else
-            request.setAttribute("info", "");
+            model.addAttribute("info", "");
         return STATIC_PREFIX + "/add";
     }
 
@@ -256,21 +258,17 @@ public class CompanyController {
         User user = (User) session.getAttribute(Constant.LOGIN_USER);
         int userId = user.getId();
         // 检查是否已经上报数据
-        ArrayList<Company> companies = companyService.isNull(userId);
-        if (companies.size() > 0) {
-            return new Result(Result.Status.ERROR, Constant.COMPANY_ALREADY_EXISTS);
+        int count = companyService.isNull(userId);
+        if (count > 0) {
+            return new Result(Result.Status.ERROR, Constant.COMPANY_ALREADY_EXISTS, false);
         }
         // 校验数据格式,并返回错误信息
         if (result.hasErrors()) {
             List<FieldError> errors = result.getFieldErrors();
-            String field = "";
-            String errorMsg = "";
-            for (FieldError error : errors) {
-                field = error.getField();
-                errorMsg = error.getDefaultMessage();
-                logger.debug("field -> " + field + ", msg -> " + errorMsg);
-            }
-            return new Result(Result.Status.ERROR, Constant.DEAL_FAIL);
+
+            // 返回第一条错误即可
+            String firstFieldError = getFirstFieldErrorMessage(errors);
+            return new Result(Result.Status.ERROR, Constant.DEAL_FAIL, firstFieldError);
         }
         company.setId(userId);
         companyService.setCompanyInfo(company);
@@ -291,8 +289,8 @@ public class CompanyController {
     public String getProvinceEdit(Model model, HttpSession session, HttpServletResponse response) throws IOException {
         User user = (User) session.getAttribute(Constant.LOGIN_USER);
         int id = user.getId();
-        ArrayList<Company> companies = companyService.isNull(id);
-        if (companies.size() == 0) {
+        int count = companyService.isNull(id);
+        if (count == 0) {
             response.sendRedirect("/home/company/add");
             return null;
         }
@@ -334,8 +332,8 @@ public class CompanyController {
         User user = (User) session.getAttribute(Constant.LOGIN_USER);
         int id = user.getId();
         //检查数据是否已经插入到数据库中
-        ArrayList<Company> companies = companyService.isNull(id);
-        if (companies.size() == 0) {
+        int count = companyService.isNull(id);
+        if (count == 0) {
             map.put("success", "noInfo");
             return map;
         }
@@ -441,4 +439,50 @@ public class CompanyController {
         return map;
     }
 
+    /**
+     * 获得字段验证的错误信息
+     *
+     * @param key
+     * @return
+     */
+    private String getErrorMessage(String key) {
+        for (Pair<String, String> pair : companyErrorMsg) {
+            if (pair.first.equals(key)) {
+                return pair.second;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 设置模板消息
+     *
+     * @param message
+     * @return
+     */
+    private static String setErrorMessage(String message) {
+        return CompositeFactory.getInstance().getString(message);
+    }
+
+    /**
+     * 获得第一条错误信息
+     *
+     * @param errors
+     * @return
+     */
+    private String getFirstFieldErrorMessage(List<FieldError> errors) {
+        List<String> fields = new ArrayList<String>();
+        for (FieldError error : errors) {
+            fields.add(error.getField());
+        }
+        // 按照制定的顺序查找
+        String firstField = "";
+        for (Pair<String, String> pair : companyErrorMsg) {
+            if (fields.contains(pair.first)) {
+                firstField = pair.first;
+                break;
+            }
+        }
+        return getErrorMessage(firstField);
+    }
 }
