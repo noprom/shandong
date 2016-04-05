@@ -378,4 +378,14 @@ public class Constant {
      * 不能删除管理员
      */
     public static final String CAN_NOT_DELETE_ADMIN = "CAN_NOT_DELETE_ADMIN";
+
+    /**
+     * 您没有删除该类型用户权限
+     */
+    public static final String DELETE_PERMITION_ERR = "DELETE_PERMITION_ERR";
+
+    /**
+     * 未找到用户
+     */
+    public static final String USER_NOT_FOUND = "USER_NOT_FOUND";
 }

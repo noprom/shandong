@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.*;
 
@@ -157,10 +158,29 @@ public class UserController {
     @RequestMapping(value = "/user/delete", method = RequestMethod.POST)
     public
     @ResponseBody
-    Result deleteUser(Integer id) {
+    Result deleteUser(Integer id, HttpSession session) {
         if (id.equals(1)) {
             return new Result(Result.Status.ERROR, Constant.CAN_NOT_DELETE_ADMIN);
         }
+
+        User localUser = (User) session.getAttribute(Constant.LOGIN_USER);
+        User toDelete = userService.selectByID(id);
+        if(toDelete==null){
+            return new Result(Result.Status.ERROR, Constant.USER_NOT_FOUND);
+        }
+
+        /*省用户只能删除市用户和企业用户*/
+        if(localUser.getType()==1){
+            if(toDelete.getType()<2){
+                return new Result(Result.Status.ERROR, Constant.DELETE_PERMITION_ERR);
+            }
+        }
+
+        /*市用户和企业用户无法删除角色*/
+        else if(localUser.getType()>1){
+            return new Result(Result.Status.ERROR, Constant.DELETE_PERMITION_ERR);
+        }
+
         int status = userService.deleteByID(id);
         if (status > 0) {
             return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
