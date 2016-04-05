@@ -362,7 +362,7 @@ public class Constant {
     /**
      * 数据更新失败
      */
-    public static final String DATE_DUPLICATE= "DATE_DUPLICATE";
+    public static final String DATE_DUPLICATE = "DATE_DUPLICATE";
 
     /**
      * 您已提交过该时间段申报
@@ -373,4 +373,9 @@ public class Constant {
      * 您必须选择上报的数据
      */
     public static final String YOU_MUST_CHOOSE_THA_DATA_TO_REPORT = "YOU_MUST_CHOOSE_THA_DATA_TO_REPORT";
+
+    /**
+     * 不能删除管理员
+     */
+    public static final String CAN_NOT_DELETE_ADMIN = "CAN_NOT_DELETE_ADMIN";
 }

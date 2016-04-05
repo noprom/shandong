@@ -61,25 +61,16 @@ public class UserController {
 
     /**
      * companyData详情
+     *
      * @param model
      * @param id
      * @return
      */
 
-    @RequestMapping(value="/user/detail/{id}",method = RequestMethod.GET)
-    public String detail(Model model , @PathVariable("id") Integer id)
-    {
-//        System.out.println("+++++++++++++++++++++++");
-//        System.out.println("+++++++++++++++++++++++");
-//        System.out.println("+++++++++++++++++++++++");
-//        System.out.println("+++++++++++++++++++++++");
-//        System.out.println("+++++++++++++++++++++++");
-//        System.out.println("+++++++++++++++++++++++");
-
+    @RequestMapping(value = "/user/detail/{id}", method = RequestMethod.GET)
+    public String detail(Model model, @PathVariable("id") Integer id) {
         CompanyData cd = companyDataService.getCompanyDataById(id);
         model.addAttribute("check", cd);
-//        System.out.println(cd.getCompany_id());
-
         return STATIC_PREFIX + "/detail";
     }
 
@@ -167,6 +158,9 @@ public class UserController {
     public
     @ResponseBody
     Result deleteUser(Integer id) {
+        if (id.equals(1)) {
+            return new Result(Result.Status.ERROR, Constant.CAN_NOT_DELETE_ADMIN);
+        }
         int status = userService.deleteByID(id);
         if (status > 0) {
             return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
