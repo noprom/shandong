@@ -84,13 +84,18 @@
                                         <td>${v.cur_people}</td>
                                         <td>
                                                 <%--company data的状态--%>
+                                            <c:if test="${v.pid ne 0}">
+                                                <span class="label label-info">审核员更改变动</span>
+                                            </c:if>
                                             <c:choose>
                                                 <c:when test="${v.status eq -2}">
                                                     <span class="label label-danger">省审核不通过</span>
+                                                    <span class="label label-danger">${v.not_pass_reason}</span>
                                                     <a href="<%=basePath%>home/data/edit/${v.id}">重新编辑</a>
                                                 </c:when>
                                                 <c:when test="${v.status eq -1}">
                                                     <span class="label label-danger">市审核不通过</span>
+                                                    <span class="label label-danger">${v.not_pass_reason}</span>
                                                     <a href="<%=basePath%>home/data/edit/${v.id}">重新编辑</a>
                                                 </c:when>
                                                 <c:when test="${v.status eq 0}">
@@ -110,8 +115,6 @@
                                     </tr>
                                 </c:forEach>
                                 </tbody>
-                                <tfoot>
-                                </tfoot>
                             </table>
                         </div>
                     </div>

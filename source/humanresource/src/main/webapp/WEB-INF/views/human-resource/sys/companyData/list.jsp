@@ -58,14 +58,44 @@
                                         <td>${v.company_id}</td>
                                         <td>${v.init_people}</td>
                                         <td>${v.cur_people}</td>
+                                        <%--<td>--%>
+                                                <%--&lt;%&ndash;company data的状态&ndash;%&gt;--%>
+                                            <%--<c:choose>--%>
+                                                <%--<c:when test="${v.status eq -2}">--%>
+                                                    <%--<span class="label label-danger">省审核不通过</span>--%>
+                                                <%--</c:when>--%>
+                                                <%--<c:when test="${v.status eq -1}">--%>
+                                                    <%--<span class="label label-danger">市审核不通过</span>--%>
+                                                <%--</c:when>--%>
+                                                <%--<c:when test="${v.status eq 0}">--%>
+                                                    <%--<span class="label label-warning">待市审核</span>--%>
+                                                <%--</c:when>--%>
+                                                <%--<c:when test="${v.status eq 1}">--%>
+                                                    <%--<span class="label label-warning">市审核通过,待省审核</span>--%>
+                                                <%--</c:when>--%>
+                                                <%--<c:when test="${v.status eq 2}">--%>
+                                                    <%--<span class="label label-primary">省审核通过,待上报到部</span>--%>
+                                                <%--</c:when>--%>
+                                                <%--<c:when test="${v.status eq 3}">--%>
+                                                    <%--<span class="label label-success">已上报到部</span>--%>
+                                                <%--</c:when>--%>
+                                            <%--</c:choose>--%>
+                                        <%--</td>--%>
                                         <td>
                                                 <%--company data的状态--%>
+                                            <c:if test="${v.pid ne 0}">
+                                                <span class="label label-info">审核员更改变动</span>
+                                            </c:if>
                                             <c:choose>
                                                 <c:when test="${v.status eq -2}">
                                                     <span class="label label-danger">省审核不通过</span>
+                                                    <span class="label label-danger">${v.not_pass_reason}</span>
+                                                    <%--<a href="<%=basePath%>home/data/edit/${v.id}">重新编辑</a>--%>
                                                 </c:when>
                                                 <c:when test="${v.status eq -1}">
                                                     <span class="label label-danger">市审核不通过</span>
+                                                    <span class="label label-danger">${v.not_pass_reason}</span>
+                                                    <%--<a href="<%=basePath%>home/data/edit/${v.id}">重新编辑</a>--%>
                                                 </c:when>
                                                 <c:when test="${v.status eq 0}">
                                                     <span class="label label-warning">待市审核</span>
