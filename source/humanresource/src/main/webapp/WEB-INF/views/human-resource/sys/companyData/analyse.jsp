@@ -20,6 +20,16 @@
 
     <!-- 主要内容开始 -->
     <div class="content-wrapper" style="min-height: 976px;">
+
+        <section class="content-header">
+            <h1>修改权限</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
+                <li><a href="#">系统管理</a></li>
+                <li class="active">授权</li>
+            </ol>
+        </section>
+
         <section class="content">
             <!-- Info boxes -->
 
@@ -51,7 +61,7 @@
                                 <div class="col-md-12">
                                     <div class="chart">
                                         <!-- Sales Chart Canvas -->
-                                        <div id="main" style="height: 360px; width: 700px;"></div>
+                                        <div id="main" style="height: 360px; width: 1000px;"></div>
                                     </div><!-- /.chart-responsive -->
                                 </div><!-- /.col -->
                                 <%--<div class="col-md-4">--%>
@@ -140,7 +150,7 @@
                         <div class="col-md-9 col-sm-8">
                             <div class="pad">
                                 <!-- Map will be created here -->
-                                <div id="shandong" style="height: 325px;">
+                                <div id="shandong" style="height: 400px;width: 1000px;">
                                 </div>
                             </div>
                         </div><!-- /.col -->
@@ -242,7 +252,7 @@
                         <div class="col-md-9 col-sm-8">
                             <div class="pad">
                                 <!-- Map will be created here -->
-                                <div id="duibifenxi" style="height: 325px;">
+                                <div id="duibifenxi" style="height: 400px;width: 950px;">
                                 </div>
                             </div>
                         </div><!-- /.col -->
@@ -267,7 +277,7 @@
                         <div class="col-md-9 col-sm-8">
                             <div class="pad">
                                 <!-- Map will be created here -->
-                                <div id="trend" style="height: 325px;">
+                                <div id="trend" style="height: 400px;width: 1000px;">
                                 </div>
                             </div>
                         </div><!-- /.col -->
@@ -356,6 +366,25 @@
         series: [{
             name: '统计：岗位变化数量占比',
             type: 'line',
+            smooth:true,
+            symbol: 'none',
+            sampling: 'average',
+            itemStyle: {
+                normal: {
+                    color: 'rgb(255, 70, 131)'
+                }
+            },
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgb(255, 158, 68)'
+                    }, {
+                        offset: 1,
+                        color: 'rgb(255, 70, 131)'
+                    }])
+                }
+            },
             data: seriesDataJson
         }]
     };

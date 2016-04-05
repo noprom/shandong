@@ -4,6 +4,7 @@ import com.shandong.human.resource.domain.Role;
 import com.shandong.human.resource.service.sys.RoleService;
 import com.shandong.human.resource.util.Constant;
 import com.shandong.human.resource.util.Pager;
+import com.shandong.human.resource.util.RegExpUtil;
 import com.shandong.human.resource.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,6 +31,11 @@ public class RoleController {
 
     // 静态资源前缀
     public static final String STATIC_PREFIX = "human-resource/sys/role";
+
+    /**
+     * 角色名正则约束
+     **/
+    private static final String NAME_RESTRICT = "(" + RegExpUtil.zh_CN + "|" + RegExpUtil.NUM_CHAR + "){1,10}";
 
     @Autowired
     private RoleService service;
@@ -50,7 +55,7 @@ public class RoleController {
             return new Result(Result.Status.ERROR, Constant.ROLENAME_ILLEGAL);
         }
 
-        Pattern pattern = Pattern.compile(".{1,10}");
+        Pattern pattern = Pattern.compile(NAME_RESTRICT);
         Matcher matcher = pattern.matcher(name);
         if (!matcher.matches()) {
             return new Result(Result.Status.ERROR, Constant.ROLENAME_ILLEGAL);
@@ -67,32 +72,19 @@ public class RoleController {
      * @param request
      * @param response
      */
-    @RequestMapping(value = "/role/delete", method = RequestMethod.GET)
-    public void delete(String id, HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "/role/delete", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    Result delete(Integer id, HttpServletRequest request, HttpServletResponse response) {
         if (id == null) {
-            try {
-                response.sendRedirect("/404");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return;
+            return new Result(Result.Status.ERROR, Constant.ROLEDELETE_REFUSE);
         }
 
-        Integer iID = Integer.parseInt(id);
-        if (iID == null) {
-            try {
-                response.sendRedirect("/404");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return;
-        }
-
-        service.deleteRole(iID);
-        try {
-            response.sendRedirect("/sys/role");
-        } catch (IOException e) {
-            e.printStackTrace();
+        int status = service.deleteRole(id);
+        if (status > 0) {
+            return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
+        } else {
+            return new Result(Result.Status.ERROR, Constant.ROLEDELETE_REFUSE);
         }
     }
 
@@ -114,7 +106,7 @@ public class RoleController {
         }
 
         /*单页显示个数*/
-        int pageSize = 3;
+        int pageSize = 10;
         Pager<Role> pager = new Pager<Role>(pageSize);
         pager.setCount(service.getCount());
         pager.setCurrentPage(currentPage);

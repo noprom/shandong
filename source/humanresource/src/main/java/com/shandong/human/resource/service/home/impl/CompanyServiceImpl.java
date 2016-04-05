@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  * 公司service实现类
- * <p>
+ * <p/>
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/20 10:30
  */
@@ -26,8 +26,8 @@ public class CompanyServiceImpl implements CompanyService {
      *
      * @param company
      */
-    public void setCompanyInfo(Company company) {
-        companyMapper.setCompanyInfo(company);
+    public int setCompanyInfo(Company company) {
+        return companyMapper.setCompanyInfo(company);
     }
 
     /**
@@ -45,7 +45,7 @@ public class CompanyServiceImpl implements CompanyService {
      * @param id
      * @return
      */
-    public ArrayList<Company> isNull(int id) {
+    public int isNull(int id) {
         return companyMapper.isNull(id);
     }
 
@@ -66,5 +66,53 @@ public class CompanyServiceImpl implements CompanyService {
      */
     public void updateCompanyInfo(Company company) {
         companyMapper.updateCompanyInfo(company);
+    }
+
+    /**
+     * 根据公司名模糊查询
+     *
+     * @param name
+     * @return
+     */
+    public List<Company> fuzzySearchByName(String name) {
+        return companyMapper.fuzzySearchByName(name);
+    }
+
+    /**
+     * 根据公司所在区查询
+     *
+     * @param area_id
+     * @return
+     */
+    public List<Company> selectByAreaID(Integer area_id) {
+        return companyMapper.selectByAreaID(area_id);
+    }
+
+    /**
+     * 根据公司地址模糊查询
+     *
+     * @return
+     */
+    public List<Company> fuzzySearchByAddress(String address) {
+        return companyMapper.fuzzySearchByAddress(address);
+    }
+
+
+    /**
+     * 根据公司业务模糊查询
+     *
+     * @return
+     */
+    public List<Company> fuzzySearchByBusiness(String business) {
+        return companyMapper.fuzzySearchByBusiness(business);
+    }
+
+    /**
+     * 获取所有Company
+     *
+     * @return
+     */
+    public ArrayList<Company> getAllCompany() {
+        return companyMapper.getAllCompany();
     }
 }

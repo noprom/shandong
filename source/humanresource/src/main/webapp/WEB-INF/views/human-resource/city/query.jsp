@@ -24,41 +24,41 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Data Tables
-                <small>advanced tables</small>
+                市审核
+                <small>查询</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Data tables</li>
+                <li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
+                <li><a href="#">市审核</a></li>
+                <li class="active">查询</li>
             </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-            <div class="box box-danger">
-                <div class="box-header with-border">
-                    <h3 class="box-title">查询</h3>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <form id="query-form" action="<%=basePath%>city/query" method="get">
-                            <div class="col-xs-2">
-                            <button type="submit" id="submit-btn">查询全部</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <%--<div class="box box-danger">--%>
+                <%--<div class="box-header with-border">--%>
+                    <%--<h3 class="box-title">查询</h3>--%>
+                <%--</div>--%>
+                <%--<div class="box-body">--%>
+                    <%--<div class="row">--%>
+                        <%--<form id="query-form" action="<%=basePath%>city/query" method="get">--%>
+                            <%--<div class="col-xs-2">--%>
+                            <%--<button type="submit" id="submit-btn">查询全部</button>--%>
+                            <%--</div>--%>
+                        <%--</form>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
 
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Data Table With Full Features</h3>
+                            <h3 class="box-title">查询结果</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="dataTable" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
@@ -83,24 +83,11 @@
                                         <td>${v.status}</td>
                                         <td>${v.create_time}</td>
                                         <td>${v.update_time}</td>
-                                        <td><a href="<%=basePath%>city/check/${v.id}" class="btn btn-primary">审核</a>
+                                        <td><a href="<%=basePath%>sys/city/check/${v.id}" class="btn btn-primary">审核</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>公司ID</th>
-                                    <th>初始人数</th>
-                                    <th>现在人数</th>
-                                    <th>其他原因</th>
-                                    <th>状态</th>
-                                    <th>创建时间</th>
-                                    <th>更新时间</th>
-                                    <th>查看详情</th>
-                                </tr>
-                                </tfoot>
                             </table>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
@@ -111,15 +98,7 @@
     <jsp:include page="../footer.jsp" flush="true"></jsp:include>
     <script>
         $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false
-            });
+            $("#dataTable").DataTable();
         });
     </script>
 </body>

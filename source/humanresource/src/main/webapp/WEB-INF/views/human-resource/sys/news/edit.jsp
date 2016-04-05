@@ -22,13 +22,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                General Form Elements
-                <small>Preview</small>
+                通知管理
+                <small>编辑通知</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Forms</a></li>
-                <li class="active">General Elements</li>
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li><a href="#">通知管理</a></li>
+                <li class="active">编辑通知</li>
             </ol>
         </section>
 
@@ -36,40 +36,37 @@
         <section class="content">
             <div class="row">
                 <!-- left column -->
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Edit</h3>
+                            <h3 class="box-title">编辑通知</h3>
                         </div><!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form" id="editNews-form" action="<%=basePath%>sys/news/edit" method="post">
+                        <form role="form" id="edit-news-form" method="post">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="createTime">CreateTime</label>
                                     <input type="hidden" name="id" value="${newToEdit.id}" class="form-control"
                                            placeholder="">
                                     <input type="hidden" name="userId" id="userId" value="${newToEdit.userId}"
-                                           class="form-control" placeholder="">
-                                    <input type="text" name="createTime" id="createTime" value="${newToEdit.createTime}"
-                                           class="form-control" placeholder="">
+                                           class="form-control" placeholder="${newToEdit.userId}">
+                                    <input type="hidden" name="createTime" id="createTime"
+                                           value="${newToEdit.createTime}"
+                                           class="form-control" placeholder="${newToEdit.userId}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="title">Title</label>
+                                    <label for="title">通知标题</label>
                                     <input type="text" name="title" id="title" value="${newToEdit.title}"
-                                           class="form-control" required placeholder="title ...">
-                                    <p class="help-block">Example block-level help text here.</p>
+                                           class="form-control" required placeholder="${newToEdit.title}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="content">Content</label>
+                                    <label for="content">通知内容</label>
                                     <textarea class="form-control" id="content" name="content" rows="10" required
                                               placeholder="">${newToEdit.content}</textarea>
                                 </div>
-
                             </div><!-- /.box-body -->
-
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Ok</button>
+                                <button type="button" id="submit-btn" class="btn btn-primary">修 改</button>
                             </div>
                         </form>
                     </div><!-- /.box -->
@@ -82,5 +79,34 @@
 
     <!-- /.主要内容结束 -->
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
+    <script>
+        $(function () {
+            // 编辑通知
+            $("#submit-btn").on('click', function () {
+                var postUrl = "<%= basePath%>sys/news/edit";
+                $.ajax({
+                    url: postUrl,//提交的地址
+                    data: $("#edit-news-form").serialize(),
+                    method: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == 'SUCCESS') {
+                            toastr.success(data.info);
+                            // 3000ms之后执行的操作
+                            setTimeout(function () {
+                                // 刷新页面
+                                //location.reload(true);
+                                // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                                window.location.href = "<%=basePath%>sys/news";
+                            }, 1000);
+                        } else {
+                            toastr.error(data.info);
+                            return false;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

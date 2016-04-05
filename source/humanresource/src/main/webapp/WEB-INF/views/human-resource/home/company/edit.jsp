@@ -79,18 +79,34 @@
                                 </select>
                             </div><!-- /.form-group -->
                             <div class="form-group">
-                                <label>联系地址</label>
-                                <input class="form-control" value="${company.address}" placeholder="请输入联系地址"  type="text" name="address">
-                            </div><!-- /.form-group -->
-
-                            <div class="form-group">
-                                <label>组织机构代码</label>
-                                <input class="form-control" value="${company.code}" placeholder="只可输入字母、数字，不超过9位" type="text" id="code" name="code">
-                            </div>
-                            <div class="form-group">
                                 <label>企业名称</label>
                                 <input class="form-control" value="${company.name}" placeholder="中文、英文" type="text" name="name">
                             </div>
+                            <div class="form-group">
+                                <label>主要经营业务</label>
+                                <input class="form-control" value="${company.business}" placeholder="按实际情况填写企业主要经营的业务" type="text" name="business">
+                            </div>
+                            <div class="form-group">
+                                <label>企业性质</label>
+                                <select class="form-control" style="width: 100%;" name="industry_type">
+                                    <option selected="selected" value="${industryType.id}">${industryType.name}</option>
+                                    <c:forEach items="${listIndustryType}" var="v">
+                                        <option value="${v.id}">${v.name}</option>
+                                    </c:forEach>
+                                </select>
+
+                            </div>
+                            <div class="form-group">
+                                <label>所属行业</label>
+                                <select class="form-control" style="width: 100%;" name="industry_involved">
+                                    <option selected="selected" value="${industryType1.id}">${industryType1.name}</option>
+                                    <c:forEach items="${listIndustryInvolve}" var="v">
+                                        <option value="${v.id}">${v.name}</option>
+                                    </c:forEach>
+                                </select>
+
+                            </div>
+
                             <div class="box-footer">
                                 <button type="button" onclick="onSubmit()" class="btn btn-primary">修改</button>
                             </div>
@@ -107,17 +123,19 @@
                         <!-- form start -->
                         <div class="box-body">
                             <div class="form-group">
-                                <label>主要经营业务</label>
-                                <input class="form-control" value="${company.business}" placeholder="按实际情况填写企业主要经营的业务" type="text" name="business">
+                                <label>组织机构代码</label>
+                                <input class="form-control" value="${company.code}" placeholder="只可输入字母、数字，不超过9位" type="text" id="code" name="code">
+                            </div>
+
+                            <div class="form-group">
+                                <label>邮政编码</label>
+                                <input class="form-control" value="${company.zipcode}" placeholder="只可填写6位数字" type="text" name="zipcode">
                             </div>
                             <div class="form-group">
                                 <label>联系人</label>
                                 <input class="form-control" value="${company.contact}" placeholder="中文、英文" type="text" name="contact">
                             </div>
-                            <div class="form-group">
-                                <label>邮政编码</label>
-                                <input class="form-control" value="${company.zipcode}" placeholder="只可填写6位数字" type="text" name="zipcode">
-                            </div>
+
                             <div class="form-group">
                                 <label>联系电话</label>
                                 <input class="form-control" value="${company.phone}" placeholder="格式必须符合（区号）+电话号码或者为手机号码" type="text" name="phone">
@@ -130,6 +148,10 @@
                                 <label for="exampleInputEmail1">EMAIL</label>
                                 <input class="form-control" value="${company.email}" name="email" placeholder="格式必须符合xxx@xxx.xxx" type="email">
                             </div>
+                            <div class="form-group">
+                                <label>联系地址</label>
+                                <input class="form-control" value="${company.address}" placeholder="请输入联系地址"  type="text" name="address">
+                            </div><!-- /.form-group -->
 
                         </div><!-- /.box-body -->
                     </div><!-- /.content -->
@@ -165,31 +187,88 @@
                     success: function (data) {
                         if(data.success=="success")
                         {
-                            alert("修改成功");
-                            //提交成功时返回到主页
+                            toastr.success("修改成功");
                             window.location.href = "<%=basePath%>";
                         }
                         else if(data.success=="noInfo")
                         {
-                            alert("请填写信息！");
+                            toastr.error("请填写信息！");
                             window.location.href = "<%=basePath%>home/company/add";
+                        }
+                        else if(data.success=="error0")
+                        {
+                            toastr.error("企业名称格式有误！");
+                        }
+                        else if(data.success=="error01")
+                        {
+                            toastr.error("企业名称输入过长！");
+                        }
+                        else if(data.success=="error02")
+                        {
+                            toastr.error("企业名称不能为空！");
+                        }
+                        else if(data.success=="error1")
+                        {
+                            toastr.error("邮政编码格式有误！");
+                        }
+                        else if(data.success=="error2")
+                        {
+                            toastr.error("联系电话格式有误！");
+                        }
+                        else if(data.success=="error3")
+                        {
+                            toastr.error("传真格式有误！");
+                        }
+                        else if(data.success=="error4")
+                        {
+                            toastr.error("EMAIL格式有误！");
+                        }
+                        else if(data.success=="error5")
+                        {
+                            toastr.error("主要经营业务输入过长！");
+                        }
+                        else if(data.success=="error51")
+                        {
+                            toastr.error("主要经营业务不能为空！");
+                        }
+                        else if(data.success=="error6")
+                        {
+                            toastr.error("组织机构代码格式有误！");
+                        }
+                        else if(data.success=="error61")
+                        {
+                            toastr.error("组织机构代码不能为空！");
+                        }
+                        else if(data.success=="error7")
+                        {
+                            toastr.error("联系人格式格式有误！！");
+                        }
+                        else if(data.success=="error71")
+                        {
+                            toastr.error("联系人输入过长！");
+                        }
+                        else if(data.success=="error72")
+                        {
+                            toastr.error("联系人不能为空！");
+                        }
+                        else if(data.success=="error8")
+                        {
+                            toastr.error("联系地址输入过长！");
+                        }
+                        else if(data.success=="error81")
+                        {
+                            toastr.error("联系地址不能为空！");
                         }
                         else
                         {
-                            alert("修改失败");
+                            toastr.error("修改失败");
                         }
                     },
                     error: function(){
-                        alert("服务器无法连接！");
+                        toastr.error("服务器无法连接！");
                     }
                 });
 
-            }
-
-            function isEmpty(str) {
-                if (!str || $.trim(str).length <= 0)
-                    return true;
-                return false;
             }
 
 
@@ -209,7 +288,6 @@
                     dataType: 'json',
 
                     success:function(data) {
-                        //alert(data[0].id);
                         areaBox.options.length=0;
                         for (var i = 0; i < data.length; i++)
                         {
@@ -217,7 +295,7 @@
                         }
                     },
                     error:function(){
-                        alert("服务器无法连接！");}
+                        toastr.error("服务器无法连接！");}
                 });
 
             }

@@ -1,7 +1,7 @@
 package com.shandong.human.resource.service.sys;
 
+import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.domain.CompanyData;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,7 @@ public interface CompanyDataService {
      * @param companyData
      * @return
      */
-    Integer companyDataAdd(CompanyData companyData);
+    int companyDataAdd(CompanyData companyData);
 
     /**
      * 在每个调查期获得公司总的人数
@@ -111,4 +111,55 @@ public interface CompanyDataService {
      * @return
      */
     ArrayList<CompanyData> getCompanyDataByCompanyIdLastestTime(int company_id);
+
+    /**
+     * 通过公司状态获得企业上报数据
+     *
+     * @param status
+     * @return
+     */
+    List<CompanyData> selectByStatus(Integer status);
+
+
+    /**
+     * 根据surveyTime查询
+     *
+     * @return
+     */
+    List<CompanyData> selectBySurveyTimeID(Integer id);
+
+    /**
+     * 获得待审核企业上报数据总数
+     * status为0,1的数据
+     *
+     * @return
+     */
+    Integer getToCheckCompanyDataCount();
+
+    /**
+     * 更新上报数据
+     *
+     * @param companyData
+     * @return
+     */
+    Integer updateCompanyData(CompanyData companyData);
+
+    /**
+     * 更新企业上报数据的状态(包括not_pass_reason)
+     * 省审核
+     *
+     * @param id
+     * @param status
+     * @return
+     */
+    void provinceCheck(Integer id, Integer status, String npr);
+
+    /**
+     * 根据公司和时间查询上报数据
+     *
+     * @param company_id
+     * @param survey_time_id
+     * @return
+     */
+    List<CompanyData> selectByCompanyandSurveyTime(Integer company_id, Integer survey_time_id);
 }

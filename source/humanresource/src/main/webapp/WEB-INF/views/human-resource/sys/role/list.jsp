@@ -31,13 +31,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                用户列表
-                <small>系统用户</small>
+                角色管理
+                <small>系统角色</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Simple</li>
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>系统管理</li>
+                <li class="active">角色管理</li>
             </ol>
         </section>
 
@@ -47,7 +47,34 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">用户列表</h3>
+                            <h3 class="box-title">新增角色</h3>
+                        </div>
+                        <div class="box-body">
+                            <form id="add-role-form" class="form-horizontal" role="form" method="post">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <div class="col-lg-4 form-group">
+                                            <lable class="col-lg-4 control-label" for="name">角色名</lable>
+                                            <div class="col-sm-8">
+                                                <input id="name" class="form-control" type="text" name="name"
+                                                       placeholder="角色名">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="button" class="btn btn-adn pull-left" value="添加" id="add-role-btn">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">角色列表</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body table-responsive no-padding">
                             <table class="table table-hover">
@@ -73,9 +100,9 @@
                                         </c:choose>
                                     </td>
                                     <td>
-                                        <a href="<%=basePath%>sys/role/delete?id=${v.id}">删除</a>
+                                        <a href="<%=basePath%>sys/authRole/edit/${v.id}">更改权限</a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="<%=basePath%>sys/authRole/edit?role_id=${v.id}">更改权限</a>
+                                        <a href="javascript:void(0);" class="del-role-btn" role_id="${v.id}">删除</a>
                                     </td>
                                     </c:forEach>
                                 </tr>
@@ -183,53 +210,11 @@
                     </div><!-- /.box -->
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">新增角色</h3>
-                        </div>
-                        <div class="box-body">
-                            <form id="add-role-form" class="form-horizontal" role="form" method="post">
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <div class="col-lg-4 form-group">
-                                            <lable class="col-lg-4 control-label" for="name">角色名</lable>
-                                            <div class="col-sm-8">
-                                                <input id="name" class="form-control" type="text" name="name" placeholder="角色名">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <input type="button" class="btn btn-adn pull-left" value="添加" id="add-role-btn">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section><!-- /.content -->
     </div>
 
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
-    <%--<script type='text/javascript' src='<%=basePath%>static/human/js/plugins/toastr/toastr.min.js'></script>--%>
     <script>
-        //        toastr.options = {
-        //            "closeButton": true,
-        //            "debug": false,
-        //            "progressBar": true,
-        //            "positionClass": "toast-top-center",
-        //            "onclick": null,
-        //            "showDuration": "50",
-        //            "hideDuration": "100",
-        //            "timeOut": "1200",
-        //            "extendedTimeOut": "100",
-        //            "showEasing": "swing",
-        //            "hideEasing": "linear",
-        //            "showMethod": "fadeIn",
-        //            "hideMethod": "fadeOut"
-        //        };
         $(function () {
             // 新增角色
             $("#add-role-btn").on('click', function () {
@@ -247,10 +232,8 @@
                     method: "post",
                     dataType: "json",
                     success: function (data) {
-
                         if (data.status == 'SUCCESS') {
-                            alert(data.info);
-//                            toastr.success(data.info);
+                            toastr.success(data.info);
                             // 1000ms之后执行的操作
                             setTimeout(function () {
                                 // 刷新页面
@@ -259,8 +242,38 @@
                                 //window.location.href = "<%=basePath%>sys/user";
                             }, 1000);
                         } else {
-                            alert(data.info);
-//                            toastr.error(data.info);
+                            toastr.error(data.info);
+                            return false;
+                        }
+                    }
+                });
+            });
+
+            // 删除角色
+            $(".del-role-btn").on('click', function () {
+                var role_id = $(this).attr('role_id');
+                var postUrl = "<%= basePath%>sys/role/delete";
+                $.ajax({
+                    url: postUrl,//提交的地址
+                    // 提交的数据,此处将整个表单的字段全部提交
+                    // 也可以单独提交某个字段
+                    data: {
+                        "id": role_id
+                    },
+                    method: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == 'SUCCESS') {
+                            toastr.success(data.info);
+                            // 1000ms之后执行的操作
+                            setTimeout(function () {
+                                // 刷新页面
+                                location.reload(true);
+                                // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                                //window.location.href = "<%=basePath%>sys/user";
+                            }, 1000);
+                        } else {
+                            toastr.error(data.info);
                             return false;
                         }
                     }

@@ -7,7 +7,11 @@ import java.util.Set;
 /**
  * 检查权限的工具
  * <p>
- * Created by syc on 3/23/16.
+ * Author: syc <522560298@qq.com>
+ * Date: 3/23/16 下午2:35
+ * <p>
+ * Modified: by noprom <tyee.noprom@qq.com>
+ * Date: 4/4/16 10:43 AM
  */
 public class PermissionUtil {
 
@@ -23,7 +27,7 @@ public class PermissionUtil {
             return false;
 
         for (Auth r : auths) {
-            if (r.getUrl().contains(url)) {
+            if (r.getUrl().equals(url)) {
                 return true;
             }
         }

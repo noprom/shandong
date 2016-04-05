@@ -5,12 +5,16 @@ import com.shandong.human.resource.domain.AuthRole;
 import com.shandong.human.resource.service.sys.AuthRoleService;
 import com.shandong.human.resource.service.sys.AuthService;
 import com.shandong.human.resource.util.AuthUtil;
+import com.shandong.human.resource.util.Constant;
+import com.shandong.human.resource.util.Result;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,8 +52,8 @@ public class AuthRoleController {
      * @param response
      * @return
      */
-    @RequestMapping(value = "/authRole/edit", method = RequestMethod.GET)
-    public String toEditPage(Integer role_id, Model model,
+    @RequestMapping(value = "/authRole/edit/{id}", method = RequestMethod.GET)
+    public String toEditPage(@PathVariable("id") Integer role_id, Model model,
                              HttpServletRequest request, HttpServletResponse response) {
         List<Auth> allAuth = authService.selectAll();
         //AuthTree authTree = new AuthTree(0, allAuth);
@@ -84,7 +88,8 @@ public class AuthRoleController {
      * @param response
      */
     @RequestMapping(value = "/authRole/edit", method = RequestMethod.POST)
-    public void submitHandle(Integer roleId, String authIds, HttpServletRequest request, HttpServletResponse response) {
+    public @ResponseBody
+    Result submitHandle(Integer roleId, String authIds, HttpServletRequest request, HttpServletResponse response) {
         String[] auths = authIds.split(",");
 
         authRoleService.deleteByRoleID(roleId);
@@ -92,11 +97,7 @@ public class AuthRoleController {
             if (!r.equals("0"))
                 authRoleService.insertAuthRole(Integer.parseInt(r), roleId);
         }
-        try {
-            response.sendRedirect("/sys/authRole/edit?role_id=" + roleId);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return new Result(Result.Status.SUCCESS,Constant.DEAL_SUCCESS);
     }
 
     /**

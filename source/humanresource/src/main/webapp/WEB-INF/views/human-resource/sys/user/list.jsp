@@ -31,13 +31,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                用户列表
+                用户管理
                 <small>系统用户</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Simple</li>
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>系统管理</li>
+                <li class="active">用户管理</li>
             </ol>
         </section>
 
@@ -71,8 +71,8 @@
                                             <lable class="col-sm-4 control-label" for="type">类型</lable>
                                             <div class="col-sm-8">
                                                 <select id="type" name="type" class="form-control">
-                                                    <option name="type" value="1">省用户</option>
                                                     <option name="type" value="2">企业用户</option>
+                                                    <option name="type" value="1">省用户</option>
                                                     <c:forEach items="${cityList}" var="v">
                                                         <option name="type" value="${v.id}">${v.name}用户</option>
                                                     </c:forEach>
@@ -129,7 +129,8 @@
                                             <c:otherwise>
                                                 <c:set var="typeflag" value="true"/>
                                                 <c:forEach items="${cityList}" var="r" varStatus="loopstatus">
-                                                    <c:if test="typeflag"></c:if>
+                                                    <c:if test="${typeflag eq 'true'}">
+                                                    </c:if>
                                                     <c:if test="${v.type eq r.id}">
                                                         <span class="label label-warning">${r.name}用户</span>
                                                         <c:set var="typeflag" value="false"/>
@@ -139,9 +140,9 @@
                                         </c:choose>
                                     </td>
                                     <td>
-                                        <a href="<%=basePath%>sys/userRole/edit?uid=${v.id}">授权</a>
+                                        <a href="<%=basePath%>sys/userRole/edit/${v.id}">授权</a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="<%=basePath%>sys/user/delete?uid=${v.id}">删除</a>
+                                        <a href="javascript:void(0);" class="del-user-btn" user_id="${v.id}">删除</a>
                                     </td>
                                     </c:forEach>
                                 </tr>
@@ -249,27 +250,12 @@
                     </div><!-- /.box -->
                 </div>
             </div>
+
         </section><!-- /.content -->
     </div>
 
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
-    <%--<script type='text/javascript' src='<%=basePath%>static/human/js/plugins/toastr/toastr.min.js'></script>--%>
     <script>
-        //        toastr.options = {
-        //            "closeButton": true,
-        //            "debug": false,
-        //            "progressBar": true,
-        //            "positionClass": "toast-top-center",
-        //            "onclick": null,
-        //            "showDuration": "50",
-        //            "hideDuration": "100",
-        //            "timeOut": "1200",
-        //            "extendedTimeOut": "100",
-        //            "showEasing": "swing",
-        //            "hideEasing": "linear",
-        //            "showMethod": "fadeIn",
-        //            "hideMethod": "fadeOut"
-        //        };
         $(function () {
             // 新增用户
             $("#submit-btn").on('click', function () {
@@ -291,6 +277,35 @@
                         if (data.status == 'SUCCESS') {
                             toastr.success(data.info);
                             // 1000ms之后执行的操作
+                            setTimeout(function () {
+                                // 刷新页面
+                                location.reload(true);
+                                // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                                //window.location.href = "<%=basePath%>sys/user";
+                            }, 1000);
+                        } else {
+                            toastr.error(data.info);
+                            return false;
+                        }
+                    }
+                });
+            });
+
+            // 删除用户
+            $(".del-user-btn").on('click', function () {
+                var user_id = $(this).attr('user_id');
+                var postUrl = "<%= basePath%>sys/user/delete";
+                $.ajax({
+                    url: postUrl,//提交的地址
+                    data: {
+                        "id": user_id
+                    },
+                    method: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == 'SUCCESS') {
+                            toastr.success(data.info);
+                            // 3000ms之后执行的操作
                             setTimeout(function () {
                                 // 刷新页面
                                 location.reload(true);

@@ -1,18 +1,13 @@
 package com.shandong.human.resource.controller.sys.auth;
 
 import com.shandong.human.resource.common.AuthTree;
-import com.shandong.human.resource.controller.CommonController;
 import com.shandong.human.resource.domain.Auth;
-import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.service.sys.AuthService;
-import com.shandong.human.resource.service.sys.RecordService;
 import com.shandong.human.resource.util.Constant;
+import com.shandong.human.resource.util.RegExpUtil;
 import com.shandong.human.resource.util.Result;
-import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,10 +26,21 @@ import java.util.regex.Pattern;
  */
 @RequestMapping("/sys/auth")
 @Controller
-public class AuthController extends CommonController {
+public class AuthController {
 
     // 静态资源前缀
     public static final String STATIC_PREFIX = "human-resource/sys/auth";
+
+    /**
+     * 权限名正则约束
+     **/
+    private static final String NAME_RESTRICT = "(" + RegExpUtil.zh_CN+"|"+ RegExpUtil.NUM_CHAR+"){1,10}";
+
+    //正则表达式需要替换的字符 '$', '(', ')', '*', '+', '.', '[', ']', '?', '\\', '^', '{', '}', '|'
+    /**
+     * 权限链接正则约束
+     **/
+    private static final String URL_RESTRICT = "[/]([/|;|:|<|>|%]|" + RegExpUtil.zh_CN + "|" + RegExpUtil.NUM_CHAR + "|" + RegExpUtil.SPECIFIC + ")*";
 
     @Autowired
     private AuthService service;
@@ -75,12 +80,17 @@ public class AuthController extends CommonController {
     Result addAuth(Integer pid, String name, String url,
                    HttpServletRequest request, HttpServletResponse response) throws IOException {
         Auth toInsert = new Auth();
-        logger.debug(name + url + pid);
 
-        Pattern pattern = Pattern.compile(".{1,10}");
+        Pattern pattern = Pattern.compile(NAME_RESTRICT);
         Matcher matcher = pattern.matcher(name);
         if (!matcher.matches()) {
             return new Result(Result.Status.ERROR, Constant.AUTHNAME_ILLEGAL);
+        }
+
+        Pattern pattern_2 = Pattern.compile(URL_RESTRICT);
+        Matcher matcher_2 = pattern_2.matcher(url);
+        if (!matcher_2.matches()) {
+            return new Result(Result.Status.ERROR, Constant.AUTHURL_ILLEGAL);
         }
 
         int level = service.selectByID(pid).getLevel() + 1;

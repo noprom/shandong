@@ -1,5 +1,6 @@
 package com.shandong.human.resource.service.sys.impl;
 
+import com.shandong.human.resource.domain.Company;
 import com.shandong.human.resource.domain.CompanyData;
 import com.shandong.human.resource.mapper.sys.CompanyDataMapper;
 import com.shandong.human.resource.service.sys.CompanyDataService;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 公司数据service实现类
- * <p>
+ * <p/>
  * Author: helin <helin199210@icloud.com>
  * Time: 16/3/15 下午3:11
  */
@@ -59,7 +60,7 @@ public class CompanyDataServiceImpl implements CompanyDataService {
      * @param companyData
      * @return
      */
-    public Integer companyDataAdd(CompanyData companyData) {
+    public int companyDataAdd(CompanyData companyData) {
         return companyDataMapper.companyDataAdd(companyData);
     }
 
@@ -148,5 +149,68 @@ public class CompanyDataServiceImpl implements CompanyDataService {
      */
     public ArrayList<CompanyData> getCompanyDataByCompanyIdLastestTime(int company_id) {
         return companyDataMapper.getCompanyDataByCompanyIdLastestTime(company_id);
+    }
+
+    /**
+     * 通过公司状态获得企业上报数据
+     *
+     * @param status
+     * @return
+     */
+    public List<CompanyData> selectByStatus(Integer status) {
+        return companyDataMapper.selectByStatus(status);
+    }
+
+
+    /**
+     * 根据surveyTime查询
+     *
+     * @return
+     */
+    public List<CompanyData> selectBySurveyTimeID(Integer id) {
+        return companyDataMapper.selectBySurveyTimeID(id);
+    }
+
+    /**
+     * 获得待审核企业上报数据总数
+     * status为0, 1 的数据
+     *
+     * @return
+     */
+    public Integer getToCheckCompanyDataCount() {
+        return companyDataMapper.getToCheckCompanyDataCount();
+    }
+
+    /**
+     * 更新上报数据
+     *
+     * @param companyData
+     * @return
+     */
+    public Integer updateCompanyData(CompanyData companyData) {
+        return companyDataMapper.updateCompanyData(companyData);
+    }
+
+    /**
+     * 更新数据的状态
+     *
+     * @param id
+     * @param status
+     * @param npr
+     * @return
+     */
+    public void provinceCheck(Integer id, Integer status, String npr) {
+        companyDataMapper.provinceCheck(id, status, npr);
+    }
+
+    /**
+     * 根据公司和时间查询上报数据
+     *
+     * @param company_id
+     * @param survey_time_id
+     * @return
+     */
+    public List<CompanyData> selectByCompanyandSurveyTime(Integer company_id, Integer survey_time_id) {
+        return companyDataMapper.selectByCompanyandSurveyTime(company_id, survey_time_id);
     }
 }

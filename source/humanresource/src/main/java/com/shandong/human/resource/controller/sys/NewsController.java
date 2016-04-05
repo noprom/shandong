@@ -1,6 +1,7 @@
 package com.shandong.human.resource.controller.sys;
 
 import com.shandong.human.resource.domain.News;
+import com.shandong.human.resource.domain.User;
 import com.shandong.human.resource.service.sys.NewsService;
 import com.shandong.human.resource.util.Constant;
 import com.shandong.human.resource.util.Result;
@@ -38,47 +39,56 @@ public class NewsController {
      *
      * @param model
      * @param news
-     * @param httpSession
      * @return
      */
     @RequestMapping(value = "/sys/news", method = RequestMethod.GET)
-    String newsList(Model model, News news, HttpSession httpSession) {
+    String newsList(Model model, News news) {
         List<News> newsList = newsService.newsList();
         model.addAttribute("newsList", newsList);
         return STATIC_PREFIX + "/list";
     }
 
     /**
+     * 新闻详情
+     *
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/sys/news/{id}", method = RequestMethod.GET)
+    String newsDetail(@PathVariable("id") Integer id, Model model) {
+        News news = newsService.selectNewsById(id);
+        model.addAttribute("newsDetail", news);
+        return STATIC_PREFIX + "/detail";
+    }
+
+    /**
      * 新增新闻
      *
-     * @param model
      * @param news
-     * @param httpSession
      * @return
      */
     @RequestMapping(value = "/sys/news/add", method = RequestMethod.POST)
     public
     @ResponseBody
-    Result newsAdd(Model model, News news, HttpSession httpSession) {
-        news.setUserId(10);
+    Result newsAdd(News news, HttpSession session) {
+        User loginUser = (User) session.getAttribute(Constant.LOGIN_USER);
+        news.setUserId(loginUser.getId());
         Integer id = newsService.addNews(news);
         if (id >= 0) {
-            return new Result(Result.Status.SUCCESS, Constant.REG_SUCCESS);
+            return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
         } else {
-            return new Result(Result.Status.ERROR, Constant.REG_FAIL);
+            return new Result(Result.Status.ERROR, Constant.DEAL_FAIL);
         }
     }
 
     /**
      * 显示新增新闻页面
      *
-     * @param model
-     * @param news
-     * @param httpSession
      * @return
      */
     @RequestMapping(value = "/sys/news/add", method = RequestMethod.GET)
-    String newsAddjsp(Model model, News news, HttpSession httpSession) {
+    String addNews() {
         return STATIC_PREFIX + "/add";
     }
 
@@ -90,7 +100,7 @@ public class NewsController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "sys/news/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/sys/news/delete/{id}", method = RequestMethod.GET)
     String newsDelete(@PathVariable("id") Integer id, Model model, HttpSession httpSession, HttpServletRequest request) {
         newsService.deleteNewsById(id);
         List<News> newsList = newsService.newsList();
@@ -99,16 +109,15 @@ public class NewsController {
     }
 
     /**
-     * 编辑新闻
+     * 编辑新闻页面
      *
-     * @param httpSession
-     * @param request
+     * @param model
      * @return
      */
-    @RequestMapping(value = "sys/news/edit/{id}", method = RequestMethod.GET)
-    String newsEditPage(@PathVariable("id") Integer id, HttpSession httpSession, HttpServletRequest request) {
+    @RequestMapping(value = "/sys/news/edit/{id}", method = RequestMethod.GET)
+    public String newsEditPage(@PathVariable("id") Integer id, Model model) {
         News news = newsService.selectNewsById(id);
-        httpSession.setAttribute("newToEdit", news);
+        model.addAttribute("newToEdit", news);
         return STATIC_PREFIX + "/edit";
     }
 
@@ -116,16 +125,17 @@ public class NewsController {
      * 编辑新闻提交页面
      *
      * @param model
-     * @param request
      * @return
      */
-    @RequestMapping(value = "sys/news/edit", method = RequestMethod.POST)
-    String newsEdit(Model model, News news, HttpSession httpSession, HttpServletRequest request) {
+    @RequestMapping(value = "/sys/news/edit", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    Result editNews(Model model, News news) {
         Integer id = newsService.editNewsById(news);
-        System.out.println(news.getId().toString());
-        System.out.println(news.getTitle());
-        List<News> newsList = newsService.newsList();
-        model.addAttribute("newsList", newsList);
-        return STATIC_PREFIX + "/list";
+        if (id > 0) {
+            return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
+        } else {
+            return new Result(Result.Status.ERROR, Constant.DEAL_FAIL);
+        }
     }
 }

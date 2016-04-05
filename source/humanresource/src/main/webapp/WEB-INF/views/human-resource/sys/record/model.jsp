@@ -1,11 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" import="java.util.*,java.io.*" pageEncoding="GBK"%>
+<%@ page language="java" import="java.util.*,java.io.*" pageEncoding="UTF-8"%>
 <%@ page contentType="application/msexcel" %>
 <%
     //response.setHeader("Content-disposition","inline; filename=videos.xls");
-    response.setHeader("Content-disposition","attachment; filename=test.xls");
-    //���������趨���͵�ǰ�������ʱ�ĵ���Ϊtest.xls
-    //���ǿ���һ�У���ǰ���������Ϊ���յ�һ��excel��
+    response.setHeader("Content-disposition","attachment; filename=CompanyRecord.xls");
+    //以上这行设定传送到前端浏览器时的档名为test.xls
+    //就是靠这一行，让前端浏览器以为接收到一个excel档
 %>
 <%@ page import="com.shandong.human.resource.domain.Company"%>
 <%@ page import="org.springframework.web.context.WebApplicationContext" %>
@@ -19,11 +19,11 @@
     <head>
         <base href="<%=basePath%>">
         <title>spring jdbc test</title>
-        <meta http-equiv="pragma" content="no-cache">
-        <meta http-equiv="cache-control" content="no-cache">
-        <meta http-equiv="expires" content="0">
-        <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-        <meta http-equiv="description" content="This is my page">
+        <meta http-equiv="pragma" content="no-cache"></meta>
+        <meta http-equiv="cache-control" content="no-cache"></meta>
+        <meta http-equiv="expires" content="0"></meta>
+        <meta http-equiv="keywords" content="keyword1,keyword2,keyword3"></meta>
+        <meta http-equiv="description" content="This is my page"></meta>
         <!--
         <link rel="stylesheet" type="text/css" href="styles.css">
         -->
@@ -33,18 +33,18 @@
         <table border="1" width="100%">
             <tr>
                 <td>ID</td>
-                <td>ʡID</td>
-                <td>��ID</td>
-                <td>��ID</td>
-                <td>��ַ</td>
-                <td>��ҵ����</td>
-                <td>��ҵ����</td>
-                <td>ҵ��</td>
-                <td>��ϵ��</td>
-                <td>�ʱ�</td>
-                <td>�绰</td>
-                <td>����</td>
-                <td>����</td>
+                <td>省ID</td>
+                <td>市ID</td>
+                <td>区ID</td>
+                <td>地址</td>
+                <td>企业代码</td>
+                <td>企业名称</td>
+                <td>业务</td>
+                <td>联系人</td>
+                <td>邮编</td>
+                <td>电话</td>
+                <td>传真</td>
+                <td>邮箱</td>
             </tr>
             <c:forEach items="${exResult}" var="v">
             <tr>

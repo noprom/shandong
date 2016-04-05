@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 用户实体类
- * <p>
+ * <p/>
  * Author: chenyongpeng <chen9121@foxmail.com>
  * Date: 2016/3/14 9:34
  */
@@ -13,10 +13,10 @@ public class User {
 
     private int id;            //主键
 
-    //@Pattern(regexp = "[a-z]|[A-Z]([a-z]|[A-Z]){4,19}")
+    @Pattern(regexp = "([a-zA-Z])([a-zA-Z0-9]){4,19}")
     private String username;  //用户名
 
-    //@Pattern(regexp = "[a-z]|[A-Z]([a-z]|[A-Z]){4,19}")
+    @Pattern(regexp = "([a-zA-Z0-9]){5,20}")
     private String password;  //MD5加密密码
     private int type;         //1:省用户，2:企业用户
 
@@ -52,4 +52,26 @@ public class User {
         this.type = type;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != user.id) return false;
+        if (type != user.type) return false;
+        if (!username.equals(user.username)) return false;
+        return password.equals(user.password);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + username.hashCode();
+        result = 31 * result + password.hashCode();
+        result = 31 * result + type;
+        return result;
+    }
 }

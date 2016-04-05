@@ -35,9 +35,8 @@
                 <small>添加</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Simple</li>
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li class="active">添加上报时间</li>
             </ol>
         </section>
 
@@ -50,7 +49,7 @@
                             <h3 class="box-title">添加调查期</h3>
                         </div>
                         <div class="box-body">
-                            <form class="form" role="form" action="<%= basePath%>sys/surveyTime/add" method="post">
+                            <form id="add-form" class="form" role="form">
                                 <div class="row">
                                     <div class="col-md-10">
                                         <div class="box box-primary">
@@ -69,7 +68,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="submit" class="btn btn-sm" value="添加">
+                                            <input id="add-btn" type="button" class="btn btn-sm" value="添加">
                                         </div>
                                     </div>
                                 </div>
@@ -108,6 +107,39 @@
                         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
                     }
             );
+
+            $("#add-btn").on('click', function () {
+                // ajax 方式提交数据到某个url
+                var postUrl = "<%= basePath%>sys/surveyTime/add";
+                $.ajax({
+                    url: postUrl,//提交的地址
+                    data: $("#add-form").serialize(),
+                    // 提交的数据,此处将整个表单的字段全部提交
+                    // 也可以单独提交某个字段
+//                data: {
+//                    "username": username,
+//                    "password": password
+//                },
+                    method: "post",
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data.status == 'SUCCESS') {
+                            toastr.success(data.info);
+                            // 1000ms之后执行的操作
+                            setTimeout(function () {
+                                // 刷新页面
+                                location.reload(true);
+                                // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                                //window.location.href = "<%=basePath%>sys/user";
+                            }, 1000);
+                        } else {
+                            toastr.error(data.info);
+                            return false;
+                        }
+                    }
+                });
+            });
         });
     </script>
 </div>

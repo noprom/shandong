@@ -2,12 +2,15 @@ package com.shandong.human.resource.controller.sys;
 
 import com.shandong.human.resource.domain.CompanyData;
 import com.shandong.human.resource.service.sys.ReportService;
+import com.shandong.human.resource.util.Constant;
+import com.shandong.human.resource.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 
@@ -58,7 +61,12 @@ public class ReportController {
      * @param choose
      */
     @RequestMapping(value = "/sys/report", method = RequestMethod.POST)
-    public void report(Model model, String choose) {
+    public
+    @ResponseBody
+    Result report(Model model, String choose) {
+        if (choose == null || choose.isEmpty()) {
+            return new Result(Result.Status.ERROR, Constant.YOU_MUST_CHOOSE_THA_DATA_TO_REPORT);
+        }
         String[] ids = choose.split(",");
         ArrayList<CompanyData> list = new ArrayList<CompanyData>();
         for (String r : ids) {
@@ -74,7 +82,8 @@ public class ReportController {
                 reportService.changeCompanyDataStatusById(id);
             }
         }
-        //TODO:上报
+        //TODO:假装上报成功
+        return new Result(Result.Status.SUCCESS, Constant.DEAL_SUCCESS);
     }
 
     /**
@@ -102,9 +111,17 @@ public class ReportController {
      */
     @RequestMapping(value = "/sys/report/queryByName", method = RequestMethod.POST)
     public String getAllCompanyDataByName(Model model, String name) {
-        int company_id = 0;
-        company_id = reportService.getCompanyIdByName(name);
-        ArrayList<CompanyData> list = reportService.getCompanyDataByCompanyIdS2(company_id);
+        Integer company_id = 0;
+        ArrayList<CompanyData> list = null;
+
+        try {
+            company_id = reportService.getCompanyIdByName(name);
+        } catch (Exception e) {
+            model.addAttribute("reportResult", list);
+            return STATIC_PREFIX + "/query";
+        }
+
+        list = reportService.getCompanyDataByCompanyIdS2(company_id);
         model.addAttribute("reportResult", list);
         return STATIC_PREFIX + "/query";
     }

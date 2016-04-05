@@ -25,6 +25,11 @@
             <h1>
                 企业备案详情
             </h1>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>企业备案管理</li>
+                <li class="active">企业备案详情</li>
+            </ol>
         </section>
 
 
@@ -119,17 +124,17 @@
                                                     <strong>其它原因 : </strong>${v.other_reason}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <strong>减少类型 : </strong>${v.reduce_type}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <br>
-                                                    <strong>REASON ONE : </strong>${v.reason1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <strong>主要原因 : </strong>${v.reason1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <br>
-                                                    <strong>REASON ONE EXPLAIN : </strong>${v.reason1_explain}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <strong>主要原因解释 : </strong>${v.reason1_explain}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <br>
-                                                    <strong>REASON TWO : </strong>${v.reason2}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <strong>次要原因 : </strong>${v.reason2}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <br>
-                                                    <strong>REASON TWO EXPLAIN : </strong>${v.reason2_explain}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <strong>次要原因解释 : </strong>${v.reason2_explain}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <br>
-                                                    <strong>REASON THREE : </strong>${v.reason3}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <strong>第三原因 : </strong>${v.reason3}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <br>
-                                                    <strong>REASON THREE EXPLAIN : </strong>${v.reason3_explain}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <strong>第三原因解释 : </strong>${v.reason3_explain}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <br>
                                                     <strong>状态 : </strong>${v.status}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(状态:
                                                     -2:省审核不通过; -1:市审核不通过; 0:待市审核; 1:市审核通过,待省审核; 2:省审核通过,待上报到部; 3:已上报到部)
@@ -159,17 +164,6 @@
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
 
     <script>
-        $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false
-            });
-        });
     </script>
 </body>
 </html>

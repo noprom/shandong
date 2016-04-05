@@ -21,7 +21,14 @@
     <!-- Content Header (Page header) -->
 
     <div class="content-wrapper">
-        <section class="content-header"><h1>发布通知</h1></section>
+        <section class="content-header">
+            <h1>通知管理</h1>
+            <ol class="breadcrumb">
+                <li><a href="<%=basePath%>"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li>通知管理</li>
+                <li class="active">添加通知</li>
+            </ol>
+        </section>
 
         <section class="content">
             <div class="row">
@@ -40,7 +47,8 @@
 
                                 <!-- textarea -->
                                 <div class="form-group">
-                                    <textarea class="form-control" name="content" rows="10" required placeholder="通知内容"></textarea>
+                                    <textarea class="form-control" name="content" rows="10" required
+                                              placeholder="通知内容"></textarea>
                                 </div>
                             </div><!-- /.box-body -->
 
@@ -55,73 +63,51 @@
     </div>
 
     <jsp:include page="../../footer.jsp" flush="true"></jsp:include>
-</div>
-</div>
+    <script>
+        $(function () {
+            // 新增通知
+            $("#add-btn").on('click', function () {
+                //标题
+                var title = $("#addNews-form input[name = title]").val();
+                //正文
+                var content = $("#addNews-form textarea[name = content]").val();
 
+                //数据校验
+                if (isEmpty(title)) {
+                    toastr.error("标题不能为空");
+                    return false;
+                } else if (isEmpty(content)) {
+                    toastr.error("正文不能为空");
+                    return false;
+                } else {
+                    var postUrl = "<%=basePath%>sys/news/add";
+                    $.ajax({
+                        url: postUrl,
+                        data: $("#addNews-form").serialize(),
+                        method: "post",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.status == 'SUCCESS') {
+                                toastr.success(data.info);
+                                // 3000ms之后执行的操作
+                                setTimeout(function () {
+                                    // 刷新页面
+                                    //location.reload(true);
+                                    // 跳转到某个界面,如果想跳转的页面与当前页面url一致,则不需要跳转
+                                    window.location.href = "<%=basePath%>sys/news";
+                                }, 1000);
+                            } else {
+                                toastr.error(data.info);
+                                return false;
+                            }
+                        }
 
-<!-- /.主要内容结束 -->
-<jsp:include page="../../js.jsp" flush="true"></jsp:include>
-<script type="text/javascript">
-    jQuery('document').ready(function ($) {
-
-        //添加通知
-        $("#add-btn").on('click', function () {
-
-            addNews();
+                    });
+                }
+            });
         });
-
-        /**
-         * 添加通知
-         * @returns {boolean}
-         */
-        function addNews() {
-
-            //标题
-            var title = $("#addNews-form input[name = title]").val();
-            //正文
-            var content = $("#addNews-form textarea[name = content]").val();
-
-            //数据校验
-            if (isEmpty(title)) {
-                alert("标题不能为空");
-                return false;
-            } else if (isEmpty(content)) {
-                alert("正文不能为空");
-                return false;
-            } else {
-                var postUrl = "<%=basePath%>sys/news/add";
-                $.ajax({
-                    url: postUrl,
-                    data: $("#addNews-form").serialize(),
-                    method: "post",
-                    dataType: "json",
-                    success: function (data) {
-
-                        toastr.success("添加成功");
-                        window.location.href = "<%=basePath%>sys/news";
-                        <%--if (data.status == 'SUCCESS') {--%>
-                            <%--toastr.success(data.info);--%>
-                            <%--alert("添加成功");--%>
-                            <%--window.location.href = "<%=basePath%>sys/news";--%>
-                        <%--} else {--%>
-                            <%--alert("添加失败");--%>
-                            <%--toastr.error(data.info);--%>
-                            <%--window.location.href = "<%=basePath%>sys/news";--%>
-                            <%--return false;--%>
-                        <%--}--%>
-                    }
-
-                });
-            }
-
-        }
-
-        function isEmpty(str) {
-            if (!str || $.trim(str).length <= 0)
-                return true;
-            return false;
-        }
-    });
-</script>
+    </script>
+</div>
+</div>
 </body>
 </html>
