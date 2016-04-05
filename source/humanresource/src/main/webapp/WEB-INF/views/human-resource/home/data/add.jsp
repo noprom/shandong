@@ -54,7 +54,7 @@
                             <table id="dataTable" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>建档期就业人数</th>
+                                    <th>调查期</th>
                                     <th>建档期就业人数</th>
                                     <th>调查期就业人数</th>
                                     <th>状态</th>
